@@ -1,0 +1,15 @@
+.svg-menu__path__seleccion:hover .svg-menu__path__seleccion__background *, .svg-menu__path__seleccion.active .svg-menu__path__seleccion__background *
+{
+  fill: orange;  
+}
+.svg-menu__path__seleccion {
+    transform-origin: 50% 50%;
+  }
+.container{
+  position: absolute;
+  display: flex;
+  justify-self: center;
+  justify-items: center;
+  margin-top: 20px;
+  box-align: center;
+}

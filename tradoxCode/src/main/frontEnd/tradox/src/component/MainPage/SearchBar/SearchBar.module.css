@@ -1,0 +1,21 @@
+.searcher{
+    outline:none;
+    height: 56px;
+    width: 272px;
+    border-radius: 18px;
+    background: #F9B300;  
+    border-width: 0px;
+    padding-left: 37px;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
+}
+.searcher::placeholder{
+    color: rgba(0, 0, 0, 0.5);
+}
+.container{
+    position: absolute;
+    margin-left: 150px;
+    margin-top: 952px;
+    display: flex;
+}

@@ -1,0 +1,1803 @@
+{
+  "mainArr": [
+    {
+      "country": "AD",
+      "urban": 50,
+      "rural": 90,
+      "highway": 0,
+      "motorway": 0
+    },
+    {
+      "country": "AE",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "AF",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "AG",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "AI",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "AL",
+      "urban": 40,
+      "rural": 80,
+      "highway": 90,
+      "motorway": 110
+    },
+    {
+      "country": "AM",
+      "urban": 60,
+      "rural": 90,
+      "highway": 0,
+      "motorway": 110
+    },
+    {
+      "country": "AO",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "AR",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "AS",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "AT",
+      "urban": 50,
+      "rural": 100,
+      "highway": 0,
+      "motorway": 130
+    },
+    {
+      "country": "AU",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "AW",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "AX",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "AZ",
+      "urban": 60,
+      "rural": 90,
+      "highway": 90,
+      "motorway": 110
+    },
+    {
+      "country": "BA",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "BB",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "BD",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "BE",
+      "urban": 50,
+      "rural": 90,
+      "highway": 120,
+      "motorway": 120
+    },
+    {
+      "country": "BF",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "BG",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "BH",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "BI",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "BJ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "BL",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "BN",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "BO",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "BM",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "BQ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "BR",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "BS",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "BT",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "BV",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "BW",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "BY",
+      "urban": 60,
+      "rural": 90,
+      "highway": 0,
+      "motorway": 110
+    },
+    {
+      "country": "BZ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "CA",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "CC",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "CD",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "CF",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "CG",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "CH",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 120
+    },
+    {
+      "country": "CI",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "CK",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "CL",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "CM",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "CN",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "CO",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "CR",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "CU",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "CV",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "CW",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "CX",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "CY",
+      "urban": 50,
+      "rural": 80,
+      "highway": 0,
+      "motorway": 100
+    },
+    {
+      "country": "CZ",
+      "urban": 50,
+      "rural": 90,
+      "highway": 110,
+      "motorway": 130
+    },
+    {
+      "country": "DE",
+      "urban": 50,
+      "rural": 100,
+      "highway": 0,
+      "motorway": 130
+    },
+    {
+      "country": "DJ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "DK",
+      "urban": 50,
+      "rural": 80,
+      "highway": 110,
+      "motorway": 130
+    },
+    {
+      "country": "DM",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "DO",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "DZ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "EC",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "EG",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "EE",
+      "urban": 50,
+      "rural": 90,
+      "highway": 0,
+      "motorway": 110
+    },
+    {
+      "country": "EH",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "ER",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "ES",
+      "urban": 50,
+      "rural": 90,
+      "highway": 100,
+      "motorway": 120
+    },
+    {
+      "country": "ET",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "FI",
+      "urban": 50,
+      "rural": 80,
+      "highway": 0,
+      "motorway": 120
+    },
+    {
+      "country": "FJ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "FK",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "FM",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "FO",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "FR",
+      "urban": 50,
+      "rural": 80,
+      "highway": 110,
+      "motorway": 130
+    },
+    {
+      "country": "GA",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "GB",
+      "urban": 48,
+      "rural": 96,
+      "highway": 112,
+      "motorway": 112
+    },
+    {
+      "country": "GE",
+      "urban": 60,
+      "rural": 90,
+      "highway": 0,
+      "motorway": 110
+    },
+    {
+      "country": "GD",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "GF",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "GG",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "GH",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "GI",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "GL",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "GM",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "GN",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "GO",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "GP",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "GQ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "GR",
+      "urban": 50,
+      "rural": 90,
+      "highway": 110,
+      "motorway": 130
+    },
+    {
+      "country": "GS",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "GT",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "GU",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "GW",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "GY",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "HK",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "HM",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "HN",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "HR",
+      "urban": 50,
+      "rural": 90,
+      "highway": 110,
+      "motorway": 130
+    },
+    {
+      "country": "HT",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "HU",
+      "urban": 50,
+      "rural": 90,
+      "highway": 110,
+      "motorway": 130
+    },
+    {
+      "country": "ID",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "IE",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 120
+    },
+    {
+      "country": "IL",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "IM",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "IN",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "IO",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "IQ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "IR",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "IS",
+      "urban": 50,
+      "rural": 80,
+      "highway": 90,
+      "motorway": 0
+    },
+    {
+      "country": "IT",
+      "urban": 50,
+      "rural": 90,
+      "highway": 110,
+      "motorway": 130
+    },
+    {
+      "country": "JE",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "JM",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "JO",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "JP",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "JU",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "KE",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "KJ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "KH",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "KI",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "KM",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "KN",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "KP",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "KR",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "XK",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "KW",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "KY",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "KZ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "LA",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "LB",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "LC",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "LI",
+      "urban": 50,
+      "rural": 80,
+      "highway": 0,
+      "motorway": 0
+    },
+    {
+      "country": "LK",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "LR",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "LS",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "LT",
+      "urban": 50,
+      "rural": 90,
+      "highway": 120,
+      "motorway": 130
+    },
+    {
+      "country": "LU",
+      "urban": 50,
+      "rural": 90,
+      "highway": 0,
+      "motorway": 130
+    },
+    {
+      "country": "LV",
+      "urban": 50,
+      "rural": 90,
+      "highway": 110,
+      "motorway": 0
+    },
+    {
+      "country": "LY",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "MA",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "MC",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "MD",
+      "urban": 50,
+      "rural": 90,
+      "highway": 110,
+      "motorway": 0
+    },
+    {
+      "country": "MG",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "ME",
+      "urban": 50,
+      "rural": 80,
+      "highway": 110,
+      "motorway": 130
+    },
+    {
+      "country": "MF",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "MH",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "MK",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "ML",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "MO",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "MM",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "MN",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "MP",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "MQ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "MR",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "MS",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "MT",
+      "urban": 50,
+      "rural": 80,
+      "highway": 0,
+      "motorway": 0
+    },
+    {
+      "country": "MU",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "MV",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "MW",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "MX",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "MY",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "MZ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "NA",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "NC",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "NE",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "NF",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "NG",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "NI",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "NL",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "NO",
+      "urban": 50,
+      "rural": 80,
+      "highway": 0,
+      "motorway": 110
+    },
+    {
+      "country": "NP",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "NR",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "NU",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "NZ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "OM",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "PA",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "PE",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "PF",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "PG",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "PH",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "PK",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "PL",
+      "urban": 50,
+      "rural": 90,
+      "highway": 120,
+      "motorway": 140
+    },
+    {
+      "country": "PM",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "PN",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "PR",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "PS",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "PT",
+      "urban": 50,
+      "rural": 90,
+      "highway": 100,
+      "motorway": 120
+    },
+    {
+      "country": "PW",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "PY",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "QA",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "RE",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "RO",
+      "urban": 50,
+      "rural": 100,
+      "highway": 130,
+      "motorway": 130
+    },
+    {
+      "country": "RS",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "RU",
+      "urban": 60,
+      "rural": 90,
+      "highway": 90,
+      "motorway": 110
+    },
+    {
+      "country": "RW",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "SA",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "SB",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "SC",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "SD",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "SE",
+      "urban": 50,
+      "rural": 90,
+      "highway": 0,
+      "motorway": 120
+    },
+    {
+      "country": "SG",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "SH",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "SI",
+      "urban": 50,
+      "rural": 90,
+      "highway": 110,
+      "motorway": 130
+    },
+    {
+      "country": "SJ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "SK",
+      "urban": 50,
+      "rural": 90,
+      "highway": 90,
+      "motorway": 130
+    },
+    {
+      "country": "SL",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "SM",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "SN",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "SO",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "SR",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "SS",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "ST",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "SV",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "SX",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "SY",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "SZ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "TC",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "TD",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "TF",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "TG",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "TH",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "TJ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "TK",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "TL",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "TM",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "TN",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "TO",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "TR",
+      "urban": 50,
+      "rural": 90,
+      "highway": 110,
+      "motorway": 120
+    },
+    {
+      "country": "TT",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "TV",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "TW",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "TZ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "UA",
+      "urban": 50,
+      "rural": 90,
+      "highway": 110,
+      "motorway": 130
+    },
+    {
+      "country": "UG",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "DQ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "UM_FQ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "UM_HQ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "UM_JQ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "UM_MQ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "UM_WQ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "UM",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "US",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "UY",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "UZ",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "VA",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "VC",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "VE",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "VG",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "VI",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "VN",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "VU",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "WF",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "WS",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "YE",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "YT",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "ZA",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "ZM",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    },
+    {
+      "country": "ZW",
+      "urban": 50,
+      "rural": 80,
+      "highway": 100,
+      "motorway": 130
+    }
+  ]
+}

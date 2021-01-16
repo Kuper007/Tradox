@@ -1,0 +1,56 @@
+.logo{
+    top: 60px;
+    cursor: pointer;
+    margin-left: 143px;
+    margin-top: 60px;
+
+}
+.user{
+    cursor: pointer;
+    width: 55px;
+    height: 55px;
+    margin-top: 60px;
+    margin-right: 143px;
+}
+.auth{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.container{
+    position: absolute;
+    z-index:1;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    top:0;
+}
+.hidable{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.vector{
+    margin-top: 48px;
+    width: 10;
+    height: 20;
+    margin-right: 10px;
+}
+
+.link{
+    margin-top: 77px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.register{   
+    color: #000000;
+    padding-right: 16px;
+}
+.logIn{
+    color: #57B310;
+    padding-right: 16px;
+}
