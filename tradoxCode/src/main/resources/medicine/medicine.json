@@ -1,0 +1,5512 @@
+[
+  {
+    "Country": "AF",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Malaria": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "AL",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": false
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "DZ",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Malaria": true,
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "AS",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "AD",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "VG",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "AO",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true,
+        "Yellow Fever": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "AI",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "AQ",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      }
+    }
+  },
+  {
+    "Country": "AG",
+    "CovidInfo": "Level 2: COVID-19 Moderate",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "AR",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "AM",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "AW",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "PF",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "AU",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "AT",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "AZ",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Malaria": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "BS",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "BH",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "BD",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "BB",
+    "CovidInfo": "Level 2: COVID-19 Moderate",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "AG",
+    "CovidInfo": "Level 2: COVID-19 Moderate",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "BY",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "BE",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "BZ",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "BJ",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true,
+        "Yellow Fever": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Meningitis (Meningococcal disease)": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "BM",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "BT",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "BO",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "BQ",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "BA",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "BW",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "BR",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true,
+        "Yellow Fever": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "IO",
+    "CovidInfo": "Level Unknown: COVID-19 Unknown",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "BN",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "BG",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "BF",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true,
+        "Yellow Fever": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Meningitis (Meningococcal disease)": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "MM",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "BI",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true,
+        "Yellow Fever": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "TC",
+    "CovidInfo": "Level 2: COVID-19 Moderate",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "KH",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "CM",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true,
+        "Yellow Fever": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Meningitis (Meningococcal disease)": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "CA",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "CV",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "KY",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "CF",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true,
+        "Yellow Fever": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Meningitis (Meningococcal disease)": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "TD",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Meningitis (Meningococcal disease)": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "CL",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "CN",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "CX",
+    "CovidInfo": "Level Unknown: COVID-19 Unknown",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "CC",
+    "CovidInfo": "Level Unknown: COVID-19 Unknown",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "CO",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "KM",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "CG",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true,
+        "Yellow Fever": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "CK",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "CR",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "HR",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "CU",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "CW",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "CY",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "CZ",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "CI",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true,
+        "Yellow Fever": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Meningitis (Meningococcal disease)": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "CD",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true,
+        "Yellow Fever": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "DK",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "DJ",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "DM",
+    "CovidInfo": "Level 2: COVID-19 Moderate",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "DO",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "AE",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "EC",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "EG",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "SV",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "GB",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "GQ",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true,
+        "Yellow Fever": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "ER",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Meningitis (Meningococcal disease)": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "EE",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "SZ",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "ET",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Meningitis (Meningococcal disease)": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "FK",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "FO",
+    "CovidInfo": "Level 2: COVID-19 Moderate",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "FJ",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "FI",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "FR",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "GF",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true,
+        "Yellow Fever": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "PF",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "GA",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true,
+        "Yellow Fever": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "GM",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true,
+        "Yellow Fever": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Meningitis (Meningococcal disease)": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "GE",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "DE",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "GH",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true,
+        "Yellow Fever": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Meningitis (Meningococcal disease)": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "GI",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "GR",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "GL",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "GD",
+    "CovidInfo": "Level 2: COVID-19 Moderate",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "VC",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "GP",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "GU",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "GT",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "GG",
+    "CovidInfo": "Level 2: COVID-19 Moderate",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "GN",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true,
+        "Yellow Fever": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Meningitis (Meningococcal disease)": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "GW",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true,
+        "Yellow Fever": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Meningitis (Meningococcal disease)": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "GY",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true,
+        "Yellow Fever": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "HT",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "VA",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "HN",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "HK",
+    "CovidInfo": "Level 2: COVID-19 Moderate",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "HU",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "IS",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "IN",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Japanese Encephalitis": true,
+        "Hepatitis B": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "ID",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "IR",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "IQ",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "IE",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "IM",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "IL",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Typhoid": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "IT",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "JM",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "JP",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true
+      }
+    }
+  },
+  {
+    "Country": "JE",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "JO",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "KZ",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "KE",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Meningitis (Meningococcal disease)": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "KI",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "KW",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "KG",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "LA",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "LV",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "LB",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "LS",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "LR",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true,
+        "Yellow Fever": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "LY",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "LI",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "LT",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "LU",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "MO",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "MG",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "MW",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "MY",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "MV",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "ML",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true,
+        "Yellow Fever": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Meningitis (Meningococcal disease)": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "MT",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "MH",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "MQ",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "MR",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "MU",
+    "CovidInfo": "Level 2: COVID-19 Moderate",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "YT",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "MX",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "FM",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "MD",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "MC",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "MN",
+    "CovidInfo": "Level 2: COVID-19 Moderate",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "ME",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "MS",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "MA",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "MZ",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "MM",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "NA",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "NR",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "NP",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "NL",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "NC",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "NZ",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "NI",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "NE",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true,
+        "Yellow Fever": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Meningitis (Meningococcal disease)": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "NG",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true,
+        "Yellow Fever": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Meningitis (Meningococcal disease)": true
+      }
+    }
+  },
+  {
+    "Country": "NU",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "NF",
+    "CovidInfo": "Level Unknown: COVID-19 Unknown",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "KP",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "MK",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "NO",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "OM",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "PK",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "PW",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "PA",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "PG",
+    "CovidInfo": "Level 1: COVID-19 Lowh",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "PY",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Malaria": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "PE",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "PH",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "PN",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "PL",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "PT",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "PR",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "QA",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "RO",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "RU",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "RW",
+    "CovidInfo": "Level 2: COVID-19 Moderate",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "BL",
+    "CovidInfo": "Level 3: COVID-19 High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "SH",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "KN",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "LC",
+    "CovidInfo": "Level 3: COVID-19 High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "MF",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "PM",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "VC",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "WS",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "SM",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "SA",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Meningitis (Meningococcal disease)": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "SN",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true,
+        "Yellow Fever": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Meningitis (Meningococcal disease)": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "RS",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "SC",
+    "CovidInfo": "Level 2: COVID-19 Moderate",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "SL",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true,
+        "Yellow Fever": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "SG",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "SX",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "SK",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "SI",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "SB",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "SO",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "ZA",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "GS",
+    "CovidInfo": "Level Unknown: COVID-19 Unknown",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "KR",
+    "CovidInfo": "Level 2: COVID-19 Moderate",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "SS",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true,
+        "Yellow Fever": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Meningitis (Meningococcal disease)": true,
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "ES",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "LK",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "SD",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "SR",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true,
+        "Yellow Fever": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "SE",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "CH",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "SY",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "TW",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "TJ",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "TZ",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "TH",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "TL",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "TG",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true,
+        "Yellow Fever": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Meningitis (Meningococcal disease)": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "TK",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "TO",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "TT",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "TN",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "TR",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "TM",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "TC",
+    "CovidInfo": "Level 3: COVID-19 High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "TV",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "UG",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true,
+        "Yellow Fever": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Meningitis (Meningococcal disease)": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "UA",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "AE",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "US",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Some travelers": {
+        "Hepatitis A": true,
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "UY",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "UZ",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "VU",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true
+      }
+    }
+  },
+  {
+    "Country": "VE",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "VN",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Japanese Encephalitis": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "VG",
+    "CovidInfo": "Level 1: COVID-19 Low",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "VI",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "EH",
+    "CovidInfo": "Level Unknown: COVID-19 Unknown",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "YE",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Rabies": true
+      }
+    }
+  },
+  {
+    "Country": "ZM",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  },
+  {
+    "Country": "ZW",
+    "CovidInfo": "Level 4: COVID-19 Very High",
+    "Vaccines": {
+      "All travelers": {
+        "Chickenpox": true,
+        "Diphtheria-Tetanus-Pertussis": true,
+        "Flu": true,
+        "Measles": true,
+        "Measles-Mumps-Rubella": true,
+        "Polio": true
+      },
+      "Most travelers": {
+        "Hepatitis A": true,
+        "Malaria": true,
+        "Typhoid": true
+      },
+      "Some travelers": {
+        "Cholera": true,
+        "Hepatitis B": true,
+        "Rabies": true,
+        "Yellow Fever": true
+      }
+    }
+  }
+]
