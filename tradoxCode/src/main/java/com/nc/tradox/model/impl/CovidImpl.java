@@ -1,5 +1,8 @@
 package com.nc.tradox.model.impl;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class CovidImpl implements com.nc.tradox.model.Covid {
 
     protected int summaryTotalCases;
@@ -24,6 +27,20 @@ public class CovidImpl implements com.nc.tradox.model.Covid {
         this.todayDeaths = todayDeaths;
         this.summaryRecovered = summaryRecovered;
         this.todayRecovered = todayRecovered;
+    }
+
+    public CovidImpl(ResultSet res){
+        try {
+            this.summaryTotalCases = res.getInt("summary_total_cases");
+            this.todayTotalCases = res.getInt("today_total_cases");
+            this.summaryActiveCases = res.getInt("summary_active_cases");
+            this.todayActiveCases = res.getInt("today_active_cases");
+            this.todayDeaths = res.getInt("today_deaths");
+            this.summaryRecovered = res.getInt("summary_recovered");
+            this.todayRecovered = res.getInt("today_recovered");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override

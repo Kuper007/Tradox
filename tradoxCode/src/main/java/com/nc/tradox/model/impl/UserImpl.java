@@ -1,5 +1,6 @@
 package com.nc.tradox.model.impl;
 
+import com.nc.tradox.dao.impl.TradoxDataAccessService;
 import com.nc.tradox.model.Country;
 import com.nc.tradox.model.Passport;
 import com.nc.tradox.model.Route;
@@ -22,6 +23,7 @@ public class UserImpl implements com.nc.tradox.model.User {
     protected Passport passport;
     protected Set<Route> transit;
     protected Boolean verify;
+    TradoxDataAccessService service = new TradoxDataAccessService();
 
     public UserImpl(Integer userId, UserTypeEnum userType, String firstName,
                     String lastName, Date birthDate, String email, String phone, Country location, Passport passport) {
@@ -35,7 +37,7 @@ public class UserImpl implements com.nc.tradox.model.User {
         this.location = location;
         this.passport = passport;
     }
-    //TODO: добавить второй параметр для location и третий для Passport
+
     public UserImpl(ResultSet user){
         try {
             this.userId = user.getInt("user_id");
@@ -45,8 +47,8 @@ public class UserImpl implements com.nc.tradox.model.User {
             this.birthDate = user.getDate("birth_date");
             this.email =  user.getString("email");
             this.phone = user.getString("phone");
-            // TODO: проинициализировать location
-            // TODO: проинициализировать passport
+            this.location = service.getCountryById(user.getString("country_id"));
+            this.passport = service.getPassportById(user.getString("passport_id"));
             this.verify = user.getBoolean("verify");
         } catch (SQLException throwables) {
             throwables.printStackTrace();

@@ -1,6 +1,7 @@
 package com.nc.tradox.dao;
 
 import com.nc.tradox.model.*;
+import com.nc.tradox.model.impl.CovidImpl;
 
 import java.util.Map;
 
@@ -12,5 +13,6 @@ public interface Dao {
     Route getRouteById(String id);
     Boolean registrate(Map<String, String> info);
     Boolean deleteUser(User user);
+    CovidImpl getCovidByCountryId(String id);
     Map<String, Status.StatusEnum> getCountriesWhereNameLike(String search);
 }

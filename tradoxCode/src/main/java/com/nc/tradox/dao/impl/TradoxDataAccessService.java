@@ -2,10 +2,7 @@ package com.nc.tradox.dao.impl;
 
 import com.nc.tradox.dao.Dao;
 import com.nc.tradox.model.*;
-import com.nc.tradox.model.impl.CountryImpl;
-import com.nc.tradox.model.impl.PassportImpl;
-import com.nc.tradox.model.impl.RouteImpl;
-import com.nc.tradox.model.impl.UserImpl;
+import com.nc.tradox.model.impl.*;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -150,7 +147,7 @@ public class TradoxDataAccessService implements Dao {
     @Override
     public Boolean deleteUser(User user) {
         String email = user.getEmail();
-        Boolean res = false;
+        boolean res = false;
         try {
             this.statement = connection.createStatement();
             res = statement.execute("DELETE FROM \"USER\" WHERE email="+email);
@@ -160,6 +157,25 @@ public class TradoxDataAccessService implements Dao {
             throwables.printStackTrace();
         }
         return res;
+    }
+
+    @Override
+    public CovidImpl getCovidByCountryId(String id) {
+        try {
+            this.statement = connection.createStatement();
+            ResultSet res = statement.executeQuery("SELECT * FROM covid_info WHERE country_id="+id);
+            if(res!=null){
+                CovidImpl covid = new CovidImpl(res);
+                connection.close();
+                return covid;
+            } else {
+                System.err.println("Incorrect route id");
+            }
+            connection.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -193,9 +209,5 @@ public class TradoxDataAccessService implements Dao {
     public Route getRoute() {
         return new RouteImpl(0, Route.TransportType.car,new HashSet<>());
     }
-
-    // TODO: запрос поля location для User
     // TODO: сделать запрос в бд в таблицу транзит, чтобы достать данные о транзите для Route
-    // TODO: сделать запрос по каунтри айди и получить страну гражданства для Passport
-    // TODO: получить айди ковид инфо и сделав запрос в бд подрузить для Country
 }

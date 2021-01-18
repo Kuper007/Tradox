@@ -1,5 +1,6 @@
 package com.nc.tradox.model.impl;
 
+import com.nc.tradox.dao.impl.TradoxDataAccessService;
 import com.nc.tradox.model.Country;
 
 import java.sql.ResultSet;
@@ -10,13 +11,13 @@ public class PassportImpl implements com.nc.tradox.model.Passport {
     protected String passportSeries;
     protected String passportNumber;
     protected Country citizenshipCountry;
+    TradoxDataAccessService service = new TradoxDataAccessService();
 
-    // TODO: сделать второй параметр для citizenshipCountry
     public PassportImpl(ResultSet res) {
         try {
             this.passportSeries = res.getString("series");
             this.passportSeries = res.getString("number");
-            //TODO: проинициализировать citizenshipCountry
+            this.citizenshipCountry = service.getCountryById(res.getString("country_id"));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
