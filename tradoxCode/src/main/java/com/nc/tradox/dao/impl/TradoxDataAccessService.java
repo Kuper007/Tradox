@@ -6,9 +6,8 @@ import com.nc.tradox.model.impl.*;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.sql.Date;
+import java.util.*;
 
 @Repository("oracle")
 public class TradoxDataAccessService implements Dao {
@@ -164,7 +163,7 @@ public class TradoxDataAccessService implements Dao {
         try {
             this.statement = connection.createStatement();
             ResultSet res = statement.executeQuery("SELECT * FROM covid_info WHERE country_id="+id);
-            if(res!=null){
+            if(res.next()){
                 CovidImpl covid = new CovidImpl(res);
                 connection.close();
                 return covid;
@@ -179,22 +178,42 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
-    public Map<String, Status.StatusEnum> getCountriesWhereNameLike(String search) {
-        Map<String, Status.StatusEnum> countries = new HashMap<>();
+    public InfoData getInfoData(String departureId, String destinationId) {
         try {
             this.statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("SELECT value, c.full_name as name FROM status INNER JOIN country c ON c.country_id=country_id WHERE c.full_name LIKE '"+search+"%'");
-            if(res.next()){
-                Status.StatusEnum status;
-                while (res.next()){
-                    if(res.getInt("value")==0){
-                        status = Status.StatusEnum.close;
-                    } else {
-                        status = Status.StatusEnum.open;
-                    }
-                    countries.put(res.getString("name"),status);
+            Documents documents = getDocumentsByCountriesIds(departureId,destinationId);
+            SpeedLimits speedLimits = getSpeedLimitsByCountryId(destinationId);
+            Medicines medicines;
+            Consulates consulates;
+            News news;
+            List<Exchange> exchanges;
+            Status status;
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Map<String, Status.StatusEnum> getCountriesWhereNameLike(String curCountryId, String search) {
+        Map<String, Status.StatusEnum> countries = new HashMap<>();
+        search = search.toLowerCase();
+        try {
+            this.statement = connection.createStatement();
+            ResultSet res = statement.executeQuery("SELECT s.value as value, c.full_name as name FROM status s INNER JOIN country c ON c.country_id=s.destination_id AND s.destination_id!="+curCountryId+" AND s.country_id = "+curCountryId+" WHERE LOWER(c.full_name) LIKE '" + search + "%'");
+            Status.StatusEnum status;
+            int count = 0;
+            while (res.next()){
+                if(res.getInt("value")==0){
+                    status = Status.StatusEnum.close;
+                } else {
+                    status = Status.StatusEnum.open;
                 }
-            } else {
+                countries.put(res.getString("name"),status);
+                count++;
+            }
+            if (count==0){
                 System.err.println("There is no such country in this lonely world");
             }
             statement.close();
@@ -210,4 +229,70 @@ public class TradoxDataAccessService implements Dao {
         return new RouteImpl(0, Route.TransportType.car,new HashSet<>());
     }
     // TODO: сделать запрос в бд в таблицу транзит, чтобы достать данные о транзите для Route
+
+    public Documents getDocumentsByCountriesIds(String departureId, String destinationId){
+        List<Document> documents = new ArrayList<>();
+        List<Integer> documentIds = getDocumentIdsByCountriesIds(departureId,destinationId);
+        Departure departure =  new DepartureImpl(getCountryById(departureId));
+        Destination destination = new DestinationImpl(getCountryById(destinationId));
+        FullRouteImpl fullRoute = new FullRouteImpl(departure,destination);
+        for (Integer id: documentIds){
+            try {
+                Statement statement = connection.createStatement();
+                String query = "SELECT * FROM document WHERE document_id="+id;
+                ResultSet res = statement.executeQuery(query);
+                if (res.next()) {
+                    Document document = new DocumentImpl(id,res.getString("name"), res.getString("description"), res.getString("\"FILE\""),fullRoute);
+                    documents.add(document);
+                } else {
+                    System.err.println("There is no document with such id: "+id);
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
+        }
+        Documents realDocuments = new Documents(documents);
+        return realDocuments;
+    }
+
+    public List<Integer> getDocumentIdsByCountriesIds(String departureId, String destinationId) {
+        List<Integer> documentIds = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            String query = "SELECT document_id FROM have_document WHERE departure_id="+departureId+" AND destination_id="+destinationId;
+            ResultSet res = statement.executeQuery(query);
+            while (res.next()) {
+                documentIds.add(res.getInt("document_id"));
+            }
+            if (documentIds.isEmpty()){
+                System.err.println("No documents");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return documentIds;
+    }
+
+    public SpeedLimits getSpeedLimitsByCountryId(String id){
+        List<SpeedLimit> speedLimits = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            String query = "SELECT * FROM speed_limits WHERE country_id="+id;
+            ResultSet res = statement.executeQuery(query);
+            while (res.next()){
+                SpeedLimit speedLimit = new SpeedLimitImpl(res.getInt("limit_id"),
+                        SpeedLimit.TypeOfRoad.valueOf(res.getString("road_type")),
+                        new DestinationImpl(getCountryById(id)),res.getInt("speed"));
+                speedLimits.add(speedLimit);
+            }
+            if (speedLimits.isEmpty()){
+                System.err.println("No speed limits");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        SpeedLimits realSpeedLimits = new SpeedLimits(speedLimits);
+        return realSpeedLimits;
+    }
 }

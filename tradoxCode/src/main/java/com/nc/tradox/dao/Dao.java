@@ -14,5 +14,6 @@ public interface Dao {
     Boolean registrate(Map<String, String> info);
     Boolean deleteUser(User user);
     CovidImpl getCovidByCountryId(String id);
-    Map<String, Status.StatusEnum> getCountriesWhereNameLike(String search);
+    InfoData getInfoData(String departureId, String destinationId);
+    Map<String, Status.StatusEnum> getCountriesWhereNameLike(String countryId,String search);
 }
