@@ -46,20 +46,16 @@ public class TradoxDataAccessService implements Dao {
                     connection.close();
                     return user;
                 } else {
-                    System.err.println("Incorrect password");
                     statement.close();
                     connection.close();
                     return null;
                 }
-            } else {
-                System.err.println("There is no user with such email");
             }
             statement.close();
             connection.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
         return null;
     }
 
