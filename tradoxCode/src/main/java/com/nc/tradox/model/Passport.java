@@ -6,6 +6,6 @@ public interface Passport {
     void setPassportSeries(String passportSeries);
     String getPassportNumber();
     void setPassportNumber(String passportNumber);
-    Country getCountry();
-    void setCountry(Country country);
+    Country getCitizenshipCountry();
+    void setCitizenshipCountry(Country country);
 }

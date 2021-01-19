@@ -2,24 +2,30 @@ package com.nc.tradox.model.impl;
 
 import com.nc.tradox.dao.impl.TradoxDataAccessService;
 import com.nc.tradox.model.Country;
+import com.nc.tradox.model.Passport;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class PassportImpl implements com.nc.tradox.model.Passport {
+public class PassportImpl implements Passport {
 
     protected String passportSeries;
     protected String passportNumber;
     protected Country citizenshipCountry;
-    TradoxDataAccessService service = new TradoxDataAccessService();
 
-    public PassportImpl(ResultSet res) {
+    public PassportImpl(String passportSeries, String passportNumber, Country citizenshipCountry) {
+        this.passportSeries = passportSeries;
+        this.passportNumber = passportNumber;
+        this.citizenshipCountry = citizenshipCountry;
+    }
+
+    public PassportImpl(ResultSet resultSet) {
         try {
-            this.passportSeries = res.getString("series");
-            this.passportSeries = res.getString("number");
-            this.citizenshipCountry = service.getCountryById(res.getString("country_id"));
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            this.passportSeries = resultSet.getString("series");
+            this.passportSeries = resultSet.getString("number");
+            this.citizenshipCountry = new TradoxDataAccessService().getCountryById(resultSet.getString("country_id"));
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
         }
     }
 
@@ -49,12 +55,13 @@ public class PassportImpl implements com.nc.tradox.model.Passport {
     }
 
     @Override
-    public Country getCountry() {
+    public Country getCitizenshipCountry() {
         return this.citizenshipCountry;
     }
 
     @Override
-    public void setCountry(Country country) {
+    public void setCitizenshipCountry(Country country) {
         this.citizenshipCountry = country;
     }
+
 }

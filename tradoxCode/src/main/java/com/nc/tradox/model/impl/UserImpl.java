@@ -4,13 +4,14 @@ import com.nc.tradox.dao.impl.TradoxDataAccessService;
 import com.nc.tradox.model.Country;
 import com.nc.tradox.model.Passport;
 import com.nc.tradox.model.Route;
+import com.nc.tradox.model.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.Set;
 
-public class UserImpl implements com.nc.tradox.model.User {
+public class UserImpl implements User {
 
     protected Integer userId;
     protected UserTypeEnum userType;
@@ -23,7 +24,17 @@ public class UserImpl implements com.nc.tradox.model.User {
     protected Passport passport;
     protected Set<Route> transit;
     protected Boolean verify;
-    TradoxDataAccessService service = new TradoxDataAccessService();
+
+    public UserImpl(String firstName, String lastName, Date birthDate, String email,
+                    String phone, Country location, Passport passport) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.email = email;
+        this.phone = phone;
+        this.location = location;
+        this.passport = passport;
+    }
 
     public UserImpl(Integer userId, UserTypeEnum userType, String firstName,
                     String lastName, Date birthDate, String email, String phone, Country location, Passport passport) {
@@ -38,20 +49,21 @@ public class UserImpl implements com.nc.tradox.model.User {
         this.passport = passport;
     }
 
-    public UserImpl(ResultSet user){
+    public UserImpl(ResultSet user) {
         try {
+            TradoxDataAccessService service = new TradoxDataAccessService();
             this.userId = user.getInt("user_id");
             this.userType = UserTypeEnum.valueOf(user.getString("user_type"));
             this.firstName = user.getString("first_name");
             this.lastName = user.getString("last_name");
             this.birthDate = user.getDate("birth_date");
-            this.email =  user.getString("email");
+            this.email = user.getString("email");
             this.phone = user.getString("phone");
             this.location = service.getCountryById(user.getString("country_id"));
             this.passport = service.getPassportById(user.getString("passport_id"));
             this.verify = user.getBoolean("verify");
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
         }
     }
 
@@ -168,4 +180,5 @@ public class UserImpl implements com.nc.tradox.model.User {
     public Boolean isVerified() {
         return this.verify;
     }
+
 }

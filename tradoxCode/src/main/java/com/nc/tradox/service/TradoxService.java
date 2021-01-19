@@ -1,11 +1,15 @@
 package com.nc.tradox.service;
 
 import com.nc.tradox.dao.Dao;
+import com.nc.tradox.model.Country;
 import com.nc.tradox.model.Route;
+import com.nc.tradox.model.Status;
 import com.nc.tradox.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 @Service //EQUAL TO COMPONENT BUT FOR SPECIFICATE USE THIS
 public class TradoxService {
@@ -21,7 +25,34 @@ public class TradoxService {
         return dao.getRoute();
     }
 
-    public User auth(String email, String password) {
-        return dao.auth(email,password);
+    public Boolean deleteRoute(Route route) {
+        //dao.deleteRoute(route);
+        return false;
     }
+
+    public User auth(String email, String password) {
+        return dao.auth(email, password);
+    }
+
+    public Boolean updateUser(User user) {
+        //return dao.updateUser(user);
+        return false;
+    }
+
+    public Boolean deleteUser(User user) {
+        return dao.deleteUser(user);
+    }
+
+    public Country getCountryByFullName(String countryFullName) {
+        return dao.getCountryByFullName(countryFullName);
+    }
+
+    public Map<String, Status.StatusEnum> getCountriesWhereNameLike(String countryId, String search) {
+        return dao.getCountriesWhereNameLike(countryId, search);
+    }
+
+    public User getUserById(int id) {
+        return dao.getUserById(id);
+    }
+
 }
