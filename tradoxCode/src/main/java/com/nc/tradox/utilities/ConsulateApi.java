@@ -9,22 +9,23 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ConsulateApi {
 
+    private static final Logger log = Logger.getLogger(ConsulateApi.class.getName());
     TradoxDataAccessService tradoxDataAccessService;
 
     public List<Consulate> consulateList(){
         ObjectMapper objectMapper = new ObjectMapper();
 
-        File jsonFile = new File(" ");
+        File jsonFile = new File("tradoxCode/src/main/resources/jsonsAndFriends/consulate.json");
 
         if (!jsonFile.exists()){
-            System.out.println("File does not exist");
-            System.exit(-1);
+            log.log(Level.SEVERE,"File does not exist");
         }else if (jsonFile.isDirectory()){
-            System.out.println("This is directory, not file");
-            System.exit(-1);
+            log.log(Level.SEVERE,"This is directory, not file");
         }
 
         Root root = null;
