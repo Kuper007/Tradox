@@ -17,7 +17,7 @@ public class ExchangeImpl implements com.nc.tradox.model.Exchange {
 
     protected FullRouteImpl fullRouteImpl;
 
-    public ExchangeImpl(Integer exchangeId, String localCurrency, String dollarCurrency, FullRouteImpl fullRouteImpl) {
+    public ExchangeImpl(String localCurrency, String dollarCurrency, FullRouteImpl fullRouteImpl) {
         //this.exchangeId = exchangeId;
         this.localCurrency = localCurrency;
         this.dollarCurrency = dollarCurrency;
