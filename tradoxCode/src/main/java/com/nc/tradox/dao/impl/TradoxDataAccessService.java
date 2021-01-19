@@ -3,16 +3,20 @@ package com.nc.tradox.dao.impl;
 import com.nc.tradox.dao.Dao;
 import com.nc.tradox.model.*;
 import com.nc.tradox.model.impl.*;
+import com.nc.tradox.utilities.SpeedLimitApi;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Repository("oracle")
 public class TradoxDataAccessService implements Dao {
 
+    private static final Logger log = Logger.getLogger(TradoxDataAccessService.class.getName());
     public Connection connection;
     public Statement statement;
 
@@ -26,6 +30,7 @@ public class TradoxDataAccessService implements Dao {
             stmt.close();
             this.connection = con;
         } catch (Exception e){
+            log.log(Level.SEVERE,"Connection exception", e);
             System.out.println(e);
         }
     }
@@ -43,17 +48,20 @@ public class TradoxDataAccessService implements Dao {
                     connection.close();
                     return user;
                 } else {
+                    log.log(Level.WARNING,"Incorrect password");
                     System.err.println("Incorrect password");
                     statement.close();
                     connection.close();
                     return null;
                 }
             } else {
+                log.log(Level.WARNING,"There is no user with such email");
                 System.err.println("There is no user with such email");
             }
             statement.close();
             connection.close();
         } catch (SQLException throwables) {
+            log.log(Level.SEVERE,"SQL exception", throwables);
             throwables.printStackTrace();
         }
 
@@ -71,9 +79,11 @@ public class TradoxDataAccessService implements Dao {
                 connection.close();
                 return country;
             } else {
+                log.log(Level.WARNING,"There is no country with such id");
                 System.out.println("There is no country with such id");
             }
         } catch (SQLException throwables) {
+            log.log(Level.SEVERE,"SQL exception", throwables);
             throwables.printStackTrace();
         }
         return null;
@@ -90,9 +100,11 @@ public class TradoxDataAccessService implements Dao {
                 connection.close();
                 return passport;
             } else {
+                log.log(Level.WARNING,"There is no passport with such id");
                 System.out.println("There is no passport with such id");
             }
         } catch (SQLException throwables) {
+            log.log(Level.SEVERE,"SQL Exception", throwables);
             throwables.printStackTrace();
         }
         return null;
@@ -108,10 +120,12 @@ public class TradoxDataAccessService implements Dao {
                 connection.close();
                 return route;
             } else {
+                log.log(Level.WARNING,"Incorrect route id");
                 System.err.println("Incorrect route id");
             }
             connection.close();
         } catch (SQLException throwables) {
+            log.log(Level.SEVERE,"SQL Exception", throwables);
             throwables.printStackTrace();
         }
         return null;
@@ -139,6 +153,7 @@ public class TradoxDataAccessService implements Dao {
             connection.close();
             return result;
         } catch (SQLException throwables) {
+            log.log(Level.SEVERE,"SQL Exception", throwables);
             throwables.printStackTrace();
         }
         return false;
@@ -154,6 +169,7 @@ public class TradoxDataAccessService implements Dao {
             statement.close();
             connection.close();
         } catch (SQLException throwables) {
+            log.log(Level.SEVERE,"SQL Exception", throwables);
             throwables.printStackTrace();
         }
         return res;
@@ -169,10 +185,12 @@ public class TradoxDataAccessService implements Dao {
                 connection.close();
                 return covid;
             } else {
+                log.log(Level.WARNING,"Incorrect route id");
                 System.err.println("Incorrect route id");
             }
             connection.close();
         } catch (SQLException throwables) {
+            log.log(Level.SEVERE,"SQL Exception", throwables);
             throwables.printStackTrace();
         }
         return null;
@@ -195,11 +213,13 @@ public class TradoxDataAccessService implements Dao {
                     countries.put(res.getString("name"),status);
                 }
             } else {
+                log.log(Level.WARNING,"There is no such country in this lonely world");
                 System.err.println("There is no such country in this lonely world");
             }
             statement.close();
             connection.close();
         } catch (SQLException throwables) {
+            log.log(Level.SEVERE,"SQL Exception", throwables);
             throwables.printStackTrace();
         }
         return countries;

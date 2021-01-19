@@ -58,6 +58,8 @@ public class ConsulateApi {
                 consulateList.add(consulate);
             }
             return consulateList;
+        }else {
+            log.log(Level.SEVERE,"Couldn't parse json to root class");
         }
         return null;
     }

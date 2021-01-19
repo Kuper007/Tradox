@@ -58,6 +58,9 @@ public class DocumentApi {
             }
             return haveDocumentList;
         }
+        else {
+        log.log(Level.SEVERE,"Couldn't parse json to root class");
+        }
         return null;
     }
 
