@@ -3,8 +3,11 @@ package com.nc.tradox.dao.impl;
 import com.nc.tradox.dao.Dao;
 import com.nc.tradox.model.*;
 import com.nc.tradox.model.impl.*;
+import com.nc.tradox.model.impl.Reasons;
+import com.nc.tradox.utilities.ExchangeApi;
 import org.springframework.stereotype.Repository;
 
+import java.io.IOException;
 import java.sql.*;
 import java.sql.Date;
 import java.util.*;
@@ -179,20 +182,25 @@ public class TradoxDataAccessService implements Dao {
 
     @Override
     public InfoData getInfoData(String departureId, String destinationId) {
+        Documents documents = getDocumentsByCountriesIds(departureId,destinationId);
+        SpeedLimits speedLimits = getSpeedLimitsByCountryId(destinationId);
+        Medicines medicines = getMedicinesByCountryId(destinationId);
+        Consulates consulates = getConsulatesByCountriesIds(departureId,destinationId);
+        News news = getNewsByCountryId(destinationId);
+        Status status = getStatusByCountriesIds(departureId,destinationId);
+        /*ExchangeApi exchangeApi = new ExchangeApi();
         try {
-            this.statement = connection.createStatement();
-            Documents documents = getDocumentsByCountriesIds(departureId,destinationId);
-            SpeedLimits speedLimits = getSpeedLimitsByCountryId(destinationId);
-            Medicines medicines;
-            Consulates consulates;
-            News news;
-            List<Exchange> exchanges;
-            Status status;
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return null;
+            List<String> apiExchanges = exchangeApi.currentExchange(departureId,destinationId);
+            for (String s: apiExchanges){
+                Exchange exchange = new ExchangeImpl();
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+        List<Exchange> exchanges = null;
+        return new InfoDataImpl(documents,speedLimits,medicines,consulates,news,exchanges,status);
     }
 
     @Override
@@ -228,7 +236,6 @@ public class TradoxDataAccessService implements Dao {
     public Route getRoute() {
         return new RouteImpl(0, Route.TransportType.car,new HashSet<>());
     }
-    // TODO: сделать запрос в бд в таблицу транзит, чтобы достать данные о транзите для Route
 
     public Documents getDocumentsByCountriesIds(String departureId, String destinationId){
         List<Document> documents = new ArrayList<>();
@@ -247,13 +254,12 @@ public class TradoxDataAccessService implements Dao {
                 } else {
                     System.err.println("There is no document with such id: "+id);
                 }
+                statement.close();
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-
         }
-        Documents realDocuments = new Documents(documents);
-        return realDocuments;
+        return new Documents(documents);
     }
 
     public List<Integer> getDocumentIdsByCountriesIds(String departureId, String destinationId) {
@@ -268,6 +274,7 @@ public class TradoxDataAccessService implements Dao {
             if (documentIds.isEmpty()){
                 System.err.println("No documents");
             }
+            statement.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -289,10 +296,120 @@ public class TradoxDataAccessService implements Dao {
             if (speedLimits.isEmpty()){
                 System.err.println("No speed limits");
             }
+            statement.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        SpeedLimits realSpeedLimits = new SpeedLimits(speedLimits);
-        return realSpeedLimits;
+        return new SpeedLimits(speedLimits);
+    }
+
+    public Medicines getMedicinesByCountryId(String id){
+        List<Medicine> medicines = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            String query = "SELECT * FROM medicine WHERE country_id="+id;
+            ResultSet res = statement.executeQuery(query);
+            while (res.next()){
+                Medicine medicine = new MedicineImpl(res.getInt("medicine_id"),
+                        res.getString("name"),
+                        new DestinationImpl(getCountryById(id)));
+                medicines.add(medicine);
+            }
+            if (medicines.isEmpty()){
+                System.err.println("No medicines");
+            }
+            statement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return new Medicines(medicines);
+    }
+
+    public Consulates getConsulatesByCountriesIds(String departureId, String destinationId){
+        List<Consulate> consulates = new ArrayList<>();
+        Departure departure =  new DepartureImpl(getCountryById(departureId));
+        Destination destination = new DestinationImpl(getCountryById(destinationId));
+        FullRouteImpl fullRoute = new FullRouteImpl(departure,destination);
+        try {
+            Statement statement = connection.createStatement();
+            String query = "SELECT * FROM consulate WHERE country_id="+destinationId+" AND owner_id="+departureId;
+            ResultSet res = statement.executeQuery(query);
+            while (res.next()){
+                Consulate consulate = new ConsulateImpl(res.getInt("consulate_id"),getCountryById(departureId),
+                        res.getString("city"), res.getString("address"),
+                        res.getString("phone"), fullRoute);
+                consulates.add(consulate);
+            }
+            if (consulates.isEmpty()){
+                System.err.println("No consulates");
+            }
+            statement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return new Consulates(consulates);
+    }
+
+    public News getNewsByCountryId(String id){
+        List<NewsItem> newsItems = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            String query = "SELECT * FROM news WHERE country_id="+id;
+            ResultSet res = statement.executeQuery(query);
+            while (res.next()){
+                NewsItem newsItem = new NewsItemImpl(res.getInt("news_id"),res.getString("text"),
+                        res.getDate("\"DATE\""), new DestinationImpl(getCountryById(id)));
+                newsItems.add(newsItem);
+            }
+            if (newsItems.isEmpty()){
+                System.err.println("No news");
+            }
+            statement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return new News(newsItems);
+    }
+
+    public Status getStatusByCountriesIds(String departureId, String destinationId){
+        try {
+            Statement statement = connection.createStatement();
+            String query = "SELECT * FROM status WHERE destination_id="+destinationId+" AND country_id="+departureId;
+            ResultSet res = statement.executeQuery(query);
+            if (res.next()){
+                Status.StatusEnum statusEnum;
+                if(res.getInt("value")==0){
+                    statusEnum = Status.StatusEnum.close;
+                } else {
+                    statusEnum = Status.StatusEnum.open;
+                }
+                Reasons reasons = getReasonsByStatusId(res.getInt("status_id"));
+                return new StatusImpl(res.getInt("status_id"), statusEnum,reasons,new DestinationImpl(getCountryById(destinationId)));
+            } else {
+                System.err.println("No status");
+            }
+            statement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    public com.nc.tradox.model.impl.Reasons getReasonsByStatusId(Integer id){
+        try {
+            Statement statement = connection.createStatement();
+            String query = "SELECT * FROM reasons WHERE status_id="+id;
+            ResultSet res = statement.executeQuery(query);
+            if (res.next()){
+                return new Reasons(res.getInt("reason_id"),
+                        res.getBoolean("covid_reason"), res.getBoolean("citizenship_reason"));
+            } else {
+                System.err.println("No reasons");
+            }
+            statement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 }
