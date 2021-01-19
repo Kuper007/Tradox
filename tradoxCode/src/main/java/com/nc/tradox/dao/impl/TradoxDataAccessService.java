@@ -28,19 +28,19 @@ public class TradoxDataAccessService implements Dao {
             stmt.execute("ALTER SESSION SET CURRENT_SCHEMA=tradox");
             stmt.close();
             this.connection = con;
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
 
     @Override
-    public User auth(String email, String password){
+    public User auth(String email, String password) {
         try {
             this.statement = connection.createStatement();
             ResultSet res = statement.executeQuery("SELECT * FROM \"USER\"  WHERE email =" + email);
-            if(res.next()){
+            if (res.next()) {
                 String real_password = res.getString("password");
-                if(real_password.equals(String.valueOf(password.hashCode()))){
+                if (real_password.equals(String.valueOf(password.hashCode()))) {
                     User user = new UserImpl(res);
                     statement.close();
                     connection.close();
@@ -68,7 +68,7 @@ public class TradoxDataAccessService implements Dao {
         try {
             this.statement = connection.createStatement();
             ResultSet res = statement.executeQuery("SELECT * FROM country WHERE country_id =" + id);
-            if(res.next()){
+            if (res.next()) {
                 Country country = new CountryImpl(res);
                 statement.close();
                 connection.close();
@@ -83,11 +83,31 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
+    public Country getCountryByFullName(String fullName) {
+        fullName = fullName.toLowerCase();
+        try {
+            this.statement = connection.createStatement();
+            ResultSet res = statement.executeQuery("SELECT * FROM country WHERE LOWER(full_name) =" + fullName);
+            if (res.next()) {
+                Country country = new CountryImpl(res);
+                statement.close();
+                connection.close();
+                return country;
+            } else {
+                System.out.println("There is no country with such fullName");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public Passport getPassportById(String id) {
         try {
             this.statement = connection.createStatement();
             ResultSet res = statement.executeQuery("SELECT * FROM passport WHERE passport_id =" + id);
-            if(res.next()){
+            if (res.next()) {
                 Passport passport = new PassportImpl(res);
                 statement.close();
                 connection.close();
@@ -102,11 +122,30 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
+    public User getUserById(int id) {
+        try {
+            this.statement = connection.createStatement();
+            ResultSet res = statement.executeQuery("SELECT * FROM \"USER\" WHERE user_id =" + id);
+            if (res.next()) {
+                User user = new UserImpl(res);
+                statement.close();
+                connection.close();
+                return user;
+            } else {
+                System.out.println("There is no user with such id");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public Route getRouteById(String id) {
         try {
             this.statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("SELECT * FROM route WHERE route_id="+id);
-            if(res!=null){
+            ResultSet res = statement.executeQuery("SELECT * FROM route WHERE route_id=" + id);
+            if (res != null) {
                 Route route = new RouteImpl(res);
                 connection.close();
                 return route;
@@ -122,20 +161,20 @@ public class TradoxDataAccessService implements Dao {
 
 
     @Override
-    public Boolean registrate(Map<String, String> info) {
+    public Boolean register(Map<String, String> info) {
         try {
             String query = "INSERT INTO \"USER\" (first_name,last_name,birth_date,email,password,phone,passport_id,country_id)"
-                    +"values (?,?,?,?,?,?,?,?)";
+                    + "values (?,?,?,?,?,?,?,?)";
 
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1,info.get("first_name"));
-            preparedStatement.setString(2,info.get("last_name"));
+            preparedStatement.setString(1, info.get("first_name"));
+            preparedStatement.setString(2, info.get("last_name"));
             preparedStatement.setDate(3, Date.valueOf(info.get("birth_date")));
-            preparedStatement.setString(4,info.get("email"));
-            preparedStatement.setInt(5,info.get("password").hashCode());
-            preparedStatement.setString(6,info.get("phone"));
-            preparedStatement.setString(7,info.get("passport_id"));
-            preparedStatement.setString(8,info.get("country_id"));
+            preparedStatement.setString(4, info.get("email"));
+            preparedStatement.setInt(5, info.get("password").hashCode());
+            preparedStatement.setString(6, info.get("phone"));
+            preparedStatement.setString(7, info.get("passport_id"));
+            preparedStatement.setString(8, info.get("country_id"));
 
             boolean result = preparedStatement.execute();
             preparedStatement.close();
@@ -153,7 +192,7 @@ public class TradoxDataAccessService implements Dao {
         Boolean res = false;
         try {
             this.statement = connection.createStatement();
-            res = statement.execute("DELETE FROM \"USER\" WHERE email="+email);
+            res = statement.execute("DELETE FROM \"USER\" WHERE email=" + email);
             statement.close();
             connection.close();
         } catch (SQLException throwables) {
@@ -163,22 +202,24 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
-    public Map<String, Status.StatusEnum> getCountriesWhereNameLike(String search) {
+    public Map<String, Status.StatusEnum> getCountriesWhereNameLike(String curCountryId, String search) {
         Map<String, Status.StatusEnum> countries = new HashMap<>();
+        search = search.toLowerCase();
         try {
             this.statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("SELECT value, c.full_name as name FROM status INNER JOIN country c ON c.country_id=country_id WHERE c.full_name LIKE '"+search+"%'");
-            if(res.next()){
-                Status.StatusEnum status;
-                while (res.next()){
-                    if(res.getInt("value")==0){
-                        status = Status.StatusEnum.close;
-                    } else {
-                        status = Status.StatusEnum.open;
-                    }
-                    countries.put(res.getString("name"),status);
+            ResultSet res = statement.executeQuery("SELECT s.value as value, c.full_name as name FROM status s INNER JOIN country c ON c.country_id=s.destination_id AND s.destination_id!=" + curCountryId + " AND s.country_id = " + curCountryId + " WHERE LOWER(c.full_name) LIKE '" + search + "%'");
+            Status.StatusEnum status;
+            int count = 0;
+            while (res.next()) {
+                if (res.getInt("value") == 0) {
+                    status = Status.StatusEnum.close;
+                } else {
+                    status = Status.StatusEnum.open;
                 }
-            } else {
+                countries.put(res.getString("name"), status);
+                count++;
+            }
+            if (count == 0) {
                 System.err.println("There is no such country in this lonely world");
             }
             statement.close();
@@ -191,11 +232,11 @@ public class TradoxDataAccessService implements Dao {
 
     @Override
     public Route getRoute() {
-        return new RouteImpl(0, Route.TransportType.car,new HashSet<>());
+        return new RouteImpl(0, Route.TransportType.car, new HashSet<>());
     }
 
     // TODO: запрос поля location для User
     // TODO: сделать запрос в бд в таблицу транзит, чтобы достать данные о транзите для Route
     // TODO: сделать запрос по каунтри айди и получить страну гражданства для Passport
-    // TODO: получить айди ковид инфо и сделав запрос в бд подрузить для Country
+    // TODO: получить айди ковид инфо и сделав запрос в бд подгрузить для Country
 }

@@ -6,11 +6,22 @@ import java.util.Map;
 
 public interface Dao {
     Route getRoute();
+
     User auth(String email, String password);
+
     Country getCountryById(String id);
+
+    Country getCountryByFullName(String fullName);
+
     Passport getPassportById(String id);
+
     Route getRouteById(String id);
-    Boolean registrate(Map<String, String> info);
+
+    User getUserById(int id);
+
+    Boolean register(Map<String, String> info);
+
     Boolean deleteUser(User user);
-    Map<String, Status.StatusEnum> getCountriesWhereNameLike(String search);
+
+    Map<String, Status.StatusEnum> getCountriesWhereNameLike(String curCountryId, String search);
 }
