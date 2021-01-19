@@ -1,5 +1,6 @@
 package com.nc.tradox.model.impl;
 
+import com.nc.tradox.model.Country;
 import com.nc.tradox.model.Departure;
 import com.nc.tradox.model.Destination;
 
@@ -21,5 +22,13 @@ public class FullRouteImpl implements com.nc.tradox.model.FullRoute {
     @Override
     public Destination getDestinationCountry() {
         return null;
+    }
+
+    public Country getCountryByDeparture(){
+        return departure.getDepartureCountry();
+    }
+
+    public Country getCountryByDestination(){
+        return destination.getDestinationCountry();
     }
 }

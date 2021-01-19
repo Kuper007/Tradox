@@ -5,7 +5,7 @@ import com.nc.tradox.model.Destination;
 
 public class ExchangeImpl implements com.nc.tradox.model.Exchange {
 
-    protected final Integer exchangeId;
+    //protected final Integer exchangeId;
 
     /*
         From needs number of value of departure country currency.
@@ -18,15 +18,18 @@ public class ExchangeImpl implements com.nc.tradox.model.Exchange {
     protected FullRouteImpl fullRouteImpl;
 
     public ExchangeImpl(Integer exchangeId, String localCurrency, String dollarCurrency, FullRouteImpl fullRouteImpl) {
-        this.exchangeId = exchangeId;
+        //this.exchangeId = exchangeId;
         this.localCurrency = localCurrency;
         this.dollarCurrency = dollarCurrency;
         this.fullRouteImpl = fullRouteImpl;
     }
 
+
     @Override
     public Integer getExchangeId() {
-        return this.exchangeId;
+        //return this.exchangeId;
+        return null;
+
     }
 
     @Override

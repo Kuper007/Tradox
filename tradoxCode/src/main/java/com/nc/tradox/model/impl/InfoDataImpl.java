@@ -71,11 +71,11 @@ public class InfoDataImpl implements com.nc.tradox.model.InfoData {
 
     @Override
     public Departure getDepartureCountry() {
-        return this.exchanges.get(0).getDepartureCountry();
+        return this.consulates.getList().get(0).getDepartureCountry();
     }
 
     @Override
     public Destination getDestinationCountry() {
-        return this.exchanges.get(0).getDestinationCountry();
+        return this.consulates.getList().get(0).getDestinationCountry();
     }
 }
