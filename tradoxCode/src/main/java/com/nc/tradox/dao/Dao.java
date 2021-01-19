@@ -44,4 +44,8 @@ public interface Dao {
     com.nc.tradox.model.impl.Reasons getReasonsByStatusId(Integer id);
 
     Boolean saveTransit(Set<InfoData> infoData, Integer route_id);
+
+    Country getCountryByFullName(String fullName);
+
+    User getUserById(int id);
 }

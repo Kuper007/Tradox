@@ -484,6 +484,45 @@ public class TradoxDataAccessService implements Dao {
         return res;
     }
 
+    @Override
+    public Country getCountryByFullName(String fullName) {
+        fullName = fullName.toLowerCase();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet res = statement.executeQuery("SELECT * FROM country WHERE LOWER(full_name) =" + fullName);
+            if (res.next()) {
+                Country country = new CountryImpl(res);
+                statement.close();
+                return country;
+            } else {
+                System.out.println("There is no country with such fullName");
+            }
+            statement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public User getUserById(int id) {
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet res = statement.executeQuery("SELECT * FROM \"USER\" WHERE user_id =" + id);
+            if (res.next()) {
+                User user = new UserImpl(res);
+                statement.close();
+                return user;
+            } else {
+                System.out.println("There is no user with such id");
+            }
+            statement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
     private Integer findRoute(Integer userId, String departureId, String destinationId){
         int routeId = 0;
         try {
