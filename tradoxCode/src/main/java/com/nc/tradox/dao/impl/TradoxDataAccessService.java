@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import java.io.IOException;
 import java.sql.*;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Repository("oracle")
@@ -148,23 +150,25 @@ public class TradoxDataAccessService implements Dao {
     @Override
     public Boolean registrate(Map<String, String> info) {
         try {
-            String query = "INSERT INTO \"USER\" (first_name,last_name,birth_date,email,password,phone,passport_id,country_id)"
-                    +"values (?,?,?,?,?,?,?,?)";
-
+            String query = "INSERT INTO \"USER\" (first_name,last_name,birth_date,email,password,phone,passport_id,citizenship,country_id)"
+                    +"values (?,?,?,?,?,?,?,?,?)";
+            java.util.Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(info.get("birth_date"));
+            java.sql.Date date2 = new Date(date1.getTime());
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1,info.get("first_name"));
             preparedStatement.setString(2,info.get("last_name"));
-            preparedStatement.setDate(3, Date.valueOf(info.get("birth_date")));
+            preparedStatement.setDate(3, date2);
             preparedStatement.setString(4,info.get("email"));
             preparedStatement.setInt(5,info.get("password").hashCode());
             preparedStatement.setString(6,info.get("phone"));
             preparedStatement.setString(7,info.get("passport_id"));
-            preparedStatement.setString(8,info.get("country_id"));
+            preparedStatement.setString(8,info.get("citizenship"));
+            preparedStatement.setString(9,info.get("country_id"));
 
             boolean result = preparedStatement.execute();
             preparedStatement.close();
             return result;
-        } catch (SQLException throwables) {
+        } catch (SQLException | ParseException throwables) {
             throwables.printStackTrace();
         }
         return false;
