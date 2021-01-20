@@ -594,6 +594,11 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
+    public Route getRoute() {
+        return null;
+    }
+
+    @Override
     public ResultSet changeTransitOrder(int transitId, int newOrder) {
         try {
             Statement statement = connection.createStatement();

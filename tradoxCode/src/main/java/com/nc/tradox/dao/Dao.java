@@ -55,4 +55,6 @@ public interface Dao {
     ResultSet changeTransitOrder(int transitId, int newOrder);
 
     ResultSet createNewTransit(int order,String countryId, int routeId);
+
+    Route getRoute();
 }
