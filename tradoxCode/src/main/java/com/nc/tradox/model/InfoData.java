@@ -12,6 +12,6 @@ public interface InfoData extends FullRoute {
     Medicines getMedicines();
     Consulates getConsulates();
     News getNews();
-    List<Exchange> getExchanges();
+    Exchange getExchanges();
     Status getStatus();
 }

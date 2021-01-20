@@ -2,13 +2,17 @@ package com.nc.tradox.api;
 
 import com.nc.tradox.model.User;
 import com.nc.tradox.service.TradoxService;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionBindingListener;
 import java.util.Map;
 
 @RequestMapping("api/v1/auth")
@@ -23,25 +27,27 @@ public class AuthController {
     }
 
     @PostMapping("/check")
-    public String auth( @RequestBody Credentials credentials, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public RedirectView auth(@RequestBody Credentials credentials, BindingResult bindingResult, HttpSession session) {
         if(!bindingResult.hasErrors()) {
             User user = tradoxService.auth(credentials.getEmail(),credentials.getPassword());
             if (user != null) {
-                redirectAttributes.addFlashAttribute(user);
-                return "redirect:/result";
+                session.setAttribute("authorized",true);
+                session.setAttribute("userId",user.getUserId());
+            } else {
+                session.setAttribute("authorized",false);
             }
+        } else {
+            session.setAttribute("authorized",false);
         }
-        return "indexPage";
+        return new RedirectView("/api/v1/auth/result");
     }
 
     @GetMapping("/result")
-    public String getAuthResult(HttpServletRequest request) {
-        Map<String, ?> map = RequestContextUtils.getInputFlashMap(request);
-        if (map != null) {
-            System.out.println("It is redirect!");
-        } else {
-            System.out.println("It is update!");
+    public Boolean getAuthResult(HttpSession session) {
+        Boolean isAuthorized = (Boolean) session.getAttribute("authorized");
+        if (isAuthorized) {
+            return true;
         }
-        return "map";
+        return false;
     }
 }

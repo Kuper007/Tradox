@@ -11,7 +11,7 @@ public class DocumentImpl implements com.nc.tradox.model.Document {
     protected String fileLink;
     protected FullRouteImpl fullRouteImpl;
 
-    private DocumentImpl(Integer documentId, String name, String description, String fileLink, FullRouteImpl fullRouteImpl) {
+    public DocumentImpl(Integer documentId, String name, String description, String fileLink, FullRouteImpl fullRouteImpl) {
         this.documentId = documentId;
         this.name = name;
         this.description = description;
