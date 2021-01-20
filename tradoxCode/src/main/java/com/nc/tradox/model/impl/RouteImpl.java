@@ -6,6 +6,7 @@ import com.nc.tradox.model.InfoData;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class RouteImpl implements com.nc.tradox.model.Route {
@@ -27,6 +28,7 @@ public class RouteImpl implements com.nc.tradox.model.Route {
             this.routeId = res.getInt("route_id");
             this.transportType = TransportType.valueOf(res.getString("transport_type"));
             InfoData infoData = service.getInfoData(res.getString("departure_id"),res.getString("destination_id"));
+            this.transitSet = new LinkedHashSet<>();
             this.transitSet.add(infoData);
         } catch (SQLException throwables) {
             throwables.printStackTrace();

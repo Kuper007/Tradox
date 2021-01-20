@@ -60,7 +60,7 @@ public class MapController {
             if (country != null) {
                 if (session.getAttribute("userId") != null) {
                     int id = (int) session.getAttribute("userId");
-                    tradoxService.getUserById(id).getPassport().setCitizenshipCountry(country);
+                    tradoxService.getUserById(id).getPassport().setCountry(country);
                     session.setAttribute("result", 1);
                 } else {
                     session.setAttribute("result", 2);

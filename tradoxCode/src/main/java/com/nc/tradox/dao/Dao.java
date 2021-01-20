@@ -3,11 +3,12 @@ package com.nc.tradox.dao;
 import com.nc.tradox.model.*;
 import com.nc.tradox.model.impl.*;
 
+import java.sql.ResultSet;
 import java.util.Map;
 import java.util.Set;
 
 public interface Dao {
-    Route getRoute();
+    Route getRoute(String userId, String destinationId);
 
     User auth(String email, String password);
 
@@ -48,4 +49,12 @@ public interface Dao {
     Country getCountryByFullName(String fullName);
 
     User getUserById(int id);
+
+    ResultSet transitFor(int routeId, InfoData infoData);
+
+    ResultSet changeTransitOrder(int transitId, int newOrder);
+
+    ResultSet createNewTransit(int order,String countryId, int routeId);
+
+    Route getRoute();
 }
