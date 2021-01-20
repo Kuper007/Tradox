@@ -1,6 +1,7 @@
 package com.nc.tradox.model.impl;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.nc.tradox.dao.impl.TradoxDataAccessService;
 import com.nc.tradox.model.InfoData;
 
 import java.sql.ResultSet;
@@ -12,6 +13,7 @@ public class RouteImpl implements com.nc.tradox.model.Route {
     protected Integer routeId;
     protected TransportType transportType;
     protected Set<InfoData> transitSet;
+    TradoxDataAccessService service = new TradoxDataAccessService();
 
     public RouteImpl(Integer routeId, TransportType transportType, Set<InfoData> transitSet) {
         this.routeId = routeId;
@@ -19,12 +21,13 @@ public class RouteImpl implements com.nc.tradox.model.Route {
         this.transitSet = transitSet;
     }
 
-    //TODO: сделать второй параметр для транзитов
+
     public RouteImpl(ResultSet res){
         try {
             this.routeId = res.getInt("route_id");
             this.transportType = TransportType.valueOf(res.getString("transport_type"));
-            //TODO: проинициализировать транзиты
+            InfoData infoData = service.getInfoData(res.getString("departure_id"),res.getString("destination_id"));
+            this.transitSet.add(infoData);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

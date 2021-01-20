@@ -2,23 +2,23 @@ package com.nc.tradox.api;
 
 import com.nc.tradox.model.User;
 import com.nc.tradox.service.TradoxService;
-import com.nc.tradox.utilities.SpeedLimitApi;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionBindingListener;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @RequestMapping("api/v1/auth")
 @RestController
 public class AuthController {
 
-    private static final Logger log = Logger.getLogger(AuthController.class.getName());
     private final TradoxService tradoxService;
 
     @Autowired
@@ -27,32 +27,27 @@ public class AuthController {
     }
 
     @PostMapping("/check")
-    public String auth( @RequestBody Credentials credentials, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public RedirectView auth(@RequestBody Credentials credentials, BindingResult bindingResult, HttpSession session) {
         if(!bindingResult.hasErrors()) {
             User user = tradoxService.auth(credentials.getEmail(),credentials.getPassword());
             if (user != null) {
-                redirectAttributes.addFlashAttribute(user);
-                return "redirect:/result";
-            }else {
-                log.log(Level.WARNING,"User is empty");
+                session.setAttribute("authorized",true);
+                session.setAttribute("userId",user.getUserId());
+            } else {
+                session.setAttribute("authorized",false);
             }
-        }else {
-            log.log(Level.WARNING,"Binding result has errors");
+        } else {
+            session.setAttribute("authorized",false);
         }
-
-        return "indexPage";
+        return new RedirectView("/api/v1/auth/result");
     }
 
     @GetMapping("/result")
-    public String getAuthResult(HttpServletRequest request) {
-        Map<String, ?> map = RequestContextUtils.getInputFlashMap(request);
-        if (map != null) {
-            log.log(Level.INFO,"It is redirect!");
-            System.out.println("It is redirect!");
-        } else {
-            log.log(Level.INFO,"It is update!");
-            System.out.println("It is update!");
+    public Boolean getAuthResult(HttpSession session) {
+        Boolean isAuthorized = (Boolean) session.getAttribute("authorized");
+        if (isAuthorized) {
+            return true;
         }
-        return "map";
+        return false;
     }
 }
