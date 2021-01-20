@@ -4,9 +4,11 @@ import com.nc.tradox.dao.Dao;
 import com.nc.tradox.model.*;
 import com.nc.tradox.model.impl.*;
 import com.nc.tradox.model.impl.Reasons;
+import com.nc.tradox.service.TradoxService;
 import com.nc.tradox.utilities.ExchangeApi;
 import org.springframework.stereotype.Repository;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.*;
 import java.sql.Date;
@@ -258,8 +260,26 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
-    public Route getRoute() {
-        return new RouteImpl(0, Route.TransportType.car,new HashSet<>());
+    public Route getRoute(String userId, String destinationId) {
+        User currentUser = this.getUserById(Integer.parseInt(userId));
+        InfoData infoData = this.getInfoData(currentUser.getLocation().getShortName(),destinationId);
+        Set<InfoData> transits = new LinkedHashSet<>();
+        transits.add(infoData);
+
+        int routeId = -1;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet res = statement.executeQuery("SELECT max(route_id) as \"max_count\" FROM Route");
+            routeId = res.getInt("max_count");
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (routeId == -1) {
+            return null;
+        }
+        return new RouteImpl(routeId, Route.TransportType.car,transits);
     }
 
     @Override
@@ -526,6 +546,17 @@ public class TradoxDataAccessService implements Dao {
         return null;
     }
 
+    public ResultSet transitFor(int routeId, InfoData infoData) {
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet res = stmt.executeQuery("SELECT * FROM TRANSIT WHERE route_id =" + routeId + " AND country_id = " + infoData.getDestinationCountry().getDestinationCountry().getShortName());
+            return res;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
     private Integer findRoute(Integer userId, String departureId, String destinationId){
         int routeId = 0;
         try {
@@ -545,5 +576,35 @@ public class TradoxDataAccessService implements Dao {
 
     private Boolean isNewRoute(Integer userId, String departureId, String destinationId){
         return findRoute(userId, departureId, destinationId) == 0;
+    }
+
+    @Override
+    public ResultSet createNewTransit(int order, String countryId, int routeId) {
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet res0 = statement.executeQuery("SELECT max(transit_id) as \"maxxx\" FROM TRANSIT");
+            int newTransitId = res0.getInt("maxxx") + 1;
+            String query = "INSERT INTO TRANSIT(transit_id,\"order\",country_id,route_id) VALUES(" + newTransitId + "," + order + "," + countryId + "," + routeId + ")";
+            ResultSet res = statement.executeQuery(query);
+            return res;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public ResultSet changeTransitOrder(int transitId, int newOrder) {
+        try {
+            Statement statement = connection.createStatement();
+            String query = "UPDATE TRANSIT SET order = " + newOrder + "WHERE transit_id = " + transitId;
+            ResultSet res = statement.executeQuery(query);
+            return res;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+
+
     }
 }
