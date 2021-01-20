@@ -22,13 +22,19 @@ public interface Dao {
 
     Boolean registrate(Map<String, String> info);
 
+    boolean updateUser(Integer id);
+
     Boolean deleteUser(User user);
+
+    Boolean deleteUser(Integer id);
 
     CovidImpl getCovidByCountryId(String id);
 
     InfoData getInfoData(String departureId, String destinationId);
 
     Map<String, Status.StatusEnum> getCountriesWhereNameLike(String countryId,String search);
+
+    boolean deleteRoute(Integer id);
 
     Documents getDocumentsByCountriesIds(String departureId, String destinationId);
 
@@ -57,4 +63,6 @@ public interface Dao {
     ResultSet createNewTransit(int order,String countryId, int routeId);
 
     Route getRoute();
+
+    boolean savePassport(String id, String citizenship);
 }
