@@ -14,17 +14,17 @@ public class InfoDataImpl implements com.nc.tradox.model.InfoData {
     protected Medicines medicines;
     protected Consulates consulates;
     protected News news;
-    protected List<com.nc.tradox.model.Exchange> exchanges;
+    protected Exchange exchange;
     protected Status status;
 
     public InfoDataImpl(Documents documents, SpeedLimits speedLimits, Medicines medicines,
-                        Consulates consulates, News news, List<Exchange> exchanges, Status status) {
+                        Consulates consulates, News news, Exchange exchange, Status status) {
         this.documents = documents;
         this.speedLimits = speedLimits;
         this.medicines = medicines;
         this.consulates = consulates;
         this.news = news;
-        this.exchanges = exchanges;
+        this.exchange = exchange;
         this.status = status;
     }
 
@@ -60,8 +60,8 @@ public class InfoDataImpl implements com.nc.tradox.model.InfoData {
     }
 
     @Override
-    public List<Exchange> getExchanges() {
-        return this.exchanges;
+    public Exchange getExchanges() {
+        return this.exchange;
     }
 
     @Override

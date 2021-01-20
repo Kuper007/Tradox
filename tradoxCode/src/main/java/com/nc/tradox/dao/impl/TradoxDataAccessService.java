@@ -213,19 +213,18 @@ public class TradoxDataAccessService implements Dao {
         Consulates consulates = getConsulatesByCountriesIds(departureId,destinationId);
         News news = getNewsByCountryId(destinationId);
         Status status = getStatusByCountriesIds(departureId,destinationId);
-        /*ExchangeApi exchangeApi = new ExchangeApi();
+        ExchangeApi exchangeApi = new ExchangeApi();
+        Exchange exchange = null;
         try {
-            List<String> apiExchanges = exchangeApi.currentExchange(departureId,destinationId);
-            for (String s: apiExchanges){
-                Exchange exchange = new ExchangeImpl();
-            }
-        } catch (InterruptedException e) {
+            List<String> apiExchanges = exchangeApi.currentExchange(getCountryById(departureId).getCurrency(),getCountryById(destinationId).getCurrency());
+            Departure departure =  new DepartureImpl(getCountryById(departureId));
+            Destination destination = new DestinationImpl(getCountryById(destinationId));
+            FullRouteImpl fullRoute = new FullRouteImpl(departure,destination);
+            exchange = new ExchangeImpl(apiExchanges.get(1),apiExchanges.get(0),fullRoute);
+        } catch (InterruptedException | IOException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-        List<Exchange> exchanges = null;
-        return new InfoDataImpl(documents,speedLimits,medicines,consulates,news,exchanges,status);
+        }
+        return new InfoDataImpl(documents,speedLimits,medicines,consulates,news,exchange,status);
     }
 
     @Override
