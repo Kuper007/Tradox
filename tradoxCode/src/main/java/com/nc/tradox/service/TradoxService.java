@@ -44,8 +44,9 @@ public class TradoxService {
         return false;
     }
 
-    public Boolean deleteUser(User user) {
-        return dao.deleteUser(user);
+    public Boolean deleteUser(Integer userId) {
+        //return dao.deleteUser(userId);
+        return false;
     }
 
     public Country getCountryByFullName(String countryFullName) {
@@ -55,16 +56,17 @@ public class TradoxService {
     public Map<String, Status.StatusEnum> getCountriesWhereNameLike(String countryId, String search) {
         return dao.getCountriesWhereNameLike(countryId, search);
     }
+
     public Boolean saveRoute(Route route, int userId) {
-        return dao.saveRoute(route,userId);
+        return dao.saveRoute(route, userId);
     }
 
-    public void editTransits(int userId,Integer route_id, Set<InfoData> transits) {
+    public void editTransits(int userId, Integer route_id, Set<InfoData> transits) {
         int newOrder = 1;
         while (transits.iterator().hasNext()) {
             InfoData infoData = transits.iterator().next();
             // check if this transit for this route and user already exists with this number
-            ResultSet resultSet  = dao.transitFor(route_id, infoData);
+            ResultSet resultSet = dao.transitFor(route_id, infoData);
             int transit_id = -1;
             int order = -1;
             try {
@@ -79,7 +81,7 @@ public class TradoxService {
                 }
             } else {
                 // if dont exists create new
-                dao.createNewTransit(newOrder,infoData.getDestinationCountry().getDestinationCountry().getShortName(),route_id);
+                dao.createNewTransit(newOrder, infoData.getDestinationCountry().getDestinationCountry().getShortName(), route_id);
             }
             newOrder++;
         }
