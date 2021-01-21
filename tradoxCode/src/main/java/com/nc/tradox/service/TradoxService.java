@@ -50,6 +50,8 @@ public class TradoxService {
         return false;
     }
 
+    public Boolean registerUser(Map<String, String> map){return dao.registrate(map);}
+
     public Country getCountryByFullName(String countryFullName) {
         return dao.getCountryByFullName(countryFullName);
     }
