@@ -13,6 +13,8 @@ public class CovidImpl implements com.nc.tradox.model.Covid {
     protected int summaryRecovered;
     protected int todayRecovered;
 
+    public CovidImpl(){}
+
     public CovidImpl(int summaryTotalCases,
                      int todayTotalCases,
                      int summaryActiveCases,
@@ -111,5 +113,18 @@ public class CovidImpl implements com.nc.tradox.model.Covid {
     @Override
     public void setTodayRecovered(int todayRecovered) {
         this.todayRecovered = todayRecovered;
+    }
+
+    @Override
+    public String toString() {
+        return "CovidImpl{" +
+                "summaryTotalCases=" + summaryTotalCases +
+                ", todayTotalCases=" + todayTotalCases +
+                ", summaryActiveCases=" + summaryActiveCases +
+                ", todayActiveCases=" + todayActiveCases +
+                ", todayDeaths=" + todayDeaths +
+                ", summaryRecovered=" + summaryRecovered +
+                ", todayRecovered=" + todayRecovered +
+                '}';
     }
 }

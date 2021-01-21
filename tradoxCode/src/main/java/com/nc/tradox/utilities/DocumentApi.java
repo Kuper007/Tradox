@@ -1,7 +1,7 @@
 package com.nc.tradox.utilities;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nc.tradox.dao.impl.TradoxDataAccessService;
+import com.nc.tradox.dao.TradoxDataAccessService;
 import com.nc.tradox.model.Country;
 import com.nc.tradox.model.Departure;
 import com.nc.tradox.model.Destination;
@@ -11,22 +11,23 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DocumentApi {
 
+    private static final Logger log = Logger.getLogger(DocumentApi.class.getName());
     TradoxDataAccessService tradoxDataAccessService;
 
     public List<HaveDocument> documentList(){
         ObjectMapper objectMapper = new ObjectMapper();
 
-        File jsonFile = new File(" ");
+        File jsonFile = new File("tradoxCode/src/main/resources/jsonsAndFriends/documents.json");
 
         if (!jsonFile.exists()){
-            System.out.println("File does not exist");
-            System.exit(-1);
+            log.log(Level.SEVERE,"File does not exist");
         }else if (jsonFile.isDirectory()){
-            System.out.println("This is directory, not file");
-            System.exit(-1);
+            log.log(Level.SEVERE,"This is directory, not file");
         }
 
         Root root = null;
@@ -46,7 +47,7 @@ public class DocumentApi {
 
                 haveDocument.setDeparture(departure);
 
-                for (Arr arr : mainArr.arr) {
+                for (Arr arr : mainArr.array) {
                     Country destination_country = tradoxDataAccessService.getCountryById(arr.destination_country);
                     Destination destination = new DestinationImpl(destination_country);
 
@@ -56,6 +57,9 @@ public class DocumentApi {
                 haveDocumentList.add(haveDocument);
             }
             return haveDocumentList;
+        }
+        else {
+        log.log(Level.SEVERE,"Couldn't parse json to root class");
         }
         return null;
     }
@@ -67,7 +71,7 @@ public class DocumentApi {
 
     public static class MainArr{
         public String departure_country;
-        public List<Arr> arr;
+        public List<Arr> array;
     }
 
     public static class Root{

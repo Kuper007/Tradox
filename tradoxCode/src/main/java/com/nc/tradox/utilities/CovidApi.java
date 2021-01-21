@@ -8,6 +8,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class CovidApi {
 
@@ -23,10 +24,11 @@ public class CovidApi {
                 .build();
 
         Response response = client.newCall(request).execute();
-
-        String json = response.body().string();
+        String json = Objects.requireNonNull(response.body()).string();
         ObjectMapper objectMapper = new ObjectMapper();
         Root root = objectMapper.readValue(json, Root.class);
+
+        Covid covid = new CovidImpl();
 
         return new CovidImpl(
                 root.data.summary.total_cases,
