@@ -2,6 +2,7 @@ package com.nc.tradox.service;
 
 import com.nc.tradox.dao.Dao;
 import com.nc.tradox.model.*;
+import com.nc.tradox.model.impl.Documents;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -88,5 +89,10 @@ public class TradoxService {
     public User getUserById(int id) {
         return dao.getUserById(id);
     }
+
+    public Documents getDocumentsByCountriesIds(String departureId, String destinationId){
+        return dao.getDocumentsByCountriesIds(departureId,destinationId);
+    }
+
 
 }
