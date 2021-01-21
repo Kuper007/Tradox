@@ -5,10 +5,8 @@ import com.nc.tradox.model.FullRoute;
 import com.nc.tradox.model.User;
 import com.nc.tradox.model.impl.Documents;
 import com.nc.tradox.service.TradoxService;
-import fr.opensagres.xdocreport.converter.ConverterTypeTo;
-import fr.opensagres.xdocreport.converter.ConverterTypeVia;
-import fr.opensagres.xdocreport.document.XDocReport;
-import fr.opensagres.xdocreport.template.TemplateEngineKind;
+import fr.opensagres.poi.xwpf.converter.pdf.PdfConverter;
+import fr.opensagres.poi.xwpf.converter.pdf.PdfOptions;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xwpf.usermodel.*;
@@ -16,12 +14,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
-import fr.opensagres.xdocreport.converter.Options;
+
 
 import javax.servlet.http.HttpSession;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/api/v1/docs")
 @RestController
@@ -42,31 +43,32 @@ public class FillDocsController {
             Documents documents = tradoxService.getDocumentsByCountriesIds(fullRoute.getDepartureCountry().getDepartureCountry().getShortName(),
                                                                            fullRoute.getDestinationCountry().getDestinationCountry().getShortName());
             List<Document> docs = documents.getList();
-            List<XWPFDocument> resDocs = new ArrayList<>();
+            Map<String,XWPFDocument> mapDocs = new HashMap<>();
             for(Document doc: docs){
               XWPFDocument docx = fillFile(doc.getFileLink(),user,fullRoute);
-              resDocs.add(docx);
+              if (docx!=null){
+                  mapDocs.put(doc.getName(),docx);
+              }
             }
-            session.setAttribute("documents",resDocs);
+            session.setAttribute("documents",mapDocs);
         }
         return new RedirectView("/api/v1/docs/pdf");
     }
 
     @GetMapping("/pdf")
-    public Boolean getPdf(HttpSession session){
-        List<XWPFDocument> docs = (List<XWPFDocument>) session.getAttribute("documents");
-        for (XWPFDocument doc: docs){
-            if (doc==null){
-                return false;
-            } else {
-                //TODO:finish later
-
-            }
+    public Boolean getPdf(HttpSession session) throws IOException {
+        Map<String,XWPFDocument> docs = (Map<String, XWPFDocument>) session.getAttribute("documents");
+        if (docs==null){
+            return false;
+        }
+        PdfOptions options = PdfOptions.create();
+        for (Map.Entry<String,XWPFDocument> entry: docs.entrySet()){
+            PdfConverter.getInstance().convert(entry.getValue(),new FileOutputStream(entry.getKey()),options);
         }
         return true;
     }
 
-    public XWPFDocument fillFile(String path, User user, FullRoute fullRoute){
+    private XWPFDocument fillFile(String path, User user, FullRoute fullRoute){
         XWPFDocument docx = null;
         try {
             docx = new XWPFDocument(OPCPackage.open(path));
