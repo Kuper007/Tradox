@@ -32,8 +32,7 @@ public class TradoxService {
 
 
     public Boolean deleteRoute(Route route) {
-        //dao.deleteRoute(route);
-        return false;
+        return dao.deleteRoute(route.getElementId());
     }
 
     public User auth(String email, String password) {
@@ -41,13 +40,11 @@ public class TradoxService {
     }
 
     public Boolean updateUser(User user) {
-        //return dao.updateUser(user);
-        return false;
+        return dao.updateUser(user);
     }
 
     public Boolean deleteUser(Integer userId) {
-        //return dao.deleteUser(userId);
-        return false;
+        return dao.deleteUser(userId);
     }
 
     public Boolean registerUser(Map<String, String> map){return dao.registrate(map);}
@@ -76,6 +73,7 @@ public class TradoxService {
                 transit_id = resultSet.getInt("transit_id");
                 order = resultSet.getInt("order");
             } catch (SQLException e) {
+                e.printStackTrace();
             }
             if ((transit_id != -1)) {
                 // if exists but wrong order change the order
