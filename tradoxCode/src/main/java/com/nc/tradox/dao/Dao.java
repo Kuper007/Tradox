@@ -22,7 +22,7 @@ public interface Dao {
 
     Boolean registrate(Map<String, String> info);
 
-    boolean updateUser(Integer id);
+    boolean updateUser(User user);
 
     Boolean deleteUser(User user);
 

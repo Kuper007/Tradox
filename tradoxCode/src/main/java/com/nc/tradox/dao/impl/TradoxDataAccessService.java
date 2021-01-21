@@ -181,7 +181,7 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
-    public boolean updateUser(Integer id){
+    public boolean updateUser(User user){
         //TODO: finish later
         return false;
     }
