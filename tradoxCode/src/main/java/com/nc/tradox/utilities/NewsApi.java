@@ -1,7 +1,7 @@
 package com.nc.tradox.utilities;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nc.tradox.dao.impl.TradoxDataAccessService;
+import com.nc.tradox.dao.TradoxDataAccessService;
 import com.nc.tradox.model.Country;
 import com.nc.tradox.model.Destination;
 import com.nc.tradox.model.NewsItem;

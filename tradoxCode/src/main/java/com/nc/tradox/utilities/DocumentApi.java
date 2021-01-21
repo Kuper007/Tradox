@@ -1,7 +1,7 @@
 package com.nc.tradox.utilities;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nc.tradox.dao.impl.TradoxDataAccessService;
+import com.nc.tradox.dao.TradoxDataAccessService;
 import com.nc.tradox.model.Country;
 import com.nc.tradox.model.Departure;
 import com.nc.tradox.model.Destination;
@@ -47,7 +47,7 @@ public class DocumentApi {
 
                 haveDocument.setDeparture(departure);
 
-                for (Arr arr : mainArr.arr) {
+                for (Arr arr : mainArr.array) {
                     Country destination_country = tradoxDataAccessService.getCountryById(arr.destination_country);
                     Destination destination = new DestinationImpl(destination_country);
 
@@ -71,7 +71,7 @@ public class DocumentApi {
 
     public static class MainArr{
         public String departure_country;
-        public List<Arr> arr;
+        public List<Arr> array;
     }
 
     public static class Root{

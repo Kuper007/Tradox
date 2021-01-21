@@ -2,7 +2,7 @@ package com.nc.tradox.utilities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nc.tradox.dao.impl.TradoxDataAccessService;
+import com.nc.tradox.dao.TradoxDataAccessService;
 import com.nc.tradox.model.Country;
 import com.nc.tradox.model.Destination;
 import com.nc.tradox.model.Medicine;
@@ -76,7 +76,7 @@ public class MedicineApi {
     }
 
     public static class Mosttravelers{
-        @JsonProperty("HepatitisA")
+        @JsonProperty("Hepatitis A")
         public boolean hepatitisA;
         @JsonProperty("Typhoid")
         public boolean typhoid;
@@ -85,22 +85,22 @@ public class MedicineApi {
     public static class Sometravelers{
         @JsonProperty("Cholera")
         public boolean cholera;
-        @JsonProperty("HepatitisB")
+        @JsonProperty("Hepatitis B")
         public boolean hepatitisB;
         @JsonProperty("Malaria")
         public boolean malaria;
         @JsonProperty("Rabies")
         public boolean rabies;
-        @JsonProperty("YellowFever")
+        @JsonProperty("Yellow Fever")
         public boolean yellowFever;
     }
 
     public static class Vaccines{
-        @JsonProperty("Alltravelers")
+        @JsonProperty("All travelers")
         public Alltravelers alltravelers;
-        @JsonProperty("Mosttravelers")
+        @JsonProperty("Most travelers")
         public Mosttravelers mosttravelers;
-        @JsonProperty("Sometravelers")
+        @JsonProperty("Some travelers")
         public Sometravelers sometravelers;
     }
 

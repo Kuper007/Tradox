@@ -31,4 +31,13 @@ public class HaveDocument {
     public void setDestination(Destination destination) {
         this.destination = destination;
     }
+
+    @Override
+    public String toString() {
+        return "HaveDocument{" +
+                "documentId=" + documentId +
+                ", departure=" + departure +
+                ", destination=" + destination +
+                '}';
+    }
 }
