@@ -582,9 +582,7 @@ public class TradoxDataAccessService implements Dao {
     public ResultSet createNewTransit(int order, String countryId, int routeId) {
         try {
             Statement statement = connection.createStatement();
-            ResultSet res0 = statement.executeQuery("SELECT max(transit_id) as \"maxxx\" FROM TRANSIT");
-            int newTransitId = res0.getInt("maxxx") + 1;
-            String query = "INSERT INTO TRANSIT(transit_id,\"order\",country_id,route_id) VALUES(" + newTransitId + "," + order + "," + countryId + "," + routeId + ")";
+            String query = "INSERT INTO TRANSIT(\"order\",country_id,route_id) VALUES("+ order + "," + countryId + "," + routeId + ")";
             ResultSet res = statement.executeQuery(query);
             return res;
         } catch (SQLException throwables) {
