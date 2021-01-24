@@ -11,6 +11,7 @@
 	<groupId>com.nc</groupId>
 	<artifactId>tradox</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>tradox</name>
 	<description>Tradox project. Spring boot.</description>
 
@@ -41,14 +42,32 @@
 			<version>4.9.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.oracle.jdbc</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>12.1.0.2</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ojdbc6.jar</systemPath>
+		</dependency>
+
+
+
 	</dependencies>
 
+<!--	TODO: скопировать фронтенд в билдовую директорию-->
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!--			<plugin>-->
+			<!--				<artifactId>maven-war-plugin</artifactId>-->
+			<!--				<configuration>-->
+			<!--					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>-->
+			<!--					<packagingExcludes>app/**</packagingExcludes>-->
+			<!--				</configuration>-->
+			<!--			</plugin>-->
 		</plugins>
 	</build>
 

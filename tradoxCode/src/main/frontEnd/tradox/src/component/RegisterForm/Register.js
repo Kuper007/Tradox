@@ -24,16 +24,16 @@ function Register(props) {
 
     let [state, setState] = useState(infoMap);
 
-    function checkInfoMap() {
-        const keys = infoMap.keys();
-        for (let [key, value] of infoMap) {
-            if (value === null) {
-                alert(key + " should be written!!!");
-                return false;
-            }
-        }
-        return true;
-    }
+    // function checkInfoMap() {
+    //     const keys = infoMap.keys();
+    //     for (let [key, value] of infoMap) {
+    //         if (value === null) {
+    //             alert(key + " should be written!!!");
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    // }
 
     function changeInfoMap(inputKey,inputValue) {
         infoMap.set(inputKey,inputValue)
@@ -42,24 +42,21 @@ function Register(props) {
 
     function onClickS(e) {
         e.preventDefault()
-        let isOk = checkInfoMap();
-        if (isOk) {
-            fetch('http://localhost:8080/api/v1/registration/fill/',{method:"POST",body: JSON.stringify({
-                    "first_name": state.get("firstName"),
-                    "last_name": state.get("lastName"),
-                    "birth_date": state.get("dateOfBirth"),
-                    "email": state.get("email"),
-                    "password": state.get("password"),
-                    "phone": state.get("mobilePhone"),
-                    "passport_id": state.get("passport"),
-                    "citizenship": myMap.get(state.get("citizenship")),
-                    "country_id": myMap.get(state.get("currentCountry"))
-            })}).then(response => {
-                if (response.json() === true) {
-                    tap(true)
-                }
-            })
-        }
+        fetch('http://localhost:8080/api/v1/registration/fill/',{method:"POST",body: JSON.stringify({
+                "first_name": state.get("firstName"),
+                "last_name": state.get("lastName"),
+                "birth_date": state.get("dateOfBirth"),
+                "email": state.get("email"),
+                "password": state.get("password"),
+                "phone": state.get("mobilePhone"),
+                "passport_id": state.get("passport"),
+                "citizenship": myMap.get(state.get("citizenship")),
+                "country_id": myMap.get(state.get("currentCountry"))
+        })}).then(response => {
+            if (response.json() === true) {
+                tap(true)
+            }
+        })
     }
 
     return (
