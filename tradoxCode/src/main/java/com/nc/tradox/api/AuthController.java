@@ -4,6 +4,7 @@ import com.nc.tradox.model.User;
 import com.nc.tradox.service.TradoxService;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -27,6 +28,7 @@ public class AuthController {
     }
 
     @PostMapping("/check")
+    @ResponseStatus(HttpStatus.OK)
     public RedirectView auth(@RequestBody Credentials credentials, BindingResult bindingResult, HttpSession session) {
         if(!bindingResult.hasErrors()) {
             User user = tradoxService.auth(credentials.getEmail(),credentials.getPassword());
