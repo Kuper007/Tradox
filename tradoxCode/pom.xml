@@ -43,6 +43,37 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.14</version>
+		</dependency>
+
+		<dependency>
+			<groupId>fr.opensagres.xdocreport</groupId>
+			<artifactId>fr.opensagres.poi.xwpf.converter.pdf</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+
+		<!-- for auto documentation and testing endpoints -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>npm</artifactId>
+			<version>5.0.0-2</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.oracle.jdbc</groupId>
 			<artifactId>ojdbc6</artifactId>
 			<version>12.1.0.2</version>
@@ -60,7 +91,15 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<configuration>
+							<mainClass>com.nc.tradox.api.AuthController</mainClass>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
+
 			<!--			<plugin>-->
 			<!--				<artifactId>maven-war-plugin</artifactId>-->
 			<!--				<configuration>-->
@@ -68,6 +107,52 @@
 			<!--					<packagingExcludes>app/**</packagingExcludes>-->
 			<!--				</configuration>-->
 			<!--			</plugin>-->
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>1.11.0</version>
+
+				<configuration>
+					<workingDirectory>src/main/frontEnd/tradox</workingDirectory>
+				</configuration>
+
+				<executions>
+					<execution>
+						<id>install node and npm</id>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+						<configuration>
+							<nodeVersion>v15.5.1</nodeVersion>
+							<npmVersion>7.3.0</npmVersion>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>npm install</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>install</arguments>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>webpack build</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<!-- Development Configuration -->
+							<arguments>run dev</arguments>
+							<!-- Production Configuration -->
+							<!-- <arguments>run prod</arguments>-->
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 
