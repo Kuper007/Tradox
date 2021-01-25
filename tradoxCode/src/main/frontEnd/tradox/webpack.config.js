@@ -6,7 +6,7 @@ module.exports = {
         index: path.resolve(__dirname, "src", "index.js")
     },
     output: {
-        path: path.resolve(__dirname, "../../webapp/")
+        path: path.resolve(__dirname, "../../webapp")
     },
     module: {
         rules: [
@@ -27,7 +27,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, "../../webapp", "index.html")
+            template: path.resolve(__dirname, "./src", "index.html")
         })
     ]
 };
