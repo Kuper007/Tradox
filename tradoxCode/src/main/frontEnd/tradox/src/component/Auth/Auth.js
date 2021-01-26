@@ -1,7 +1,6 @@
 import React, {useState}  from 'react'
 import style from './Auth.module.css';
 import logo from '../../images/LogoTradoxLogo.svg';
-import { Alert } from 'react-alert'
 
 function Auth(){
 
