@@ -6,7 +6,7 @@ module.exports = {
         index: path.resolve(__dirname, "src", "index.js")
     },
     output: {
-        path: path.resolve(__dirname, "../../webapp")
+        path: path.resolve(__dirname, "../../../../target/tradox-0.0.1-SNAPSHOT")
     },
     module: {
         rules: [
