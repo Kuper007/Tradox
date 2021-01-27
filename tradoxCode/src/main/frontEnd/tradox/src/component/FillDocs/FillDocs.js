@@ -28,26 +28,30 @@ function FillDocs() {
     };
 
     return (
+        <>
         <div className= {style.logo}>
             <img src={logo} alt="logo" />
         </div>
 
         <div className = {style.container}>
+            <div>
             {haveDocument ?
                 (<div className = {style.box}>
                     <h1>You don’t need special docs</h1>
                     <br></br>
                     <h1>Please visit embassy <br></br> at your country</h1>
                  </div>
-                 button onClick={() => goBack()} className = {style.btn}>Go back</button>) :
+                 <div>
+                 button onClick={() => goBack()} className = {style.btn}>Go back</button>) </div>:
                  (
                     <img src={logo} className={style.doc} />
                     button onClick={() => getPdf)} className = {style.btn}>Get PDF</button>)
                  )
 
             }
-
+            </div>
         </div>
+        </>
     );
 }
 

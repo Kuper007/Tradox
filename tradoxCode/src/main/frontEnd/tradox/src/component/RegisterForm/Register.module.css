@@ -94,6 +94,7 @@ img {
     text-align: right;
     float: right;
     Outline:none;
+    background: none;
 }
 
 .naming {
@@ -129,6 +130,11 @@ img {
     margin-right: auto;
 }
 
+button:hover {
+    color: white;
+
+}
+
 button:active {
     outline: none;
 }
@@ -144,6 +150,7 @@ select {
     Outline:none;
     direction: ltr;
     /*webkit-appearance:none*/
+    background: none;
 }
 
 select:active {
