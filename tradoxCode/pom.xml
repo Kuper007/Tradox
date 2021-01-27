@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -11,6 +11,7 @@
 	<groupId>com.nc</groupId>
 	<artifactId>tradox</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>tradox</name>
 	<description>Tradox project. Spring boot.</description>
 
@@ -18,9 +19,7 @@
 		<java.version>1.8</java.version>
 	</properties>
 
-
 	<dependencies>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -38,26 +37,10 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-
-		<!-- for unit tests -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
-
-
-		<!-- to take response from foreign api -->
-		<dependency>
 			<groupId>com.squareup.okhttp3</groupId>
 			<artifactId>okhttp</artifactId>
 			<version>4.9.0</version>
 		</dependency>
-
 
 		<dependency>
 			<groupId>org.apache.poi</groupId>
@@ -84,25 +67,101 @@
 			<version>2.9.2</version>
 		</dependency>
 
-		<!-- oracle jdbc driver -->
 <!--		<dependency>-->
-<!--			<groupId>com.oracle.database.jdbc</groupId>-->
-<!--			<artifactId>ojdbc10</artifactId>-->
-<!--			<version>19.8.0.0</version>-->
+<!--			<groupId>org.webjars</groupId>-->
+<!--			<artifactId>npm</artifactId>-->
+<!--			<version>5.0.0-2</version>-->
 <!--		</dependency>-->
+
+		<dependency>
+			<groupId>com.oracle.jdbc</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>12.1.0.2</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ojdbc6.jar</systemPath>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.1</version>
+			<scope>test</scope>
+		</dependency>
+
 
 	</dependencies>
 
+	<!--	TODO: скопировать фронтенд в билдовую директорию-->
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<configuration>
+							<mainClass>com.nc.tradox.api.AuthController</mainClass>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
+
+			<!--			<plugin>-->
+			<!--				<artifactId>maven-war-plugin</artifactId>-->
+			<!--				<configuration>-->
+			<!--					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>-->
+			<!--					<packagingExcludes>app/**</packagingExcludes>-->
+			<!--				</configuration>-->
+			<!--			</plugin>-->
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>1.11.0</version>
+
+				<configuration>
+					<workingDirectory>src/main/frontEnd/tradox</workingDirectory>
+				</configuration>
+
+				<executions>
+					<execution>
+						<id>install node and npm</id>
+						<goals>
+							<goal>install-node-and-npm</goal>
+						</goals>
+						<configuration>
+							<nodeVersion>v15.5.1</nodeVersion>
+							<npmVersion>7.3.0</npmVersion>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>npm install</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>install</arguments>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>webpack build</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<!-- Development Configuration -->
+							<arguments>run dev</arguments>
+							<!-- Production Configuration -->
+							<!-- <arguments>run prod</arguments>-->
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
-
-
 
 </project>
 
