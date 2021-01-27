@@ -10,7 +10,7 @@ public class CountryImpl implements com.nc.tradox.model.Country {
     protected String fullName;
     protected String shortName; //id
     protected String currency;
-    protected int mediumBill;
+    protected double mediumBill;
     protected int tourismCount;
     protected Covid covidInfo;
     TradoxDataAccessService service = new TradoxDataAccessService();
@@ -18,7 +18,7 @@ public class CountryImpl implements com.nc.tradox.model.Country {
     public CountryImpl(String fullName,
                        String shortName,
                        String currency,
-                       int mediumBill,
+                       double mediumBill,
                        int tourismCount,
                        Covid covidImplInfo) {
         this.fullName = fullName;
@@ -34,7 +34,7 @@ public class CountryImpl implements com.nc.tradox.model.Country {
             this.fullName = res.getString("full_name");
             this.shortName = res.getString("short_name");
             this.currency = res.getString("currency");
-            this.mediumBill = res.getInt("medium_bill");
+            this.mediumBill = res.getDouble("medium_bill");
             this.tourismCount = res.getInt("tourism_count");
             this.covidInfo = service.getCovidByCountryId(this.shortName);
 
@@ -60,12 +60,12 @@ public class CountryImpl implements com.nc.tradox.model.Country {
     }
 
     @Override
-    public int getMediumBill() {
+    public double getMediumBill() {
         return mediumBill;
     }
 
     @Override
-    public void setMediumBill(int mediumBill) {
+    public void setMediumBill(double mediumBill) {
         this.mediumBill = mediumBill;
     }
 

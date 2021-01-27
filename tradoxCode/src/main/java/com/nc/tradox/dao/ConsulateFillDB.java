@@ -2,9 +2,7 @@ package com.nc.tradox.dao;
 
 import com.nc.tradox.dao.impl.TradoxDataAccessService;
 import com.nc.tradox.model.Consulate;
-import com.nc.tradox.model.Medicine;
 import com.nc.tradox.utilities.ConsulateApi;
-import com.nc.tradox.utilities.MedicineApi;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -19,11 +17,11 @@ public class ConsulateFillDB {
     TradoxDataAccessService tradoxDataAccessService;
     ConsulateApi consulateApi;
 
-    public void consulateFillDB(){
+    public void consulateFillDB() {
         Connection connection = tradoxDataAccessService.connection;
         List<Consulate> consulateList = consulateApi.consulateList();
 
-        for (Consulate consulate: consulateList) {
+        for (Consulate consulate : consulateList) {
             try {
                 Statement statement = connection.createStatement();
                 int rows = statement.executeUpdate(
@@ -35,7 +33,7 @@ public class ConsulateFillDB {
                                 consulate.getDestinationCountry() + ")");
                 statement.close();
             } catch (SQLException exception) {
-                log.log(Level.SEVERE,"SQL exception", exception);
+                log.log(Level.SEVERE, "SQL exception", exception);
             }
         }
     }

@@ -6,8 +6,8 @@ public interface Country {
     String getFullName();
     String getShortName();
     String getCurrency();
-    int getMediumBill();
-    void setMediumBill(int mediumBill);
+    double getMediumBill();
+    void setMediumBill(double mediumBill);
     int getTourismCount();
     void setTourismCount(int tourismCount);
     Covid getCovidInfo();

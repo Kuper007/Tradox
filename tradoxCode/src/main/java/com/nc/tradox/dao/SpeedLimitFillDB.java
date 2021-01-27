@@ -1,7 +1,6 @@
 package com.nc.tradox.dao;
 
 import com.nc.tradox.dao.impl.TradoxDataAccessService;
-import com.nc.tradox.model.Medicine;
 import com.nc.tradox.model.SpeedLimit;
 import com.nc.tradox.utilities.SpeedLimitApi;
 
