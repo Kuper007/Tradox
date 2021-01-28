@@ -20,7 +20,16 @@ function FillDocs() {
     });
 
     const getPdf = () => {
-
+        fetch("http://localhost:8080/api/v1/docs/pdf").then(response => response.json().then(data => ({
+            data: data,
+            status: response.status })
+        ).then(res => {
+            if (res.data.res)=="true"{
+                //TODO: GET LOCAL FILE
+            } else {
+                console.log('error');
+            }
+        }));
     };
 
     const goBack = () => {
@@ -28,31 +37,28 @@ function FillDocs() {
     };
 
     return (
-        <>
-        <div className= {style.logo}>
-            <img src={logo} alt="logo" />
-        </div>
-
-        <div className = {style.container}>
-            <div>
-            {haveDocument ?
-                (<div className = {style.box}>
-                    <h1>You don’t need special docs</h1>
-                    <br></br>
-                    <h1>Please visit embassy <br></br> at your country</h1>
-                 </div>
-                 <div>
-                 button onClick={() => goBack()} className = {style.btn}>Go back</button>) </div>:
-                 (
-                    <img src={logo} className={style.doc} />
-                    button onClick={() => getPdf)} className = {style.btn}>Get PDF</button>)
-                 )
-
-            }
+        <div className={style.fillForm}>
+            <div className={style.logo}>
+                <img src={logo}/>
             </div>
+                {haveDocument
+                    ? (
+                      <div className={style.container}>
+                        <div className = {style.box}>
+                              <h1>You don’t need special docs</h1>
+                              <br></br>
+                              <h1>Please visit embassy <br></br> at your country</h1>
+                        </div>
+                        <button onClick={() => goBack()} className = {style.btn}>Go back</button>
+                      </div>
+                    )
+                    : (
+                    <div className={style.container}>
+                        <img src={logo} className={style.doc} />
+                        <button onClick={() => getPdf()} className = {style.btn}>Get PDF</button>
+                    </div>)}
         </div>
-        </>
-    );
+      )
 }
 
 export default FillDocs

@@ -85,16 +85,17 @@ public class FillDocsController {
     }
 
     @GetMapping("/pdf")
-    public Boolean getPdf(HttpSession session) throws IOException {
+    public String getPdf(HttpSession session) throws IOException {
         Map<String,XWPFDocument> docs = (Map<String, XWPFDocument>) session.getAttribute("documents");
+        String json = "{\"res\":\"false\"}";
         if (docs==null){
-            return false;
+            return json;
         }
         PdfOptions options = PdfOptions.create();
         for (Map.Entry<String,XWPFDocument> entry: docs.entrySet()){
             PdfConverter.getInstance().convert(entry.getValue(),new FileOutputStream(entry.getKey()),options);
         }
-        return true;
+        return json;
     }
 
     private XWPFDocument fillFile(String path, User user, FullRoute fullRoute){
