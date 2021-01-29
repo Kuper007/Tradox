@@ -1,8 +1,8 @@
-.svg-menu__path__seleccion:hover .svg-menu__path__seleccion__background *, .svg-menu__path__seleccion.active .svg-menu__path__seleccion__background *
+.selected:hover .selectedBackground *, .selected.active .selectedBackground *
 {
   fill: orange;  
 }
-.svg-menu__path__seleccion {
+.selected {
     transform-origin: 50% 50%;
   }
 .container{
@@ -12,4 +12,11 @@
   justify-items: center;
   margin-top: 20px;
   box-align: center;
+}
+.map {
+  position: absolute;
+  left: 254px;
+  top: 74px;
+  width: 1412px;
+  height: 931px;
 }

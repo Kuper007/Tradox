@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import MainPage from './component/MainPage/MainPage';
 import {Route, BrowserRouter} from 'react-router-dom';
-import WorldMap from "./component/MainPage/WorldMap/WorldMap";
-
-const App = () => {
+import Register from './component/RegisterForm/Register';
+function App(){ 
+  const[registered, setRegister] = useState(false);
   return (
-    <BrowserRouter>
       <div className = 'container-main'>
-        <MainPage/>
-         {/*<Route path = '' component = {RegisterForm}/> */}
+        <BrowserRouter>
+        <Route exact path  = '/'> <MainPage registered = {registered} /></Route>
+        <Route path = '/registration'> <Register/></Route>
+        </BrowserRouter>
       </div>
-    </BrowserRouter>
   )
 }
 
