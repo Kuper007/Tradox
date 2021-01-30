@@ -36,7 +36,7 @@ public class TradoxService {
         return false;
     }
 
-    public User auth(String email, String password) {
+    public Map<User, String> auth(String email, String password) {
         return dao.auth(email, password);
     }
 
@@ -98,5 +98,8 @@ public class TradoxService {
         return dao.getDocumentsByCountriesIds(departureId,destinationId);
     }
 
+    public Country getCountryById(String id) {
+        return dao.getCountryById(id);
+    }
 
 }

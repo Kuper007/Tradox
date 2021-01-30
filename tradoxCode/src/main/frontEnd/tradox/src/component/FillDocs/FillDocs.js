@@ -8,15 +8,20 @@ function FillDocs() {
 
     useEffect(() => {
         const requestOptions = {
-            method: 'POST'
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ "departure": " ", "destination": " "})
         };
-        /*fetch("http://localhost:8080/api/v1/docs/fill", requestOptions).then((res)=>{
-            console.log(res);
-            console.log(res.json());
-            if (res) {
-                setHaveDocument(true);
+        fetch("http://localhost:8080/api/v1/docs/fill", requestOptions).then(response => response.json().then(data => ({
+            data: data,
+            status: response.status })
+        ).then(res => {
+            if (res.data.res==="true"){
+                //TODO: GET LOCAL FILE
+            } else {
+                console.log('error');
             }
-        });*/
+        }));
     });
 
     const getPdf = () => {
@@ -24,7 +29,7 @@ function FillDocs() {
             data: data,
             status: response.status })
         ).then(res => {
-            if (res.data.res)=="true"{
+            if (res.data.res==="true"){
                 //TODO: GET LOCAL FILE
             } else {
                 console.log('error');

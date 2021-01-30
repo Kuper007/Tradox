@@ -11,12 +11,28 @@ function Auth(){
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: "'"+emailVal+"'", password: passwordVal })
+            body: JSON.stringify({ "email": "'"+emailVal+"'", "password": passwordVal })
         };
-        fetch("http://localhost:8080/api/v1/auth/check", requestOptions).then((res)=>{
-            console.log(res);
-            console.log(res.json());
-        });
+        fetch("http://localhost:8080/api/v1/auth/check", requestOptions).then(response => response.json().then(data => ({
+            data: data,
+            status: response.status })
+        ).then(res => {
+            if (res.data.res==="true"){
+                userId = res.data.userId;
+                //TODO: REDIRECT TO MAIN
+            } else {
+                //TODO: SHOW ALERTS
+                if (res.data.res==="email"){
+                    console.log("There is no user with such email");
+                }
+                if (res.data.res==="password"){
+                    console.log("Invalid password");
+                }
+                if (res.data.res==="network"){
+                    console.log("Something is wrong with connection");
+                }
+            }
+        }));
     };
 
     return (

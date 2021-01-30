@@ -6,6 +6,7 @@ import com.nc.tradox.model.Document;
 import com.nc.tradox.model.FullRoute;
 import com.nc.tradox.model.User;
 import com.nc.tradox.model.impl.Documents;
+import com.nc.tradox.model.impl.FullRouteImpl;
 import com.nc.tradox.service.TradoxService;
 import fr.opensagres.poi.xwpf.converter.pdf.PdfConverter;
 import fr.opensagres.poi.xwpf.converter.pdf.PdfOptions;
@@ -43,12 +44,12 @@ public class FillDocsController {
     }
 
     @PostMapping("/fill")
-    public RedirectView fillDocs(@RequestBody FullRoute fullRoute, BindingResult bindingResult, HttpSession session) throws InvalidFormatException, IOException {
+    public RedirectView fillDocs(@RequestBody RouteCredentials fullRoute, BindingResult bindingResult, HttpSession session) throws InvalidFormatException, IOException {
         if (!bindingResult.hasErrors()){
             int userId = (int) session.getAttribute("userId");
             User user = tradoxService.getUserById(userId);
-            Documents documents = tradoxService.getDocumentsByCountriesIds(fullRoute.getDepartureCountry().getDepartureCountry().getShortName(),
-                                                                           fullRoute.getDestinationCountry().getDestinationCountry().getShortName());
+            Documents documents = tradoxService.getDocumentsByCountriesIds(fullRoute.getDepartureId(),
+                                                                           fullRoute.getDestinationId());
             List<Document> docs = documents.getList();
             Map<String,XWPFDocument> mapDocs = new HashMap<>();
             for(Document doc: docs){
@@ -95,10 +96,11 @@ public class FillDocsController {
         for (Map.Entry<String,XWPFDocument> entry: docs.entrySet()){
             PdfConverter.getInstance().convert(entry.getValue(),new FileOutputStream(entry.getKey()),options);
         }
+        json = json.replace("false","true");
         return json;
     }
 
-    private XWPFDocument fillFile(String path, User user, FullRoute fullRoute){
+    private XWPFDocument fillFile(String path, User user, RouteCredentials fullRoute){
         XWPFDocument docx = null;
         try {
             docx = new XWPFDocument(OPCPackage.open(path));
@@ -109,7 +111,7 @@ public class FillDocsController {
                             for (XWPFRun r : p.getRuns()) {
                                 String text = r.getText(0);
                                 if (text != null) {
-                                    text = text.replace("country",fullRoute.getDestinationCountry().getDestinationCountry().getFullName());
+                                    text = text.replace("country",tradoxService.getCountryById(fullRoute.getDestinationId()).getFullName());
                                     text = text.replace("name", user.getFirstName()+' '+user.getLastName());
                                     text = text.replace("(birth)",String.valueOf(user.getBirthDate()));
                                     text = text.replace("(passport code)",user.getPassport().getPassportId());

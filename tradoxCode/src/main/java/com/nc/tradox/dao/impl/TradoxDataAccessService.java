@@ -36,7 +36,8 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
-    public User auth(String email, String password){
+    public Map<User, String> auth(String email, String password){
+        Map<User,String> result = new HashMap<>();
         try {
             Statement statement = connection.createStatement();
             ResultSet res = statement.executeQuery("SELECT * FROM \"USER\"  WHERE email =" + email);
@@ -44,17 +45,20 @@ public class TradoxDataAccessService implements Dao {
                 String real_password = res.getString("password");
                 if(real_password.equals(String.valueOf(password.hashCode()))){
                     User user = new UserImpl(res);
+                    result.put(user,"true");
                     statement.close();
-                    return user;
+                    return result;
                 } else {
                     statement.close();
-                    return null;
+                    result.put(null,"password");
+                    return result;
                 }
             }
             statement.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        result.put(null,"email");
         return null;
     }
 
