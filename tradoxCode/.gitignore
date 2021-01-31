@@ -31,3 +31,55 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# dependencies
+/node_modules
+/node
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.eslintcache
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# dependencies
+/src/main/frontEnd/.idea
+/src/main/frontEnd/tradox/node_modules
+/src/main/frontEnd/tradox/node
+/src/main/frontEnd/tradox/.pnp
+/src/main/frontEnd/tradox/.pnp.js
+
+# testing
+/src/main/frontEnd/tradox/coverage
+
+# production
+/src/main/frontEnd/tradox/build
+
+# misc
+/src/main/frontEnd/tradox/.DS_Store
+/src/main/frontEnd/tradox/.env.local
+/src/main/frontEnd/tradox/.env.development.local
+/src/main/frontEnd/tradox/.env.test.local
+/src/main/frontEnd/tradox/.env.production.local
+/src/main/frontEnd/tradox/.eslintcache
+
+/src/main/frontEnd/tradox/npm-debug.log*
+/src/main/frontEnd/tradox/yarn-debug.log*
+/src/main/frontEnd/tradox/git yarn-error.log*
+
+src/main/webapp/index.js
+src/main/webapp/index.html

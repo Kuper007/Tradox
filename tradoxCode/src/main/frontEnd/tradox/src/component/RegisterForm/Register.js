@@ -3,16 +3,17 @@ import style from './Register.module.css';
 import logo from '../../images/LogoTradoxLogo.svg';
 import InputForm from "./InputForm";
 import CreateButton from "./CreateButton";
+import Picker from "./CountryPicker";
 import myMap from "../CountrysMap"
-import {NavLink} from 'react-router-dom';
 
 function Register(props) {
 
     function getKeysFromMapArr() {
         let arr = []
-        for (let [key] of myMap) {
+        for (let [key, value] of myMap) {
             arr.push(key)
         }
+        console.log(arr[60])
         return arr;
     }
 
@@ -22,7 +23,7 @@ function Register(props) {
     let infoMap = new Map().set("firstName",null).set("lastName",null).set("dateOfBirth",null).set("email",null)
         .set("password",null).set("mobilePhone",null).set("passport",null).set("citizenship",null).set("currentCountry",null);
 
-    let [state] = useState(infoMap);
+    let [state, setState] = useState(infoMap);
 
     // function checkInfoMap() {
     //     const keys = infoMap.keys();
@@ -62,7 +63,7 @@ function Register(props) {
     return (
         <div className={style.registrationComponent}>
         <div className={style.registerLogo}>
-         <NavLink to = '/'><img src={logo} alt = "logo"/></NavLink>
+            <img src={logo}/>
         </div>
             {isTapped
                 ? <div className={style.verifyTitle}>We send you letter on email. Please, verify to start using your account.</div>
@@ -77,7 +78,7 @@ function Register(props) {
                                 <InputForm value={state.get("firstName")} type={"text"} title={"First name"} keyOf={"firstName"} placeholder={"Danylo"} changeState={changeInfoMap} />
                                 <InputForm value={state.get("lastName")} type={"text"} title={"Last name"} changeState={changeInfoMap} keyOf={"lastName"} placeholder={"Savchak"}/>
                                 <InputForm value={state.get("dateOfBirth")} keyOf={"dateOfBirth"} title={"Date of birth"} changeState={changeInfoMap} type={"date"} />
-                                <InputForm value={state.get("email")} keyOf={"email"} type={"text"} title={"E-mail"} changeState={changeInfoMap} placeholder={"example@gmail.com"}/>
+                                <InputForm value={state.get("email")} keyOf={"email"} type={"email"} title={"E-mail"} changeState={changeInfoMap} placeholder={"example@gmail.com"}/>
                                 <InputForm value={state.get("password")}  keyOf={"password"} type={"password"} changeState={changeInfoMap} placeholder={"*******"} title={"Password"}/>
                                 <InputForm value={state.get("mobilePhone")} keyOf={"mobilePhone"} type={"tel"} changeState={changeInfoMap} title={"Mobile phone"} placeholder={"+39094234433"}/>
                                 <InputForm value={state.get("passport")} keyOf={"passport"} type={"text"} title={"Passport"} changeState={changeInfoMap} placeholder={"MK212133"}/>
@@ -93,3 +94,4 @@ function Register(props) {
 }
 
 export default Register;
+

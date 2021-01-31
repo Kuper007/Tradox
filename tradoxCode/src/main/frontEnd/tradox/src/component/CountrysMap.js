@@ -1,3 +1,4 @@
+import React from "react";
 
 let myMap = new Map().set("Andorra","AD").set("United Arab Emirates","AE").set("Afghanistan","AF")
         .set("Antigua and Barbuda","AG").set("Albania","AL").set("Armenia","AM")
