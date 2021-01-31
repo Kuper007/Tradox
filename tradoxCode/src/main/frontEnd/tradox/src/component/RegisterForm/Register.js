@@ -14,7 +14,6 @@ function Register(props) {
         for (let [key, value] of myMap) {
             arr.push(key)
         }
-        console.log(arr[60])
         return arr;
     }
 

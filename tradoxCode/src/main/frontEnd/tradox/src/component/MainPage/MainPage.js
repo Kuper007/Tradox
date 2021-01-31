@@ -29,20 +29,17 @@ function MainPage (props) {
 //         console.log(res.json());
 //     });
 // };
-
-  function ifRegistered(){
+  function retrieveId(e){
     if(props.registered === false){
       setShowNotification(true)
     }
     else {
-      console.log(countryId)
+      setCountryId(e.currentTarget.id)
     }
   }
-  function retrieveId(e){    
-    setCountryId(e.currentTarget.id) 
-    ifRegistered()  
+  function showId(){
+    console.log(countryId)
   }
-  
   function handleCountry(e){
     setCountryName(e.target.value);
    }
@@ -61,6 +58,7 @@ function MainPage (props) {
       <WorldMap retrieveId = {retrieveId}/>
       <SearchBar handleCountry = {handleCountry} handleKeyPress = {handleKeyPress}/>
       {showNotification ? <UnregisteredUserNotification/>:null}
+      <button onKeyPress={showId}></button>
     </div>
   )
 }
