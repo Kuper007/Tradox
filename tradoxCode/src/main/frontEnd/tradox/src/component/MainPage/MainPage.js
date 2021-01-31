@@ -5,10 +5,10 @@ import SearchBar from './SearchBar/SearchBar'
 import myMap from "../CountrysMap.js"
 import UnregisteredUserNotification from '../UnauthorizedUserNotification/UnauthorizedUserNotification'
 
+
 function MainPage (props) {
-  const[registered, setRegister] = useState(true);
-  const [countryName, setState] = useState('');
-  const[countryId, setTitle] = useState('');
+  const [countryName, setCountryName] = useState('');
+  const[countryId, setCountryId] = useState('');
 
   function getKeysFromMapArr(country) {
     let countryO = myMap.get(country)
@@ -17,21 +17,30 @@ function MainPage (props) {
     return countryO
   }
 
+//   const getCountry = () => {
+//     const requestOptions = {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({ country: "'"+countryId+"'"})
+//     };
+//     fetch("http://localhost:8080/api/v1/", requestOptions).then((res)=>{
+//         console.log(res);
+//         console.log(res.json());
+//     });
+// };
+
   function ifRegistered(){
-    if(props.registered === false){
-      setRegister(false)
-    }
-    else{
+    if(props.registered !== false){
       console.log(countryId)
     }
   }
   function retrieveId(e){    
-    setTitle(e.target.id) 
+    setCountryId(e.currentTarget.id) 
     ifRegistered()  
   }
   
   function handleCountry(e){
-    setState(e.target.value);
+    setCountryName(e.target.value);
    }
 
   function handleKeyPress(e) {
@@ -41,13 +50,14 @@ function MainPage (props) {
   }
 
 
-  
+
   return (
     <div >
       <Logo/>
       <WorldMap retrieveId = {retrieveId}/>
       <SearchBar handleCountry = {handleCountry} handleKeyPress = {handleKeyPress}/>
-      {!registered ? <UnregisteredUserNotification/>:null}
+      {!props.registered ? <UnregisteredUserNotification/>:null}
+    
     </div>
   )
 }
