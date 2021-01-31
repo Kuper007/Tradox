@@ -18,7 +18,7 @@ function Logo() {
             <NavLink to = '/'><img src={logo} alt="logo" className = {style.logo}/></NavLink>
             <div className = {style.auth}>
             {pressed ?<div className = {style.hidable} >
-                <NavLink className = {`${style.register} ${style.link}`} to= '/registration'>Register</NavLink>
+                    <NavLink className = {`${style.register} ${style.link}`} to= '/registration'>Register</NavLink>
                     <NavLink className = {`${style.logIn} ${style.link}`} to = '/auth'>Log in</NavLink>
                     <img src = {vector} alt = 'vector' className = {style.vector}/>
                 </div>: null}

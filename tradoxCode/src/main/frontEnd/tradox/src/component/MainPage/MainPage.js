@@ -9,6 +9,7 @@ import UnregisteredUserNotification from '../UnauthorizedUserNotification/Unauth
 function MainPage (props) {
   const [countryName, setCountryName] = useState('');
   const[countryId, setCountryId] = useState('');
+  const[showNotification, setShowNotification] = useState(false)
 
   function getKeysFromMapArr(country) {
     let countryO = myMap.get(country)
@@ -30,7 +31,10 @@ function MainPage (props) {
 // };
 
   function ifRegistered(){
-    if(props.registered !== false){
+    if(props.registered === false){
+      setShowNotification(true)
+    }
+    else {
       console.log(countryId)
     }
   }
@@ -56,8 +60,7 @@ function MainPage (props) {
       <Logo/>
       <WorldMap retrieveId = {retrieveId}/>
       <SearchBar handleCountry = {handleCountry} handleKeyPress = {handleKeyPress}/>
-      {!props.registered ? <UnregisteredUserNotification/>:null}
-    
+      {showNotification ? <UnregisteredUserNotification/>:null}
     </div>
   )
 }

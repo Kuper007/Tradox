@@ -1,6 +1,7 @@
 import React, {useState}  from 'react'
 import style from './Auth.module.css';
 import logo from '../../images/LogoTradoxLogo.svg';
+import {NavLink} from "react-router-dom";
 
 function Auth(){
 
