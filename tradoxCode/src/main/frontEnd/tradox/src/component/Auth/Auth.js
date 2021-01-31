@@ -21,7 +21,7 @@ function Auth(){
 
     return (
             <div className = {style.container}>
-                <img src={logo} alt="logo" />
+                <NavLink to = '/'><img src={logo} alt="logo"/></NavLink>
                 <h2>Authorisation</h2>
                 <form className = {style.authForm}>
                     <label>
