@@ -10,7 +10,7 @@ import java.util.Set;
 public interface Dao {
     Route getRoute(String userId, String destinationId);
 
-    User auth(String email, String password);
+    Map<User,String> auth(String email, String password);
 
     Country getCountryById(String id);
 

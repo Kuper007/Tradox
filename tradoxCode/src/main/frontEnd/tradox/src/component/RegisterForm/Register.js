@@ -5,6 +5,7 @@ import InputForm from "./InputForm";
 import CreateButton from "./CreateButton";
 import Picker from "./CountryPicker";
 import myMap from "../CountrysMap"
+import {NavLink} from 'react-router-dom';
 
 function Register(props) {
 
@@ -13,7 +14,6 @@ function Register(props) {
         for (let [key, value] of myMap) {
             arr.push(key)
         }
-        console.log(arr[60])
         return arr;
     }
 
@@ -63,7 +63,7 @@ function Register(props) {
     return (
         <div className={style.registrationComponent}>
         <div className={style.registerLogo}>
-            <img src={logo}/>
+            <NavLink to = '/'><img src={logo} alt="logo"/></NavLink>
         </div>
             {isTapped
                 ? <div className={style.verifyTitle}>We send you letter on email. Please, verify to start using your account.</div>
