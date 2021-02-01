@@ -155,7 +155,7 @@ public class TradoxDataAccessService implements Dao {
 
     @Override
     public Boolean registrate(Map<String, String> info) {
-        boolean res = savePassport(info.get("passport_id"),info.get("citizenship"));
+        boolean res = savePassport(info.get("passport_id"), info.get("citizenship"));
         if (res) {
             try {
                 String query = "INSERT INTO \"USER\" (first_name,last_name,birth_date,email,password,phone,passport_id,citizenship,country_id)"
@@ -163,19 +163,19 @@ public class TradoxDataAccessService implements Dao {
                 java.util.Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(info.get("birth_date"));
                 java.sql.Date date2 = new Date(date1.getTime());
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
-                preparedStatement.setString(1,info.get("first_name"));
-                preparedStatement.setString(2,info.get("last_name"));
+                preparedStatement.setString(1, info.get("first_name"));
+                preparedStatement.setString(2, info.get("last_name"));
                 preparedStatement.setDate(3, date2);
-                preparedStatement.setString(4,info.get("email"));
-                preparedStatement.setInt(5,info.get("password").hashCode());
-                preparedStatement.setString(6,info.get("phone"));
-                preparedStatement.setString(7,info.get("passport_id"));
-                preparedStatement.setString(8,info.get("citizenship"));
-                preparedStatement.setString(9,info.get("country_id"));
+                preparedStatement.setString(4, info.get("email"));
+                preparedStatement.setInt(5, info.get("password").hashCode());
+                preparedStatement.setString(6, info.get("phone"));
+                preparedStatement.setString(7, info.get("passport_id"));
+                preparedStatement.setString(8, info.get("citizenship"));
+                preparedStatement.setString(9, info.get("country_id"));
 
                 boolean result = preparedStatement.execute();
                 preparedStatement.close();
-                return result;
+                return true;
             } catch (SQLException | ParseException throwables) {
                 throwables.printStackTrace();
             }
@@ -673,13 +673,13 @@ public class TradoxDataAccessService implements Dao {
             String query = "INSERT INTO passport (passport_id,series,num,country_id) values(?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1,id);
-            preparedStatement.setString(2,id.substring(0,id.indexOf(' ')));
-            preparedStatement.setString(3,id.substring(id.indexOf(' ')));
+            preparedStatement.setString(2,id.substring(0, 2));
+            preparedStatement.setString(3,id.substring(2));
             preparedStatement.setString(4,citizenship);
 
             boolean res = preparedStatement.execute();
             preparedStatement.close();
-            return res;
+            return true;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

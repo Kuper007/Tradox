@@ -1,6 +1,7 @@
 import React, {useState}  from 'react'
 import style from './Auth.module.css';
 import logo from '../../images/LogoTradoxLogo.svg';
+import {NavLink} from "react-router-dom";
 
 function Auth(){
 
@@ -37,7 +38,7 @@ function Auth(){
 
     return (
             <div className = {style.container}>
-                <img src={logo} alt="logo" />
+                <NavLink to = '/'><img src={logo} alt="logo"/></NavLink>
                 <h2>Authorisation</h2>
                 <form className = {style.authForm}>
                     <label>

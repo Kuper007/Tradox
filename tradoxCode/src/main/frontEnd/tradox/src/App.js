@@ -1,19 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import MainPage from './component/MainPage/MainPage';
-import Auth from './component/Auth/Auth';
-import FillDocs from './component/FillDocs/FillDocs';
-import Register from './component/RegisterForm/Register';
 import {Route, BrowserRouter} from 'react-router-dom';
-import WorldMap from "./component/MainPage/WorldMap/WorldMap";
+import Register from './component/RegisterForm/Register';
+import Auth from './component/Auth/Auth.js';
+import FillDocs from './component/FillDocs/FillDocs.js';
+function App(){ 
+  const[registered, setRegister] = useState(true);
 
-const App = () => {
   return (
-    <BrowserRouter>
       <div className = 'container-main'>
-       <FillDocs/>
+        <BrowserRouter>
+            <Route exact path  = '/'> <MainPage registered = {registered} /></Route>
+            <Route path = '/registration'> <Register/></Route>
+            <Route path = '/auth'> <Auth/> </Route>
+            <Route path = '/docs'> <FillDocs/> </Route>
+        </BrowserRouter>
       </div>
-    </BrowserRouter>
   )
 }
+
+
 
 export default App
