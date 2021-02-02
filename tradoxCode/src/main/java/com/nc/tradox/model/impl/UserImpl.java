@@ -24,7 +24,10 @@ public class UserImpl implements com.nc.tradox.model.User {
     protected Set<Route> transit;
     protected Boolean verify;
     protected Country citizenship;
-    TradoxDataAccessService service = new TradoxDataAccessService();
+
+    public UserImpl() {
+
+    }
 
     public UserImpl(Integer userId, UserTypeEnum userType, String firstName,
                     String lastName, Date birthDate, String email, String phone, Country location, Country citizenship, Passport passport) {
@@ -40,14 +43,15 @@ public class UserImpl implements com.nc.tradox.model.User {
         this.citizenship = citizenship;
     }
 
-    public UserImpl(ResultSet user){
+    public UserImpl(ResultSet user) {
+        TradoxDataAccessService service = new TradoxDataAccessService();
         try {
             this.userId = user.getInt("user_id");
             this.userType = UserTypeEnum.valueOf(user.getString("user_type"));
             this.firstName = user.getString("first_name");
             this.lastName = user.getString("last_name");
             this.birthDate = user.getDate("birth_date");
-            this.email =  user.getString("email");
+            this.email = user.getString("email");
             this.phone = user.getString("phone");
             this.location = service.getCountryById(user.getString("country_id"));
             this.citizenship = service.getCountryById(user.getString("citizenship"));

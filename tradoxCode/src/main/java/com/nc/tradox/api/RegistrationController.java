@@ -3,8 +3,10 @@ package com.nc.tradox.api;
 import com.nc.tradox.service.TradoxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
@@ -13,27 +15,18 @@ import java.util.Map;
 @RestController
 public class RegistrationController {
     private final TradoxService tradoxService;
-    Map<String, Boolean> resultJson;
+
     @Autowired
-    public RegistrationController(TradoxService tradoxService){
+    public RegistrationController(TradoxService tradoxService) {
         this.tradoxService = tradoxService;
     }
 
     @PostMapping("/fill")
-    public Boolean registrarion(@RequestBody Map<String, String> json, BindingResult bindingResult, HttpSession httpSession){
-        if(!bindingResult.hasErrors()){
-            Boolean result = tradoxService.registerUser(json);
-            if(result){
-                resultJson.put("result", true);
-                return true;
-            }
-            else {
-                resultJson.put("result", false);
-                return false;
-            }
-        }else{
-            resultJson.put("result", false);
-            return false;
+    public String registration(@RequestBody Map<String, String> json, BindingResult bindingResult, HttpSession httpSession) {
+        if (!bindingResult.hasErrors()) {
+            return tradoxService.registerUser(json);
         }
+        return "{\"result\": false, \"emailNotUnique\": false, \"passportNotUnique\": false}";
     }
+
 }

@@ -13,6 +13,13 @@ public class PassportImpl implements Passport {
     protected String passportNumber;
     protected Country citizenshipCountry;
 
+    public PassportImpl(String passportSeries, Country citizenshipCountry) {
+        this.passportSeries = passportSeries.substring(0, 2);
+        this.passportNumber = passportSeries.substring(2);
+        this.citizenshipCountry = citizenshipCountry;
+    }
+
+    @Deprecated
     public PassportImpl(String passportSeries, String passportNumber, Country citizenshipCountry) {
         this.passportSeries = passportSeries;
         this.passportNumber = passportNumber;
