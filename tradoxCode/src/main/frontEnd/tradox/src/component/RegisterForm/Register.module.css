@@ -96,6 +96,17 @@ img {
     background: none;
 }
 
+.wrongInput {
+    border: 0;
+    border-bottom: 1px solid black;
+    width: 68%;
+    text-align: right;
+    float: right;
+    Outline:none;
+    background: none;
+    color: red;
+}
+
 .naming {
     font-weight: 600;
     font-size: 18px;
@@ -127,6 +138,10 @@ img {
     margin-top: 44px;
     margin-left: auto;
     margin-right: auto;
+}
+
+button:active, button:focus {
+    outline: none !important;
 }
 
 button:hover {
@@ -179,7 +194,7 @@ option {
     }
 }
 
-.shakeAnimation {
+shakeAnimation {
     animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;

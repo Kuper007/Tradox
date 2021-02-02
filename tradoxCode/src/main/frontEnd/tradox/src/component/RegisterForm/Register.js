@@ -13,7 +13,6 @@ function Register(props) {
         for (let [key, value] of myMap) {
             arr.push(key)
         }
-        console.log(arr[60])
         return arr;
     }
 
@@ -41,8 +40,11 @@ function Register(props) {
         infoMap.set(inputKey,inputValue)
     }
 
+    let [notFoundMail,notFoundMailFunc] = useState(false)
+    let [notFoundPassport,notFoundPassportFunc] = useState(false)
+
     function onClickS(e) {
-        e.preventDefault()
+        e.preventDefault();
         fetch('http://localhost:8080/api/v1/registration/fill/',{method:"POST",body: JSON.stringify({
                 "first_name": state.get("firstName"),
                 "last_name": state.get("lastName"),
@@ -58,9 +60,11 @@ function Register(props) {
             if (res.result === true) {
                 tap(true)
             } else if (res.emailNotUnique === true) {
-
-            } else if (res.passportNotUnique === true) {
-
+                notFoundMailFunc(true);
+                alert("Account with this mail already exist. Please change mail!")
+            } else if (res.passportNotUniquпше e === true) {
+                notFoundPassportFunc(true);
+                alert("Account with this passport already exist. Please change passport!")
             }
         })
     }
@@ -80,15 +84,15 @@ function Register(props) {
                     <div className={style.info}>
                         <div>
                             <form className={style.form} onSubmit={onClickS}>
-                                <InputForm value={state.get("firstName")} type={"text"} title={"First name"} keyOf={"firstName"} placeholder={"Danylo"} changeState={changeInfoMap} />
-                                <InputForm value={state.get("lastName")} type={"text"} title={"Last name"} changeState={changeInfoMap} keyOf={"lastName"} placeholder={"Savchak"}/>
+                                <InputForm value={state.get("firstName")} notFound={false} type={"text"} title={"First name"} keyOf={"firstName"} placeholder={"Danylo"} changeState={changeInfoMap} />
+                                <InputForm value={state.get("lastName")} notFound={false} type={"text"} title={"Last name"} changeState={changeInfoMap} keyOf={"lastName"} placeholder={"Savchak"}/>
                                 <InputForm value={state.get("dateOfBirth")} keyOf={"dateOfBirth"} title={"Date of birth"} changeState={changeInfoMap} type={"date"} />
-                                <InputForm value={state.get("email")} keyOf={"email"} type={"email"} title={"E-mail"} changeState={changeInfoMap} placeholder={"example@gmail.com"}/>
-                                <InputForm value={state.get("password")}  keyOf={"password"} type={"password"} changeState={changeInfoMap} placeholder={"*******"} title={"Password"}/>
-                                <InputForm value={state.get("mobilePhone")} keyOf={"mobilePhone"} type={"tel"} changeState={changeInfoMap} title={"Mobile phone"} placeholder={"+39094234433"}/>
-                                <InputForm value={state.get("passport")} keyOf={"passport"} type={"text"} title={"Passport"} changeState={changeInfoMap} placeholder={"MK212133"}/>
-                                <InputForm value={state.get("citizenship")} keyOf={"citizenship"}  type={"countryPicker"} changeState={changeInfoMap} title={"Citizenship"} placeholder={"Ukraine"} array={getKeysFromMapArr()}/>
-                                <InputForm value={state.get("currentCountry")} keyOf={"currentCountry"}  type={"countryPicker"} changeState={changeInfoMap} title={"Current country"} placeholder={"Ukraine"}  array={getKeysFromMapArr()}/>
+                                <InputForm value={state.get("email")} notFound={notFoundMail} keyOf={"email"} type={"email"} title={"E-mail"} changeState={changeInfoMap} placeholder={"example@gmail.com"}/>
+                                <InputForm value={state.get("password")}  notFound={false} keyOf={"password"} type={"password"} changeState={changeInfoMap} placeholder={"*******"} title={"Password"}/>
+                                <InputForm value={state.get("mobilePhone")} notFound={false} keyOf={"mobilePhone"} type={"tel"} changeState={changeInfoMap} title={"Mobile phone"} placeholder={"+39094234433"}/>
+                                <InputForm value={state.get("passport")}  notFound={notFoundPassport} keyOf={"passport"} type={"text"} title={"Passport"} changeState={changeInfoMap} placeholder={"MK212133"}/>
+                                <InputForm value={state.get("citizenship")} notFound={false} keyOf={"citizenship"}  type={"countryPicker"} changeState={changeInfoMap} title={"Citizenship"} placeholder={"Ukraine"} array={getKeysFromMapArr()}/>
+                                <InputForm value={state.get("currentCountry")}  notFound={false} keyOf={"currentCountry"}  type={"countryPicker"} changeState={changeInfoMap} title={"Current country"} placeholder={"Ukraine"}  array={getKeysFromMapArr()}/>
                                 <CreateButton type={"submit"}/>
                             </form>
                         </div>
