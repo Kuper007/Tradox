@@ -5,12 +5,12 @@ import Register from './component/RegisterForm/Register';
 import Auth from './component/Auth/Auth.js';
 import FillDocs from './component/FillDocs/FillDocs.js';
 function App(){ 
-  const[registered, setRegister] = useState(true);
+  const[authorized, setAuthorized] = useState(true);
 
   return (
       <div className = 'container-main'>
         <BrowserRouter>
-            <Route exact path  = '/'> <MainPage registered = {registered} /></Route>
+            <Route exact path  = '/'> <MainPage authorized = {authorized} /></Route>
             <Route path = '/registration'> <Register/></Route>
             <Route path = '/auth'> <Auth/> </Route>
             <Route path = '/docs'> <FillDocs/> </Route>

@@ -7,7 +7,7 @@ function Auth(){
 
     const [emailVal, setEmailVal] = useState("");
     const [passwordVal, setPasswordVal] = useState("");
-
+    let userId;
     const validate = () => {
         const requestOptions = {
             method: 'POST',

@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import WorldMap from './WorldMap/WorldMap';
 import Logo from './Logo/Logo';
-import SearchBar from './SearchBar/SearchBar'
-import myMap from "../CountrysMap.js"
-
+import SearchBar from './SearchBar/SearchBar';
+import myMap from "../CountrysMap.js";
+import Country from '../CountryInfo/CountryInfo';
+import UnauthorizedUserNotification from "../UnauthorizedUserNotification/UnauthorizedUserNotification";
+import NoData from '../CountryInfo/NoData/NoData'
+import axios from "axios";
 
 function MainPage (props) {
-  const [countryName, setCountryName] = useState('');
-  const [countryId, setCountryId] = useState('');
-  const [notFound, setNotFound] = useState(false)
+  const [destinationName, setDestinationName] = useState('');
+  const [destinationId, setDestinationId] = useState('');
+  const [notFound, setNotFound] = useState(false);
+  const [pressed, setPressed] = useState(false)
+  const [data, setData] = useState([])
+  useEffect(() => {
+    ifRegistered()
+  }, [destinationId])
 
   function getKeysFromMapArr(country) {
     let countryO = myMap.get(country)
@@ -20,38 +28,49 @@ function MainPage (props) {
     }
     return countryO
   }
+  function getKeyFromMap(){
+    let keys = [...myMap.entries()]
+        .filter(({ 1: v }) => v === destinationId)
+        .map(([k]) => k);
+    setDestinationName(keys)
+  }
+  function getCountryInfo(){
+    try {
+      const response = axios.post('http://localhost:8080/api/v1/route/routing', { departureId: 'UA', destinationId: destinationId });
+      console.log('👉 Returned data:', response);
+      if(response.status !== 200){
+        return <NoData/>
+      }
+    } catch (e) {
+      console.log(`😱 Axios request failed: ${e}`);
+    }
 
-  // const getCountryInfo = () => {
-  //   const requestOptions = {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify({ country: "'"+countryId+"'"})
-  //   };
-  //   fetch("http://localhost:8080/api/v1/route", requestOptions).then((res)=>{
-  //     console.log(res);
-  //     console.log(res.json());
-  //   });
-  // };
+  }
 
   function ifRegistered(){
-    if(props.registered !== false){
-      //getCountryInfo()
-      console.log(countryId)
+    if(destinationId !== ''){
+      if(props.authorized !== false){
+        getKeyFromMap()
+        setPressed(true)
+        console.log(getCountryInfo())
+    }
+      else{
+        return <UnauthorizedUserNotification/>
+      }
     }
   }
+
   function retrieveId(e){
-    setCountryId(e.currentTarget.id)
-    ifRegistered()
+    setDestinationId(e.currentTarget.id)
   }
 
   function handleCountry(e){
-    setCountryName(e.target.value);
+    setDestinationName(e.target.value);
   }
 
   function handleKeyPress(e) {
     if (e.key === 'Enter') {
-      setCountryId(getKeysFromMapArr(countryName))
-      console.log(countryId)
+      setDestinationId(getKeysFromMapArr(destinationName))
     }
   }
 
@@ -59,9 +78,10 @@ function MainPage (props) {
 
   return (
       <div >
-        <Logo/>
+        <Logo authorized = {props.authorized}/>
         <WorldMap retrieveId = {retrieveId}/>
-        <SearchBar handleCountry = {handleCountry} handleKeyPress = {handleKeyPress} notfound = {notFound}/>
+        {!pressed?<SearchBar handleCountry = {handleCountry} handleKeyPress = {handleKeyPress} notfound = {notFound}/>:null}
+        {pressed?<Country country = {destinationName}/>:null}
       </div>
   )
 }

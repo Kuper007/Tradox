@@ -30,6 +30,29 @@
     position: absolute;
     width: 400px;
     height: 400px;
-    top:76 px;
+    top: 76px;
     left: 137px;
+}
+.fillBtn{
+    position: absolute;
+    height: 56px;
+    width: 272px;
+    left: 824px;
+    top: 530px;
+    border-radius: 18px;
+    background: #F9B300;
+}
+.fillDocsTxT{
+    height: 22px;
+    width: 175px;
+    left: 875px;
+    top: 547px;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+
 }

@@ -5,10 +5,12 @@ import com.nc.tradox.model.Route;
 import com.nc.tradox.model.User;
 import com.nc.tradox.service.TradoxService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 import java.util.Set;
 
 @RequestMapping("api/v1/route")
@@ -30,6 +32,14 @@ public class RouteController {
         Route route = tradoxService.getRoute((String) session.getAttribute("userId"),destinationId);
         session.setAttribute("currentRoute",route);
         return route;
+    }
+
+    @PostMapping("/routing")
+    public InfoData getRoutePath(@RequestBody CountryIds countryIds, HttpSession session, BindingResult bindingResult){
+        if(!bindingResult.hasErrors()){
+            return tradoxService.getInfodata(countryIds.getDepartureId(), countryIds.getDestinationId());
+        }
+        return null;
     }
 
     @GetMapping("/save")
