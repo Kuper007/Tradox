@@ -20,6 +20,7 @@ function Register(props) {
     let [isTapped,tap] = useState(false);
 
 
+
     let infoMap = new Map().set("firstName",null).set("lastName",null).set("dateOfBirth",null).set("email",null)
         .set("password",null).set("mobilePhone",null).set("passport",null).set("citizenship",null).set("currentCountry",null);
 
@@ -40,7 +41,6 @@ function Register(props) {
         infoMap.set(inputKey,inputValue)
     }
 
-
     function onClickS(e) {
         e.preventDefault()
         fetch('http://localhost:8080/api/v1/registration/fill/',{method:"POST",body: JSON.stringify({
@@ -54,8 +54,13 @@ function Register(props) {
                 "citizenship": myMap.get(state.get("citizenship")),
                 "country_id": myMap.get(state.get("currentCountry"))
         })}).then(response => {
-            if (response.json() === true) {
+            let res = response.json()
+            if (res.result === true) {
                 tap(true)
+            } else if (res.emailNotUnique === true) {
+
+            } else if (res.passportNotUnique === true) {
+
             }
         })
     }
