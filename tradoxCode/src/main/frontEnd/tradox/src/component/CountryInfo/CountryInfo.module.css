@@ -1,0 +1,58 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:100%;
+    height: 100%;
+}
+.countryStatus{
+    position: relative;
+    width: 605px;
+    height: 105px;
+    left: 658px;
+    top: 235px;
+
+    background: rgba(87, 226, 126, 0.42);
+    border-radius: 50px;
+}
+.countryText{
+    position: absolute;
+    text-align: center;
+    padding-top: 2%;
+    width: 100%;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 37px;
+}
+.car{
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: 76px;
+    left: 137px;
+}
+.fillBtn{
+    position: absolute;
+    height: 56px;
+    width: 272px;
+    left: 824px;
+    top: 530px;
+    border-radius: 18px;
+    background: #F9B300;
+}
+.fillDocsTxT{
+    height: 22px;
+    width: 175px;
+    left: 875px;
+    top: 547px;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}

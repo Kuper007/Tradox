@@ -37,6 +37,7 @@ public class TradoxService {
         return dao.getRoute(userId, destinationId);
     }
 
+    public InfoData getInfodata(String countryId, String depId){return  dao.getInfoData(countryId, depId);}
 
     public Boolean deleteRoute(Route route) {
         return dao.deleteRoute(route.getElementId());

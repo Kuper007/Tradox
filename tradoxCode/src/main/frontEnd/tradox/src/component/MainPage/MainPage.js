@@ -1,70 +1,101 @@
 import React, { useState, useEffect } from 'react';
 import WorldMap from './WorldMap/WorldMap';
 import Logo from './Logo/Logo';
-import SearchBar from './SearchBar/SearchBar'
-import myMap from "../CountrysMap.js"
-import UnregisteredUserNotification from '../UnauthorizedUserNotification/UnauthorizedUserNotification'
-
+import SearchBar from './SearchBar/SearchBar';
+import myMap from "../CountrysMap.js";
+import Country from '../CountryInfo/CountryInfo';
+import UnauthorizedUserNotification from "../UnauthorizedUserNotification/UnauthorizedUserNotification";
+import NoData from '../CountryInfo/NoData/NoData'
+import axios from "axios";
 
 function MainPage (props) {
-  const [countryName, setCountryName] = useState('');
-  const[countryId, setCountryId] = useState('');
-  const[showNotification, setShowNotification] = useState(false);
-  const[isAuth, setIsAuth] = useState(false);
+
+  const [destinationName, setDestinationName] = useState('');
+  const [destinationId, setDestinationId] = useState('');
+  const [notFound, setNotFound] = useState(false);
+  const [pressed, setPressed] = useState(false)
+  const [data, setData] = useState([]);
+  const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
-    setIsAuth(true);
+    ifRegistered()
+  }, [destinationId])
+
+  useEffect(() => {
+      if(localStorage.getItem("auth")){
+        let userId = localStorage.getItem("userId");
+        setIsAuth(true);
+      }
   });
 
   function getKeysFromMapArr(country) {
     let countryO = myMap.get(country)
     if(typeof countryO == "undefined"){
+      setNotFound(true)
+    }
+    else{
+      setNotFound(false)
     }
     return countryO
   }
+  function getKeyFromMap(){
+    let keys = [...myMap.entries()]
+        .filter(({ 1: v }) => v === destinationId)
+        .map(([k]) => k);
+    setDestinationName(keys)
+  }
+  function getCountryInfo(){
+    try {
+      const response = axios.post('http://localhost:8080/api/v1/route/routing', { departureId: "'"+"UA"+"'", destinationId: "'"+destinationId+"'" });
+      console.log('👉 Returned data:', `${response.data}`);
+      if(response.status !== 200){
+        return <NoData/>
+      }
+      else{
+        console.log(`${response.data}`)
+      }
+    } catch (e) {
+      console.log(`😱 Axios request failed: ${e}`);
+    }
 
-//   const getCountry = () => {
-//     const requestOptions = {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify({ country: "'"+countryId+"'"})
-//     };
-//     fetch("http://localhost:8080/api/v1/", requestOptions).then((res)=>{
-//         console.log(res);
-//         console.log(res.json());
-//     });
-// };
+  }
+
+  function ifRegistered(){
+    if(destinationId !== ''){
+      if(props.authorized !== false){
+        getKeyFromMap()
+        setPressed(true)
+        console.log(getCountryInfo())
+    }
+      else{
+        return <UnauthorizedUserNotification/>
+      }
+    }
+  }
+
   function retrieveId(e){
-    if(props.registered === false){
-      setShowNotification(true)
-    }
-    else {
-      setCountryId(e.currentTarget.id)
-    }
+    setDestinationId(e.currentTarget.id)
   }
-  function showId(){
-    console.log(countryId)
-  }
+
   function handleCountry(e){
-    setCountryName(e.target.value);
-   }
+    setDestinationName(e.target.value);
+  }
 
   function handleKeyPress(e) {
     if (e.key === 'Enter') {
-      console.log(getKeysFromMapArr(countryName))
+      setDestinationId(getKeysFromMapArr(destinationName))
     }
   }
 
 
 
   return (
-    <div >
-      <Logo/>
-      <WorldMap retrieveId = {retrieveId}/>
-      <SearchBar handleCountry = {handleCountry} handleKeyPress = {handleKeyPress}/>
-      {showNotification ? <UnregisteredUserNotification/>:null}
-      <button onKeyPress={showId}></button>
-    </div>
+      <div >
+        <Logo authorized = {props.authorized}/>
+        <WorldMap retrieveId = {retrieveId}/>
+        {!pressed?<SearchBar handleCountry = {handleCountry} handleKeyPress = {handleKeyPress} notfound = {notFound}/>:null}
+        {pressed?<Country country = {destinationName}/>:null}
+      </div>
   )
 }
 

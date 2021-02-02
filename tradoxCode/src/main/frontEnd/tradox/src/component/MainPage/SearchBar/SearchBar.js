@@ -8,8 +8,7 @@ function SearchBar(props){
 
     return (
         <div className = {styles.container}>
-            {!props.notfound? <input type = "text" placeholder="Country Name..." name = 'search' className = {before}  onChange = {props.handleCountry} onKeyPress = {props.handleKeyPress}/>
-                :<input type = "text" placeholder="Country Name..." name = 'search' className = {after}  onChange = {props.handleCountry} onKeyPress = {props.handleKeyPress}/>}
+            <input type = "text" placeholder="Country Name..." name = 'search' className = {!props.notfound? before: after}  onChange = {props.handleCountry} onKeyPress = {props.handleKeyPress}/>
         </div>
     );
 }

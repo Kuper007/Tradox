@@ -1,0 +1,14 @@
+.container{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 343px;
+    width: 264.13995361328125px;
+    left: 658px;
+    top: 635px;
+
+    background: rgba(150, 190, 228, 0.4);
+    border-radius: 50px;
+}

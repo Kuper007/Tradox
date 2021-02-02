@@ -1,0 +1,21 @@
+.container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0%;
+    right: -0.1%;
+    top: 0%;
+    bottom: -0.19%;
+
+    background: rgba(196, 196, 196, 0.6);
+}
+.msg{
+    font-family: Montserrat;
+    font-size: 100px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 122px;
+    letter-spacing: 0em;
+    text-align: center;
+
+}

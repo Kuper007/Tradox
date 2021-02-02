@@ -7,8 +7,6 @@ function Auth(props){
 
     const [emailVal, setEmailVal] = useState("");
     const [passwordVal, setPasswordVal] = useState("");
-    //const [authorized, setAuthorized] = useState(false);
-
     const validate = () => {
         const requestOptions = {
             method: 'POST',

@@ -1,0 +1,16 @@
+.container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    position: absolute;
+    height: 396px;
+    width: 300px;
+    left: 252px;
+    top: 527px;
+    border-radius: 50px;
+
+
+    background: #F7A7A7;
+    border-radius: 50px;
+}
