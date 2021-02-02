@@ -3,9 +3,8 @@ package com.nc.tradox.utilities;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nc.tradox.dao.impl.TradoxDataAccessService;
 import com.nc.tradox.model.Country;
-import com.nc.tradox.model.Destination;
 import com.nc.tradox.model.NewsItem;
-import com.nc.tradox.model.impl.*;
+import com.nc.tradox.model.impl.NewsItemImpl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -38,24 +37,22 @@ public class NewsApi {
         Root root = objectMapper.readValue(newsJson, Root.class);
 
         List<NewsItem> newsList = new ArrayList<>();
-        for (Article article: root.articles){
+        for (Article article : root.articles) {
 
             Country destination_country = tradoxDataAccessService.getCountryById(destinationCountry);
 
-            Destination destination = new DestinationImpl(destination_country);
-
-            NewsItem newsItem = new NewsItemImpl(null, article.content, java.util.Calendar.getInstance().getTime(), destination);
+            NewsItem newsItem = new NewsItemImpl(article.content, java.util.Calendar.getInstance().getTime(), destination_country);
             newsList.add(newsItem);
         }
         return newsList;
     }
 
-    public static class Source{
+    public static class Source {
         public String id;
         public String name;
     }
 
-    public static class Article{
+    public static class Article {
         public Source source;
         public String author;
         public String title;
@@ -67,7 +64,7 @@ public class NewsApi {
 
     }
 
-    public static class Root{
+    public static class Root {
         public String status;
         public int totalResults;
         public List<Article> articles;

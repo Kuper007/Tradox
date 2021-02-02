@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nc.tradox.dao.impl.TradoxDataAccessService;
 import com.nc.tradox.model.Country;
-import com.nc.tradox.model.Destination;
 import com.nc.tradox.model.Medicine;
-import com.nc.tradox.model.impl.DestinationImpl;
 import com.nc.tradox.model.impl.MedicineImpl;
 
 import java.io.File;
@@ -44,23 +42,22 @@ public class MedicineApi {
             for (MainArr mainArr : root.mainArr) {
 
                 Country country = tradoxDataAccessService.getCountryById(mainArr.country);
-                Destination destination = new DestinationImpl(country);
 
                 Medicine medicine = new MedicineImpl(
                         null,
                         mainArr.covidInfo,
-                        destination
+                        country
                 );
                 medicineArrayList.add(medicine);
             }
             return medicineArrayList;
-        }else {
-            log.log(Level.SEVERE,"Couldn't parse json to root class");
+        } else {
+            log.log(Level.SEVERE, "Couldn't parse json to root class");
         }
         return null;
     }
 
-    public static class Alltravelers{
+    public static class Alltravelers {
         @JsonProperty("Chickenpox")
         public boolean chickenpox;
         @JsonProperty("Diphtheria-Tetanus-Pertussis")
@@ -75,14 +72,14 @@ public class MedicineApi {
         public boolean polio;
     }
 
-    public static class Mosttravelers{
+    public static class Mosttravelers {
         @JsonProperty("Hepatitis A")
         public boolean hepatitisA;
         @JsonProperty("Typhoid")
         public boolean typhoid;
     }
 
-    public static class Sometravelers{
+    public static class Sometravelers {
         @JsonProperty("Cholera")
         public boolean cholera;
         @JsonProperty("Hepatitis B")
@@ -95,7 +92,7 @@ public class MedicineApi {
         public boolean yellowFever;
     }
 
-    public static class Vaccines{
+    public static class Vaccines {
         @JsonProperty("All travelers")
         public Alltravelers alltravelers;
         @JsonProperty("Most travelers")
@@ -104,7 +101,7 @@ public class MedicineApi {
         public Sometravelers sometravelers;
     }
 
-    public static class MainArr{
+    public static class MainArr {
         @JsonProperty("Country")
         public String country;
         @JsonProperty("CovidInfo")
@@ -113,7 +110,7 @@ public class MedicineApi {
         public Vaccines vaccines;
     }
 
-    public static class Root{
+    public static class Root {
         public List<MainArr> mainArr;
     }
 }

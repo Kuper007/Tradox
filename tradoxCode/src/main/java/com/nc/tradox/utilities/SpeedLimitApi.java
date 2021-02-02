@@ -3,9 +3,7 @@ package com.nc.tradox.utilities;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nc.tradox.dao.impl.TradoxDataAccessService;
 import com.nc.tradox.model.Country;
-import com.nc.tradox.model.Destination;
 import com.nc.tradox.model.SpeedLimit;
-import com.nc.tradox.model.impl.DestinationImpl;
 import com.nc.tradox.model.impl.SpeedLimitImpl;
 
 import java.io.File;
@@ -20,15 +18,15 @@ public class SpeedLimitApi {
     private static final Logger log = Logger.getLogger(SpeedLimitApi.class.getName());
     TradoxDataAccessService tradoxDataAccessService;
 
-    public List<SpeedLimit> speedLimitList(){
+    public List<SpeedLimit> speedLimitList() {
         ObjectMapper objectMapper = new ObjectMapper();
 
         File jsonFile = new File("tradoxCode/src/main/resources/jsonsAndFriends/speedLimits.json");
 
-        if (!jsonFile.exists()){
-            log.log(Level.SEVERE,"File does not exist");
-        }else if (jsonFile.isDirectory()){
-            log.log(Level.SEVERE,"This is directory, not file");
+        if (!jsonFile.exists()) {
+            log.log(Level.SEVERE, "File does not exist");
+        } else if (jsonFile.isDirectory()) {
+            log.log(Level.SEVERE, "This is directory, not file");
         }
 
         Root root = null;
@@ -41,27 +39,22 @@ public class SpeedLimitApi {
         List<SpeedLimit> speedLimitList = new ArrayList<>();
         if (root != null) {
             com.nc.tradox.model.SpeedLimit.TypeOfRoad typeOfRoad;
-            int speed = 0;
+            int speed;
             for (MainArr mainArr : root.mainArr) {
 
                 Country destination_country = tradoxDataAccessService.getCountryById(mainArr.country);
-
-                Destination destination = new DestinationImpl(destination_country);
 
                 for (int i = 0; i < 4; i++) {
                     if (i == 0) {
                         typeOfRoad = com.nc.tradox.model.SpeedLimit.TypeOfRoad.urban;
                         speed = mainArr.urban;
-                    }
-                    else if (i == 1) {
+                    } else if (i == 1) {
                         typeOfRoad = com.nc.tradox.model.SpeedLimit.TypeOfRoad.rural;
                         speed = mainArr.rural;
-                    }
-                    else if (i == 2) {
+                    } else if (i == 2) {
                         typeOfRoad = com.nc.tradox.model.SpeedLimit.TypeOfRoad.highway;
                         speed = mainArr.highway;
-                    }
-                    else {
+                    } else {
                         typeOfRoad = com.nc.tradox.model.SpeedLimit.TypeOfRoad.motorway;
                         speed = mainArr.motorway;
                     }
@@ -69,21 +62,20 @@ public class SpeedLimitApi {
                     SpeedLimit speedLimit = new SpeedLimitImpl(
                             null,
                             typeOfRoad,
-                            destination,
-                            speed
-                            );
+                            speed,
+                            destination_country
+                    );
                     speedLimitList.add(speedLimit);
                 }
             }
             return speedLimitList;
-        }
-        else {
-            log.log(Level.SEVERE,"Couldn't parse json to root class");
+        } else {
+            log.log(Level.SEVERE, "Couldn't parse json to root class");
         }
         return null;
     }
 
-    public static class MainArr{
+    public static class MainArr {
         public String country;
         public int urban;
         public int rural;
@@ -91,7 +83,7 @@ public class SpeedLimitApi {
         public int motorway;
     }
 
-    public static class Root{
+    public static class Root {
         public List<MainArr> mainArr;
     }
 

@@ -19,23 +19,23 @@ public class ConsulateFillDB {
     TradoxDataAccessService tradoxDataAccessService;
     ConsulateApi consulateApi;
 
-    public void consulateFillDB(){
+    public void consulateFillDB() {
         Connection connection = tradoxDataAccessService.connection;
         List<Consulate> consulateList = consulateApi.consulateList();
 
-        for (Consulate consulate: consulateList) {
+        for (Consulate consulate : consulateList) {
             try {
                 Statement statement = connection.createStatement();
                 int rows = statement.executeUpdate(
                         "INSERT INTO CONSULATE(CITY, ADDRESS, PHONE, OWNER_ID, COUNTRY_ID)" +
-                                "VALUES (" + consulate.getCityOfConsulate() + ", " +
-                                consulate.getAddressOfConsulate() + ", " +
-                                consulate.getPhoneNumberOfConsulate() + ", " +
-                                consulate.getDepartureCountry() + ", " +
-                                consulate.getDestinationCountry() + ")");
+                                "VALUES (" + consulate.getCity() + ", " +
+                                consulate.getAddress() + ", " +
+                                consulate.getPhoneNumber() + ", " +
+                                consulate.getOwner() + ", " +
+                                consulate.getCountry() + ")");
                 statement.close();
             } catch (SQLException exception) {
-                log.log(Level.SEVERE,"SQL exception", exception);
+                log.log(Level.SEVERE, "SQL exception", exception);
             }
         }
     }

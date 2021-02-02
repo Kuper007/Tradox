@@ -42,10 +42,7 @@ public class ConsulateApi {
                 Country ownerCountry = tradoxDataAccessService.getCountryById(myArray.owner_id);
                 Country country = tradoxDataAccessService.getCountryById(myArray.country_id);
 
-                Departure departure = new DepartureImpl(ownerCountry);
-                Destination destination = new DestinationImpl(country);
-
-                FullRoute fullRoute = new FullRouteImpl(departure, destination);
+                FullRoute fullRoute = new FullRouteImpl(ownerCountry, country);
 
                 Consulate consulate = new ConsulateImpl(
                         null,
@@ -53,7 +50,7 @@ public class ConsulateApi {
                         myArray.city,
                         myArray.address.street + " " + myArray.address.number + " " + myArray.address.zip_code,
                         myArray.phone,
-                        fullRoute
+                        country
                         );
                 consulateList.add(consulate);
             }

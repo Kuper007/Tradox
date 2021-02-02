@@ -1,7 +1,6 @@
 package com.nc.tradox.dao;
 
 import com.nc.tradox.dao.impl.TradoxDataAccessService;
-import com.nc.tradox.model.Medicine;
 import com.nc.tradox.model.SpeedLimit;
 import com.nc.tradox.utilities.SpeedLimitApi;
 
@@ -18,21 +17,21 @@ public class SpeedLimitFillDB {
     TradoxDataAccessService tradoxDataAccessService;
     SpeedLimitApi speedLimitApi;
 
-    public void speedLimitFillDB(){
+    public void speedLimitFillDB() {
         Connection connection = tradoxDataAccessService.connection;
         List<SpeedLimit> speedLimitList = speedLimitApi.speedLimitList();
 
-        for (SpeedLimit speedLimit: speedLimitList) {
+        for (SpeedLimit speedLimit : speedLimitList) {
             try {
                 Statement statement = connection.createStatement();
                 int rows = statement.executeUpdate(
-                        "INSERT INTO SPEED_LIMIT(SPEED, ROAD_TYPE, COUNTRY_ID)" +
+                        "INSERT INTO SPEED_LIMITS(SPEED, ROAD_TYPE, COUNTRY_ID)" +
                                 "VALUES (" + speedLimit.getSpeed() + ", " +
                                 speedLimit.getTypeOfRoad() + ", " +
-                                speedLimit.getDestinationCountry() +")");
+                                speedLimit.getCountry() + ")");
                 statement.close();
             } catch (SQLException exception) {
-                log.log(Level.SEVERE,"SQL exception", exception);
+                log.log(Level.SEVERE, "SQL exception", exception);
             }
         }
     }
