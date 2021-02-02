@@ -37,12 +37,12 @@ function MainPage (props) {
   function getCountryInfo(){
     try {
       const response = axios.post('http://localhost:8080/api/v1/route/routing', { departureId: "'"+"UA"+"'", destinationId: "'"+destinationId+"'" });
-      console.log('👉 Returned data:', response.data);
+      console.log('👉 Returned data:', `${response.data}`);
       if(response.status !== 200){
         return <NoData/>
       }
       else{
-        console.log(response)
+        console.log(`${response.data}`)
       }
     } catch (e) {
       console.log(`😱 Axios request failed: ${e}`);

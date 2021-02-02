@@ -18,11 +18,10 @@ function Logo(props) {
             <NavLink to = '/'><img src={logo} alt="logo" className = {style.logo}/></NavLink>
             <div className = {style.auth}>
             {pressed ?<div className = {style.hidable} >
-
                 {!props.authorized? <div style= {{marginTop: '77px'}}><NavLink className = {`${style.register} ${style.link}`} to= '/registration'>Register</NavLink>
                     <NavLink className = {`${style.logIn} ${style.link}`} to = '/auth'>Log in</NavLink></div>:
-                   <div> <NavLink className = {`${style.register} ${style.link}`} to= '/account'>To account</NavLink>
-                    <NavLink className = {`${style.logIn} ${style.link}`} to = '/logout'>Log out</NavLink></div>
+                   <div style= {{marginTop: '77px'}}> <NavLink className = {`${style.register} ${style.link}`} to= '/account'>To account</NavLink>
+                    <NavLink className = {`${style.logOut} ${style.link}`} to = '/logout'>Log out</NavLink></div>
                 }
                     <img src = {vector} alt = 'vector' className = {style.vector}/>
                 </div>: null}
