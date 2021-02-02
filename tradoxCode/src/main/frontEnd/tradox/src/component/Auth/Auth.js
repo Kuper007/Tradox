@@ -11,7 +11,7 @@ function Auth(props){
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ "email": "'"+emailVal+"'", "password": passwordVal })
+            body: JSON.stringify({ "email": emailVal, "password": passwordVal })
         };
         fetch("http://localhost:8080/api/v1/auth/check", requestOptions).then(response => response.json().then(data => ({
             data: data,

@@ -40,7 +40,7 @@ public class TradoxDataAccessService implements Dao {
         Map<User,String> result = new HashMap<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("SELECT * FROM \"USER\"  WHERE email =" + email);
+            ResultSet res = statement.executeQuery("SELECT * FROM \"USER\"  WHERE email =" + "'"+email+"'");
             if(res.next()){
                 String real_password = res.getString("password");
                 if(real_password.equals(String.valueOf(password.hashCode()))){
@@ -104,7 +104,7 @@ public class TradoxDataAccessService implements Dao {
     public Route getRouteById(String id) {
         try {
             Statement statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("SELECT * FROM route WHERE route_id="+id);
+            ResultSet res = statement.executeQuery("SELECT * FROM route WHERE route_id="+"'"+id+"'");
             if(res!=null){
                 Route route = new RouteImpl(res);
                 statement.close();
@@ -214,7 +214,7 @@ public class TradoxDataAccessService implements Dao {
         boolean res = false;
         try {
             Statement statement = connection.createStatement();
-            res = statement.execute("DELETE FROM \"USER\" WHERE email="+email);
+            res = statement.execute("DELETE FROM \"USER\" WHERE email="+"'"+email+"'");
             statement.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -282,7 +282,7 @@ public class TradoxDataAccessService implements Dao {
         search = search.toLowerCase();
         try {
             Statement statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("SELECT s.value as value, c.full_name as name FROM status s INNER JOIN country c ON c.country_id=s.destination_id AND s.destination_id!="+curCountryId+" AND s.country_id = "+curCountryId+" WHERE LOWER(c.full_name) LIKE '" + search + "%'");
+            ResultSet res = statement.executeQuery("SELECT s.value as value, c.full_name as name FROM status s INNER JOIN country c ON c.country_id=s.destination_id AND s.destination_id!="+"'"+curCountryId+"'"+" AND s.country_id = "+"'"+curCountryId+"'"+" WHERE LOWER(c.full_name) LIKE '" + search + "%'");
             Status.StatusEnum status;
             int count = 0;
             while (res.next()){
@@ -350,7 +350,7 @@ public class TradoxDataAccessService implements Dao {
         for (Integer id: documentIds){
             try {
                 Statement statement = connection.createStatement();
-                String query = "SELECT * FROM document WHERE document_id="+id;
+                String query = "SELECT * FROM document WHERE document_id="+"'"+id+"'";
                 ResultSet res = statement.executeQuery(query);
                 if (res.next()) {
                     Document document = new DocumentImpl(id,res.getString("name"), res.getString("description"), res.getString("\"FILE\""),fullRoute);
@@ -370,7 +370,7 @@ public class TradoxDataAccessService implements Dao {
         List<Integer> documentIds = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            String query = "SELECT document_id FROM have_document WHERE departure_id="+departureId+" AND destination_id="+destinationId;
+            String query = "SELECT document_id FROM have_document WHERE departure_id="+"'"+departureId+"'"+" AND destination_id="+"'"+destinationId+"'";
             ResultSet res = statement.executeQuery(query);
             while (res.next()) {
                 documentIds.add(res.getInt("document_id"));
@@ -390,7 +390,7 @@ public class TradoxDataAccessService implements Dao {
         List<SpeedLimit> speedLimits = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            String query = "SELECT * FROM speed_limits WHERE country_id="+id;
+            String query = "SELECT * FROM speed_limits WHERE country_id="+"'"+id+"'";
             ResultSet res = statement.executeQuery(query);
             while (res.next()){
                 SpeedLimit speedLimit = new SpeedLimitImpl(res.getInt("limit_id"),
@@ -413,7 +413,7 @@ public class TradoxDataAccessService implements Dao {
         List<Medicine> medicines = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            String query = "SELECT * FROM medicine WHERE country_id="+id;
+            String query = "SELECT * FROM medicine WHERE country_id="+"'"+id+"'";
             ResultSet res = statement.executeQuery(query);
             while (res.next()){
                 Medicine medicine = new MedicineImpl(res.getInt("medicine_id"),
@@ -439,7 +439,7 @@ public class TradoxDataAccessService implements Dao {
         FullRouteImpl fullRoute = new FullRouteImpl(departure,destination);
         try {
             Statement statement = connection.createStatement();
-            String query = "SELECT * FROM consulate WHERE country_id="+destinationId+" AND owner_id="+departureId;
+            String query = "SELECT * FROM consulate WHERE country_id="+"'"+destinationId+"'"+" AND owner_id="+"'"+departureId+"'";
             ResultSet res = statement.executeQuery(query);
             while (res.next()){
                 Consulate consulate = new ConsulateImpl(res.getInt("consulate_id"),getCountryById(departureId),
@@ -462,7 +462,7 @@ public class TradoxDataAccessService implements Dao {
         List<NewsItem> newsItems = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            String query = "SELECT * FROM news WHERE country_id="+id;
+            String query = "SELECT * FROM news WHERE country_id="+"'"+id+"'";
             ResultSet res = statement.executeQuery(query);
             while (res.next()){
                 NewsItem newsItem = new NewsItemImpl(res.getInt("news_id"),res.getString("text"),
@@ -483,7 +483,7 @@ public class TradoxDataAccessService implements Dao {
     public Status getStatusByCountriesIds(String departureId, String destinationId){
         try {
             Statement statement = connection.createStatement();
-            String query = "SELECT * FROM status WHERE destination_id="+destinationId+" AND country_id="+departureId;
+            String query = "SELECT * FROM status WHERE destination_id="+"'"+destinationId+"'"+" AND country_id="+"'"+departureId+"'";
             ResultSet res = statement.executeQuery(query);
             if (res.next()){
                 Status.StatusEnum statusEnum;
@@ -508,7 +508,7 @@ public class TradoxDataAccessService implements Dao {
     public com.nc.tradox.model.impl.Reasons getReasonsByStatusId(Integer id){
         try {
             Statement statement = connection.createStatement();
-            String query = "SELECT * FROM reasons WHERE status_id="+id;
+            String query = "SELECT * FROM reasons WHERE status_id="+"'"+id+"'";
             ResultSet res = statement.executeQuery(query);
             if (res.next()){
                 return new Reasons(res.getInt("reason_id"),
@@ -570,7 +570,7 @@ public class TradoxDataAccessService implements Dao {
         fullName = fullName.toLowerCase();
         try {
             Statement statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("SELECT * FROM country WHERE LOWER(full_name) =" + fullName);
+            ResultSet res = statement.executeQuery("SELECT * FROM country WHERE LOWER(full_name) =" + "'"+fullName+"'");
             if (res.next()) {
                 Country country = new CountryImpl(res);
                 statement.close();
@@ -589,7 +589,7 @@ public class TradoxDataAccessService implements Dao {
     public User getUserById(int id) {
         try {
             Statement statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("SELECT * FROM \"USER\" WHERE user_id =" + id);
+            ResultSet res = statement.executeQuery("SELECT * FROM \"USER\" WHERE user_id =" + "'"+id+"'");
             if (res.next()) {
                 User user = new UserImpl(res);
                 statement.close();
@@ -607,7 +607,7 @@ public class TradoxDataAccessService implements Dao {
     public ResultSet transitFor(int routeId, InfoData infoData) {
         try {
             Statement stmt = connection.createStatement();
-            ResultSet res = stmt.executeQuery("SELECT * FROM TRANSIT WHERE route_id =" + routeId + " AND country_id = " + infoData.getDestinationCountry().getDestinationCountry().getShortName());
+            ResultSet res = stmt.executeQuery("SELECT * FROM TRANSIT WHERE route_id =" + routeId + " AND country_id = " + "'"+infoData.getDestinationCountry().getDestinationCountry().getShortName()+"'");
             return res;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -619,7 +619,7 @@ public class TradoxDataAccessService implements Dao {
         int routeId = 0;
         try {
             Statement statement = connection.createStatement();
-            String query = "SELECT route_id FROM route WHERE user_id="+userId+" AND departure_id="+departureId+" AND destination_id="+destinationId;
+            String query = "SELECT route_id FROM route WHERE user_id="+userId+" AND departure_id="+"'"+departureId+"'"+" AND destination_id="+"'"+destinationId+"'";
             ResultSet res = statement.executeQuery(query);
             if (res.next()){
                 routeId = res.getInt("route_id");

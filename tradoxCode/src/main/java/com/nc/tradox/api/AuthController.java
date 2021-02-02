@@ -46,15 +46,12 @@ public class AuthController {
             session.setAttribute("authorized",false);
             session.setAttribute("error","network");
         }
-        System.out.println("test");
         return getAuthResult(session);
-        //return new RedirectView("/api/v1/auth/result");
     }
 
 
     public String getAuthResult(HttpSession session) {
         Boolean isAuthorized = (Boolean) session.getAttribute("authorized");
-        System.out.println(isAuthorized);
         String json = "";
         if (isAuthorized) {
             int userId = (int) session.getAttribute("userId");
