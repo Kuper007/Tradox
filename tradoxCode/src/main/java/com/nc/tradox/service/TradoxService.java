@@ -2,17 +2,18 @@ package com.nc.tradox.service;
 
 import com.nc.tradox.dao.Dao;
 import com.nc.tradox.model.*;
-import com.nc.tradox.model.impl.Documents;
-import com.nc.tradox.model.impl.PassportImpl;
-import com.nc.tradox.model.impl.UserImpl;
+import com.nc.tradox.model.impl.*;
+import com.nc.tradox.utilities.ExchangeApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
@@ -37,7 +38,33 @@ public class TradoxService {
         return dao.getRoute(userId, destinationId);
     }
 
-    public InfoData getInfodata(String countryId, String depId){return  dao.getInfoData(countryId, depId);}
+    public InfoData getInfoData(String departureId, String destinationId) {
+        Documents documents = dao.getDocumentsByCountryIds(departureId, destinationId);
+        SpeedLimits speedLimits = dao.getSpeedLimitsByCountryId(destinationId);
+        Medicines medicines = dao.getMedicinesByCountryId(destinationId);
+        Consulates consulates = dao.getConsulatesByCountryIds(departureId, destinationId);
+        News news = dao.getNewsByCountryId(destinationId);
+        Exchange exchange = getExchangeByCountryId(departureId, destinationId);
+        Status status = dao.getStatusByCountryIds(departureId, destinationId);
+        return new InfoDataImpl(exchange.getFullRoute(), documents, speedLimits, medicines, consulates, news, exchange, status);
+    }
+
+    public Exchange getExchangeByCountryId(String departureId, String destinationId) {
+        try {
+            Country departure = dao.getCountryById(departureId);
+            Country destination = dao.getCountryById(destinationId);
+            List<String> apiExchanges = new ExchangeApi().currentExchange(departure.getCurrency(), destination.getCurrency());
+            FullRouteImpl fullRoute = new FullRouteImpl(departure, destination);
+            return new ExchangeImpl(apiExchanges.get(1), apiExchanges.get(0), fullRoute);
+        } catch (InterruptedException | IOException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.getExchangeByCountryId " + exception.getMessage());
+        }
+        return null;
+    }
+
+    public Documents getDocumentsByCountryIds(String departureId, String destinationId) {
+        return dao.getDocumentsByCountryIds(departureId, destinationId);
+    }
 
     public Boolean deleteRoute(Route route) {
         return dao.deleteRoute(route.getElementId());
@@ -125,7 +152,7 @@ public class TradoxService {
                 }
             } else {
                 // if dont exists create new
-                dao.createNewTransit(newOrder, infoData.getDestinationCountry().getDestinationCountry().getShortName(), route_id);
+                dao.createNewTransit(newOrder, infoData.getDestination().getShortName(), route_id);
             }
             newOrder++;
         }
@@ -133,10 +160,6 @@ public class TradoxService {
 
     public User getUserById(int id) {
         return dao.getUserById(id);
-    }
-
-    public Documents getDocumentsByCountriesIds(String departureId, String destinationId) {
-        return dao.getDocumentsByCountriesIds(departureId, destinationId);
     }
 
     public Country getCountryById(String id) {

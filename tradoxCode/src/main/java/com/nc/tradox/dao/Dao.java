@@ -37,17 +37,17 @@ public interface Dao {
 
     boolean deleteRoute(Integer id);
 
-    Documents getDocumentsByCountriesIds(String departureId, String destinationId);
+    Documents getDocumentsByCountryIds(String departureId, String destinationId);
 
     SpeedLimits getSpeedLimitsByCountryId(String id);
 
     Medicines getMedicinesByCountryId(String id);
 
-    Consulates getConsulatesByCountriesIds(String departureId, String destinationId);
+    Consulates getConsulatesByCountryIds(String departureId, String destinationId);
 
     News getNewsByCountryId(String id);
 
-    Status getStatusByCountriesIds(String departureId, String destinationId);
+    Status getStatusByCountryIds(String departureId, String destinationId);
 
     Reasons getReasonsByStatusId(Integer id);
 
