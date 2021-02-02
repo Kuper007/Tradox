@@ -1,75 +1,93 @@
 package com.nc.tradox.model.impl;
 
+import com.nc.tradox.model.Consulate;
 import com.nc.tradox.model.Country;
-import com.nc.tradox.model.Departure;
-import com.nc.tradox.model.Destination;
-import com.nc.tradox.model.FullRoute;
 
-public class ConsulateImpl implements com.nc.tradox.model.Consulate {
+public class ConsulateImpl implements Consulate {
 
-    protected final Integer consulateId;
+    protected Integer consulateId;
     protected Country owner;
     protected String city;
     protected String address;
     protected String phoneNumber;
-    protected FullRoute fullRoute;
+    protected Country country;
 
-    public ConsulateImpl(Integer consulateId, Country owner, String city, String address, String phoneNumber, FullRoute fullRoute) {
+    public ConsulateImpl() {
+
+    }
+
+    public ConsulateImpl(Integer consulateId, Country owner, String city, String address, String phoneNumber, Country country) {
         this.consulateId = consulateId;
         this.owner = owner;
         this.city = city;
         this.address = address;
         this.phoneNumber = phoneNumber;
-        this.fullRoute = fullRoute;
+        this.country = country;
     }
 
     @Override
-    public Integer getElementId() {
-        return this.consulateId;
+    public Integer getConsulateId() {
+        return consulateId;
+    }
+
+    @Override
+    public void setConsulateId(Integer consulateId) {
+        this.consulateId = consulateId;
+    }
+
+    @Override
+    public Country getCountry() {
+        return country;
+    }
+
+    @Override
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    @Override
+    public String getCity() {
+        return city;
+    }
+
+    @Override
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    @Override
+    public String getAddress() {
+        return address;
+    }
+
+    @Override
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @Override
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    @Override
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
     public Country getOwner() {
-        return this.owner;
+        return owner;
     }
 
     @Override
-    public String getCityOfConsulate() {
-        return this.city;
+    public void setOwner(Country owner) {
+        this.owner = owner;
     }
 
     @Override
-    public void setCityOfConsulate(String newCity) {
-        this.city = newCity;
+    public Integer getElementId() {
+        return 0;
     }
 
-    @Override
-    public String getAddressOfConsulate() {
-        return this.address;
-    }
-
-    @Override
-    public void setAddressOfConsulate(String newAddress) {
-        this.address = newAddress;
-    }
-
-    @Override
-    public String getPhoneNumberOfConsulate() {
-        return this.phoneNumber;
-    }
-
-    @Override
-    public void setPhoneNumberOfConsulate(String newPhoneNumber) {
-        this.phoneNumber = newPhoneNumber;
-    }
-
-    @Override
-    public Departure getDepartureCountry() {
-        return this.fullRoute.getDepartureCountry();
-    }
-
-    @Override
-    public Destination getDestinationCountry() {
-        return this.fullRoute.getDestinationCountry();
-    }
 }

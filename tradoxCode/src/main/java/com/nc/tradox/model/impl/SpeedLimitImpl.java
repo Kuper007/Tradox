@@ -1,91 +1,64 @@
 package com.nc.tradox.model.impl;
 
 import com.nc.tradox.model.Country;
-import com.nc.tradox.model.Destination;
+import com.nc.tradox.model.SpeedLimit;
 
-public class SpeedLimitImpl implements com.nc.tradox.model.SpeedLimit {
+public class SpeedLimitImpl implements SpeedLimit {
 
-    protected final Integer speedLimitId;
+    protected Integer speedLimitId;
     protected TypeOfRoad typeOfRoad;
-    protected Destination destination;
     protected Integer speed;
+    protected Country country;
 
-    public SpeedLimitImpl(Integer speedLimitId, TypeOfRoad typeOfRoad, Destination destination, Integer speed) {
+    public SpeedLimitImpl() {
+
+    }
+
+    public SpeedLimitImpl(Integer speedLimitId, TypeOfRoad typeOfRoad, Integer speed, Country country) {
         this.speedLimitId = speedLimitId;
         this.typeOfRoad = typeOfRoad;
-        this.destination = destination;
         this.speed = speed;
+        this.country = country;
+    }
+
+    @Override
+    public Integer getSpeedLimitId() {
+        return speedLimitId;
+    }
+
+    @Override
+    public void setSpeedLimitId(Integer speedLimitId) {
+        this.speedLimitId = speedLimitId;
     }
 
     @Override
     public TypeOfRoad getTypeOfRoad() {
-        return this.typeOfRoad;
+        return typeOfRoad;
     }
 
     @Override
-    public Integer getElementId() {
-        return this.speedLimitId;
-    }
-
-    @Override
-    public Country getDestinationCountry() {
-        return this.destination.getDestinationCountry();
+    public void setTypeOfRoad(TypeOfRoad typeOfRoad) {
+        this.typeOfRoad = typeOfRoad;
     }
 
     @Override
     public Integer getSpeed() {
-        return this.speed;
+        return speed;
     }
 
-    //    protected Integer urban;
-//    protected Integer rural;
-//    protected Integer highway;
-//    protected Integer motorway;
-//
-//    public SpeedLimit(Integer urban, Integer rural, Integer highway, Integer motorway) {
-//        this.urban = urban;
-//        this.rural = rural;
-//        this.highway = highway;
-//        this.motorway = motorway;
-//    }
+    @Override
+    public void setSpeed(Integer speed) {
+        this.speed = speed;
+    }
 
-//    @Override
-//    public Integer getUrbanSpeedLimit() {
-//        return this.urban;
-//    }
-//
-//    @Override
-//    public void setUrbanSpeedLimit(Integer urbanSpeedLimit) {
-//        this.urban = urbanSpeedLimit;
-//    }
-//
-//    @Override
-//    public Integer getRuralSpeedLimit() {
-//        return this.rural;
-//    }
-//
-//    @Override
-//    public void setRuralSpeedLimit(Integer ruralSpeedLimit) {
-//        this.rural = ruralSpeedLimit;
-//    }
-//
-//    @Override
-//    public Integer getHighwaySpeedLimit() {
-//        return this.highway;
-//    }
-//
-//    @Override
-//    public void setHighwaySpeedLimit(Integer highwaySpeedLimit) {
-//        this.highway = highwaySpeedLimit;
-//    }
-//
-//    @Override
-//    public Integer getMotorwaySpeedLimit() {
-//        return this.motorway;
-//    }
-//
-//    @Override
-//    public void setMotorwaySpeedLimit(Integer motorwaySpeedLimit) {
-//        this.motorway = motorwaySpeedLimit;
-//    }
+    @Override
+    public Country getCountry() {
+        return country;
+    }
+
+    @Override
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
 }

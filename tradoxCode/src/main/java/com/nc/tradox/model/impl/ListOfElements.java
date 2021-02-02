@@ -1,16 +1,12 @@
 package com.nc.tradox.model.impl;
 
-import com.nc.tradox.model.Document;
-import com.nc.tradox.model.Element;
-
-import java.util.ArrayList;
 import java.util.List;
 
-abstract public class ListOfElements<T extends Element> {
+abstract public class ListOfElements<T> {
     protected List<T> elementsList;
 
     public ListOfElements(List<T> elementsList) {
-        this.elementsList = (ArrayList) elementsList;
+        this.elementsList = elementsList;
     }
 
     public List<T> getList() {
@@ -25,7 +21,7 @@ abstract public class ListOfElements<T extends Element> {
             return true;
         }
     }
-
+/*
     public Boolean removeElementById(Integer id) {
         for (T element : elementsList) {
             if (element.getElementId() == id) {
@@ -34,5 +30,5 @@ abstract public class ListOfElements<T extends Element> {
             }
         }
         return false;
-    }
+    }*/
 }

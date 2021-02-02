@@ -1,34 +1,40 @@
 package com.nc.tradox.model.impl;
 
 import com.nc.tradox.model.Country;
-import com.nc.tradox.model.Departure;
-import com.nc.tradox.model.Destination;
+import com.nc.tradox.model.FullRoute;
 
-public class FullRouteImpl implements com.nc.tradox.model.FullRoute {
+public class FullRouteImpl implements FullRoute {
 
-    protected Destination destination;
-    protected Departure departure;
+    protected Country destination;
+    protected Country departure;
 
-    public FullRouteImpl(Departure departure, Destination destination) {
+    public FullRouteImpl() {
+
+    }
+
+    public FullRouteImpl(Country destination, Country departure) {
+        this.destination = destination;
         this.departure = departure;
+    }
+
+    @Override
+    public Country getDestination() {
+        return destination;
+    }
+
+    @Override
+    public void setDestination(Country destination) {
         this.destination = destination;
     }
 
     @Override
-    public Departure getDepartureCountry() {
-        return null;
+    public Country getDeparture() {
+        return departure;
     }
 
     @Override
-    public Destination getDestinationCountry() {
-        return null;
+    public void setDeparture(Country departure) {
+        this.departure = departure;
     }
 
-    public Country getCountryByDeparture(){
-        return departure.getDepartureCountry();
-    }
-
-    public Country getCountryByDestination(){
-        return destination.getDestinationCountry();
-    }
 }

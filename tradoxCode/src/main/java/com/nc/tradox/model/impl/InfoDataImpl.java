@@ -1,14 +1,10 @@
 package com.nc.tradox.model.impl;
 
-import com.nc.tradox.model.Departure;
-import com.nc.tradox.model.Destination;
-import com.nc.tradox.model.Exchange;
-import com.nc.tradox.model.Status;
+import com.nc.tradox.model.*;
 
-import java.util.List;
+public class InfoDataImpl implements InfoData {
 
-public class InfoDataImpl implements com.nc.tradox.model.InfoData {
-
+    protected FullRoute fullRoute;
     protected Documents documents;
     protected SpeedLimits speedLimits;
     protected Medicines medicines;
@@ -17,8 +13,13 @@ public class InfoDataImpl implements com.nc.tradox.model.InfoData {
     protected Exchange exchange;
     protected Status status;
 
-    public InfoDataImpl(Documents documents, SpeedLimits speedLimits, Medicines medicines,
+    public InfoDataImpl() {
+
+    }
+
+    public InfoDataImpl(FullRoute fullRoute, Documents documents, SpeedLimits speedLimits, Medicines medicines,
                         Consulates consulates, News news, Exchange exchange, Status status) {
+        this.fullRoute = fullRoute;
         this.documents = documents;
         this.speedLimits = speedLimits;
         this.medicines = medicines;
@@ -32,6 +33,16 @@ public class InfoDataImpl implements com.nc.tradox.model.InfoData {
     public Boolean reloadData() {
         // обновление данных всего обьекта из базы
         return null;
+    }
+
+    @Override
+    public Country getDestination() {
+        return this.fullRoute.getDestination();
+    }
+
+    @Override
+    public Country getDeparture() {
+        return this.fullRoute.getDeparture();
     }
 
     @Override
@@ -69,13 +80,4 @@ public class InfoDataImpl implements com.nc.tradox.model.InfoData {
         return this.status;
     }
 
-    @Override
-    public Departure getDepartureCountry() {
-        return this.consulates.getList().get(0).getDepartureCountry();
-    }
-
-    @Override
-    public Destination getDestinationCountry() {
-        return this.consulates.getList().get(0).getDestinationCountry();
-    }
 }

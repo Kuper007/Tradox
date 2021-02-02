@@ -1,19 +1,25 @@
 package com.nc.tradox.model.impl;
 
 import com.nc.tradox.model.Country;
-import com.nc.tradox.model.Destination;
+import com.nc.tradox.model.Status;
 
-public class StatusImpl implements com.nc.tradox.model.Status {
+public class StatusImpl implements Status {
 
-    protected final Integer statusId;
+    protected Integer statusId;
     protected StatusEnum status;
     protected Reasons reasons;
-    protected Destination destination;
+    protected Country country;
+    protected Country destination;
 
-    public StatusImpl(Integer statusId1, StatusEnum status, Reasons reasons, Destination destination) {
+    public StatusImpl() {
+
+    }
+
+    public StatusImpl(Integer statusId1, StatusEnum status, Reasons reasons, Country country, Country destination) {
         this.statusId = statusId1;
         this.status = status;
         this.reasons = reasons;
+        this.country = country;
         this.destination = destination;
     }
 
@@ -23,8 +29,13 @@ public class StatusImpl implements com.nc.tradox.model.Status {
     }
 
     @Override
+    public void setStatusId(Integer statusId) {
+        this.statusId = statusId;
+    }
+
+    @Override
     public StatusEnum getStatus() {
-        return this.status;
+        return status;
     }
 
     @Override
@@ -38,17 +49,28 @@ public class StatusImpl implements com.nc.tradox.model.Status {
     }
 
     @Override
-    public void changeCovidReason() {
-        this.reasons.setCovidReason(!this.reasons.getCovidReason());
+    public void setReasons(Reasons reasons) {
+        this.reasons = reasons;
     }
 
     @Override
-    public void changeCitizenshipReason() {
-        this.reasons.setCitizenshipReason(!this.reasons.getCitizenshipReason());
+    public Country getCountry() {
+        return country;
     }
 
     @Override
-    public Country getDestinationCountry() {
-        return this.destination.getDestinationCountry();
+    public void setCountry(Country country) {
+        this.country = country;
     }
+
+    @Override
+    public Country getDestination() {
+        return destination;
+    }
+
+    @Override
+    public void setDestination(Country destination) {
+        this.destination = destination;
+    }
+
 }

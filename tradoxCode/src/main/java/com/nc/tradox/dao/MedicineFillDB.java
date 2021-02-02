@@ -17,19 +17,19 @@ public class MedicineFillDB {
     TradoxDataAccessService tradoxDataAccessService;
     MedicineApi medicineApi;
 
-    public void medicineFillDB(){
+    public void medicineFillDB() {
         Connection connection = tradoxDataAccessService.connection;
         List<Medicine> medicineList = medicineApi.medicineList();
 
-        for (Medicine medicine: medicineList) {
+        for (Medicine medicine : medicineList) {
             try {
                 Statement statement = connection.createStatement();
                 int rows = statement.executeUpdate(
                         "INSERT INTO MEDICINE(NAME, COUNTRY_ID)" +
-                            "VALUES (" + medicine.getName() + ", " + medicine.getDestinationCountry() + ")");
+                                "VALUES (" + medicine.getName() + ", " + medicine.getCountry() + ")");
                 statement.close();
             } catch (SQLException exception) {
-                log.log(Level.SEVERE,"SQL exception", exception);
+                log.log(Level.SEVERE, "SQL exception", exception);
             }
 
         }

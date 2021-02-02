@@ -1,51 +1,72 @@
 package com.nc.tradox.model.impl;
 
 import com.nc.tradox.model.Country;
-import com.nc.tradox.model.Destination;
+import com.nc.tradox.model.NewsItem;
 
 import java.util.Date;
 
-public class NewsItemImpl implements com.nc.tradox.model.NewsItem {
+public class NewsItemImpl implements NewsItem {
 
-    protected final Integer newsItemId;
+    protected Integer newsItemId;
     protected String text;
     protected Date date;
-    protected Destination destination;
+    protected Country country;
 
-    public NewsItemImpl(Integer newsItemId, String text, Date date, Destination destination) {
+    public NewsItemImpl() {
+
+    }
+
+    public NewsItemImpl(Integer newsItemId, String text, Date date, Country country) {
         this.newsItemId = newsItemId;
         this.text = text;
         this.date = date;
-        this.destination = destination;
+        this.country = country;
+    }
+
+    public NewsItemImpl(String text, Date date, Country country) {
+        this.text = text;
+        this.date = date;
+        this.country = country;
     }
 
     @Override
-    public Integer getElementId() {
-        return this.newsItemId;
+    public Integer getNewsItemId() {
+        return newsItemId;
+    }
+
+    @Override
+    public void setNewsItemId(Integer newsItemId) {
+        this.newsItemId = newsItemId;
     }
 
     @Override
     public String getText() {
-        return this.text;
+        return text;
     }
 
     @Override
-    public void setText(String newText) {
+    public void setText(String text) {
         this.text = text;
     }
 
     @Override
     public Date getDate() {
-        return this.date;
+        return date;
     }
 
     @Override
-    public void setDate(Date newDate) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
     @Override
-    public Country getDestinationCountry() {
-        return this.destination.getDestinationCountry();
+    public Country getCountry() {
+        return country;
     }
+
+    @Override
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
 }

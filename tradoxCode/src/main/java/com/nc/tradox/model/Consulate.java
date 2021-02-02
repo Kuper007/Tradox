@@ -1,11 +1,27 @@
 package com.nc.tradox.model;
 
-public interface Consulate extends Element, FullRoute {
+public interface Consulate extends Element {
+    Integer getConsulateId();
+
+    void setConsulateId(Integer consulateId);
+
+    Country getCountry();
+
+    void setCountry(Country country);
+
+    String getCity();
+
+    void setCity(String city);
+
+    String getAddress();
+
+    void setAddress(String address);
+
+    String getPhoneNumber();
+
+    void setPhoneNumber(String phoneNumber);
+
     Country getOwner();
-    String getCityOfConsulate();
-    void setCityOfConsulate(String newCity);
-    String getAddressOfConsulate();
-    void setAddressOfConsulate(String newAddress);
-    String getPhoneNumberOfConsulate();
-    void setPhoneNumberOfConsulate(String newPhoneNumber);
+
+    void setOwner(Country owner);
 }

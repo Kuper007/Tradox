@@ -1,40 +1,33 @@
 package com.nc.tradox.model.impl;
 
-import com.nc.tradox.model.Departure;
-import com.nc.tradox.model.Destination;
+import com.nc.tradox.model.Exchange;
+import com.nc.tradox.model.FullRoute;
 
-public class ExchangeImpl implements com.nc.tradox.model.Exchange {
-
-    //protected final Integer exchangeId;
+public class ExchangeImpl implements Exchange {
 
     /*
         From needs number of value of departure country currency.
         localCurrency - to 1 value of destination country currency.
         dollarCurrency - to 1 USD.
     */
+
     protected String localCurrency;
     protected String dollarCurrency;
+    protected FullRoute fullRoute;
 
-    protected FullRouteImpl fullRouteImpl;
+    public ExchangeImpl() {
 
-    public ExchangeImpl(String localCurrency, String dollarCurrency, FullRouteImpl fullRouteImpl) {
-        //this.exchangeId = exchangeId;
-        this.localCurrency = localCurrency;
-        this.dollarCurrency = dollarCurrency;
-        this.fullRouteImpl = fullRouteImpl;
     }
 
-
-    @Override
-    public Integer getExchangeId() {
-        //return this.exchangeId;
-        return null;
-
+    public ExchangeImpl(String localCurrency, String dollarCurrency, FullRoute fullRoute) {
+        this.localCurrency = localCurrency;
+        this.dollarCurrency = dollarCurrency;
+        this.fullRoute = fullRoute;
     }
 
     @Override
     public String getLocalCurrency() {
-        return this.localCurrency;
+        return localCurrency;
     }
 
     @Override
@@ -44,7 +37,7 @@ public class ExchangeImpl implements com.nc.tradox.model.Exchange {
 
     @Override
     public String getDollarCurrency() {
-        return this.dollarCurrency;
+        return dollarCurrency;
     }
 
     @Override
@@ -53,17 +46,13 @@ public class ExchangeImpl implements com.nc.tradox.model.Exchange {
     }
 
     @Override
-    public com.nc.tradox.model.FullRoute getFullRoute() {
-        return this.fullRouteImpl;
+    public FullRoute getFullRoute() {
+        return fullRoute;
     }
 
     @Override
-    public Departure getDepartureCountry() {
-        return this.fullRouteImpl.getDepartureCountry();
+    public void setFullRoute(FullRoute fullRoute) {
+        this.fullRoute = fullRoute;
     }
 
-    @Override
-    public Destination getDestinationCountry() {
-        return this.fullRouteImpl.getDestinationCountry();
-    }
 }

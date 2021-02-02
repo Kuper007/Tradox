@@ -1,51 +1,63 @@
 package com.nc.tradox.model.impl;
 
-import com.nc.tradox.model.Departure;
-import com.nc.tradox.model.Destination;
+import com.nc.tradox.model.Document;
 
-public class DocumentImpl implements com.nc.tradox.model.Document {
+public class DocumentImpl implements Document {
 
-    protected final Integer documentId;
+    protected Integer documentId;
     protected String name;
     protected String description;
     protected String fileLink;
-    protected FullRouteImpl fullRouteImpl;
 
-    public DocumentImpl(Integer documentId, String name, String description, String fileLink, FullRouteImpl fullRouteImpl) {
+    public DocumentImpl() {
+
+    }
+
+    public DocumentImpl(Integer documentId, String name, String description, String fileLink) {
         this.documentId = documentId;
         this.name = name;
         this.description = description;
         this.fileLink = fileLink;
-        this.fullRouteImpl = fullRouteImpl;
     }
 
     @Override
-    public Integer getElementId() {
-        return this.documentId;
+    public Integer getDocumentId() {
+        return documentId;
+    }
+
+    @Override
+    public void setDocumentId(Integer documentId) {
+        this.documentId = documentId;
     }
 
     @Override
     public String getName() {
-        return this.name;
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String getDescription() {
-        return this.description;
+        return description;
+    }
+
+    @Override
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
     public String getFileLink() {
-        return this.getFileLink();
+        return fileLink;
     }
 
     @Override
-    public Departure getDepartureCountry() {
-        return this.fullRouteImpl.getDepartureCountry();
+    public void setFileLink(String fileLink) {
+        this.fileLink = fileLink;
     }
 
-    @Override
-    public Destination getDestinationCountry() {
-        return this.fullRouteImpl.getDestinationCountry();
-    }
 }

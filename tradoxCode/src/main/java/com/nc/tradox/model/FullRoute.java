@@ -1,6 +1,11 @@
 package com.nc.tradox.model;
 
 public interface FullRoute {
-    Departure getDepartureCountry();
-    Destination getDestinationCountry();
+    Country getDestination();
+
+    void setDestination(Country destination);
+
+    Country getDeparture();
+
+    void setDeparture(Country departure);
 }
