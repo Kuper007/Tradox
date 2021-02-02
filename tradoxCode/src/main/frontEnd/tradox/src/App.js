@@ -10,7 +10,7 @@ function App(){
   return (
       <div className = 'container-main'>
         <BrowserRouter>
-            <Route exact path  = '/'> <MainPage registered = {registered} /></Route>
+            <Route exact path  = '/' > <MainPage registered = {registered} /></Route>
             <Route path = '/registration'> <Register/></Route>
             <Route path = '/auth'> <Auth/> </Route>
             <Route path = '/docs'> <FillDocs/> </Route>

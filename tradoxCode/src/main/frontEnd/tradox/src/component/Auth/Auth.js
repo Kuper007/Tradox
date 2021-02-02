@@ -3,10 +3,11 @@ import style from './Auth.module.css';
 import logo from '../../images/LogoTradoxLogo.svg';
 import {NavLink} from "react-router-dom";
 
-function Auth(){
+function Auth(props){
 
     const [emailVal, setEmailVal] = useState("");
     const [passwordVal, setPasswordVal] = useState("");
+    //const [authorized, setAuthorized] = useState(false);
 
     const validate = () => {
         const requestOptions = {
@@ -19,8 +20,11 @@ function Auth(){
             status: response.status })
         ).then(res => {
             if (res.data.res==="true"){
-                userId = res.data.userId;
-                //TODO: REDIRECT TO MAIN
+                let userId = res.data.userId;
+                //setAuthorized(true);
+                localStorage.setItem('userId', userId);
+                localStorage.setItem('auth', true);
+                window.location.href = "http://localhost:8080/";
             } else {
                 //TODO: SHOW ALERTS
                 if (res.data.res==="email"){
