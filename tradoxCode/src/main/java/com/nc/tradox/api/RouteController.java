@@ -23,20 +23,23 @@ public class RouteController {
     }
 
     @GetMapping
-    public Route getRoute(@RequestParam String destinationId, HttpSession session) {
+    public String getRoute(@RequestParam String destinationId, HttpSession session) {
+        String result;
         if (!(Boolean) session.getAttribute("authorized")) {
-            return null;
+            result = "{\"route\" : null}";
+            return result;
         }
         Route route = tradoxService.getRoute((String) session.getAttribute("userId"),destinationId);
         session.setAttribute("currentRoute",route);
-        return route;
+        return route.toString();
     }
 
     @GetMapping("/save")
-    public Boolean saveRoute(HttpSession session) {
+    public String saveRoute(HttpSession session) {
         Route r  = (Route) session.getAttribute("currentRoute");
         int userId = (int) session.getAttribute("userId");
-        return tradoxService.saveRoute(r,userId);
+        String res = "{ \"result\" : " + tradoxService.saveRoute(r,userId) + " }";
+        return res;
     }
 
     @PostMapping("/editTransits")
