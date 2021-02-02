@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import WorldMap from './WorldMap/WorldMap';
 import Logo from './Logo/Logo';
 import SearchBar from './SearchBar/SearchBar'
@@ -9,7 +9,12 @@ import UnregisteredUserNotification from '../UnauthorizedUserNotification/Unauth
 function MainPage (props) {
   const [countryName, setCountryName] = useState('');
   const[countryId, setCountryId] = useState('');
-  const[showNotification, setShowNotification] = useState(false)
+  const[showNotification, setShowNotification] = useState(false);
+  const[isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    setIsAuth(true);
+  });
 
   function getKeysFromMapArr(country) {
     let countryO = myMap.get(country)

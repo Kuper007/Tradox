@@ -64,8 +64,9 @@ public class TradoxDataAccessService implements Dao {
     public Country getCountryById(String id) {
         try {
             Statement statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("SELECT * FROM country WHERE country_id =" + id);
-            if (res.next()) {
+
+            ResultSet res = statement.executeQuery("SELECT * FROM country WHERE country_id =" + "'"+id+"'");
+            if(res.next()){
                 Country country = new CountryImpl(res);
                 statement.close();
                 return country;
@@ -83,8 +84,8 @@ public class TradoxDataAccessService implements Dao {
     public Passport getPassportById(String id) {
         try {
             Statement statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("SELECT * FROM passport WHERE passport_id =" + id);
-            if (res.next()) {
+            ResultSet res = statement.executeQuery("SELECT * FROM passport WHERE passport_id =" +"'" +id+"'");
+            if(res.next()){
                 Passport passport = new PassportImpl(res);
                 statement.close();
                 return passport;
@@ -230,8 +231,9 @@ public class TradoxDataAccessService implements Dao {
     public Covid getCovidByCountryId(String id) {
         try {
             Statement statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("SELECT * FROM covid_info WHERE country_id='" + id + "'");
-            if (res.next()) {
+
+            ResultSet res = statement.executeQuery("SELECT * FROM covid_info WHERE country_id="+"'"+id+"'");
+            if(res.next()){
                 CovidImpl covid = new CovidImpl(res);
                 statement.close();
                 return covid;

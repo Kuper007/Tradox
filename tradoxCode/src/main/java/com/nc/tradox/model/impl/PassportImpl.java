@@ -29,7 +29,7 @@ public class PassportImpl implements Passport {
     public PassportImpl(ResultSet resultSet) {
         try {
             this.passportSeries = resultSet.getString("series");
-            this.passportSeries = resultSet.getString("number");
+            this.passportSeries = resultSet.getString("num");
             this.citizenshipCountry = new TradoxDataAccessService().getCountryById(resultSet.getString("country_id"));
         } catch (SQLException throwable) {
             throwable.printStackTrace();
