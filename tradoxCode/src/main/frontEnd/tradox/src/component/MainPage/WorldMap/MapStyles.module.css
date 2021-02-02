@@ -1,0 +1,22 @@
+.selected:hover .selectedBackground *, .selected.active .selectedBackground *
+{
+  fill: orange;  
+}
+.selected {
+    transform-origin: 50% 50%;
+  }
+.container{
+  position: absolute;
+  display: flex;
+  justify-self: center;
+  justify-items: center;
+  margin-top: 20px;
+  box-align: center;
+}
+.map {
+  position: absolute;
+  left: 254px;
+  top: 74px;
+  width: 1412px;
+  height: 931px;
+}

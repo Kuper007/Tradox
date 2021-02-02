@@ -3,9 +3,10 @@ package com.nc.tradox.api;
 import com.nc.tradox.service.TradoxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
-import javax.script.ScriptEngine;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
@@ -16,32 +17,16 @@ public class RegistrationController {
     private final TradoxService tradoxService;
 
     @Autowired
-    public RegistrationController(TradoxService tradoxService){
+    public RegistrationController(TradoxService tradoxService) {
         this.tradoxService = tradoxService;
     }
 
     @PostMapping("/fill")
-    public RedirectView registrarion(@RequestBody Map<String, String> json, BindingResult bindingResult, HttpSession httpSession){
-        if(!bindingResult.hasErrors()){
-            Boolean result = tradoxService.registerUser(json);
-            if(result){
-                httpSession.setAttribute("registered",true);
-            }
-            else {
-                httpSession.setAttribute("registered",false);
-            }
-        }else{
-            httpSession.setAttribute("registered",false);
+    public String registration(@RequestBody Map<String, String> json, BindingResult bindingResult, HttpSession httpSession) {
+        if (!bindingResult.hasErrors()) {
+            return tradoxService.registerUser(json);
         }
-        return new RedirectView("api/vi/registration/result");
+        return "{\"result\": false, \"emailNotUnique\": false, \"passportNotUnique\": false}";
     }
 
-    @GetMapping("/registered")
-    public Boolean getRegistrationResult(HttpSession httpSession){
-        Boolean isRegistered  = (Boolean) httpSession.getAttribute("registered");
-        if(isRegistered){
-            return true;
-        }
-        return false;
-    }
 }

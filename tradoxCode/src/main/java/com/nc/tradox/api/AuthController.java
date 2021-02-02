@@ -31,25 +31,39 @@ public class AuthController {
     @ResponseStatus(HttpStatus.OK)
     public RedirectView auth(@RequestBody Credentials credentials, BindingResult bindingResult, HttpSession session) {
         if(!bindingResult.hasErrors()) {
-            User user = tradoxService.auth(credentials.getEmail(),credentials.getPassword());
+            Map<User,String> info = tradoxService.auth(credentials.getEmail(),credentials.getPassword());
+            Map.Entry<User,String> entry = info.entrySet().iterator().next();
+            User user = entry.getKey();
+            String res = entry.getValue();
+
             if (user != null) {
                 session.setAttribute("authorized",true);
                 session.setAttribute("userId",user.getUserId());
             } else {
                 session.setAttribute("authorized",false);
+                session.setAttribute("error",res);
             }
         } else {
             session.setAttribute("authorized",false);
+            session.setAttribute("error","network");
         }
         return new RedirectView("/api/v1/auth/result");
     }
 
     @GetMapping("/result")
-    public Boolean getAuthResult(HttpSession session) {
+    public String getAuthResult(HttpSession session) {
         Boolean isAuthorized = (Boolean) session.getAttribute("authorized");
+        String json = "";
         if (isAuthorized) {
-            return true;
+            String userId = (String) session.getAttribute("userId");
+            userId = "\""+userId+"\"";
+            json = "{\"res\":\"true\",\"userId\":"+userId+"}";
+            return json;
+        } else {
+            String error = (String) session.getAttribute("error");
+            error = "\""+error+"\"";
+            json = "{\"res\":"+error+"}";
         }
-        return false;
+        return json;
     }
 }
