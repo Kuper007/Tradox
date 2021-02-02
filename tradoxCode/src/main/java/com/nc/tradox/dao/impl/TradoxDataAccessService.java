@@ -2,18 +2,14 @@ package com.nc.tradox.dao.impl;
 
 import com.nc.tradox.dao.Dao;
 import com.nc.tradox.model.*;
-import com.nc.tradox.model.impl.*;
 import com.nc.tradox.model.impl.Reasons;
-import com.nc.tradox.service.TradoxService;
+import com.nc.tradox.model.impl.*;
 import com.nc.tradox.utilities.ExchangeApi;
 import org.springframework.stereotype.Repository;
 
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.*;
 import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.sql.*;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
