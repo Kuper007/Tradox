@@ -5,7 +5,7 @@ import Register from './component/RegisterForm/Register';
 import Auth from './component/Auth/Auth.js';
 import FillDocs from './component/FillDocs/FillDocs.js';
 function App(){ 
-  const[authorized, setAuthorized] = useState(true);
+  const[authorized, setAuthorized] = useState(false);
 
   return (
       <div className = 'container-main'>
