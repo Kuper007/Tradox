@@ -1,6 +1,7 @@
 package com.nc.tradox.utilities;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.nc.tradox.model.Covid;
 import com.nc.tradox.model.impl.CovidImpl;
 import okhttp3.OkHttpClient;
@@ -26,9 +27,19 @@ public class CovidApi {
         Response response = client.newCall(request).execute();
         String json = Objects.requireNonNull(response.body()).string();
         ObjectMapper objectMapper = new ObjectMapper();
-        Root root = objectMapper.readValue(json, Root.class);
-
-        Covid covid = new CovidImpl();
+        Root root;
+        try {
+            root = objectMapper.readValue(json, Root.class);
+        }catch (UnrecognizedPropertyException exception){
+            return new CovidImpl(
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0);
+        }
 
         return new CovidImpl(
                 root.data.summary.total_cases,
