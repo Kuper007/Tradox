@@ -2,9 +2,7 @@ package com.nc.tradox.dao;
 
 import com.nc.tradox.dao.impl.TradoxDataAccessService;
 import com.nc.tradox.model.Consulate;
-import com.nc.tradox.model.Medicine;
 import com.nc.tradox.utilities.ConsulateApi;
-import com.nc.tradox.utilities.MedicineApi;
 
 import java.sql.Connection;
 import java.sql.SQLException;

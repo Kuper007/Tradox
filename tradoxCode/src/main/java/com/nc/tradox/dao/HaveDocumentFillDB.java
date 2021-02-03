@@ -1,8 +1,6 @@
 package com.nc.tradox.dao;
 
 import com.nc.tradox.dao.impl.TradoxDataAccessService;
-import com.nc.tradox.model.Medicine;
-import com.nc.tradox.utilities.ConsulateApi;
 import com.nc.tradox.utilities.DocumentApi;
 import com.nc.tradox.utilities.HaveDocument;
 
@@ -19,11 +17,11 @@ public class HaveDocumentFillDB {
     TradoxDataAccessService tradoxDataAccessService;
     DocumentApi documentApi;
 
-    public void haveDocumentFillDB(){
+    public void haveDocumentFillDB() {
         Connection connection = tradoxDataAccessService.connection;
         List<HaveDocument> haveDocumentList = documentApi.documentList();
 
-        for (HaveDocument haveDocument: haveDocumentList) {
+        for (HaveDocument haveDocument : haveDocumentList) {
             try {
                 Statement statement = connection.createStatement();
                 int rows = statement.executeUpdate(
@@ -33,7 +31,7 @@ public class HaveDocumentFillDB {
                                 haveDocument.getDeparture() + ")");
                 statement.close();
             } catch (SQLException exception) {
-                log.log(Level.SEVERE,"SQL exception", exception);
+                log.log(Level.SEVERE, "SQL exception", exception);
             }
 
         }

@@ -26,7 +26,7 @@ public class MedicineFillDB {
                 Statement statement = connection.createStatement();
                 int rows = statement.executeUpdate(
                         "INSERT INTO MEDICINE(NAME, COUNTRY_ID)" +
-                                "VALUES (" + medicine.getName() + ", " + medicine.getCountry() + ")");
+                                "VALUES (" + medicine.getName() + ", " + medicine.getDestinationCountry() + ")");
                 statement.close();
             } catch (SQLException exception) {
                 log.log(Level.SEVERE, "SQL exception", exception);
