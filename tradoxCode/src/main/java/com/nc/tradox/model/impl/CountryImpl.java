@@ -10,7 +10,7 @@ public class CountryImpl implements Country {
     protected String fullName;
     protected String shortName;
     protected String currency;
-    protected int mediumBill;
+    protected double mediumBill;
     protected int tourismCount;
     protected Covid covidInfo;
 
@@ -21,7 +21,7 @@ public class CountryImpl implements Country {
     public CountryImpl(String fullName,
                        String shortName,
                        String currency,
-                       int mediumBill,
+                       double mediumBill,
                        int tourismCount,
                        Covid covidImplInfo) {
         this.fullName = fullName;
@@ -36,7 +36,7 @@ public class CountryImpl implements Country {
         this.fullName = resultSet.getString("full_name");
         this.shortName = resultSet.getString("short_name");
         this.currency = resultSet.getString("currency");
-        this.mediumBill = resultSet.getInt("medium_bill");
+        this.mediumBill = resultSet.getDouble("medium_bill");
         this.tourismCount = resultSet.getInt("tourism_count");
         this.covidInfo = new CovidImpl(resultSet);
     }
@@ -72,12 +72,12 @@ public class CountryImpl implements Country {
     }
 
     @Override
-    public int getMediumBill() {
+    public double getMediumBill() {
         return mediumBill;
     }
 
     @Override
-    public void setMediumBill(int mediumBill) {
+    public void setMediumBill(double mediumBill) {
         this.mediumBill = mediumBill;
     }
 

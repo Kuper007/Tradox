@@ -13,9 +13,9 @@ public interface Country {
 
     void setCurrency(String currency);
 
-    int getMediumBill();
+    double getMediumBill();
 
-    void setMediumBill(int mediumBill);
+    void setMediumBill(double mediumBill);
 
     int getTourismCount();
 
