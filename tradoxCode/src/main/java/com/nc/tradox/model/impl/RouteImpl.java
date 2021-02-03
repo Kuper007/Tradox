@@ -1,20 +1,18 @@
 package com.nc.tradox.model.impl;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.nc.tradox.dao.impl.TradoxDataAccessService;
 import com.nc.tradox.model.InfoData;
+import com.nc.tradox.model.Route;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-public class RouteImpl implements com.nc.tradox.model.Route {
+public class RouteImpl implements Route {
 
     protected Integer routeId;
     protected TransportType transportType;
     protected Set<InfoData> transitSet;
-    TradoxDataAccessService service = new TradoxDataAccessService();
 
     public RouteImpl(Integer routeId, TransportType transportType, Set<InfoData> transitSet) {
         this.routeId = routeId;
@@ -22,32 +20,31 @@ public class RouteImpl implements com.nc.tradox.model.Route {
         this.transitSet = transitSet;
     }
 
-
-    public RouteImpl(ResultSet res){
-        try {
-            this.routeId = res.getInt("route_id");
-            this.transportType = TransportType.valueOf(res.getString("transport_type"));
-            InfoData infoData = service.getInfoData(res.getString("departure_id"),res.getString("destination_id"));
-            this.transitSet = new LinkedHashSet<>();
-            this.transitSet.add(infoData);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+    public RouteImpl(ResultSet resultSet) throws SQLException {
+        this.routeId = resultSet.getInt("route_id");
+        this.transportType = TransportType.valueOf(resultSet.getString("transport_type"));
+        //InfoData infoData = new TradoxDataAccessService().getInfoData(resultSet.getString("departure_id"), resultSet.getString("destination_id"));
+        this.transitSet = new LinkedHashSet<>();
     }
 
     @Override
-    public Integer getElementId() {
-        return this.routeId;
+    public Integer getRouteId() {
+        return routeId;
+    }
+
+    @Override
+    public void setRouteId(Integer routeId) {
+        this.routeId = routeId;
     }
 
     @Override
     public TransportType getTransportType() {
-        return this.transportType;
+        return transportType;
     }
 
     @Override
-    public void setTransportType(TransportType tType) {
-        this.transportType = tType;
+    public void setTransportType(TransportType transportType) {
+        this.transportType = transportType;
     }
 
     @Override
@@ -64,4 +61,5 @@ public class RouteImpl implements com.nc.tradox.model.Route {
     public Boolean removeFromTransit(InfoData infoData) {
         return this.transitSet.remove(infoData);
     }
+
 }

@@ -1,6 +1,6 @@
 package com.nc.tradox.model;
 
-import com.nc.tradox.model.impl.Reasons;
+import com.nc.tradox.model.impl.ReasonImpl;
 
 public interface Status {
     enum StatusEnum {
@@ -15,9 +15,9 @@ public interface Status {
 
     void setStatus(StatusEnum status);
 
-    Reasons getReasons();
+    ReasonImpl getReasons();
 
-    void setReasons(Reasons reasons);
+    void setReasons(ReasonImpl reasons);
 
     Country getCountry();
 

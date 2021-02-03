@@ -1,19 +1,22 @@
 package com.nc.tradox.model.impl;
 
-import com.nc.tradox.dao.impl.TradoxDataAccessService;
+import com.nc.tradox.model.Country;
 import com.nc.tradox.model.Covid;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CountryImpl implements com.nc.tradox.model.Country {
+public class CountryImpl implements Country {
     protected String fullName;
-    protected String shortName; //id
+    protected String shortName;
     protected String currency;
     protected int mediumBill;
     protected int tourismCount;
     protected Covid covidInfo;
-    TradoxDataAccessService service = new TradoxDataAccessService();
+
+    public CountryImpl() {
+
+    }
 
     public CountryImpl(String fullName,
                        String shortName,
@@ -29,19 +32,13 @@ public class CountryImpl implements com.nc.tradox.model.Country {
         this.covidInfo = covidImplInfo;
     }
 
-    public CountryImpl(ResultSet res) {
-        try {
-            this.fullName = res.getString("full_name");
-            this.shortName = res.getString("short_name");
-            this.currency = res.getString("currency");
-            this.mediumBill = res.getInt("medium_bill");
-            this.tourismCount = res.getInt("tourism_count");
-            this.covidInfo = service.getCovidByCountryId(this.shortName);
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
+    public CountryImpl(ResultSet resultSet) throws SQLException {
+        this.fullName = resultSet.getString("full_name");
+        this.shortName = resultSet.getString("short_name");
+        this.currency = resultSet.getString("currency");
+        this.mediumBill = resultSet.getInt("medium_bill");
+        this.tourismCount = resultSet.getInt("tourism_count");
+        this.covidInfo = new CovidImpl(resultSet);
     }
 
     @Override
@@ -50,13 +47,28 @@ public class CountryImpl implements com.nc.tradox.model.Country {
     }
 
     @Override
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    @Override
     public String getShortName() {
         return shortName;
     }
 
     @Override
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
+    }
+
+    @Override
     public String getCurrency() {
         return currency;
+    }
+
+    @Override
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 
     @Override
@@ -85,7 +97,8 @@ public class CountryImpl implements com.nc.tradox.model.Country {
     }
 
     @Override
-    public void setCovidInfo(CovidImpl covidImplInfo) {
-        this.covidInfo = covidImplInfo;
+    public void setCovidInfo(Covid covidInfo) {
+        this.covidInfo = covidInfo;
     }
+
 }

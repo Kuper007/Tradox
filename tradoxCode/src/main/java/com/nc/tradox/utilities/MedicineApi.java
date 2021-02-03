@@ -113,9 +113,5 @@ public class MedicineApi {
     public static class Root {
         public List<MainArr> mainArr;
     }
+
 }
-
-
-
-
-

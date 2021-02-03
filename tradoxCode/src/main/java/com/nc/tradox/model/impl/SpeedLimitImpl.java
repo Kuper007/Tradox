@@ -3,6 +3,9 @@ package com.nc.tradox.model.impl;
 import com.nc.tradox.model.Country;
 import com.nc.tradox.model.SpeedLimit;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class SpeedLimitImpl implements SpeedLimit {
 
     protected Integer speedLimitId;
@@ -19,6 +22,12 @@ public class SpeedLimitImpl implements SpeedLimit {
         this.typeOfRoad = typeOfRoad;
         this.speed = speed;
         this.country = country;
+    }
+
+    public SpeedLimitImpl(ResultSet resultSet) throws SQLException {
+        this.speedLimitId = resultSet.getInt("limit_id");
+        this.typeOfRoad = SpeedLimit.TypeOfRoad.valueOf(resultSet.getString("road_type"));
+        this.speed = resultSet.getInt("speed");
     }
 
     @Override
