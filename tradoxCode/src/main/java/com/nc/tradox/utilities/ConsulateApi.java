@@ -17,15 +17,15 @@ public class ConsulateApi {
     private static final Logger log = Logger.getLogger(ConsulateApi.class.getName());
     TradoxDataAccessService tradoxDataAccessService;
 
-    public List<Consulate> consulateList(){
+    public List<Consulate> consulateList() {
         ObjectMapper objectMapper = new ObjectMapper();
 
         File jsonFile = new File("tradoxCode/src/main/resources/jsonsAndFriends/consulate.json");
 
-        if (!jsonFile.exists()){
-            log.log(Level.SEVERE,"File does not exist");
-        }else if (jsonFile.isDirectory()){
-            log.log(Level.SEVERE,"This is directory, not file");
+        if (!jsonFile.exists()) {
+            log.log(Level.SEVERE, "File does not exist");
+        } else if (jsonFile.isDirectory()) {
+            log.log(Level.SEVERE, "This is directory, not file");
         }
 
         Root root = null;
@@ -46,28 +46,27 @@ public class ConsulateApi {
 
                 Consulate consulate = new ConsulateImpl(
                         null,
-                        ownerCountry,
                         myArray.city,
                         myArray.address.street + " " + myArray.address.number + " " + myArray.address.zip_code,
                         myArray.phone,
-                        country
-                        );
+                        fullRoute
+                );
                 consulateList.add(consulate);
             }
             return consulateList;
-        }else {
-            log.log(Level.SEVERE,"Couldn't parse json to root class");
+        } else {
+            log.log(Level.SEVERE, "Couldn't parse json to root class");
         }
         return null;
     }
 
-    public static class Address{
+    public static class Address {
         public String street;
         public String number;
         public String zip_code;
     }
 
-    public static class MyArray{
+    public static class MyArray {
         public int consulate_id;
         public String city;
         public Address address;
@@ -76,7 +75,8 @@ public class ConsulateApi {
         public String country_id;
     }
 
-    public static class Root{
+    public static class Root {
         public List<MyArray> myArrays;
     }
+
 }

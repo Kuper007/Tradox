@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 import java.util.Set;
 
 @RequestMapping("api/v1/route")
@@ -23,7 +24,7 @@ public class RouteController {
         this.tradoxService = tradoxService;
     }
 
-    @GetMapping
+    @GetMapping("/getRoute")
     public Route getRoute(@RequestParam String destinationId, HttpSession session) {
         if (!(Boolean) session.getAttribute("authorized")) {
             return null;
@@ -47,6 +48,14 @@ public class RouteController {
         return new InfoDataImpl();
     }
 
+    @PostMapping("/getCountry")
+    public Country getCountry(@RequestBody Map<String, String> json, BindingResult bindingResult, HttpSession httpSession) {
+        if (!bindingResult.hasErrors()) {
+            return tradoxService.getCountryByFullName(json.get("country"));
+        }
+        return null;
+    }
+
     @GetMapping("/test")
     public boolean test(HttpSession session) {
         session.setAttribute("userId", 1);
@@ -63,7 +72,7 @@ public class RouteController {
 
     @PostMapping("/editTransits")
     public void editTransits(@RequestBody Set<InfoData> transits, HttpSession session) {
-        Integer routeId = ((Route) session.getAttribute("currentRoute")).getElementId();
+        Integer routeId = ((Route) session.getAttribute("currentRoute")).getRouteId();
         tradoxService.editTransits((int) session.getAttribute("userId"), routeId, transits);
     }
 

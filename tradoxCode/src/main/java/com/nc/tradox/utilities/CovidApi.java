@@ -40,7 +40,7 @@ public class CovidApi {
                 root.data.change.recovered);
     }
 
-    public static class Summary{
+    public static class Summary {
         public int total_cases;
         public int active_cases;
         public int deaths;
@@ -51,7 +51,7 @@ public class CovidApi {
         public double recovery_ratio;
     }
 
-    public static class Change{
+    public static class Change {
         public int total_cases;
         public int active_cases;
         public int deaths;
@@ -62,12 +62,12 @@ public class CovidApi {
         public double recovery_ratio;
     }
 
-    public static class Data{
+    public static class Data {
         public Summary summary;
         public Change change;
     }
 
-    public static class Root{
+    public static class Root {
         public int status;
         public String type;
         public Data data;

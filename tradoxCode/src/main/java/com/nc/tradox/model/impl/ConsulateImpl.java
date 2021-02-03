@@ -2,27 +2,37 @@ package com.nc.tradox.model.impl;
 
 import com.nc.tradox.model.Consulate;
 import com.nc.tradox.model.Country;
+import com.nc.tradox.model.FullRoute;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class ConsulateImpl implements Consulate {
 
     protected Integer consulateId;
-    protected Country owner;
     protected String city;
     protected String address;
     protected String phoneNumber;
-    protected Country country;
+    protected FullRoute fullRoute;
 
     public ConsulateImpl() {
 
     }
 
-    public ConsulateImpl(Integer consulateId, Country owner, String city, String address, String phoneNumber, Country country) {
+    public ConsulateImpl(Integer consulateId, String city, String address, String phoneNumber, FullRoute fullRoute) {
         this.consulateId = consulateId;
-        this.owner = owner;
         this.city = city;
         this.address = address;
         this.phoneNumber = phoneNumber;
-        this.country = country;
+        this.fullRoute = fullRoute;
+    }
+
+    public ConsulateImpl(ResultSet resultSet) throws SQLException {
+        this.consulateId = resultSet.getInt("consulate_id");
+        this.city = resultSet.getString("city");
+        this.address = resultSet.getString("address");
+        this.phoneNumber = resultSet.getString("phone");
+
     }
 
     @Override
@@ -37,12 +47,12 @@ public class ConsulateImpl implements Consulate {
 
     @Override
     public Country getCountry() {
-        return country;
+        return fullRoute.getDeparture();
     }
 
     @Override
     public void setCountry(Country country) {
-        this.country = country;
+        fullRoute.setDeparture(country);
     }
 
     @Override
@@ -77,17 +87,12 @@ public class ConsulateImpl implements Consulate {
 
     @Override
     public Country getOwner() {
-        return owner;
+        return fullRoute.getDestination();
     }
 
     @Override
     public void setOwner(Country owner) {
-        this.owner = owner;
-    }
-
-    @Override
-    public Integer getElementId() {
-        return 0;
+        fullRoute.setDestination(owner);
     }
 
 }

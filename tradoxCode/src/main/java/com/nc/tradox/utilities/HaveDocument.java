@@ -1,12 +1,11 @@
 package com.nc.tradox.utilities;
 
-import com.nc.tradox.model.Departure;
-import com.nc.tradox.model.Destination;
+import com.nc.tradox.model.Country;
 
 public class HaveDocument {
     private int documentId;
-    private Departure departure;
-    private Destination destination;
+    private Country departure;
+    private Country destination;
 
     public int getDocumentId() {
         return documentId;
@@ -16,19 +15,19 @@ public class HaveDocument {
         this.documentId = documentId;
     }
 
-    public Departure getDeparture() {
+    public Country getDeparture() {
         return departure;
     }
 
-    public void setDeparture(Departure departure) {
+    public void setDeparture(Country departure) {
         this.departure = departure;
     }
 
-    public Destination getDestination() {
+    public Country getDestination() {
         return destination;
     }
 
-    public void setDestination(Destination destination) {
+    public void setDestination(Country destination) {
         this.destination = destination;
     }
 
@@ -40,4 +39,5 @@ public class HaveDocument {
                 ", destination=" + destination +
                 '}';
     }
+
 }

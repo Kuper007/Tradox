@@ -1,9 +1,11 @@
 package com.nc.tradox.model.impl;
 
+import com.nc.tradox.model.Covid;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CovidImpl implements com.nc.tradox.model.Covid {
+public class CovidImpl implements Covid {
 
     protected int summaryTotalCases;
     protected int todayTotalCases;
@@ -13,7 +15,9 @@ public class CovidImpl implements com.nc.tradox.model.Covid {
     protected int summaryRecovered;
     protected int todayRecovered;
 
-    public CovidImpl(){}
+    public CovidImpl() {
+
+    }
 
     public CovidImpl(int summaryTotalCases,
                      int todayTotalCases,
@@ -31,18 +35,14 @@ public class CovidImpl implements com.nc.tradox.model.Covid {
         this.todayRecovered = todayRecovered;
     }
 
-    public CovidImpl(ResultSet res){
-        try {
-            this.summaryTotalCases = res.getInt("summary_total_cases");
-            this.todayTotalCases = res.getInt("today_total_cases");
-            this.summaryActiveCases = res.getInt("summary_active_cases");
-            this.todayActiveCases = res.getInt("today_active_cases");
-            this.todayDeaths = res.getInt("today_deaths");
-            this.summaryRecovered = res.getInt("summary_recovered");
-            this.todayRecovered = res.getInt("today_recovered");
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+    public CovidImpl(ResultSet resultSet) throws SQLException {
+        this.summaryTotalCases = resultSet.getInt("summary_total_cases");
+        this.todayTotalCases = resultSet.getInt("today_total_cases");
+        this.summaryActiveCases = resultSet.getInt("summary_active_cases");
+        this.todayActiveCases = resultSet.getInt("today_active_cases");
+        this.todayDeaths = resultSet.getInt("today_deaths");
+        this.summaryRecovered = resultSet.getInt("summary_recovered");
+        this.todayRecovered = resultSet.getInt("today_recovered");
     }
 
     @Override
@@ -117,14 +117,15 @@ public class CovidImpl implements com.nc.tradox.model.Covid {
 
     @Override
     public String toString() {
-        return "CovidImpl{" +
-                "summaryTotalCases=" + summaryTotalCases +
-                ", todayTotalCases=" + todayTotalCases +
-                ", summaryActiveCases=" + summaryActiveCases +
-                ", todayActiveCases=" + todayActiveCases +
-                ", todayDeaths=" + todayDeaths +
-                ", summaryRecovered=" + summaryRecovered +
-                ", todayRecovered=" + todayRecovered +
-                '}';
+        return "CovidImpl { " +
+                "summaryTotalCases = " + summaryTotalCases +
+                ", todayTotalCases = " + todayTotalCases +
+                ", summaryActiveCases = " + summaryActiveCases +
+                ", todayActiveCases = " + todayActiveCases +
+                ", todayDeaths = " + todayDeaths +
+                ", summaryRecovered = " + summaryRecovered +
+                ", todayRecovered = " + todayRecovered +
+                " }";
     }
+
 }
