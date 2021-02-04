@@ -53,12 +53,16 @@ function Register(props) {
                 "passport_id": state.get("passport"),
                 "citizenship": myMap.get(state.get("citizenship")),
                 "country_id": myMap.get(state.get("currentCountry"))
-        })}).then(response => {
-            if (response.json() === true) {
-                tap(true)
+        })}).then(response => response.json().then(data=>({
+            data: data,
+            status: response.status })
+        ).then(res => {
+            if (res.data.result=="true"){
+                localStorage.setItem("auth",true);
+                window.location.href = "http://localhost:8080/verification";
             }
-        })
-    }
+        }));
+    };
 
     return (
         <div className={style.registrationComponent}>
