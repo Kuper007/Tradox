@@ -1,15 +1,27 @@
 package com.nc.tradox.model;
 
-import com.nc.tradox.model.impl.CovidImpl;
-
 public interface Country {
     String getFullName();
+
+    void setFullName(String fullName);
+
     String getShortName();
+
+    void setShortName(String shortName);
+
     String getCurrency();
-    int getMediumBill();
-    void setMediumBill(int mediumBill);
+
+    void setCurrency(String currency);
+
+    double getMediumBill();
+
+    void setMediumBill(double mediumBill);
+
     int getTourismCount();
+
     void setTourismCount(int tourismCount);
+
     Covid getCovidInfo();
-    void setCovidInfo(CovidImpl covidImplInfo);
+
+    void setCovidInfo(Covid covidInfo);
 }

@@ -3,6 +3,9 @@ package com.nc.tradox.model.impl;
 import com.nc.tradox.model.Country;
 import com.nc.tradox.model.Medicine;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class MedicineImpl implements Medicine {
 
     protected Integer medicineId;
@@ -17,6 +20,11 @@ public class MedicineImpl implements Medicine {
         this.medicineId = medicineId;
         this.name = name;
         this.country = country;
+    }
+
+    public MedicineImpl(ResultSet resultSet) throws SQLException {
+        this.medicineId = resultSet.getInt("medicine_id");
+        this.name = resultSet.getString("name");
     }
 
     @Override
@@ -48,5 +56,5 @@ public class MedicineImpl implements Medicine {
     public void setCountry(Country country) {
         this.country = country;
     }
-    
+
 }

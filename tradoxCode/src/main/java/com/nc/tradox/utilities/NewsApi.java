@@ -39,9 +39,9 @@ public class NewsApi {
         List<NewsItem> newsList = new ArrayList<>();
         for (Article article : root.articles) {
 
-            Country destination_country = tradoxDataAccessService.getCountryById(destinationCountry);
+            Country destination = tradoxDataAccessService.getCountryById(destinationCountry);
 
-            NewsItem newsItem = new NewsItemImpl(article.content, java.util.Calendar.getInstance().getTime(), destination_country);
+            NewsItem newsItem = new NewsItemImpl(null, article.content, java.util.Calendar.getInstance().getTime(), destination);
             newsList.add(newsItem);
         }
         return newsList;

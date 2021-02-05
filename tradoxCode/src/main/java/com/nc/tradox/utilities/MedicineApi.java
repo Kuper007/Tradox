@@ -43,9 +43,24 @@ public class MedicineApi {
 
                 Country country = tradoxDataAccessService.getCountryById(mainArr.country);
 
+                String[] vaccines = new String[3];
+                for (String s : vaccines) {
+                    if (mainArr.vaccines.polio) {
+                        vaccines[0] = "polio, ";
+                    } else vaccines[0] = "";
+                    if (mainArr.vaccines.hepatitisA) {
+                        vaccines[1] = "hepatitisA, ";
+                    } else vaccines[1] = "";
+                    if (mainArr.vaccines.malaria) {
+                        vaccines[2] = "malaria";
+                    } else vaccines[2] = "";
+                }
+                String allVaccines = vaccines[0] + vaccines[1] + vaccines[2];
+                if (allVaccines.length() < 4) allVaccines = "no vaccines required";
+
                 Medicine medicine = new MedicineImpl(
                         null,
-                        mainArr.covidInfo,
+                        allVaccines,
                         country
                 );
                 medicineArrayList.add(medicine);
@@ -57,48 +72,37 @@ public class MedicineApi {
         return null;
     }
 
-    public static class Alltravelers {
+    public static class Vaccines {
         @JsonProperty("Chickenpox")
         public boolean chickenpox;
+        @JsonProperty("Cholera")
+        public boolean cholera;
         @JsonProperty("Diphtheria-Tetanus-Pertussis")
         public boolean diphtheriaTetanusPertussis;
         @JsonProperty("Flu")
         public boolean flu;
+        @JsonProperty("Hepatitis A")
+        public boolean hepatitisA;
+        @JsonProperty("Hepatitis B")
+        public boolean hepatitisB;
+        @JsonProperty("Japanese Encephalitis")
+        public boolean japaneseEncephalitis;
+        @JsonProperty("Malaria")
+        public boolean malaria;
         @JsonProperty("Measles")
         public boolean measles;
         @JsonProperty("Measles-Mumps-Rubella")
         public boolean measlesMumpsRubella;
+        @JsonProperty("Meningitis(Meningococcal disease)")
+        public boolean meningitisMeningococcaldisease;
         @JsonProperty("Polio")
         public boolean polio;
-    }
-
-    public static class Mosttravelers {
-        @JsonProperty("Hepatitis A")
-        public boolean hepatitisA;
         @JsonProperty("Typhoid")
         public boolean typhoid;
-    }
-
-    public static class Sometravelers {
-        @JsonProperty("Cholera")
-        public boolean cholera;
-        @JsonProperty("Hepatitis B")
-        public boolean hepatitisB;
-        @JsonProperty("Malaria")
-        public boolean malaria;
         @JsonProperty("Rabies")
         public boolean rabies;
         @JsonProperty("Yellow Fever")
         public boolean yellowFever;
-    }
-
-    public static class Vaccines {
-        @JsonProperty("All travelers")
-        public Alltravelers alltravelers;
-        @JsonProperty("Most travelers")
-        public Mosttravelers mosttravelers;
-        @JsonProperty("Some travelers")
-        public Sometravelers sometravelers;
     }
 
     public static class MainArr {
@@ -111,11 +115,8 @@ public class MedicineApi {
     }
 
     public static class Root {
+        @JsonProperty("MainArr")
         public List<MainArr> mainArr;
     }
+
 }
-
-
-
-
-

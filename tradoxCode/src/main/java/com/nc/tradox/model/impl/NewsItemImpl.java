@@ -3,6 +3,8 @@ package com.nc.tradox.model.impl;
 import com.nc.tradox.model.Country;
 import com.nc.tradox.model.NewsItem;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class NewsItemImpl implements NewsItem {
@@ -23,10 +25,10 @@ public class NewsItemImpl implements NewsItem {
         this.country = country;
     }
 
-    public NewsItemImpl(String text, Date date, Country country) {
-        this.text = text;
-        this.date = date;
-        this.country = country;
+    public NewsItemImpl(ResultSet resultSet) throws SQLException {
+        this.newsItemId = resultSet.getInt("NEWS_ID");
+        this.text = resultSet.getString("TEXT");
+        this.date = resultSet.getDate("DATE");
     }
 
     @Override

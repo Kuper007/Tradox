@@ -25,7 +25,6 @@ public class VerificationController {
         this.tradoxService = tradoxService;
     }
 
-
     @PostMapping("/verify")
     public String verified(BindingResult bindingResult, HttpSession session){
         String json = "{\"res\":\"false\"}";

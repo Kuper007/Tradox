@@ -1,6 +1,6 @@
 package com.nc.tradox.model;
 
-public interface Consulate extends Element {
+public interface Consulate {
     Integer getConsulateId();
 
     void setConsulateId(Integer consulateId);

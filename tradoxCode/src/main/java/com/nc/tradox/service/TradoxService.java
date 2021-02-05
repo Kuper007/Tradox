@@ -39,22 +39,22 @@ public class TradoxService {
     }
 
     public InfoData getInfoData(String departureId, String destinationId) {
-        Documents documents = dao.getDocumentsByCountryIds(departureId, destinationId);
-        SpeedLimits speedLimits = dao.getSpeedLimitsByCountryId(destinationId);
-        Medicines medicines = dao.getMedicinesByCountryId(destinationId);
-        Consulates consulates = dao.getConsulatesByCountryIds(departureId, destinationId);
-        News news = dao.getNewsByCountryId(destinationId);
-        Exchange exchange = getExchangeByCountryId(departureId, destinationId);
-        Status status = dao.getStatusByCountryIds(departureId, destinationId);
+        Country departure = dao.getCountryById(departureId);
+        Country destination = dao.getCountryById(destinationId);
+        FullRoute fullRoute = new FullRouteImpl(departure, destination);
+        Documents documents = dao.getDocumentsByCountryIds(fullRoute);
+        SpeedLimits speedLimits = dao.getSpeedLimitsByCountryId(destination);
+        Medicines medicines = dao.getMedicinesByCountryId(destination);
+        Consulates consulates = dao.getConsulatesByCountryIds(fullRoute);
+        News news = dao.getNewsByCountryId(destination);
+        Exchange exchange = getExchangeByCountryId(fullRoute);
+        Status status = dao.getStatusByCountryIds(fullRoute);
         return new InfoDataImpl(exchange.getFullRoute(), documents, speedLimits, medicines, consulates, news, exchange, status);
     }
 
-    public Exchange getExchangeByCountryId(String departureId, String destinationId) {
+    public Exchange getExchangeByCountryId(FullRoute fullRoute) {
         try {
-            Country departure = dao.getCountryById(departureId);
-            Country destination = dao.getCountryById(destinationId);
-            List<String> apiExchanges = new ExchangeApi().currentExchange(departure.getCurrency(), destination.getCurrency());
-            FullRouteImpl fullRoute = new FullRouteImpl(departure, destination);
+            List<String> apiExchanges = new ExchangeApi().currentExchange(fullRoute.getDeparture().getCurrency(), fullRoute.getDestination().getCurrency());
             return new ExchangeImpl(apiExchanges.get(1), apiExchanges.get(0), fullRoute);
         } catch (InterruptedException | IOException exception) {
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.getExchangeByCountryId " + exception.getMessage());
@@ -63,11 +63,14 @@ public class TradoxService {
     }
 
     public Documents getDocumentsByCountryIds(String departureId, String destinationId) {
-        return dao.getDocumentsByCountryIds(departureId, destinationId);
+        Country departure = dao.getCountryById(departureId);
+        Country destination = dao.getCountryById(destinationId);
+        FullRoute fullRoute = new FullRouteImpl(departure, destination);
+        return dao.getDocumentsByCountryIds(fullRoute);
     }
 
     public Boolean deleteRoute(Route route) {
-        return dao.deleteRoute(route.getElementId());
+        return dao.deleteRoute(route.getRouteId());
     }
 
     public Map<User, String> auth(String email, String password) {
@@ -87,22 +90,21 @@ public class TradoxService {
         boolean passportNotUnique = false;
         if (dao.isUser(map.get("email")))
             emailNotUnique = true;
-        if (dao.isPassport(map.get("passport")))
+        if (dao.isPassport(map.get("passport_id")))
             passportNotUnique = true;
         if (emailNotUnique || passportNotUnique)
             return "{\"result\": false, \"emailNotUnique\": " + emailNotUnique + ", \"passportNotUnique\": " + passportNotUnique + "}";
-
-        Country citizenship = getCountryByFullName(map.get("citizenship"));
-        Country location = getCountryByFullName(map.get("location"));
-        Passport passport = new PassportImpl(map.get("passport"), citizenship);
+        Country citizenship = getCountryById(map.get("citizenship"));
+        Country location = getCountryById(map.get("country_id"));
+        Passport passport = new PassportImpl(map.get("passport_id"), citizenship);
         if (!dao.addPassport(passport)) {
             return "{\"result\": false, \"emailNotUnique\": false, \"passportNotUnique\": false}";
         } else {
             try {
                 User user = new UserImpl();
-                user.setFirstName(map.get("firstName"));
-                user.setLastName(map.get("lastName"));
-                user.setBirthDate(new SimpleDateFormat("dd.MM.yyyy").parse(map.get("birthDate")));
+                user.setFirstName(map.get("first_name"));
+                user.setLastName(map.get("last_name"));
+                user.setBirthDate(new SimpleDateFormat("yyyy-mm-dd").parse(map.get("birth_date")));
                 user.setEmail(map.get("email"));
                 user.setPhone(map.get("phone"));
                 user.setPassport(passport);

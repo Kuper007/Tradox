@@ -9,4 +9,5 @@ public class Consulates extends ListOfElements<Consulate> {
     public Consulates(List<Consulate> elementsList) {
         super(elementsList);
     }
+
 }

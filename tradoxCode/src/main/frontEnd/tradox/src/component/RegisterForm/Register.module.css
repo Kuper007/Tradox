@@ -1,5 +1,4 @@
 
-
 .container{
     width: 100%;
     height: 100%;
@@ -97,6 +96,17 @@ img {
     background: none;
 }
 
+.wrongInput {
+    border: 0;
+    border-bottom: 1px solid black;
+    width: 68%;
+    text-align: right;
+    float: right;
+    Outline:none;
+    background: none;
+    color: red;
+}
+
 .naming {
     font-weight: 600;
     font-size: 18px;
@@ -130,6 +140,10 @@ img {
     margin-right: auto;
 }
 
+button:active, button:focus {
+    outline: none !important;
+}
+
 button:hover {
     color: white;
 
@@ -159,4 +173,30 @@ select:active {
 
 option {
     direction: rtl;
+}
+
+
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%, 60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+shakeAnimation {
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
 }

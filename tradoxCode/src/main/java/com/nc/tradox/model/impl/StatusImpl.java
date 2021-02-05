@@ -1,26 +1,36 @@
 package com.nc.tradox.model.impl;
 
 import com.nc.tradox.model.Country;
+import com.nc.tradox.model.FullRoute;
+import com.nc.tradox.model.Reason;
 import com.nc.tradox.model.Status;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class StatusImpl implements Status {
 
     protected Integer statusId;
     protected StatusEnum status;
-    protected Reasons reasons;
-    protected Country country;
-    protected Country destination;
+    protected ReasonImpl reasons;
+    protected FullRoute fullRoute;
+    protected Reason reason;
 
     public StatusImpl() {
 
     }
 
-    public StatusImpl(Integer statusId1, StatusEnum status, Reasons reasons, Country country, Country destination) {
+    public StatusImpl(Integer statusId1, StatusEnum status, ReasonImpl reasons, FullRoute fullRoute) {
         this.statusId = statusId1;
         this.status = status;
         this.reasons = reasons;
-        this.country = country;
-        this.destination = destination;
+        this.fullRoute = fullRoute;
+    }
+
+    public StatusImpl(ResultSet resultSet) throws SQLException {
+        this.statusId = resultSet.getInt("status_id");
+        this.status = resultSet.getInt("value") == 0 ? Status.StatusEnum.close : Status.StatusEnum.open;
+        this.reasons = new ReasonImpl(resultSet);
     }
 
     @Override
@@ -44,33 +54,33 @@ public class StatusImpl implements Status {
     }
 
     @Override
-    public Reasons getReasons() {
+    public ReasonImpl getReasons() {
         return reasons;
     }
 
     @Override
-    public void setReasons(Reasons reasons) {
+    public void setReasons(ReasonImpl reasons) {
         this.reasons = reasons;
     }
 
     @Override
     public Country getCountry() {
-        return country;
+        return fullRoute.getDeparture();
     }
 
     @Override
     public void setCountry(Country country) {
-        this.country = country;
+        fullRoute.setDeparture(country);
     }
 
     @Override
     public Country getDestination() {
-        return destination;
+        return fullRoute.getDestination();
     }
 
     @Override
     public void setDestination(Country destination) {
-        this.destination = destination;
+        fullRoute.setDestination(destination);
     }
 
 }

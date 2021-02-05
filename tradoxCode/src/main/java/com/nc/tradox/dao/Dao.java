@@ -1,7 +1,7 @@
 package com.nc.tradox.dao;
 
 import com.nc.tradox.model.*;
-import com.nc.tradox.model.Reasons;
+import com.nc.tradox.model.Reason;
 import com.nc.tradox.model.impl.*;
 
 import java.sql.ResultSet;
@@ -37,19 +37,19 @@ public interface Dao {
 
     boolean deleteRoute(Integer id);
 
-    Documents getDocumentsByCountryIds(String departureId, String destinationId);
+    Documents getDocumentsByCountryIds(FullRoute fullRoute);
 
-    SpeedLimits getSpeedLimitsByCountryId(String id);
+    SpeedLimits getSpeedLimitsByCountryId(Country destination);
 
-    Medicines getMedicinesByCountryId(String id);
+    Medicines getMedicinesByCountryId(Country destination);
 
-    Consulates getConsulatesByCountryIds(String departureId, String destinationId);
+    Consulates getConsulatesByCountryIds(FullRoute fullRoute);
 
-    News getNewsByCountryId(String id);
+    News getNewsByCountryId(Country destination);
 
-    Status getStatusByCountryIds(String departureId, String destinationId);
+    Status getStatusByCountryIds(FullRoute fullRoute);
 
-    Reasons getReasonsByStatusId(Integer id);
+    Reason getReasonsByStatusId(Integer statusId);
 
     Boolean saveTransit(Set<InfoData> infoData, Integer route_id);
 
