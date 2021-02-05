@@ -16,7 +16,7 @@ import {NavLink} from 'react-router-dom'
             <NavLink to = '/docs'><div className={styles.fillBtn}>
                 <h2 className={styles.fillDocsTxT}>Fill out documents</h2>
             </div></NavLink>
-            <Consulates country = {props.country}/>
+            <Consulates departure = {props.departure}/>
             <News/>
         </div>
     )

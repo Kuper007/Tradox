@@ -9,14 +9,14 @@ import NoData from '../CountryInfo/NoData/NoData'
 import axios from "axios";
 
 function MainPage (props) {
-
+  let fail = false;
+  let showNoAuth = false;
   const [destinationName, setDestinationName] = useState('');
   const [destinationId, setDestinationId] = useState('');
   const [notFound, setNotFound] = useState(false);
   const [pressed, setPressed] = useState(false)
-  const [data, setData] = useState([]);
-  const [isAuth, setIsAuth] = useState(false);
-
+  const [isAuth, setIsAuth] = useState(true);
+  const [departure, setDeparture] = useState()
   useEffect(() => {
     ifRegistered()
   }, [destinationId])
@@ -46,14 +46,15 @@ function MainPage (props) {
   }
   function getCountryInfo(){
     try {
-      const response = axios.post('http://localhost:8080/api/v1/route/routing', { departureId: "'"+"UA"+"'", destinationId: "'"+destinationId+"'" });
-      console.log('👉 Returned data:', `${response.data}`);
-      if(response.status !== 200){
-        return <NoData/>
-      }
-      else{
-        console.log(`${response.data}`)
-      }
+        axios.get("http://localhost:8080/api/v1/route/getData").then(res => {
+              if(res.status !== 200){
+                return fail = true;
+              }
+            else{
+              const departure1 = res.data.departure.fullName
+              setDeparture(departure1)
+              }
+            });
     } catch (e) {
       console.log(`😱 Axios request failed: ${e}`);
     }
@@ -61,14 +62,14 @@ function MainPage (props) {
   }
 
   function ifRegistered(){
-    if(destinationId !== ''){
-      if(props.authorized !== false){
+    if(destinationId != ''){
+      if(isAuth != false){
         getKeyFromMap()
+        getCountryInfo()
         setPressed(true)
-        console.log(getCountryInfo())
     }
       else{
-        return <UnauthorizedUserNotification/>
+          return showNoAuth = true;
       }
     }
   }
@@ -94,7 +95,9 @@ function MainPage (props) {
         <Logo authorized = {props.authorized}/>
         <WorldMap retrieveId = {retrieveId}/>
         {!pressed?<SearchBar handleCountry = {handleCountry} handleKeyPress = {handleKeyPress} notfound = {notFound}/>:null}
-        {pressed?<Country country = {destinationName}/>:null}
+        {pressed?<Country country = {destinationName} departure = {departure}/>:null}
+        {fail?<NoData/>:null}
+        {showNoAuth?<UnauthorizedUserNotification/>:null}
       </div>
   )
 }

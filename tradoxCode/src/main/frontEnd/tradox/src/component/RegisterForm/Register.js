@@ -62,7 +62,7 @@ function Register(props) {
             } else if (res.emailNotUnique === true) {
                 notFoundMailFunc(true);
                 alert("Account with this mail already exist. Please change mail!")
-            } else if (res.passportNotUniquпше e === true) {
+            } else if (res.passportNotUnique === true) {
                 notFoundPassportFunc(true);
                 alert("Account with this passport already exist. Please change passport!")
             }
