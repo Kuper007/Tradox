@@ -7,7 +7,7 @@ import {NavLink} from 'react-router-dom';
 import axios from "axios";
 
 function Logo(props) {
-   const[pressed, setPressed] = useState();
+   const[pressed, setPressed] = useState(false);
     useEffect(() => {
         setPressed(true)
     }, [pressed])

@@ -11,12 +11,15 @@ import axios from "axios";
 function MainPage (props) {
   let fail = false;
   let showNoAuth = false;
+  const [showInfo, setShowInfo] = useState(false);
   const [destinationName, setDestinationName] = useState('');
   const [destinationId, setDestinationId] = useState('');
   const [notFound, setNotFound] = useState(false);
   const [pressed, setPressed] = useState(false)
   const [isAuth, setIsAuth] = useState(true);
-  const [departure, setDeparture] = useState()
+  const [data, setData] = useState([]);
+
+
   useEffect(() => {
     ifRegistered()
   }, [destinationId])
@@ -46,15 +49,12 @@ function MainPage (props) {
   }
   function getCountryInfo(){
     try {
-        axios.get("http://localhost:8080/api/v1/route/getData").then(res => {
-              if(res.status !== 200){
-                return fail = true;
-              }
-            else{
-              const departure1 = res.data.departure.fullName
-              setDeparture(departure1)
-              }
-            });
+      axios.get("http://localhost:8080/api/v1/route/getData").then(res => {
+          setData(res.data)
+        if(res.status === 200){
+          setShowInfo(true);
+        }
+      });
     } catch (e) {
       console.log(`😱 Axios request failed: ${e}`);
     }
@@ -94,8 +94,8 @@ function MainPage (props) {
       <div >
         <Logo authorized = {props.authorized}/>
         <WorldMap retrieveId = {retrieveId}/>
-        {!pressed?<SearchBar handleCountry = {handleCountry} handleKeyPress = {handleKeyPress} notfound = {notFound}/>:null}
-        {pressed?<Country country = {destinationName} departure = {departure}/>:null}
+        {!showInfo?<SearchBar handleCountry = {handleCountry} handleKeyPress = {handleKeyPress} notfound = {notFound}/>:null}
+        {showInfo?<Country country = {destinationName} data = {data}/>:null}
         {fail?<NoData/>:null}
         {showNoAuth?<UnauthorizedUserNotification/>:null}
       </div>
