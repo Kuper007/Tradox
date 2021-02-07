@@ -1,5 +1,6 @@
 package com.nc.tradox.service;
 
+import com.nc.tradox.api.RandomString;
 import com.nc.tradox.dao.Dao;
 import com.nc.tradox.model.*;
 import com.nc.tradox.model.impl.*;
@@ -175,6 +176,22 @@ public class TradoxService {
 
     public Boolean verifyUser(int id) {
         return dao.verifyUserById(id);
+    }
+
+    public String resetPassword(String email){
+
+        String newPwd = "";
+        int userId = dao.getUserByEmail(email);
+        if (userId!=0) {
+            newPwd = new RandomString(8).nextString();
+            boolean res = dao.changePassword(userId,newPwd);
+            if (res) {
+                return newPwd;
+            } else {
+                return "";
+            }
+        }
+        return newPwd;
     }
 
 }

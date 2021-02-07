@@ -219,6 +219,21 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
+    public Boolean changePassword(int id, String newPassword){
+        boolean res = true;
+        int hashPassword = newPassword.hashCode();
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute("UPDATE \"USER\" SET password="+hashPassword+" WHERE user_id=" + id);
+            statement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            res = false;
+        }
+        return res;
+    }
+
+    @Override
     public Boolean deleteUser(User user) {
         String email = user.getEmail();
         boolean res = false;

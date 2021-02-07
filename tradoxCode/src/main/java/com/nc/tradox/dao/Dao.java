@@ -27,6 +27,8 @@ public interface Dao {
 
     Boolean verifyUserById(int id);
 
+    Boolean changePassword(int id, String newPassword);
+
     Boolean deleteUser(User user);
 
     Boolean deleteUser(Integer id);

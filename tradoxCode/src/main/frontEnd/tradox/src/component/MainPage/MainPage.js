@@ -18,7 +18,7 @@ function MainPage (props) {
   const [isAuth, setIsAuth] = useState(false);
 
   useEffect(() => {
-    ifRegistered()
+    ifRegistered();
   }, [destinationId])
 
   useEffect(() => {
@@ -26,23 +26,23 @@ function MainPage (props) {
         let userId = localStorage.getItem("userId");
         setIsAuth(true);
       }
-  });
+  },[]);
 
   function getKeysFromMapArr(country) {
-    let countryO = myMap.get(country)
+    let countryO = myMap.get(country);
     if(typeof countryO == "undefined"){
-      setNotFound(true)
+      setNotFound(true);
     }
     else{
-      setNotFound(false)
+      setNotFound(false);
     }
-    return countryO
+    return countryO;
   }
   function getKeyFromMap(){
     let keys = [...myMap.entries()]
         .filter(({ 1: v }) => v === destinationId)
         .map(([k]) => k);
-    setDestinationName(keys)
+    setDestinationName(keys);
   }
   function getCountryInfo(){
     try {
@@ -52,7 +52,7 @@ function MainPage (props) {
         return <NoData/>
       }
       else{
-        console.log(`${response.data}`)
+        console.log(`${response.data}`);
       }
     } catch (e) {
       console.log(`😱 Axios request failed: ${e}`);
@@ -62,10 +62,10 @@ function MainPage (props) {
 
   function ifRegistered(){
     if(destinationId !== ''){
-      if(props.authorized !== false){
-        getKeyFromMap()
-        setPressed(true)
-        console.log(getCountryInfo())
+      if(isAuth !== false){
+        getKeyFromMap();
+        setPressed(true);
+        console.log(getCountryInfo());
     }
       else{
         return <UnauthorizedUserNotification/>
@@ -83,7 +83,7 @@ function MainPage (props) {
 
   function handleKeyPress(e) {
     if (e.key === 'Enter') {
-      setDestinationId(getKeysFromMapArr(destinationName))
+      setDestinationId(getKeysFromMapArr(destinationName));
     }
   }
 
@@ -91,7 +91,7 @@ function MainPage (props) {
 
   return (
       <div >
-        <Logo authorized = {props.authorized}/>
+        <Logo authorized = {isAuth}/>
         <WorldMap retrieveId = {retrieveId}/>
         {!pressed?<SearchBar handleCountry = {handleCountry} handleKeyPress = {handleKeyPress} notfound = {notFound}/>:null}
         {pressed?<Country country = {destinationName}/>:null}
