@@ -53,11 +53,11 @@ function Auth(props){
                     </label>
                 </form>
                 <div className = {style.btnGroup}>
-                    <NavLink to='/'>
+                    <NavLink to='/reset'>
                         <button> Forgot password? </button>
                     </NavLink>
                     <br></br>
-                    <NavLink to='/'>
+                    <NavLink to='/registration'>
                         <button> Register </button>
                     </NavLink>
                 </div>
