@@ -1,12 +1,13 @@
 import React, {useState, useEffect}  from 'react'
 import style from './Verification.module.css';
 import logo from '../../images/LogoTradoxLogo.svg';
+import {NavLink} from "react-router-dom";
 
 function Verification(){
 
     const[code,setCode] = useState("");
     const[realCode, setRealCode] = useState("");
-    const[errorVisible, serErrorVisible] = useState(false);
+    const[errorVisible, setErrorVisible] = useState(false);
 
     useEffect(() => {
         const requestOptions = {
@@ -17,19 +18,22 @@ function Verification(){
             data: data,
             status: response.status })
         ).then(res => {
+            console.log(res.data);
             if(res.data.res==="true"){
                 setRealCode(res.data.code);
             } else {
                 console.log("Connection error");
             }
         }));
-    })
+    },[])
 
      useEffect(() => {
 
       }, [errorVisible])
 
     const check = () => {
+        console.log(code);
+        console.log(realCode);
         if (code===realCode){
             const requestOptions = {
                 method: 'POST',
@@ -39,6 +43,7 @@ function Verification(){
                 data: data,
                 status: response.status })
             ).then(res => {
+                console.log(res.data);
                 if(res.data.res==="true"){
                     window.location.href = "http://localhost:8080/";
                 } else {
@@ -46,7 +51,7 @@ function Verification(){
                 }
             }));
         } else {
-            serErrorVisible(true);
+            setErrorVisible(true);
         }
     };
 

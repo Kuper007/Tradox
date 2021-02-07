@@ -24,7 +24,7 @@ public class RegistrationController {
     @PostMapping("/fill")
     public String registration(@RequestBody Map<String, String> json, BindingResult bindingResult, HttpSession httpSession) {
         if (!bindingResult.hasErrors()) {
-            return tradoxService.registerUser(json);
+            return tradoxService.registerUser(json,httpSession);
         }
         return "{\"result\": false, \"emailNotUnique\": false, \"passportNotUnique\": false}";
     }

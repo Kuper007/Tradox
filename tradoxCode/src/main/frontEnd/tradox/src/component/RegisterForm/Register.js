@@ -5,6 +5,7 @@ import InputForm from "./InputForm";
 import CreateButton from "./CreateButton";
 import Picker from "./CountryPicker";
 import myMap from "../CountrysMap"
+import {Redirect} from "react-router-dom";
 
 function Register(props) {
 
@@ -24,6 +25,7 @@ function Register(props) {
         .set("password",null).set("mobilePhone",null).set("passport",null).set("citizenship",null).set("currentCountry",null);
 
     let [state, setState] = useState(infoMap);
+    const[redirect,setRedirect] = useState(false);
 
     // function checkInfoMap() {
     //     const keys = infoMap.keys();
@@ -61,7 +63,9 @@ function Register(props) {
         ).then(res => {
              if (res.data.result === true) {
                 //tap(true);
-                window.location.href = "http://localhost:8080/verification";
+                localStorage.setItem("userId",res.data.userId);
+                setRedirect(true);
+                //window.location.href = "http://localhost:8080/";
              } else if (res.data.emailNotUnique === true) {
                 notFoundMailFunc(true);
                 alert("Account with this mail already exist. Please change mail!")
@@ -74,6 +78,7 @@ function Register(props) {
 
     return (
         <div className={style.registrationComponent}>
+        {redirect? <Redirect to='/verification'/> : null}
         <div className={style.registerLogo}>
             <img src={logo}/>
         </div>

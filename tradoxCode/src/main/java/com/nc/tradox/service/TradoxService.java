@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -85,7 +86,7 @@ public class TradoxService {
         return dao.deleteUser(userId);
     }
 
-    public String registerUser(Map<String, String> map) {
+    public String registerUser(Map<String, String> map, HttpSession session) {
         boolean emailNotUnique = false;
         boolean passportNotUnique = false;
         if (dao.isUser(map.get("email")))
@@ -104,7 +105,7 @@ public class TradoxService {
                 User user = new UserImpl();
                 user.setFirstName(map.get("first_name"));
                 user.setLastName(map.get("last_name"));
-                user.setBirthDate(new SimpleDateFormat("yyyy-mm-dd").parse(map.get("birth_date")));
+                user.setBirthDate(new SimpleDateFormat("yyyy-MM-dd").parse(map.get("birth_date")));
                 user.setEmail(map.get("email"));
                 user.setPhone(map.get("phone"));
                 user.setPassport(passport);
@@ -112,7 +113,11 @@ public class TradoxService {
                 if (!dao.registrate(user, map.get("password"))) {
                     dao.deletePassport(passport);
                 } else {
-                    return "{\"result\": true, \"emailNotUnique\": false, \"passportNotUnique\": false}";
+                    Integer userId = dao.getUserByEmail(map.get("email"));
+                    session.setAttribute("userId",userId);
+                    if (userId!=0){
+                        return "{\"result\": true, \"emailNotUnique\": false, \"passportNotUnique\": false, \"userId\": "+userId+"}";
+                    }
                 }
             } catch (ParseException exception) {
                 exception.printStackTrace();
@@ -166,6 +171,10 @@ public class TradoxService {
 
     public Country getCountryById(String id) {
         return dao.getCountryById(id);
+    }
+
+    public Boolean verifyUser(int id) {
+        return dao.verifyUserById(id);
     }
 
 }

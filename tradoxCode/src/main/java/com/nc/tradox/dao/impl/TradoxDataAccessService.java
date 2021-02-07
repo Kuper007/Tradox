@@ -205,6 +205,20 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
+    public Boolean verifyUserById(int id){
+        boolean res = true;
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute("UPDATE \"USER\" SET verify=1 WHERE user_id=" + id);
+            statement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            res = false;
+        }
+        return res;
+    }
+
+    @Override
     public Boolean deleteUser(User user) {
         String email = user.getEmail();
         boolean res = false;
@@ -573,6 +587,25 @@ public class TradoxDataAccessService implements Dao {
             throwables.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public Integer getUserByEmail(String email) {
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet res = statement.executeQuery("SELECT user_id FROM \"USER\" WHERE email =" + "'" + email + "'");
+            if (res.next()) {
+                Integer userId = res.getInt("user_id");
+                statement.close();
+                return userId;
+            } else {
+                System.out.println("There is no user with such email");
+            }
+            statement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
     }
 
     @Override

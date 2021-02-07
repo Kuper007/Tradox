@@ -25,6 +25,8 @@ public interface Dao {
 
     boolean updateUser(User user);
 
+    Boolean verifyUserById(int id);
+
     Boolean deleteUser(User user);
 
     Boolean deleteUser(Integer id);
@@ -56,6 +58,8 @@ public interface Dao {
     Country getCountryByFullName(String fullName);
 
     User getUserById(int id);
+
+    Integer getUserByEmail(String email);
 
     boolean isUser(String email);
 

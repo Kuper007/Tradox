@@ -3,7 +3,6 @@ package com.nc.tradox.api;
 import com.nc.tradox.model.User;
 import com.nc.tradox.service.TradoxService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,35 +25,35 @@ public class VerificationController {
     }
 
     @PostMapping("/verify")
-    public String verified(BindingResult bindingResult, HttpSession session){
+    public String verified(HttpSession session){
         String json = "{\"res\":\"false\"}";
-        if(!bindingResult.hasErrors()) {
-            int userId = (int) session.getAttribute("userId");
-            User user = tradoxService.getUserById(userId);
-            if (user!=null){
-                user.setVerify();
-                boolean res = tradoxService.updateUser(user);
+        int userId = (int) session.getAttribute("userId");
+        User user = tradoxService.getUserById(userId);
+        if (user!=null){
+            user.setVerify();
+            boolean res = tradoxService.verifyUser(userId);
+            if (res) {
                 json = "{\"res\":\"true\"}";
             }
         }
+
         return json;
     }
 
     @PostMapping("/mail")
-    public String sendMail(BindingResult bindingResult, HttpSession session){
+    public String sendMail(HttpSession session){
         String json = "{\"res\":\"false\"}";
-        if(!bindingResult.hasErrors()) {
-            int userId = (int) session.getAttribute("userId");
-            User user = tradoxService.getUserById(userId);
-            if (user!=null){
-                String email = user.getEmail();
-                String code = new RandomString(12).nextString();
-                boolean res = sendMail(email, code);
-                if (res) {
-                    json = "{\"res\":\"true\",\"code\":"+code+"}";
-                }
+        int userId = (int) session.getAttribute("userId");
+        User user = tradoxService.getUserById(userId);
+        if (user!=null){
+            String email = user.getEmail();
+            String code = new RandomString(12).nextString();
+            boolean res = sendMail(email, code);
+            if (res) {
+                json = "{\"res\":\"true\",\"code\":"+"\""+code+"\""+"}";
             }
         }
+
         return json;
     }
 
