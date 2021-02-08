@@ -5,7 +5,7 @@ import InputForm from "./InputForm";
 import CreateButton from "./CreateButton";
 import Picker from "./CountryPicker";
 import myMap from "../CountrysMap"
-import {Redirect} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
 
 function Register(props) {
 
@@ -80,7 +80,7 @@ function Register(props) {
         <div className={style.registrationComponent}>
         {redirect? <Redirect to='/verification'/> : null}
         <div className={style.registerLogo}>
-            <img src={logo}/>
+            <Redirect to = '/'> <img src={logo}/></Redirect>
         </div>
             {isTapped
                 ? <div className={style.verifyTitle}>We send you letter on email. Please, verify to start using your account.</div>
