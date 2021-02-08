@@ -6,7 +6,7 @@ import Consulates from './Consulates/Consulates'
 import News from './News/News'
 import {NavLink} from 'react-router-dom'
  function CountryInfo(props) {
-    let opened = false;
+    const [opened, setOpened] = useState(false)
     const [departure, setDeparture] = useState([])
      const [covidInfo, setCovidInfo] = useState([])
      useEffect(() => {
@@ -14,7 +14,7 @@ import {NavLink} from 'react-router-dom'
              setDeparture(props.data.departure)
              setCovidInfo(props.data.destination.covidInfo)
              if(props.data.status == undefined || props.data.status == true){
-                opened = true
+                setOpened(true)
              }
 
          console.log(props.data.departure)}
