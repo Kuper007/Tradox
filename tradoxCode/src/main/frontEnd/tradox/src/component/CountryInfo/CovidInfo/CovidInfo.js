@@ -4,16 +4,16 @@ export default function CovidInfo(props) {
 
     return (
         <div className = {style.container}>
-           <h1 style={{size:'18px'}}>Covid-19</h1>
-            <span> All time</span> <span>Today</span>
+           <h1 className={style.header}>Covid-19</h1>
+            <div><span>All time</span> <span>Today</span></div>
             <h3>Total cases</h3>
-            <span>{props.covidInfo.summaryTotalCases}</span> <span>{props.covidInfo.todayTotalCases}</span>
+            <div><span>{props.covidInfo.summaryTotalCases}</span> <span style={{color :"#B70202"}}>{props.covidInfo.todayTotalCases}</span></div>
             <h3>Active cases</h3>
-           <p></p> <span>{props.covidInfo.summaryActiveCases}</span> <span>{props.covidInfo.todayActiveCases}</span>
+            <div><span>{props.covidInfo.summaryActiveCases}</span><span style={{color :"#148534"}}>{props.covidInfo.todayActiveCases}</span></div>
             <h3>Deaths</h3>
-            <span>1232</span> <span>{props.covidInfo.todayDeaths}</span>
+            <div ><span>1232</span> <span style={{color :"#B70202"}}>{props.covidInfo.todayDeaths}</span></div>
             <h3>Recovered</h3>
-            <span>{props.covidInfo.summaryRecovered}</span> <span>{props.covidInfo.todayRecovered}</span>
+            <div><span>{props.covidInfo.summaryRecovered}</span> <span style={{color :"#148534"}}>{props.covidInfo.todayRecovered}</span></div>
         </div>
     )
 }

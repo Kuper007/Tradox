@@ -13,11 +13,11 @@ import {NavLink} from 'react-router-dom'
              setDeparture(props.data.departure)
              setCovidInfo(props.data.destination.covidInfo)
          console.log(props.data.departure)}
-     })
+     }, [departure])
 
     return (
         <div className = {styles.container}> 
-            <div className = {styles.countryStatus}>
+            <div className = {styles.openCountry}>
                 <h1 className = {styles.countryText}>{props.country} is open for you</h1>
             </div>
             <CovidInfo covidInfo = {covidInfo}/>

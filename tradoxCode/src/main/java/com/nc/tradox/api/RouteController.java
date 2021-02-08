@@ -70,6 +70,20 @@ public class RouteController {
         return tradoxService.saveRoute(r, userId);
     }
 
+    @PostMapping("/getCountryInfo")
+    public InfoData getCountryInfo(@RequestBody String country, HttpSession httpSession){
+        if (httpSession.getAttribute("userId") != null) {
+            int userId = (int) httpSession.getAttribute("userId");
+            Country location = tradoxService.getUserById(userId).getLocation();
+            String selectedCountryFullName = country;
+            Country selectedCountry = tradoxService.getCountryByFullName(selectedCountryFullName);
+            if (location != null && selectedCountry != null) {
+                return tradoxService.getInfoData(location.getShortName(), selectedCountry.getShortName());
+            }
+        }
+        return new InfoDataImpl();
+    }
+
     @PostMapping("/editTransits")
     public void editTransits(@RequestBody Set<InfoData> transits, HttpSession session) {
         Integer routeId = ((Route) session.getAttribute("currentRoute")).getRouteId();

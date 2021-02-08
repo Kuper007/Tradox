@@ -12,9 +12,21 @@
     background: rgba(247, 167, 167, 0.4);
     border-radius: 50px;
 }
-h3{
-    font-size: 15px;
+.header{
     font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    margin-top: 40px;
+    color: #000000;
+}
+span{
+    margin: 40px;
+}
+h3{
+    margin-top: 7px;
+    margin-bottom: 7px;
+    font-weight: 600;
+    font-size: 15px;
     line-height: 18px;
-    letter-spacing: 0em;
+    color: #000000;
 }
