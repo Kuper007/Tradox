@@ -15,7 +15,7 @@ function MainPage (props) {
   const [destinationName, setDestinationName] = useState('');
   const [destinationId, setDestinationId] = useState('');
   const [notFound, setNotFound] = useState(false);
-  const [isAuth, setIsAuth] = useState(true);
+  const [isAuth, setIsAuth] = useState(false);
   const [data, setData] = useState([]);
 
 
@@ -91,7 +91,7 @@ function MainPage (props) {
 
   return (
       <div >
-        <Logo authorized = {props.authorized}/>
+        <Logo authorized = {isAuth}/>
         <WorldMap retrieveId = {retrieveId}/>
         {!showInfo?<SearchBar handleCountry = {handleCountry} handleKeyPress = {handleKeyPress} notfound = {notFound}/>:null}
         {showInfo?<Country country = {destinationName} data = {data}/>:null}

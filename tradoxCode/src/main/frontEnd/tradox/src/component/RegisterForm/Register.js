@@ -80,7 +80,7 @@ function Register(props) {
         <div className={style.registrationComponent}>
         {redirect? <Redirect to='/verification'/> : null}
         <div className={style.registerLogo}>
-            <Redirect to = '/'> <img src={logo}/></Redirect>
+            <NavLink to = '/'> <img src={logo}/></NavLink>
         </div>
             {isTapped
                 ? <div className={style.verifyTitle}>We send you letter on email. Please, verify to start using your account.</div>
