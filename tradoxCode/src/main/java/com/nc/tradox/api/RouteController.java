@@ -6,6 +6,7 @@ import com.nc.tradox.model.Route;
 import com.nc.tradox.model.impl.InfoDataImpl;
 import com.nc.tradox.service.TradoxService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -71,14 +72,13 @@ public class RouteController {
     }
 
     @PostMapping("/getCountryInfo")
-    public InfoData getCountryInfo(@RequestBody String country, HttpSession httpSession){
+    @ResponseStatus(HttpStatus.OK)
+    public InfoData getCountryInfo(@RequestBody Map<String, String> json, HttpSession httpSession){
         if (httpSession.getAttribute("userId") != null) {
             int userId = (int) httpSession.getAttribute("userId");
             Country location = tradoxService.getUserById(userId).getLocation();
-            String selectedCountryFullName = country;
-            Country selectedCountry = tradoxService.getCountryByFullName(selectedCountryFullName);
-            if (location != null && selectedCountry != null) {
-                return tradoxService.getInfoData(location.getShortName(), selectedCountry.getShortName());
+            if (location != null) {
+                return tradoxService.getInfoData(location.getShortName(), json.get("countryName"));
             }
         }
         return new InfoDataImpl();

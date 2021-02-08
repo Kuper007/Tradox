@@ -8,15 +8,6 @@ import axios from "axios";
 
 function Logo(props) {
    const[pressed, setPressed] = useState(false);
-    useEffect(() => {
-        setPressed(true)
-    }, [pressed])
-
-    function testLogIn(){
-        axios.get("http://localhost:8080/api/v1/route/test").then(res =>{
-                console.log(res.status);
-            });
-    }
 
    function showAuth() {
         if (pressed === false)
@@ -30,7 +21,6 @@ function Logo(props) {
             <div className = {style.auth}>
             {pressed ?<div className = {style.hidable} >
                 {!props.authorized? <div style= {{marginTop: '77px'}}>
-                    <button onClick={testLogIn}>test log in</button>
                         <NavLink className = {`${style.register} ${style.link}`} to= '/registration'>Register</NavLink>
                     <NavLink className = {`${style.logIn} ${style.link}`} to = '/auth'>Log in</NavLink></div>:
                    <div style= {{marginTop: '77px'}}> <NavLink className = {`${style.register} ${style.link}`} to= '/account'>To account</NavLink>

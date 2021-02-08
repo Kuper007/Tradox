@@ -15,7 +15,6 @@ function MainPage (props) {
   const [destinationName, setDestinationName] = useState('');
   const [destinationId, setDestinationId] = useState('');
   const [notFound, setNotFound] = useState(false);
-  const [pressed, setPressed] = useState(false)
   const [isAuth, setIsAuth] = useState(true);
   const [data, setData] = useState([]);
 
@@ -47,26 +46,26 @@ function MainPage (props) {
         .map(([k]) => k);
     setDestinationName(keys)
   }
-  function getCountryInfo(){
-    try {
-      axios.get("http://localhost:8080/api/v1/route/getData").then(res => {
-          setData(res.data)
-        if(res.status === 200){
-          setShowInfo(true);
-        }
-      });
-    } catch (e) {
-      console.log(`😱 Axios request failed: ${e}`);
-    }
 
-  }
+    function getCountryInfo(){
+      try{
+        axios.post("http://localhost:8080/api/v1/route/getCountryInfo", { "countryName": destinationId}, {headers:{ 'Content-Type': 'application/json' }}).then(res => {
+          setData(res.data)
+          if (res.status === 200){
+            setShowInfo(true)
+          }
+        })
+      }
+      catch (e){
+        console.log(`😱 Axios request failed: ${e}`);
+      }
+    }
 
   function ifRegistered(){
     if(destinationId != ''){
       if(isAuth != false){
         getKeyFromMap()
         getCountryInfo()
-        setPressed(true)
     }
       else{
           return showNoAuth = true;
