@@ -1,0 +1,28 @@
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.checkBtn {
+    border: none;
+    display: flex;
+    width: 150px;
+    height: 40px;
+    background: #F9B300;
+    border-radius: 50px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 18px;
+    margin-top: 44px;
+    margin-left: auto;
+    margin-right: auto;
+}

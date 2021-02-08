@@ -175,4 +175,9 @@ public class UserImpl implements com.nc.tradox.model.User {
     public Boolean isVerified() {
         return this.verify;
     }
+
+    @Override
+    public void setVerify(){
+        this.verify = true;
+    }
 }

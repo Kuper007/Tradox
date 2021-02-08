@@ -5,6 +5,7 @@ import InputForm from "./InputForm";
 import CreateButton from "./CreateButton";
 import Picker from "./CountryPicker";
 import myMap from "../CountrysMap"
+import {Redirect} from "react-router-dom";
 
 function Register(props) {
 
@@ -24,6 +25,7 @@ function Register(props) {
         .set("password",null).set("mobilePhone",null).set("passport",null).set("citizenship",null).set("currentCountry",null);
 
     let [state, setState] = useState(infoMap);
+    const[redirect,setRedirect] = useState(false);
 
     // function checkInfoMap() {
     //     const keys = infoMap.keys();
@@ -45,7 +47,7 @@ function Register(props) {
 
     function onClickS(e) {
         e.preventDefault();
-        fetch('http://localhost:8080/api/v1/registration/fill/',{method:"POST",body: JSON.stringify({
+        fetch('http://localhost:8080/api/v1/registration/fill/',{method:"POST", headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
                 "first_name": state.get("firstName"),
                 "last_name": state.get("lastName"),
                 "birth_date": state.get("dateOfBirth"),
@@ -55,22 +57,28 @@ function Register(props) {
                 "passport_id": state.get("passport"),
                 "citizenship": myMap.get(state.get("citizenship")),
                 "country_id": myMap.get(state.get("currentCountry"))
-        })}).then(response => {
-            let res = response.json()
-            if (res.result === true) {
-                tap(true)
-            } else if (res.emailNotUnique === true) {
+        })}).then(response => response.json().then(data => ({
+            data: data,
+            status: response.status })
+        ).then(res => {
+             if (res.data.result === true) {
+                //tap(true);
+                localStorage.setItem("userId",res.data.userId);
+                setRedirect(true);
+                //window.location.href = "http://localhost:8080/";
+             } else if (res.data.emailNotUnique === true) {
                 notFoundMailFunc(true);
                 alert("Account with this mail already exist. Please change mail!")
-            } else if (res.passportNotUnique === true) {
+             } else if (res.data.passportNotUnique === true) {
                 notFoundPassportFunc(true);
                 alert("Account with this passport already exist. Please change passport!")
-            }
-        })
+             }
+        }));
     }
 
     return (
         <div className={style.registrationComponent}>
+        {redirect? <Redirect to='/verification'/> : null}
         <div className={style.registerLogo}>
             <img src={logo}/>
         </div>

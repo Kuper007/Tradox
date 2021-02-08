@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.Set;
 
 public interface User  {
+    void setVerify();
+
     enum UserTypeEnum {
         user,admin,vip
     }

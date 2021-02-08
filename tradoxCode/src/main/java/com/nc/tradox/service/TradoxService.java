@@ -1,5 +1,6 @@
 package com.nc.tradox.service;
 
+import com.nc.tradox.api.RandomString;
 import com.nc.tradox.dao.Dao;
 import com.nc.tradox.model.*;
 import com.nc.tradox.model.impl.*;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -85,27 +87,26 @@ public class TradoxService {
         return dao.deleteUser(userId);
     }
 
-    public String registerUser(Map<String, String> map) {
+    public String registerUser(Map<String, String> map, HttpSession session) {
         boolean emailNotUnique = false;
         boolean passportNotUnique = false;
         if (dao.isUser(map.get("email")))
             emailNotUnique = true;
-        if (dao.isPassport(map.get("passport")))
+        if (dao.isPassport(map.get("passport_id")))
             passportNotUnique = true;
         if (emailNotUnique || passportNotUnique)
             return "{\"result\": false, \"emailNotUnique\": " + emailNotUnique + ", \"passportNotUnique\": " + passportNotUnique + "}";
-
-        Country citizenship = getCountryByFullName(map.get("citizenship"));
-        Country location = getCountryByFullName(map.get("location"));
-        Passport passport = new PassportImpl(map.get("passport"), citizenship);
+        Country citizenship = getCountryById(map.get("citizenship"));
+        Country location = getCountryById(map.get("country_id"));
+        Passport passport = new PassportImpl(map.get("passport_id"), citizenship);
         if (!dao.addPassport(passport)) {
             return "{\"result\": false, \"emailNotUnique\": false, \"passportNotUnique\": false}";
         } else {
             try {
                 User user = new UserImpl();
-                user.setFirstName(map.get("firstName"));
-                user.setLastName(map.get("lastName"));
-                user.setBirthDate(new SimpleDateFormat("dd.MM.yyyy").parse(map.get("birthDate")));
+                user.setFirstName(map.get("first_name"));
+                user.setLastName(map.get("last_name"));
+                user.setBirthDate(new SimpleDateFormat("yyyy-MM-dd").parse(map.get("birth_date")));
                 user.setEmail(map.get("email"));
                 user.setPhone(map.get("phone"));
                 user.setPassport(passport);
@@ -113,7 +114,11 @@ public class TradoxService {
                 if (!dao.registrate(user, map.get("password"))) {
                     dao.deletePassport(passport);
                 } else {
-                    return "{\"result\": true, \"emailNotUnique\": false, \"passportNotUnique\": false}";
+                    Integer userId = dao.getUserByEmail(map.get("email"));
+                    session.setAttribute("userId",userId);
+                    if (userId!=0){
+                        return "{\"result\": true, \"emailNotUnique\": false, \"passportNotUnique\": false, \"userId\": "+userId+"}";
+                    }
                 }
             } catch (ParseException exception) {
                 exception.printStackTrace();
@@ -167,6 +172,26 @@ public class TradoxService {
 
     public Country getCountryById(String id) {
         return dao.getCountryById(id);
+    }
+
+    public Boolean verifyUser(int id) {
+        return dao.verifyUserById(id);
+    }
+
+    public String resetPassword(String email){
+
+        String newPwd = "";
+        int userId = dao.getUserByEmail(email);
+        if (userId!=0) {
+            newPwd = new RandomString(8).nextString();
+            boolean res = dao.changePassword(userId,newPwd);
+            if (res) {
+                return newPwd;
+            } else {
+                return "";
+            }
+        }
+        return newPwd;
     }
 
 }

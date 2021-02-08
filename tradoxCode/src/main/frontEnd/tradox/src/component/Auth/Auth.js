@@ -53,9 +53,13 @@ function Auth(props){
                     </label>
                 </form>
                 <div className = {style.btnGroup}>
-                    <button onClick={() => {}}> Forgot password? </button>
+                    <NavLink to='/reset'>
+                        <button> Forgot password? </button>
+                    </NavLink>
                     <br></br>
-                    <button onClick={() => {}}> Register </button>
+                    <NavLink to='/registration'>
+                        <button> Register </button>
+                    </NavLink>
                 </div>
                 <button onClick={() => validate()} className = {style.authBtn}> Log in </button>
             </div>
