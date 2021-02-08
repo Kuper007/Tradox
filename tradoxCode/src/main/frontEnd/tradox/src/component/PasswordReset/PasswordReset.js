@@ -10,8 +10,22 @@ function PasswordReset(){
     const[redirect,setRedirect] = useState(false);
 
     const send = () => {
-        //TODO: fetch controller
-        setRedirect(true);
+          const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({'email': email})
+          };
+          fetch("http://localhost:8080/api/v1/reset/mail", requestOptions).then(response => response.json().then(data => ({
+            data: data,
+            status: response.status })
+          ).then(res => {
+            if (res.data.res=="true"){
+                setRedirect(true);
+            } else {
+                console.log("Connection error");
+            }
+          }));
+
     };
 
     return (
@@ -31,3 +45,5 @@ function PasswordReset(){
     );
 
 }
+
+export default PasswordReset;

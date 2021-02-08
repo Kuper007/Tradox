@@ -179,7 +179,6 @@ public class TradoxService {
     }
 
     public String resetPassword(String email){
-
         String newPwd = "";
         int userId = dao.getUserByEmail(email);
         if (userId!=0) {
@@ -194,4 +193,7 @@ public class TradoxService {
         return newPwd;
     }
 
+    public List<Country> getAllCountries(){
+        return dao.getAllCountries();
+    }
 }

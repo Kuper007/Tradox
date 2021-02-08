@@ -13,6 +13,12 @@ function Logo(props) {
         else setPressed(false)
     }
 
+   const logout = () => {
+        localStorage.removeItem("auth");
+        localStorage.removeItem("userId");
+        window.location.reload();
+   };
+
     return (
         <div className = {style.container}>
             <NavLink to = '/'><img src={logo} alt="logo" className = {style.logo}/></NavLink>
@@ -21,7 +27,7 @@ function Logo(props) {
                 {!props.authorized? <div style= {{marginTop: '77px'}}><NavLink className = {`${style.register} ${style.link}`} to= '/registration'>Register</NavLink>
                     <NavLink className = {`${style.logIn} ${style.link}`} to = '/auth'>Log in</NavLink></div>:
                    <div style= {{marginTop: '77px'}}> <NavLink className = {`${style.register} ${style.link}`} to= '/account'>To account</NavLink>
-                    <NavLink className = {`${style.logOut} ${style.link}`} to = '/logout'>Log out</NavLink></div>
+                   <button className={style.logOut} onClick={() => logout()}>Log out</button></div>
                 }
                     <img src = {vector} alt = 'vector' className = {style.vector}/>
                 </div>: null}
@@ -34,4 +40,4 @@ function Logo(props) {
 
 
 
-export default Logo
+export default Logo;

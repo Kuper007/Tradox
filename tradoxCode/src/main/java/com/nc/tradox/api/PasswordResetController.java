@@ -15,6 +15,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 import java.util.Properties;
 
 @RequestMapping("api/v1/reset")
@@ -29,14 +30,14 @@ public class PasswordResetController {
     }
 
     @PostMapping("/mail")
-    public String reset(@RequestBody String email, BindingResult bindingResult, HttpSession session) {
-        String json = "\"res\":\"false\"";
+    public String reset(@RequestBody Map<String,String> map, BindingResult bindingResult, HttpSession session) {
+        String json = "{\"res\":\"false\"}";
         if(!bindingResult.hasErrors()){
-            String password = tradoxService.resetPassword(email);
+            String password = tradoxService.resetPassword(map.get("email"));
             if (!password.equals("")) {
-                boolean res = sendMail(email,password);
+                boolean res = sendMail(map.get("email"),password);
                 if (res) {
-                    json = "\"res\":\"true\"";
+                    json = "{\"res\":\"true\"}";
                 }
             }
         }
