@@ -207,4 +207,8 @@ public class TradoxService {
         return newPwd;
     }
 
+    public List<Country> getAllCountries(){
+        return dao.getAllCountries();
+    }
+
 }

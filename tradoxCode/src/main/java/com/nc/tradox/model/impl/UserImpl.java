@@ -60,8 +60,9 @@ public class UserImpl implements User {
         this.birthDate = resultSet.getDate("birth_date");
         this.email = resultSet.getString("email");
         this.phone = resultSet.getString("phone");
-        this.location = new CountryImpl(resultSet.getString("country_id"), "");
-        this.passport = null;
+        this.location = new CountryImpl(resultSet.getString("country_id"), null);
+        Country citizenship = new CountryImpl(resultSet.getString("citizenship"), null);
+        this.passport = new PassportImpl(resultSet.getString("passport_id"), citizenship);
         this.verify = resultSet.getBoolean("verify");
     }
 
@@ -73,7 +74,7 @@ public class UserImpl implements User {
         this.birthDate = user.getDate("birth_date");
         this.email = user.getString("email");
         this.phone = user.getString("phone");
-        this.location = new CountryImpl(user.getString("country_id"), "");
+        this.location = new CountryImpl(user.getString("country_id"), user.getString("full_name"));
         this.passport = new PassportImpl(passport);
         this.verify = user.getBoolean("verify");
     }

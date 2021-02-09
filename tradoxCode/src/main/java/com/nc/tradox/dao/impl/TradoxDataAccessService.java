@@ -37,12 +37,18 @@ public class TradoxDataAccessService implements Dao {
         Response response = new Response();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM \"USER\" LEFT JOIN COUNTRY ON \"USER\".COUNTRY_ID = COUNTRY.COUNTRY_ID " +
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM \"USER\" " +
                     "WHERE EMAIL = '" + email + "'");
             if (resultSet.next()) {
                 int real_password = resultSet.getInt("password");
                 if (real_password == password.hashCode()) {
-                    User user = new UserImpl(resultSet);
+                    User user = new UserImpl();
+                    user.setUserId(resultSet.getInt("user_id"));
+                    user.setUserType(User.UserTypeEnum.valueOf(resultSet.getString("user_type")));
+                    user.setFirstName(resultSet.getString("first_name"));
+                    user.setLastName(resultSet.getString("last_name"));
+                    if (resultSet.getBoolean("verify"))
+                        user.setVerify();
                     response.setObject(user);
                 } else {
                     response.setError("password");
@@ -738,12 +744,12 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
-    public List<Country> getAllCountries(){
+    public List<Country> getAllCountries() {
         List<Country> countries = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM country");
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 Country country = new CountryImpl(resultSet);
                 countries.add(country);
             }
