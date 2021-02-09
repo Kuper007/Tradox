@@ -4,6 +4,7 @@ import com.nc.tradox.model.*;
 import com.nc.tradox.model.impl.*;
 
 import java.sql.ResultSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -80,4 +81,6 @@ public interface Dao {
     boolean addPassport(Passport passport);
 
     boolean deletePassport(Passport passport);
+
+    List<Country> getAllCountries();
 }

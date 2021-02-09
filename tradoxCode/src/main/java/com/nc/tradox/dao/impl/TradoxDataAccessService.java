@@ -737,4 +737,20 @@ public class TradoxDataAccessService implements Dao {
         return false;
     }
 
+    @Override
+    public List<Country> getAllCountries(){
+        List<Country> countries = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM country");
+            while (resultSet.next()){
+                Country country = new CountryImpl(resultSet);
+                countries.add(country);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return countries;
+    }
+
 }

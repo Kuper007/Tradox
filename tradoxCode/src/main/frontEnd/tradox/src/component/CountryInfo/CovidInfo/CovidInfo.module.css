@@ -9,8 +9,24 @@
     left: 252px;
     top: 527px;
     border-radius: 50px;
-
-
-    background: #F7A7A7;
+    background: rgba(247, 167, 167, 0.4);
     border-radius: 50px;
+}
+.header{
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    margin-top: 40px;
+    color: #000000;
+}
+span{
+    margin: 40px;
+}
+h3{
+    margin-top: 7px;
+    margin-bottom: 7px;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #000000;
 }

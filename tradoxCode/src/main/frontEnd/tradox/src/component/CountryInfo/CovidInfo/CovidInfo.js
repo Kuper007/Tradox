@@ -1,18 +1,19 @@
 import React from 'react'
 import style from './CovidInfo.module.css'
 export default function CovidInfo(props) {
+
     return (
         <div className = {style.container}>
-           <h1>Covid-19</h1>
-            <span> All time Today</span>
+           <h1 className={style.header}>Covid-19</h1>
+            <div><span>All time</span> <span>Today</span></div>
             <h3>Total cases</h3>
-            <span>{props.total} {props.totalToday}</span>
+            <div><span>{props.covidInfo.summaryTotalCases}</span> <span style={{color :"#B70202"}}>{props.covidInfo.todayTotalCases}</span></div>
             <h3>Active cases</h3>
-            <span>{props.activeTotal} {props.activeToday}</span>
+            <div><span>{props.covidInfo.summaryActiveCases}</span><span style={{color :"#148534"}}>{props.covidInfo.todayActiveCases}</span></div>
             <h3>Deaths</h3>
-            <span>{props.totalDeaths} {props.deathsToday}</span>
+            <div ><span>1232</span> <span style={{color :"#B70202"}}>{props.covidInfo.todayDeaths}</span></div>
             <h3>Recovered</h3>
-            <span>{props.recoveredTotal} {props.recoveredToday}</span>
+            <div><span>{props.covidInfo.summaryRecovered}</span> <span style={{color :"#148534"}}>{props.covidInfo.todayRecovered}</span></div>
         </div>
     )
 }
