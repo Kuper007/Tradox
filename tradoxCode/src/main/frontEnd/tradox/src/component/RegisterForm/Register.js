@@ -64,6 +64,7 @@ function Register(props) {
              if (res.data.result === true) {
                 //tap(true);
                 localStorage.setItem("userId",res.data.userId);
+                localStorage.setItem("auth",true);
                 setRedirect(true);
                 //window.location.href = "http://localhost:8080/";
              } else if (res.data.emailNotUnique === true) {

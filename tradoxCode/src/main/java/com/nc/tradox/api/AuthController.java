@@ -2,18 +2,12 @@ package com.nc.tradox.api;
 
 import com.nc.tradox.model.User;
 import com.nc.tradox.service.TradoxService;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.support.RequestContextUtils;
-import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionBindingListener;
 import java.util.Map;
 
 @RequestMapping("api/v1/auth")
@@ -38,6 +32,7 @@ public class AuthController {
             if (user != null) {
                 session.setAttribute("authorized",true);
                 session.setAttribute("userId",user.getUserId());
+                session.setAttribute("userType",user.getUserType());
             } else {
                 session.setAttribute("authorized",false);
                 session.setAttribute("error",res);
@@ -52,11 +47,12 @@ public class AuthController {
 
     public String getAuthResult(HttpSession session) {
         Boolean isAuthorized = (Boolean) session.getAttribute("authorized");
-        String json = "";
+        String json;
         if (isAuthorized) {
             int userId = (int) session.getAttribute("userId");
             String user = "\""+userId+"\"";
-            json = "{\"res\":\"true\",\"userId\":"+user+"}";
+            String userType = "\""+session.getAttribute("userType") +"\"";
+            json = "{\"res\":\"true\",\"userId\":"+user+",\"userType\":"+userType+"}";
             return json;
         } else {
             String error = (String) session.getAttribute("error");

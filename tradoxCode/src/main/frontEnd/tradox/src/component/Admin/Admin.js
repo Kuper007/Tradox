@@ -3,13 +3,12 @@ import style from './Admin.module.css';
 import logo from '../../images/LogoTradoxLogo.svg';
 import {NavLink,Redirect} from "react-router-dom";
 import ReactTable from 'react-table';
-import 'react-table/react-table.css';
 
 function Admin(){
 
-    const[data,setData] = useState([]);
+    const [data,setData] = useState([]);
 
-    useEffect({
+    useEffect(() => {
         const requestOptions = {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
@@ -33,10 +32,11 @@ function Admin(){
     }]
 
     return(
-        <ReactTable
-            data = {...data}
+        <span>Admin Page</span>
+        /*<ReactTable
+            data = {data}
             columns = {columns}
-        />
+        />*/
     );
 
 }

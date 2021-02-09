@@ -18,6 +18,7 @@ function Logo(props) {
    const logout = () => {
         localStorage.removeItem("auth");
         localStorage.removeItem("userId");
+        localStorage.removeItem("userType");
         window.location.reload();
    };
 
@@ -30,6 +31,7 @@ function Logo(props) {
                         <NavLink className = {`${style.register} ${style.link}`} to= '/registration'>Register</NavLink>
                     <NavLink className = {`${style.logIn} ${style.link}`} to = '/auth'>Log in</NavLink></div>:
                    <div style= {{marginTop: '77px'}}> <NavLink className = {`${style.register} ${style.link}`} to= '/account'>To account</NavLink>
+                   {props.admin ? <NavLink className = {`${style.logIn} ${style.link}`} to = '/admin'>Admin</NavLink> : null}
                    <button className={style.logOut} onClick={() => logout()}>Log out</button></div>
                 }
                     <img src = {vector} alt = 'vector' className = {style.vector}/>

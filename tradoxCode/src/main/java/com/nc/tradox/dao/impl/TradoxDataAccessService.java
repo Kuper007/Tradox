@@ -40,7 +40,6 @@ public class TradoxDataAccessService implements Dao {
         Map<User, String> result = new HashMap<>();
         try {
             Statement statement = connection.createStatement();
-
             ResultSet res = statement.executeQuery("SELECT * FROM \"USER\"  WHERE email =" + "'" + email + "'");
             if (res.next()) {
                 String real_password = res.getString("password");

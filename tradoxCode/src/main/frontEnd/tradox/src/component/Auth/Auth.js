@@ -22,6 +22,7 @@ function Auth(props){
                 //setAuthorized(true);
                 localStorage.setItem('userId', userId);
                 localStorage.setItem('auth', true);
+                localStorage.setItem("userType",res.data.userType);
                 window.location.href = "http://localhost:8080/";
             } else {
                 //TODO: SHOW ALERTS
