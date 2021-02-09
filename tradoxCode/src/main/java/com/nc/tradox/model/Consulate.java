@@ -24,4 +24,8 @@ public interface Consulate {
     Country getOwner();
 
     void setOwner(Country owner);
+
+    FullRoute getFullRoute();
+
+    void setFullRoute(FullRoute fullRoute);
 }

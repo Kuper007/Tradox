@@ -1,7 +1,5 @@
 package com.nc.tradox.model;
 
-import com.nc.tradox.model.impl.ReasonImpl;
-
 public interface Status {
     enum StatusEnum {
         open, close
@@ -15,9 +13,9 @@ public interface Status {
 
     void setStatus(StatusEnum status);
 
-    ReasonImpl getReasons();
+    Reason getReason();
 
-    void setReasons(ReasonImpl reasons);
+    void setReason(Reason reason);
 
     Country getCountry();
 
@@ -26,4 +24,8 @@ public interface Status {
     Country getDestination();
 
     void setDestination(Country destination);
+
+    FullRoute getFullRoute();
+
+    void setFullRoute(FullRoute fullRoute);
 }

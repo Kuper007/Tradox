@@ -12,25 +12,27 @@ public class StatusImpl implements Status {
 
     protected Integer statusId;
     protected StatusEnum status;
-    protected ReasonImpl reasons;
-    protected FullRoute fullRoute;
     protected Reason reason;
+    protected FullRoute fullRoute;
 
     public StatusImpl() {
 
     }
 
-    public StatusImpl(Integer statusId1, StatusEnum status, ReasonImpl reasons, FullRoute fullRoute) {
+    public StatusImpl(Integer statusId1,
+                      StatusEnum status,
+                      Reason reason,
+                      FullRoute fullRoute) {
         this.statusId = statusId1;
         this.status = status;
-        this.reasons = reasons;
+        this.reason = reason;
         this.fullRoute = fullRoute;
     }
 
     public StatusImpl(ResultSet resultSet) throws SQLException {
         this.statusId = resultSet.getInt("status_id");
         this.status = resultSet.getInt("value") == 0 ? Status.StatusEnum.close : Status.StatusEnum.open;
-        this.reasons = new ReasonImpl(resultSet);
+        this.reason = new ReasonImpl(resultSet);
     }
 
     @Override
@@ -54,33 +56,43 @@ public class StatusImpl implements Status {
     }
 
     @Override
-    public ReasonImpl getReasons() {
-        return reasons;
+    public Reason getReason() {
+        return reason;
     }
 
     @Override
-    public void setReasons(ReasonImpl reasons) {
-        this.reasons = reasons;
+    public void setReason(Reason reason) {
+        this.reason = reason;
     }
 
     @Override
     public Country getCountry() {
-        return fullRoute.getDeparture();
+        return getFullRoute().getDeparture();
     }
 
     @Override
     public void setCountry(Country country) {
-        fullRoute.setDeparture(country);
+        getFullRoute().setDeparture(country);
     }
 
     @Override
     public Country getDestination() {
-        return fullRoute.getDestination();
+        return getFullRoute().getDestination();
     }
 
     @Override
     public void setDestination(Country destination) {
-        fullRoute.setDestination(destination);
+        getFullRoute().setDestination(destination);
+    }
+
+    @Override
+    public FullRoute getFullRoute() {
+        return fullRoute == null ? new FullRouteImpl() : fullRoute;
+    }
+
+    @Override
+    public void setFullRoute(FullRoute fullRoute) {
+        this.fullRoute = fullRoute;
     }
 
 }

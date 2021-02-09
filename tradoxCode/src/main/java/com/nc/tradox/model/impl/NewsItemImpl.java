@@ -18,7 +18,10 @@ public class NewsItemImpl implements NewsItem {
 
     }
 
-    public NewsItemImpl(Integer newsItemId, String text, Date date, Country country) {
+    public NewsItemImpl(Integer newsItemId,
+                        String text,
+                        Date date,
+                        Country country) {
         this.newsItemId = newsItemId;
         this.text = text;
         this.date = date;
@@ -63,7 +66,7 @@ public class NewsItemImpl implements NewsItem {
 
     @Override
     public Country getCountry() {
-        return country;
+        return country == null ? new CountryImpl() : country;
     }
 
     @Override

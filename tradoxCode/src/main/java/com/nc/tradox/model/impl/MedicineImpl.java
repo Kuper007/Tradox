@@ -16,7 +16,9 @@ public class MedicineImpl implements Medicine {
 
     }
 
-    public MedicineImpl(Integer medicineId, String name, Country country) {
+    public MedicineImpl(Integer medicineId,
+                        String name,
+                        Country country) {
         this.medicineId = medicineId;
         this.name = name;
         this.country = country;
@@ -49,7 +51,7 @@ public class MedicineImpl implements Medicine {
 
     @Override
     public Country getCountry() {
-        return country;
+        return country == null ? new CountryImpl() : country;
     }
 
     @Override

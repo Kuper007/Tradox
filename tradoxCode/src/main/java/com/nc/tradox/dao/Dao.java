@@ -25,17 +25,14 @@ public interface Dao {
 
     boolean updateUser(User user);
 
-    Boolean verifyUserById(int id);
+    Boolean verifyUserById(int userId);
 
     Boolean changePassword(int id, String newPassword);
 
-    Boolean deleteUser(User user);
+    boolean deleteUser(User user);
 
-    Boolean deleteUser(Integer id);
-
-    Covid getCovidByCountryId(String id);
-
-    InfoData getInfoData(String departureId, String destinationId);
+    @Deprecated
+    boolean deleteUser(int userId);
 
     Map<String, Status.StatusEnum> getCountriesWhereNameLike(String countryId, String search);
 
@@ -53,7 +50,13 @@ public interface Dao {
 
     Status getStatusByCountryIds(FullRoute fullRoute);
 
-    Reason getReasonsByStatusId(Integer statusId);
+    Covid getCovidInfo(Country country);
+
+    double getMediumBill(Country country);
+
+    int getTourismCount(Country country);
+
+    String getCurrency(Country country);
 
     Boolean saveTransit(Set<InfoData> infoData, Integer route_id);
 

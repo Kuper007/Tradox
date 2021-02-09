@@ -1,5 +1,6 @@
 package com.nc.tradox.model.impl;
 
+import com.nc.tradox.model.Country;
 import com.nc.tradox.model.Exchange;
 import com.nc.tradox.model.FullRoute;
 
@@ -19,7 +20,9 @@ public class ExchangeImpl implements Exchange {
 
     }
 
-    public ExchangeImpl(String localCurrency, String dollarCurrency, FullRoute fullRoute) {
+    public ExchangeImpl(String localCurrency,
+                        String dollarCurrency,
+                        FullRoute fullRoute) {
         this.localCurrency = localCurrency;
         this.dollarCurrency = dollarCurrency;
         this.fullRoute = fullRoute;
@@ -46,11 +49,29 @@ public class ExchangeImpl implements Exchange {
     }
 
     @Override
-    public FullRoute getFullRoute() {
-        return fullRoute;
+    public Country getDeparture() {
+        return getFullRoute().getDeparture();
     }
 
     @Override
+    public void setDeparture(Country departure) {
+        getFullRoute().setDeparture(departure);
+    }
+
+    @Override
+    public Country getDestination() {
+        return getFullRoute().getDestination();
+    }
+
+    @Override
+    public void setDestination(Country destination) {
+        getFullRoute().setDestination(destination);
+    }
+
+    public FullRoute getFullRoute() {
+        return fullRoute == null ? new FullRouteImpl() : fullRoute;
+    }
+
     public void setFullRoute(FullRoute fullRoute) {
         this.fullRoute = fullRoute;
     }
