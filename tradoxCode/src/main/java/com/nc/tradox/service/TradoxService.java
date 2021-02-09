@@ -88,7 +88,7 @@ public class TradoxService {
         return dao.deleteRoute(route.getRouteId());
     }
 
-    public Map<User, String> auth(String email, String password) {
+    public Response auth(String email, String password) {
         return dao.auth(email, password);
     }
 

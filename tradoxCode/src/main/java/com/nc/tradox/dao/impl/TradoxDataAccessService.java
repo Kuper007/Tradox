@@ -33,32 +33,28 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
-    public Map<User, String> auth(String email, String password) {
-        Map<User, String> result = new HashMap<>();
+    public Response auth(String email, String password) {
+        Response response = new Response();
         try {
             Statement statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("SELECT * FROM \"USER\" LEFT JOIN PASSPORT ON \"USER\".PASSPORT_ID = PASSPORT.PASSPORT_ID " +
-                    "LEFT JOIN COUNTRY ON \"USER\".COUNTRY_ID = COUNTRY.COUNTRY_ID " +
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM \"USER\" LEFT JOIN COUNTRY ON \"USER\".COUNTRY_ID = COUNTRY.COUNTRY_ID " +
                     "WHERE EMAIL = '" + email + "'");
-            if (res.next()) {
-                String real_password = res.getString("password");
-                if (real_password.equals(String.valueOf(password.hashCode()))) {
-                    User user = new UserImpl(res);
-                    result.put(user, "true");
-                    statement.close();
-                    return result;
+            if (resultSet.next()) {
+                int real_password = resultSet.getInt("password");
+                if (real_password == password.hashCode()) {
+                    User user = new UserImpl(resultSet);
+                    response.setObject(user);
                 } else {
-                    statement.close();
-                    result.put(null, "password");
-                    return result;
+                    response.setError("password");
                 }
+            } else {
+                response.setError("email");
             }
             statement.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.auth " + exception.getMessage());
         }
-        result.put(null, "email");
-        return null;
+        return response;
     }
 
     @Override

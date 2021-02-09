@@ -1,7 +1,6 @@
 package com.nc.tradox.dao;
 
 import com.nc.tradox.model.*;
-import com.nc.tradox.model.Reason;
 import com.nc.tradox.model.impl.*;
 
 import java.sql.ResultSet;
@@ -11,7 +10,7 @@ import java.util.Set;
 public interface Dao {
     Route getRoute(String userId, String destinationId);
 
-    Map<User, String> auth(String email, String password);
+    Response auth(String email, String password);
 
     Country getCountryById(String id);
 

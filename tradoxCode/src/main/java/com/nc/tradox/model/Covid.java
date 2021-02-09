@@ -17,6 +17,10 @@ public interface Covid {
 
     void setTodayActiveCases(int todayActiveCases);
 
+    int getSummaryTotalDeaths();
+
+    void setSummaryTotalDeaths(int summaryTotalDeaths);
+
     int getTodayDeaths();
 
     void setTodayDeaths(int todayDeaths);

@@ -61,8 +61,21 @@ public class UserImpl implements User {
         this.email = resultSet.getString("email");
         this.phone = resultSet.getString("phone");
         this.location = new CountryImpl(resultSet.getString("country_id"), "");
-        this.passport = new PassportImpl(resultSet);
+        this.passport = null;
         this.verify = resultSet.getBoolean("verify");
+    }
+
+    public UserImpl(ResultSet user, ResultSet passport) throws SQLException {
+        this.userId = user.getInt("user_id");
+        this.userType = UserTypeEnum.valueOf(user.getString("user_type"));
+        this.firstName = user.getString("first_name");
+        this.lastName = user.getString("last_name");
+        this.birthDate = user.getDate("birth_date");
+        this.email = user.getString("email");
+        this.phone = user.getString("phone");
+        this.location = new CountryImpl(user.getString("country_id"), "");
+        this.passport = new PassportImpl(passport);
+        this.verify = user.getBoolean("verify");
     }
 
     @Override
