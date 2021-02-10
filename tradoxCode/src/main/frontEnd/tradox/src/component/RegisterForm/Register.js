@@ -64,6 +64,7 @@ function Register(props) {
              if (res.data.result === true) {
                 //tap(true);
                 localStorage.setItem("userId",res.data.userId);
+                localStorage.setItem("auth",true);
                 setRedirect(true);
                 //window.location.href = "http://localhost:8080/";
              } else if (res.data.emailNotUnique === true) {
@@ -80,7 +81,7 @@ function Register(props) {
         <div className={style.registrationComponent}>
         {redirect? <Redirect to='/verification'/> : null}
         <div className={style.registerLogo}>
-            <Redirect to = '/'> <img src={logo}/></Redirect>
+            <NavLink to = '/'> <img src={logo}/></NavLink>
         </div>
             {isTapped
                 ? <div className={style.verifyTitle}>We send you letter on email. Please, verify to start using your account.</div>
