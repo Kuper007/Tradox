@@ -17,18 +17,22 @@ function MainPage (props) {
   const [notFound, setNotFound] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
   const [data, setData] = useState([]);
-
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     ifRegistered()
   }, [destinationId])
 
   useEffect(() => {
-      if(localStorage.getItem("auth")){
-        let userId = localStorage.getItem("userId");
-        setIsAuth(true);
+    if(localStorage.getItem("auth")){
+      let userType = localStorage.getItem("userType");
+      let userId = localStorage.getItem("userId");
+      setIsAuth(true);
+      if (userType==="admin") {
+        setIsAdmin(true);
       }
-  });
+    }
+  },[]);
 
   function getKeysFromMapArr(country) {
     let countryO = myMap.get(country)
@@ -95,7 +99,7 @@ function MainPage (props) {
 
   return (
       <div >
-        <Logo authorized = {isAuth}/>
+        <Logo authorized = {isAuth} admin={isAdmin}/>
         <WorldMap retrieveId = {retrieveId}/>
         {!showInfo?<SearchBar handleCountry = {handleCountry} handleKeyPress = {handleKeyPress} notfound = {notFound}/>:null}
         {showInfo?<Country country = {destinationName} data = {data}/>:null}
