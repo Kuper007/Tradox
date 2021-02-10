@@ -57,4 +57,12 @@
 .logOut{
     color: #FF0000;
     padding-right: 16px;
+    margin-top: 77px;
+    margin-right: 12px;
+    margin-left: 12px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    cursor: pointer;
+    text-decoration: none;
 }

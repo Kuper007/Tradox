@@ -7,7 +7,7 @@ export class UnauthorizedUserNotification extends Component {
             <div className = {style.container}>
                 <div className = {style.wrapper}>
                  <h1 className = {style.msg}>Sorry, but you are not <br/>authorized</h1>
-                 <NavLink to='/registration'><input className = {style.register} type ="button" value= "Log In"/></NavLink>
+                 <NavLink to='/auth'><input className = {style.register} type ="button" value= "Log In"/></NavLink>
                 </div> 
             </div>
         )

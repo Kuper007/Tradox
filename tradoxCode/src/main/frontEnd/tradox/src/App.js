@@ -8,12 +8,11 @@ import Verification from './component/Verification/Verification.js';
 import PasswordReset from './component/PasswordReset/PasswordReset.js';
 
 function App(){ 
-  const[authorized, setAuthorized] = useState(false);
 
   return (
       <div className = 'container-main'>
         <BrowserRouter>
-            <Route exact path  = '/'> <MainPage authorized = {authorized} /></Route>
+            <Route exact path  = '/'> <MainPage/></Route>
             <Route path = '/registration'> <Register/></Route>
             <Route path = '/auth'> <Auth/> </Route>
             <Route path = '/docs'> <FillDocs/> </Route>

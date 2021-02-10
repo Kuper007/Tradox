@@ -12,15 +12,25 @@
     flex-direction: column;
     align-items: center;
     align-content: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 label{
     margin-top: 10px;
 }
-input{margin-left: 5px;}
 
 .btnGroup {
     margin-left: 30px;
+}
+
+.input {
+    margin-left: 5px;
+    border: 0;
+    border-bottom: 1px solid black;
+    width: 338px;
+    text-align: right;
+    float: right;
+    Outline:none;
+    background: none;
 }
 
 .authBtn{
@@ -32,4 +42,19 @@ input{margin-left: 5px;}
     outline: none;
     cursor: pointer;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: center;
+
+}
+.inputLabel{
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-right: 101px
+
 }
