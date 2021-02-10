@@ -579,21 +579,48 @@ public class TradoxDataAccessService implements Dao {
 
     @Override
     public User getUserById(int userId) {
+        User user = null;
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM \"USER\" LEFT JOIN PASSPORT ON \"USER\".PASSPORT_ID = PASSPORT.PASSPORT_ID " +
+            ResultSet userData = statement.executeQuery("SELECT * FROM \"USER\" " +
                     "LEFT JOIN COUNTRY ON \"USER\".COUNTRY_ID = COUNTRY.COUNTRY_ID " +
-                    "WHERE USER_ID = '" + userId + "'");
-            if (resultSet.next()) {
-                User user = new UserImpl(resultSet);
-                statement.close();
-                return user;
+                    "WHERE USER_ID = " + userId);
+            if (userData.next()) {
+                String passportId = userData.getString("passport_id");
+                Statement statement2 = connection.createStatement();
+                ResultSet passportData = statement2.executeQuery("SELECT SERIES, NUM, SHORT_NAME, FULL_NAME " +
+                        "FROM PASSPORT " +
+                        "LEFT JOIN COUNTRY ON PASSPORT.COUNTRY_ID = COUNTRY.COUNTRY_ID " +
+                        "WHERE PASSPORT_ID = '" + passportId + "'");
+                if (passportData.next()) {
+                    user = new UserImpl(userData, passportData);
+                }
+                user = new UserImpl(userData);
+                statement2.close();
             }
             statement.close();
         } catch (SQLException exception) {
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.getUserById " + exception.getMessage());
         }
-        return null;
+        return user;
+    }
+
+    @Override
+    public Country getUserLocationById(int userId) {
+        Country country = null;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT SHORT_NAME, FULL_NAME FROM \"USER\" " +
+                    "LEFT JOIN COUNTRY ON \"USER\".COUNTRY_ID = COUNTRY.COUNTRY_ID " +
+                    "WHERE USER_ID = " + userId);
+            if (resultSet.next()) {
+                country = new CountryImpl(resultSet);
+            }
+            statement.close();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.getUserLocationById " + exception.getMessage());
+        }
+        return country;
     }
 
     @Override
@@ -757,6 +784,23 @@ public class TradoxDataAccessService implements Dao {
             throwables.printStackTrace();
         }
         return countries;
+    }
+
+    @Override
+    public boolean isCountry(String fullName) {
+        boolean isCountry = false;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet res = statement.executeQuery("SELECT FULL_NAME FROM COUNTRY " +
+                    "WHERE FULL_NAME = '" + fullName + "'");
+            if (res.next()) {
+                isCountry = true;
+            }
+            statement.close();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.isCountry " + exception.getMessage());
+        }
+        return isCountry;
     }
 
 }

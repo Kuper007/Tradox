@@ -62,7 +62,9 @@ public interface Dao {
 
     Country getCountryByFullName(String fullName);
 
-    User getUserById(int id);
+    User getUserById(int userId);
+
+    Country getUserLocationById(int userId);
 
     Integer getUserByEmail(String email);
 
@@ -83,4 +85,6 @@ public interface Dao {
     boolean deletePassport(Passport passport);
 
     List<Country> getAllCountries();
+
+    boolean isCountry(String fullName);
 }
