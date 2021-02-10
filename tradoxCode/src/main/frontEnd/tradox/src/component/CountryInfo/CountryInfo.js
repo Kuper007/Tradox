@@ -23,10 +23,10 @@ import {NavLink} from 'react-router-dom'
     return (
         <div className = {styles.container}>
             {opened ? <div className = {styles.openCountry}>
-                <h1 className = {styles.countryText}>{props.country} is open for you</h1>
+                <h1 className = {styles.countryText}>{props.data.departure.fullName} is open for you</h1>
             </div>  :
             <div className = {styles.closedCountry}>
-                <h1 className = {styles.countryText}>{props.country} is closed for you</h1>
+                <h1 className = {styles.countryText}>{props.data.departure.fullName} is closed for you</h1>
             </div>}
             <CovidInfo covidInfo = {covidInfo}/>
             <Documents/>

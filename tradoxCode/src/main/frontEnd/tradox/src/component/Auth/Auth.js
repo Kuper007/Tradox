@@ -40,20 +40,20 @@ function Auth(props){
     };
 
     return (
-            <div className = {style.container}>
+            <div className={style.container}>
                 <NavLink to = '/'><img src={logo} alt="logo"/></NavLink>
                 <h2>Authorization</h2>
-                <form className = {style.authForm}>
+                <form>
                     <label>
-                       <span className={style.inputLabel}>Email</span>
-                        <input className={style.input} value={emailVal} onChange={event => setEmailVal(event.target.value)} type="text" id="email" />
+                        <span>Email:</span>
+                        <input value={emailVal} onChange={event => setEmailVal(event.target.value)} type="email" id="email" />
                     </label>
                     <label>
-                        <span className={style.inputLabel}>Password</span>
-                        <input className={style.input} value={passwordVal} onChange={event => setPasswordVal(event.target.value)} type="text" id="password" />
+                        <span>Password</span>
+                        <input value={passwordVal} onChange={event => setPasswordVal(event.target.value)} type="password" id="password" />
                     </label>
                 </form>
-                <div className = {style.btnGroup}>
+                <div>
                     <NavLink to='/reset'>
                         <span> Forgot password? </span>
                     </NavLink>
@@ -62,7 +62,7 @@ function Auth(props){
                         <span> Register </span>
                     </NavLink>
                 </div>
-                <button onClick={() => validate()} className = {style.authBtn}> Log in </button>
+                <button className={style.authBtn} onClick={() => validate()}> Log in </button>
             </div>
         );
     }

@@ -7,31 +7,29 @@
     align-content: center;
     justify-content: center;
 }
-.authForm{
+.container form{
     display: flex;
     flex-direction: column;
     align-items: center;
     align-content: center;
-    justify-content: center;
+    justify-content: space-between;
 }
-label{
+.container label{
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
     margin-top: 10px;
 }
-
-.btnGroup {
-    margin-left: 30px;
-}
-
-.input {
+.container input{
     margin-left: 5px;
     border: 0;
     border-bottom: 1px solid black;
-    width: 338px;
+    width: 68%;
     text-align: right;
     float: right;
     Outline:none;
-    background: none;
-}
+    background: none;}
+
 
 .authBtn{
     width: 150px;
@@ -42,19 +40,4 @@ label{
     outline: none;
     cursor: pointer;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 18px;
-    letter-spacing: 0em;
-    text-align: center;
-
-}
-.inputLabel{
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 22px;
-    letter-spacing: 0em;
-    text-align: left;
-    margin-right: 101px
-
 }
