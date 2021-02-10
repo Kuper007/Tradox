@@ -6,6 +6,7 @@ import Auth from './component/Auth/Auth.js';
 import FillDocs from './component/FillDocs/FillDocs.js';
 import Verification from './component/Verification/Verification.js';
 import PasswordReset from './component/PasswordReset/PasswordReset.js';
+import Admin from './component/Admin/Admin.js';
 
 function App(){ 
 
@@ -18,6 +19,7 @@ function App(){
             <Route path = '/docs'> <FillDocs/> </Route>
             <Route path = '/verification'> <Verification/> </Route>
             <Route path = '/reset'> <PasswordReset/> </Route>
+            <Route path = '/admin'> <Admin/> </Route>
         </BrowserRouter>
       </div>
   )
