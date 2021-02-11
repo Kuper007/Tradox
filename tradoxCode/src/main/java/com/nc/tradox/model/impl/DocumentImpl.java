@@ -16,7 +16,10 @@ public class DocumentImpl implements Document {
 
     }
 
-    public DocumentImpl(Integer documentId, String name, String description, String fileLink) {
+    public DocumentImpl(Integer documentId,
+                        String name,
+                        String description,
+                        String fileLink) {
         this.documentId = documentId;
         this.name = name;
         this.description = description;

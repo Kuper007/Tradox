@@ -1,5 +1,6 @@
 package com.nc.tradox.model.impl;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nc.tradox.model.Consulate;
 import com.nc.tradox.model.Country;
 import com.nc.tradox.model.FullRoute;
@@ -98,6 +99,7 @@ public class ConsulateImpl implements Consulate {
         getFullRoute().setDeparture(owner);
     }
 
+    @JsonIgnore
     public FullRoute getFullRoute() {
         return fullRoute == null ? new FullRouteImpl() : fullRoute;
     }

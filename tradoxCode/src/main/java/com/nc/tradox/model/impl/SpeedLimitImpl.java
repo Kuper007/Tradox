@@ -17,7 +17,10 @@ public class SpeedLimitImpl implements SpeedLimit {
 
     }
 
-    public SpeedLimitImpl(Integer speedLimitId, TypeOfRoad typeOfRoad, Integer speed, Country country) {
+    public SpeedLimitImpl(Integer speedLimitId,
+                          TypeOfRoad typeOfRoad,
+                          Integer speed,
+                          Country country) {
         this.speedLimitId = speedLimitId;
         this.typeOfRoad = typeOfRoad;
         this.speed = speed;
@@ -62,7 +65,7 @@ public class SpeedLimitImpl implements SpeedLimit {
 
     @Override
     public Country getCountry() {
-        return country;
+        return country == null ? new CountryImpl() : country;
     }
 
     @Override

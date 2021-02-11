@@ -1,7 +1,6 @@
 package com.nc.tradox.dao;
 
 import com.nc.tradox.model.*;
-import com.nc.tradox.model.Reason;
 import com.nc.tradox.model.impl.*;
 
 import java.sql.ResultSet;
@@ -12,7 +11,7 @@ import java.util.Set;
 public interface Dao {
     Route getRoute(String userId, String destinationId);
 
-    Map<User, String> auth(String email, String password);
+    Response auth(String email, String password);
 
     Country getCountryById(String id);
 
@@ -26,17 +25,14 @@ public interface Dao {
 
     boolean updateUser(User user);
 
-    Boolean verifyUserById(int id);
+    Boolean verifyUserById(int userId);
 
     Boolean changePassword(int id, String newPassword);
 
-    Boolean deleteUser(User user);
+    boolean deleteUser(User user);
 
-    Boolean deleteUser(Integer id);
-
-    Covid getCovidByCountryId(String id);
-
-    InfoData getInfoData(String departureId, String destinationId);
+    @Deprecated
+    boolean deleteUser(int userId);
 
     Map<String, Status.StatusEnum> getCountriesWhereNameLike(String countryId, String search);
 
@@ -54,13 +50,21 @@ public interface Dao {
 
     Status getStatusByCountryIds(FullRoute fullRoute);
 
-    Reason getReasonsByStatusId(Integer statusId);
+    Covid getCovidInfo(Country country);
+
+    double getMediumBill(Country country);
+
+    int getTourismCount(Country country);
+
+    String getCurrency(Country country);
 
     Boolean saveTransit(Set<InfoData> infoData, Integer route_id);
 
     Country getCountryByFullName(String fullName);
 
-    User getUserById(int id);
+    User getUserById(int userId);
+
+    Country getUserLocationById(int userId);
 
     Integer getUserByEmail(String email);
 
@@ -81,4 +85,6 @@ public interface Dao {
     boolean deletePassport(Passport passport);
 
     List<Country> getAllCountries();
+
+    boolean isCountry(String fullName);
 }

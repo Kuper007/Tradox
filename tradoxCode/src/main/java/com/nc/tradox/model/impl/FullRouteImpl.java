@@ -5,36 +5,36 @@ import com.nc.tradox.model.FullRoute;
 
 public class FullRouteImpl implements FullRoute {
 
-    protected Country destination;
     protected Country departure;
+    protected Country destination;
 
     public FullRouteImpl() {
 
     }
 
-    public FullRouteImpl(Country destination, Country departure) {
-        this.destination = destination;
+    public FullRouteImpl(Country departure, Country destination) {
         this.departure = departure;
-    }
-
-    @Override
-    public Country getDestination() {
-        return destination;
-    }
-
-    @Override
-    public void setDestination(Country destination) {
         this.destination = destination;
     }
 
     @Override
     public Country getDeparture() {
-        return departure;
+        return departure == null ? new CountryImpl() : departure;
     }
 
     @Override
     public void setDeparture(Country departure) {
         this.departure = departure;
+    }
+
+    @Override
+    public Country getDestination() {
+        return destination == null ? new CountryImpl() : destination;
+    }
+
+    @Override
+    public void setDestination(Country destination) {
+        this.destination = destination;
     }
 
 }

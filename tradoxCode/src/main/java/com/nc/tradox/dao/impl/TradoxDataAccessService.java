@@ -2,12 +2,9 @@ package com.nc.tradox.dao.impl;
 
 import com.nc.tradox.dao.Dao;
 import com.nc.tradox.model.*;
-import com.nc.tradox.model.impl.ReasonImpl;
 import com.nc.tradox.model.impl.*;
-import com.nc.tradox.utilities.ExchangeApi;
 import org.springframework.stereotype.Repository;
 
-import java.io.IOException;
 import java.sql.Date;
 import java.sql.*;
 import java.util.*;
@@ -36,87 +33,88 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
-    public Map<User, String> auth(String email, String password) {
-        Map<User, String> result = new HashMap<>();
+    public Response auth(String email, String password) {
+        Response response = new Response();
         try {
             Statement statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("SELECT * FROM \"USER\"  WHERE email =" + "'" + email + "'");
-            if (res.next()) {
-                String real_password = res.getString("password");
-                if (real_password.equals(String.valueOf(password.hashCode()))) {
-                    User user = new UserImpl(res);
-                    result.put(user, "true");
-                    statement.close();
-                    return result;
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM \"USER\" " +
+                    "WHERE EMAIL = '" + email + "'");
+            if (resultSet.next()) {
+                int real_password = resultSet.getInt("password");
+                if (real_password == password.hashCode()) {
+                    User user = new UserImpl();
+                    user.setUserId(resultSet.getInt("user_id"));
+                    user.setUserType(User.UserTypeEnum.valueOf(resultSet.getString("user_type")));
+                    user.setFirstName(resultSet.getString("first_name"));
+                    user.setLastName(resultSet.getString("last_name"));
+                    if (resultSet.getBoolean("verify"))
+                        user.setVerify();
+                    response.setObject(user);
                 } else {
-                    statement.close();
-                    result.put(null, "password");
-                    return result;
+                    response.setError("password");
                 }
+            } else {
+                response.setError("email");
             }
             statement.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.auth " + exception.getMessage());
         }
-        result.put(null, "email");
-        return null;
+        return response;
     }
 
     @Override
     public Country getCountryById(String countryId) {
         try {
             Statement statement = connection.createStatement();
-
-            ResultSet res = statement.executeQuery("SELECT * FROM COUNTRY LEFT JOIN COVID_INFO COVID ON COUNTRY.COUNTRY_ID = COVID.COUNTRY_ID " +
-                    "WHERE COUNTRY.COUNTRY_ID = '" + countryId + "'");
-            if (res.next()) {
-                Country country = new CountryImpl(res);
+            ResultSet resultSet = statement.executeQuery("SELECT SHORT_NAME, FULL_NAME FROM COUNTRY " +
+                    "WHERE COUNTRY_ID = '" + countryId + "'");
+            if (resultSet.next()) {
+                Country country = new CountryImpl(resultSet);
                 statement.close();
                 return country;
             } else {
                 System.out.println("There is no country with such id");
             }
             statement.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.getCountryById " + exception.getMessage());
         }
         return null;
     }
 
     @Override
-    public Passport getPassportById(String id) {
+    public Passport getPassportById(String passportId) {
         try {
             Statement statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("SELECT * FROM passport WHERE passport_id =" + "'" + id + "'");
-            if (res.next()) {
-                Passport passport = new PassportImpl(res);
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM PASSPORT " +
+                    "WHERE PASSPORT_ID = '" + passportId + "'");
+            if (resultSet.next()) {
+                Passport passport = new PassportImpl(resultSet);
                 statement.close();
                 return passport;
-            } else {
-                System.out.println("There is no passport with such id");
             }
             statement.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.getPassportById " + exception.getMessage());
         }
         return null;
     }
 
     @Override
-    public Route getRouteById(String id) {
+    public Route getRouteById(String routeId) {
         try {
             Statement statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("SELECT * FROM route WHERE route_id=" + "'" + id + "'");
-            if (res != null) {
-                Route route = new RouteImpl(res);
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM ROUTE " +
+                    "WHERE ROUTE_ID = '" + routeId + "'");
+            if (resultSet != null) {
+                Route route = new RouteImpl(resultSet);
                 statement.close();
                 return route;
-            } else {
-                System.err.println("Incorrect route id");
             }
             statement.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.getRouteById " + exception.getMessage());
         }
         return null;
     }
@@ -154,7 +152,6 @@ public class TradoxDataAccessService implements Dao {
         return false;
     }
 
-    @Override
     public Boolean registrate(User user, String password) {
         try {
             String query = "INSERT INTO \"USER\" (first_name, last_name, birth_date, email, password, phone, passport_id, citizenship, country_id)"
@@ -181,6 +178,7 @@ public class TradoxDataAccessService implements Dao {
 
     @Override
     public boolean updateUser(User user) {
+        boolean result = false;
         try {
             String query = "UPDATE \"USER\" SET first_name = ?, last_name = ?, birth_date = ?, email = ?, phone = ?, passport_id = ?, citizenship = ?, country_id = ?"
                     + "WHERE user_id = ?";
@@ -194,36 +192,37 @@ public class TradoxDataAccessService implements Dao {
             preparedStatement.setString(7, user.getPassport().getCitizenshipCountry().getShortName());
             preparedStatement.setString(8, user.getLocation().getShortName());
             preparedStatement.setInt(9, user.getUserId());
-            boolean result = preparedStatement.execute();
+            result = preparedStatement.execute();
             preparedStatement.close();
             return result;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.updateUser " + exception.getMessage());
         }
-        return false;
+        return result;
     }
 
     @Override
-    public Boolean verifyUserById(int id){
-        boolean res = true;
+    public Boolean verifyUserById(int userId) {
+        boolean result = true;
         try {
             Statement statement = connection.createStatement();
-            statement.execute("UPDATE \"USER\" SET verify=1 WHERE user_id=" + id);
+            statement.execute("UPDATE \"USER\" SET verify = 1 " +
+                    "WHERE user_id = " + userId);
             statement.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            res = false;
+            result = false;
         }
-        return res;
+        return result;
     }
 
     @Override
-    public Boolean changePassword(int id, String newPassword){
+    public Boolean changePassword(int id, String newPassword) {
         boolean res = true;
         int hashPassword = newPassword.hashCode();
         try {
             Statement statement = connection.createStatement();
-            statement.execute("UPDATE \"USER\" SET password="+hashPassword+" WHERE user_id=" + id);
+            statement.execute("UPDATE \"USER\" SET password=" + hashPassword + " WHERE user_id=" + id);
             statement.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -233,72 +232,30 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
-    public Boolean deleteUser(User user) {
-        String email = user.getEmail();
-        boolean res = false;
+    public boolean deleteUser(User user) {
+        int userId = user.getUserId();
+        boolean result = false;
         try {
             Statement statement = connection.createStatement();
-            res = statement.execute("DELETE FROM \"USER\" WHERE email=" + "'" + email + "'");
+            result = statement.execute("DELETE FROM \"USER\" WHERE USER_ID = " + userId);
             statement.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.deleteUser " + exception.getMessage());
         }
-        return res;
-    }
-
-    @Override
-    public Boolean deleteUser(Integer id) {
-        boolean res = false;
-        try {
-            Statement statement = connection.createStatement();
-            res = statement.execute("DELETE FROM \"USER\" WHERE user_id=" + id);
-            statement.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return res;
-    }
-
-    @Override
-    public Covid getCovidByCountryId(String id) {
-        try {
-            Statement statement = connection.createStatement();
-
-            ResultSet res = statement.executeQuery("SELECT * FROM covid_info WHERE country_id=" + "'" + id + "'");
-            if (res.next()) {
-                CovidImpl covid = new CovidImpl(res);
-                statement.close();
-                return covid;
-            } else {
-                System.err.println("Incorrect route id");
-            }
-            statement.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return null;
+        return result;
     }
 
     @Deprecated
-    public InfoData getInfoData(String departureId, String destinationId) {
-        Country departure = getCountryById(departureId);
-        Country destination = getCountryById(destinationId);
-        FullRoute fullRoute = new FullRouteImpl(departure, destination);
-        Documents documents = getDocumentsByCountryIds(fullRoute);
-        SpeedLimits speedLimits = getSpeedLimitsByCountryId(destination);
-        Medicines medicines = getMedicinesByCountryId(destination);
-        Consulates consulates = getConsulatesByCountryIds(fullRoute);
-        News news = getNewsByCountryId(destination);
-        Status status = getStatusByCountryIds(fullRoute);
-        ExchangeApi exchangeApi = new ExchangeApi();
-        Exchange exchange = null;
+    public boolean deleteUser(int userId) {
+        boolean result = false;
         try {
-            List<String> apiExchanges = exchangeApi.currentExchange(departure.getCurrency(), destination.getCurrency());
-            exchange = new ExchangeImpl(apiExchanges.get(1), apiExchanges.get(0), fullRoute);
-        } catch (InterruptedException | IOException e) {
-            e.printStackTrace();
+            Statement statement = connection.createStatement();
+            result = statement.execute("DELETE FROM \"USER\" WHERE USER_ID = " + userId);
+            statement.close();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.deleteUser " + exception.getMessage());
         }
-        return new InfoDataImpl(fullRoute, documents, speedLimits, medicines, consulates, news, exchange, status);
+        return result;
     }
 
     @Override
@@ -331,10 +288,10 @@ public class TradoxDataAccessService implements Dao {
 
     @Override
     public Route getRoute(String userId, String destinationId) {
-        User currentUser = this.getUserById(Integer.parseInt(userId));
-        InfoData infoData = this.getInfoData(currentUser.getLocation().getShortName(), destinationId);
+        User currentUser = getUserById(Integer.parseInt(userId));
+        //InfoData infoData = getInfoData(currentUser.getLocation().getShortName(), destinationId);
         Set<InfoData> transits = new LinkedHashSet<>();
-        transits.add(infoData);
+        //transits.add(infoData);
 
         int routeId = -1;
         try {
@@ -386,33 +343,13 @@ public class TradoxDataAccessService implements Dao {
         return new Documents(documents);
     }
 
-    @Deprecated
-    public List<Integer> getDocumentIdsByCountriesIds(String departureId, String destinationId) {
-        List<Integer> documentIds = new ArrayList<>();
-        try {
-            Statement statement = connection.createStatement();
-            String query = "SELECT document_id FROM have_document WHERE departure_id=" + "'" + departureId + "'" + " AND destination_id=" + "'" + destinationId + "'";
-            ResultSet res = statement.executeQuery(query);
-            while (res.next()) {
-                documentIds.add(res.getInt("document_id"));
-            }
-            if (documentIds.isEmpty()) {
-                System.err.println("No documents");
-            }
-            statement.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return documentIds;
-    }
-
     @Override
     public SpeedLimits getSpeedLimitsByCountryId(Country destination) {
         List<SpeedLimit> speedLimits = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
             String query = "SELECT * FROM SPEED_LIMITS " +
-                    "WHERE COUNTRY_ID = " + "'" + destination.getShortName() + "'";
+                    "WHERE COUNTRY_ID = '" + destination.getShortName() + "'";
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 speedLimits.add(new SpeedLimitImpl(resultSet));
@@ -429,8 +366,8 @@ public class TradoxDataAccessService implements Dao {
         List<Medicine> medicines = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            String query = "SELECT * FROM medicine " +
-                    "WHERE country_id=" + "'" + destination.getShortName() + "'";
+            String query = "SELECT * FROM MEDICINE " +
+                    "WHERE COUNTRY_ID = '" + destination.getShortName() + "'";
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 Medicine medicine = new MedicineImpl(resultSet);
@@ -507,20 +444,75 @@ public class TradoxDataAccessService implements Dao {
         return null;
     }
 
-    @Deprecated
-    public ReasonImpl getReasonsByStatusId(Integer statusId) {
+    @Override
+    public Covid getCovidInfo(Country country) {
         try {
             Statement statement = connection.createStatement();
-            String query = "SELECT * FROM reasons WHERE status_id = '" + statusId + "'";
-            ResultSet res = statement.executeQuery(query);
-            if (res.next()) {
-                return new ReasonImpl(res);
-            } else {
-                System.err.println("No reasons");
+            String query = "SELECT * FROM COVID_INFO " +
+                    "WHERE COUNTRY_ID = '" + country.getShortName() + "'";
+            ResultSet resultSet = statement.executeQuery(query);
+            if (resultSet.next()) {
+                Covid covidInfo = new CovidImpl(resultSet);
+                statement.close();
+                return covidInfo;
             }
             statement.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.getCovidInfo " + exception.getMessage());
+        }
+        return null;
+    }
+
+    @Override
+    public double getMediumBill(Country country) {
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT MEDIUM_BILL FROM COUNTRY " +
+                    "WHERE COUNTRY_ID = '" + country.getShortName() + "'");
+            if (resultSet.next()) {
+                double mediumBill = resultSet.getDouble("medium_bill");
+                statement.close();
+                return mediumBill;
+            }
+            statement.close();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.getMediumBill " + exception.getMessage());
+        }
+        return -1;
+    }
+
+    @Override
+    public int getTourismCount(Country country) {
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT TOURISM_COUNT FROM COUNTRY " +
+                    "WHERE COUNTRY_ID = '" + country.getShortName() + "'");
+            if (resultSet.next()) {
+                int tourismCount = resultSet.getInt("tourism_count");
+                statement.close();
+                return tourismCount;
+            }
+            statement.close();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.getTourismCount " + exception.getMessage());
+        }
+        return -1;
+    }
+
+    @Override
+    public String getCurrency(Country country) {
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT CURRENCY FROM COUNTRY " +
+                    "WHERE COUNTRY_ID = '" + country.getShortName() + "'");
+            if (resultSet.next()) {
+                String currency = resultSet.getString("currency");
+                statement.close();
+                return currency;
+            }
+            statement.close();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.getCurrency " + exception.getMessage());
         }
         return null;
     }
@@ -569,55 +561,83 @@ public class TradoxDataAccessService implements Dao {
 
     @Override
     public Country getCountryByFullName(String countryFullName) {
-        Country country = null;
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM COUNTRY LEFT JOIN COVID_INFO COVID ON COUNTRY.COUNTRY_ID = COVID.COUNTRY_ID " +
+            ResultSet resultSet = statement.executeQuery("SELECT SHORT_NAME, FULL_NAME FROM COUNTRY " +
                     "WHERE LOWER(FULL_NAME) = LOWER('" + countryFullName + "')");
             if (resultSet.next()) {
-                country = new CountryImpl(resultSet);
+                Country country = new CountryImpl(resultSet);
+                statement.close();
+                return country;
             }
             statement.close();
         } catch (SQLException exception) {
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.getCountryByFullName " + exception.getMessage());
         }
-        return country;
+        return null;
     }
 
     @Override
-    public User getUserById(int id) {
+    public User getUserById(int userId) {
+        User user = null;
         try {
             Statement statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("SELECT * FROM \"USER\" WHERE user_id =" + "'" + id + "'");
-            if (res.next()) {
-                User user = new UserImpl(res);
-                statement.close();
-                return user;
-            } else {
-                System.out.println("There is no user with such id");
+            ResultSet userData = statement.executeQuery("SELECT * FROM \"USER\" " +
+                    "LEFT JOIN COUNTRY ON \"USER\".COUNTRY_ID = COUNTRY.COUNTRY_ID " +
+                    "WHERE USER_ID = " + userId);
+            if (userData.next()) {
+                String passportId = userData.getString("passport_id");
+                Statement statement2 = connection.createStatement();
+                ResultSet passportData = statement2.executeQuery("SELECT SERIES, NUM, SHORT_NAME, FULL_NAME " +
+                        "FROM PASSPORT " +
+                        "LEFT JOIN COUNTRY ON PASSPORT.COUNTRY_ID = COUNTRY.COUNTRY_ID " +
+                        "WHERE PASSPORT_ID = '" + passportId + "'");
+                if (passportData.next()) {
+                    user = new UserImpl(userData, passportData);
+                }
+                user = new UserImpl(userData);
+                statement2.close();
             }
             statement.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.getUserById " + exception.getMessage());
         }
-        return null;
+        return user;
+    }
+
+    @Override
+    public Country getUserLocationById(int userId) {
+        Country country = null;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT SHORT_NAME, FULL_NAME FROM \"USER\" " +
+                    "LEFT JOIN COUNTRY ON \"USER\".COUNTRY_ID = COUNTRY.COUNTRY_ID " +
+                    "WHERE USER_ID = " + userId);
+            if (resultSet.next()) {
+                country = new CountryImpl(resultSet);
+            }
+            statement.close();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.getUserLocationById " + exception.getMessage());
+        }
+        return country;
     }
 
     @Override
     public Integer getUserByEmail(String email) {
         try {
             Statement statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("SELECT user_id FROM \"USER\" WHERE email =" + "'" + email + "'");
-            if (res.next()) {
-                Integer userId = res.getInt("user_id");
+            ResultSet resultSet = statement.executeQuery("SELECT USER_ID FROM \"USER\" " +
+                    "WHERE EMAIL = '" + email + "'");
+            if (resultSet.next()) {
+                Integer userId = resultSet.getInt("user_id");
                 statement.close();
                 return userId;
-            } else {
-                System.out.println("There is no user with such email");
             }
             statement.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.getUserByEmail " + exception.getMessage());
         }
         return 0;
     }
@@ -706,13 +726,14 @@ public class TradoxDataAccessService implements Dao {
         boolean isPassport = false;
         try {
             Statement statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("SELECT * FROM passport WHERE passport_id = '" + passportId + "'");
+            ResultSet res = statement.executeQuery("SELECT * FROM PASSPORT " +
+                    "WHERE PASSPORT_ID = '" + passportId + "'");
             if (res.next()) {
                 isPassport = true;
             }
             statement.close();
         } catch (SQLException exception) {
-            Logger.getLogger(TradoxDataAccessService.class.getName()).log(Level.SEVERE, exception.getMessage());
+            exception.printStackTrace();
         }
         return isPassport;
     }
@@ -751,12 +772,12 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
-    public List<Country> getAllCountries(){
+    public List<Country> getAllCountries() {
         List<Country> countries = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM country");
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 Country country = new CountryImpl(resultSet);
                 countries.add(country);
             }
@@ -764,6 +785,23 @@ public class TradoxDataAccessService implements Dao {
             throwables.printStackTrace();
         }
         return countries;
+    }
+
+    @Override
+    public boolean isCountry(String fullName) {
+        boolean isCountry = false;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet res = statement.executeQuery("SELECT FULL_NAME FROM COUNTRY " +
+                    "WHERE FULL_NAME = '" + fullName + "'");
+            if (res.next()) {
+                isCountry = true;
+            }
+            statement.close();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.isCountry " + exception.getMessage());
+        }
+        return isCountry;
     }
 
 }

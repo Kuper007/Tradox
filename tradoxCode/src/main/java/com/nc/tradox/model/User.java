@@ -3,31 +3,60 @@ package com.nc.tradox.model;
 import java.util.Date;
 import java.util.Set;
 
-public interface User  {
+public interface User {
     void setVerify();
 
     enum UserTypeEnum {
-        user,admin,vip
+        user, admin, vip
     }
+
     Integer getUserId();
+
+    void setUserId(Integer userId);
+
     UserTypeEnum getUserType();
-    Boolean setUserType(UserTypeEnum userTypeEnum);
+
+    void setUserType(UserTypeEnum userType);
+
     String getFirstName();
-    Boolean setFirstName(String firstName);
+
+    void setFirstName(String firstName);
+
     String getLastName();
-    Boolean setLastName(String lastName);
+
+    void setLastName(String lastName);
+
     Date getBirthDate();
-    Boolean setBirthDate(Date birthDate);
+
+    void setBirthDate(Date birthDate);
+
     String getEmail();
-    Boolean setEmail(String email);
+
+    void setEmail(String email);
+
     String getPhone();
-    Boolean setPhone(String phone);
+
+    void setPhone(String phone);
+
     Country getLocation();
-    Boolean setLocation(Country location);
+
+    void setLocation(Country location);
+
+    void setPassport(Passport passport);
+
     Passport getPassport();
-    Boolean setPassport(Passport passport);
+
+    String getPassportId();
+
+    Country getCitizenshipCountry();
+
+    void setCitizenshipCountry(Country country);
+
     Set<Route> getHistory();
+
     Boolean addToHistory(Route route);
+
     Boolean removeFromHistory(Route route);
+
     Boolean isVerified();
 }

@@ -27,28 +27,34 @@ public class AccountController {
         this.tradoxService = tradoxService;
     }
 
+    @GetMapping("/getUserData")
+    public User getUserData(HttpSession session) {
+        Integer userId = (Integer) session.getAttribute("userId");
+        if (isValidUser(userId)) {
+            return tradoxService.getUserById(userId);
+        }
+        return new UserImpl();
+    }
+
     @PostMapping("/saveUserData")
-    public Boolean saveUserData(@RequestBody UserData userData, BindingResult bindingResult, HttpSession session) {
+    public String saveUserData(@RequestBody UserData userData, BindingResult bindingResult, HttpSession session) {
         if (!bindingResult.hasErrors()) {
             try {
                 Integer userId = (Integer) session.getAttribute("userId");
                 if (userId != null) {
-                    User user = new UserImpl(
-                            userId,
-                            tradoxService.getUserById(userId).getUserType(),
-                            userData.getFirstName(),
-                            userData.getLastName(),
-                            new SimpleDateFormat("dd.MM.yyyy").parse(userData.getBirthDate()),
-                            userData.getEmail(),
-                            userData.getPhone(),
-                            tradoxService.getCountryByFullName(userData.getLocation()),
-                            tradoxService.getCountryByFullName(userData.getCitizenship()),
-                            new PassportImpl(
-                                    userData.getPassport().substring(0, 2),
-                                    userData.getPassport().substring(2, 8),
-                                    tradoxService.getCountryByFullName(userData.getCitizenship()))
+                    User user = new UserImpl();
+                    user.setUserId(userId);
+                    user.setFirstName(userData.getFirstName());
+                    user.setLastName(userData.getLastName());
+                    user.setBirthDate(new SimpleDateFormat("dd.MM.yyyy").parse(userData.getBirthDate()));
+                    user.setEmail(userData.getEmail());
+                    user.setPhone(userData.getPhone());
+                    user.setLocation(tradoxService.getCountryByFullName(userData.getLocation()));
+                    user.setPassport(new PassportImpl(
+                            userData.getPassport(),
+                            tradoxService.getCountryByFullName(userData.getCitizenship()))
                     );
-                    return tradoxService.updateUser(user);
+                    return "{\"result\": " + tradoxService.updateUser(user) + "}";
                 } else {
                     Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, "User not authorized");
                 }
@@ -56,7 +62,7 @@ public class AccountController {
                 Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, "Incorrect date format");
             }
         }
-        return false;
+        return "{\"result\": false}";
     }
 
     @GetMapping("/delete")
@@ -108,6 +114,13 @@ public class AccountController {
         session.setAttribute("authorized", false);
         session.removeAttribute("userId");
         return new RedirectView("/api/v1/auth/result");
+    }
+
+    private boolean isValidUser(Integer userId) {
+        if (userId != null) {
+            return userId >= 0;
+        }
+        return false;
     }
 
 }

@@ -2,6 +2,8 @@ import React from 'react'
 import style from './CovidInfo.module.css'
 export default function CovidInfo(props) {
 
+    console.log(props);
+
     return (
         <div className = {style.container}>
            <h1 className={style.header}>Covid-19</h1>

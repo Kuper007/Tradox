@@ -11,6 +11,7 @@ public class CovidImpl implements Covid {
     protected int todayTotalCases;
     protected int summaryActiveCases;
     protected int todayActiveCases;
+    protected int summaryTotalDeaths;
     protected int todayDeaths;
     protected int summaryRecovered;
     protected int todayRecovered;
@@ -23,6 +24,7 @@ public class CovidImpl implements Covid {
                      int todayTotalCases,
                      int summaryActiveCases,
                      int todayActiveCases,
+                     int summaryTotalDeaths,
                      int todayDeaths,
                      int summaryRecovered,
                      int todayRecovered) {
@@ -30,6 +32,7 @@ public class CovidImpl implements Covid {
         this.todayTotalCases = todayTotalCases;
         this.summaryActiveCases = summaryActiveCases;
         this.todayActiveCases = todayActiveCases;
+        this.summaryTotalCases = summaryTotalDeaths;
         this.todayDeaths = todayDeaths;
         this.summaryRecovered = summaryRecovered;
         this.todayRecovered = todayRecovered;
@@ -40,6 +43,7 @@ public class CovidImpl implements Covid {
         this.todayTotalCases = resultSet.getInt("today_total_cases");
         this.summaryActiveCases = resultSet.getInt("summary_active_cases");
         this.todayActiveCases = resultSet.getInt("today_active_cases");
+        this.summaryTotalDeaths = resultSet.getInt("summary_deaths");
         this.todayDeaths = resultSet.getInt("today_deaths");
         this.summaryRecovered = resultSet.getInt("summary_recovered");
         this.todayRecovered = resultSet.getInt("today_recovered");
@@ -83,6 +87,14 @@ public class CovidImpl implements Covid {
     @Override
     public void setTodayActiveCases(int todayActiveCases) {
         this.todayActiveCases = todayActiveCases;
+    }
+
+    public int getSummaryTotalDeaths() {
+        return summaryTotalDeaths;
+    }
+
+    public void setSummaryTotalDeaths(int summaryTotalDeaths) {
+        this.summaryTotalDeaths = summaryTotalDeaths;
     }
 
     @Override

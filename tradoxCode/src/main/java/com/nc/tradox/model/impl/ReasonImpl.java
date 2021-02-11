@@ -15,7 +15,9 @@ public class ReasonImpl implements Reason {
 
     }
 
-    public ReasonImpl(Integer reasonId, Boolean covidReason, Boolean citizenshipReason) {
+    public ReasonImpl(Integer reasonId,
+                      Boolean covidReason,
+                      Boolean citizenshipReason) {
         this.reasonId = reasonId;
         this.covidReason = covidReason;
         this.citizenshipReason = citizenshipReason;

@@ -1,6 +1,5 @@
 package com.nc.tradox.model.impl;
 
-import com.nc.tradox.dao.impl.TradoxDataAccessService;
 import com.nc.tradox.model.Country;
 import com.nc.tradox.model.Passport;
 
@@ -13,27 +12,21 @@ public class PassportImpl implements Passport {
     protected String passportNumber;
     protected Country citizenshipCountry;
 
-    public PassportImpl(String passportSeries, Country citizenshipCountry) {
-        this.passportSeries = passportSeries.substring(0, 2);
-        this.passportNumber = passportSeries.substring(2);
+    public PassportImpl() {
+
+    }
+
+    public PassportImpl(String passportId,
+                        Country citizenshipCountry) {
+        this.passportSeries = passportId.substring(0, 2);
+        this.passportNumber = passportId.substring(2);
         this.citizenshipCountry = citizenshipCountry;
     }
 
-    @Deprecated
-    public PassportImpl(String passportSeries, String passportNumber, Country citizenshipCountry) {
-        this.passportSeries = passportSeries;
-        this.passportNumber = passportNumber;
-        this.citizenshipCountry = citizenshipCountry;
-    }
-
-    public PassportImpl(ResultSet resultSet) {
-        try {
-            this.passportSeries = resultSet.getString("series");
-            this.passportSeries = resultSet.getString("num");
-            this.citizenshipCountry = new TradoxDataAccessService().getCountryById(resultSet.getString("country_id"));
-        } catch (SQLException throwable) {
-            throwable.printStackTrace();
-        }
+    public PassportImpl(ResultSet resultSet) throws SQLException {
+        this.passportSeries = resultSet.getString("series");
+        this.passportNumber = resultSet.getString("num");
+        this.citizenshipCountry = new CountryImpl(resultSet);
     }
 
     @Override
@@ -53,7 +46,7 @@ public class PassportImpl implements Passport {
 
     @Override
     public String getPassportNumber() {
-        return this.passportNumber;
+        return passportNumber;
     }
 
     @Override
@@ -63,7 +56,7 @@ public class PassportImpl implements Passport {
 
     @Override
     public Country getCitizenshipCountry() {
-        return this.citizenshipCountry;
+        return citizenshipCountry == null ? new CountryImpl() : citizenshipCountry;
     }
 
     @Override

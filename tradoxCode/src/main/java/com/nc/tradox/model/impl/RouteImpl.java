@@ -14,7 +14,9 @@ public class RouteImpl implements Route {
     protected TransportType transportType;
     protected Set<InfoData> transitSet;
 
-    public RouteImpl(Integer routeId, TransportType transportType, Set<InfoData> transitSet) {
+    public RouteImpl(Integer routeId,
+                     TransportType transportType,
+                     Set<InfoData> transitSet) {
         this.routeId = routeId;
         this.transportType = transportType;
         this.transitSet = transitSet;
@@ -23,7 +25,6 @@ public class RouteImpl implements Route {
     public RouteImpl(ResultSet resultSet) throws SQLException {
         this.routeId = resultSet.getInt("route_id");
         this.transportType = TransportType.valueOf(resultSet.getString("transport_type"));
-        //InfoData infoData = new TradoxDataAccessService().getInfoData(resultSet.getString("departure_id"), resultSet.getString("destination_id"));
         this.transitSet = new LinkedHashSet<>();
     }
 
