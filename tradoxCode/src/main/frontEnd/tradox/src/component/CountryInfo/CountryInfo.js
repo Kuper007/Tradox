@@ -10,23 +10,24 @@ import {NavLink} from 'react-router-dom'
     const [departure, setDeparture] = useState([])
      const [covidInfo, setCovidInfo] = useState([])
      useEffect(() => {
-         if(props.data.departure != undefined && props.data.destination.covidInfo){
-             setDeparture(props.data.departure)
-             setCovidInfo(props.data.destination.covidInfo)
+         console.log(props);
+         if(props.data.fullRoute.departure != undefined && props.data.covidInfo){
+             setDeparture(props.data.fullRoute.departure)
+             setCovidInfo(props.data.covidInfo)
              if(props.data.status == undefined || props.data.status == true){
                 setOpened(true)
              }
 
-         console.log(props.data.departure)}
+         console.log(props.data.fullRoute.departure)}
      }, [departure])
 
     return (
         <div className = {styles.container}>
             {opened ? <div className = {styles.openCountry}>
-                <h1 className = {styles.countryText}>{props.data.departure.fullName} is open for you</h1>
+                <h1 className = {styles.countryText}>{props.data.fullRoute.departure.fullName} is open for you</h1>
             </div>  :
             <div className = {styles.closedCountry}>
-                <h1 className = {styles.countryText}>{props.data.departure.fullName} is closed for you</h1>
+                <h1 className = {styles.countryText}>{props.data.fullRoute.departure.fullName} is closed for you</h1>
             </div>}
             <CovidInfo covidInfo = {covidInfo}/>
             <Documents/>
