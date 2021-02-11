@@ -1,5 +1,6 @@
 package com.nc.tradox.model.impl;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nc.tradox.model.Consulate;
 import com.nc.tradox.model.Country;
 import com.nc.tradox.model.FullRoute;
@@ -19,7 +20,11 @@ public class ConsulateImpl implements Consulate {
 
     }
 
-    public ConsulateImpl(Integer consulateId, String city, String address, String phoneNumber, FullRoute fullRoute) {
+    public ConsulateImpl(Integer consulateId,
+                         String city,
+                         String address,
+                         String phoneNumber,
+                         FullRoute fullRoute) {
         this.consulateId = consulateId;
         this.city = city;
         this.address = address;
@@ -32,7 +37,6 @@ public class ConsulateImpl implements Consulate {
         this.city = resultSet.getString("city");
         this.address = resultSet.getString("address");
         this.phoneNumber = resultSet.getString("phone");
-
     }
 
     @Override
@@ -47,12 +51,12 @@ public class ConsulateImpl implements Consulate {
 
     @Override
     public Country getCountry() {
-        return fullRoute.getDeparture();
+        return getFullRoute().getDestination();
     }
 
     @Override
     public void setCountry(Country country) {
-        fullRoute.setDeparture(country);
+        getFullRoute().setDestination(country);
     }
 
     @Override
@@ -87,12 +91,21 @@ public class ConsulateImpl implements Consulate {
 
     @Override
     public Country getOwner() {
-        return fullRoute.getDestination();
+        return getFullRoute().getDeparture();
     }
 
     @Override
     public void setOwner(Country owner) {
-        fullRoute.setDestination(owner);
+        getFullRoute().setDeparture(owner);
+    }
+
+    @JsonIgnore
+    public FullRoute getFullRoute() {
+        return fullRoute == null ? new FullRouteImpl() : fullRoute;
+    }
+
+    public void setFullRoute(FullRoute fullRoute) {
+        this.fullRoute = fullRoute;
     }
 
 }

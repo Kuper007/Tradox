@@ -1,8 +1,11 @@
 package com.nc.tradox.api;
 
+import com.nc.tradox.model.Country;
 import com.nc.tradox.model.Document;
 import com.nc.tradox.model.User;
+import com.nc.tradox.model.impl.CountryImpl;
 import com.nc.tradox.model.impl.Documents;
+import com.nc.tradox.model.impl.FullRouteImpl;
 import com.nc.tradox.service.TradoxService;
 import fr.opensagres.poi.xwpf.converter.pdf.PdfConverter;
 import fr.opensagres.poi.xwpf.converter.pdf.PdfOptions;
@@ -43,8 +46,9 @@ public class FillDocsController {
         if (!bindingResult.hasErrors()) {
             int userId = (int) session.getAttribute("userId");
             User user = tradoxService.getUserById(userId);
-            Documents documents = tradoxService.getDocumentsByCountryIds(fullRoute.getDepartureId(),
-                    fullRoute.getDestinationId());
+            Country departure = new CountryImpl(fullRoute.getDepartureId(), null);
+            Country destination = new CountryImpl(fullRoute.getDestinationId(), null);
+            Documents documents = tradoxService.getDocuments(new FullRouteImpl(departure, destination));
             List<Document> docs = documents.getList();
             Map<String, XWPFDocument> mapDocs = new HashMap<>();
             for (Document doc : docs) {

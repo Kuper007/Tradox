@@ -40,23 +40,41 @@ public class TradoxService {
         return dao.getRoute(userId, destinationId);
     }
 
-    public InfoData getInfoData(String departureId, String destinationId) {
-        Country departure = dao.getCountryById(departureId);
-        Country destination = dao.getCountryById(destinationId);
+    public InfoData getInfoData(Country departure, Country destination) {
         FullRoute fullRoute = new FullRouteImpl(departure, destination);
-        Documents documents = dao.getDocumentsByCountryIds(fullRoute);
-        SpeedLimits speedLimits = dao.getSpeedLimitsByCountryId(destination);
+        double mediumBill = dao.getMediumBill(destination);
+        Documents documents = getDocuments(fullRoute);
+        int tourismCount = dao.getTourismCount(destination);
         Medicines medicines = dao.getMedicinesByCountryId(destination);
+        Covid covidInfo = dao.getCovidInfo(destination);
         Consulates consulates = dao.getConsulatesByCountryIds(fullRoute);
+        SpeedLimits speedLimits = dao.getSpeedLimitsByCountryId(destination);
+        String departureCurrency = dao.getCurrency(fullRoute.getDeparture());
+        String destinationCurrency = dao.getCurrency(fullRoute.getDestination());
+        Exchange exchange = getExchangeByCountryIds(fullRoute, departureCurrency, destinationCurrency);
         News news = dao.getNewsByCountryId(destination);
-        Exchange exchange = getExchangeByCountryId(fullRoute);
         Status status = dao.getStatusByCountryIds(fullRoute);
-        return new InfoDataImpl(exchange.getFullRoute(), documents, speedLimits, medicines, consulates, news, exchange, status);
+        return new InfoDataImpl(fullRoute,
+                mediumBill,
+                documents,
+                tourismCount,
+                medicines,
+                covidInfo,
+                consulates,
+                speedLimits,
+                destinationCurrency,
+                exchange,
+                news,
+                status);
     }
 
-    public Exchange getExchangeByCountryId(FullRoute fullRoute) {
+    public Documents getDocuments(FullRoute fullRoute) {
+        return dao.getDocumentsByCountryIds(fullRoute);
+    }
+
+    public Exchange getExchangeByCountryIds(FullRoute fullRoute, String departureCurrency, String destinationCurrency) {
         try {
-            List<String> apiExchanges = new ExchangeApi().currentExchange(fullRoute.getDeparture().getCurrency(), fullRoute.getDestination().getCurrency());
+            List<String> apiExchanges = new ExchangeApi().currentExchange(departureCurrency, destinationCurrency);
             return new ExchangeImpl(apiExchanges.get(1), apiExchanges.get(0), fullRoute);
         } catch (InterruptedException | IOException exception) {
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.getExchangeByCountryId " + exception.getMessage());
@@ -64,18 +82,11 @@ public class TradoxService {
         return null;
     }
 
-    public Documents getDocumentsByCountryIds(String departureId, String destinationId) {
-        Country departure = dao.getCountryById(departureId);
-        Country destination = dao.getCountryById(destinationId);
-        FullRoute fullRoute = new FullRouteImpl(departure, destination);
-        return dao.getDocumentsByCountryIds(fullRoute);
-    }
-
     public Boolean deleteRoute(Route route) {
         return dao.deleteRoute(route.getRouteId());
     }
 
-    public Map<User, String> auth(String email, String password) {
+    public Response auth(String email, String password) {
         return dao.auth(email, password);
     }
 
@@ -115,9 +126,9 @@ public class TradoxService {
                     dao.deletePassport(passport);
                 } else {
                     Integer userId = dao.getUserByEmail(map.get("email"));
-                    session.setAttribute("userId",userId);
-                    if (userId!=0){
-                        return "{\"result\": true, \"emailNotUnique\": false, \"passportNotUnique\": false, \"userId\": "+userId+"}";
+                    session.setAttribute("userId", userId);
+                    if (userId != 0) {
+                        return "{\"result\": true, \"emailNotUnique\": false, \"passportNotUnique\": false, \"userId\": " + userId + "}";
                     }
                 }
             } catch (ParseException exception) {
@@ -170,6 +181,10 @@ public class TradoxService {
         return dao.getUserById(id);
     }
 
+    public Country getUserLocation(int userId) {
+        return dao.getUserLocationById(userId);
+    }
+
     public Country getCountryById(String id) {
         return dao.getCountryById(id);
     }
@@ -178,12 +193,13 @@ public class TradoxService {
         return dao.verifyUserById(id);
     }
 
-    public String resetPassword(String email){
+    public String resetPassword(String email) {
+
         String newPwd = "";
         int userId = dao.getUserByEmail(email);
-        if (userId!=0) {
+        if (userId != 0) {
             newPwd = new RandomString(8).nextString();
-            boolean res = dao.changePassword(userId,newPwd);
+            boolean res = dao.changePassword(userId, newPwd);
             if (res) {
                 return newPwd;
             } else {
@@ -193,7 +209,12 @@ public class TradoxService {
         return newPwd;
     }
 
-    public List<Country> getAllCountries(){
+    public List<Country> getAllCountries() {
         return dao.getAllCountries();
     }
+
+    public boolean isCountry(String fullName) {
+        return dao.isCountry(fullName);
+    }
+
 }

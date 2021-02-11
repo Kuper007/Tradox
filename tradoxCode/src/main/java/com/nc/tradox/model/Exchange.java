@@ -9,6 +9,14 @@ public interface Exchange {
 
     void setDollarCurrency(String dollarCurrency);
 
+    Country getDeparture();
+
+    void setDeparture(Country departure);
+
+    Country getDestination();
+
+    void setDestination(Country destination);
+
     FullRoute getFullRoute();
 
     void setFullRoute(FullRoute fullRoute);
