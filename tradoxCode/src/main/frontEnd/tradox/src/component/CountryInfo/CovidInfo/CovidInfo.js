@@ -13,7 +13,7 @@ export default function CovidInfo(props) {
             <h3>Active cases</h3>
             <div><span>{props.covidInfo.summaryActiveCases}</span><span style={{color :"#148534"}}>{props.covidInfo.todayActiveCases}</span></div>
             <h3>Deaths</h3>
-            <div ><span>1232</span> <span style={{color :"#B70202"}}>{props.covidInfo.todayDeaths}</span></div>
+            <div ><span>{props.covidInfo.summaryTotalDeaths}</span> <span style={{color :"#B70202"}}>{props.covidInfo.todayDeaths}</span></div>
             <h3>Recovered</h3>
             <div><span>{props.covidInfo.summaryRecovered}</span> <span style={{color :"#148534"}}>{props.covidInfo.todayRecovered}</span></div>
         </div>

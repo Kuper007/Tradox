@@ -3,7 +3,7 @@ import WorldMap from './WorldMap/WorldMap';
 import Logo from './Logo/Logo';
 import SearchBar from './SearchBar/SearchBar';
 import myMap from "../CountrysMap.js";
-import Country from '../CountryInfo/CountryInfo';
+import CountryInfo from '../CountryInfo/CountryInfo';
 import UnauthorizedUserNotification from "../UnauthorizedUserNotification/UnauthorizedUserNotification";
 import NoData from '../CountryInfo/NoData/NoData'
 import axios from "axios";
@@ -102,7 +102,7 @@ function MainPage (props) {
         <Logo authorized = {isAuth} admin={isAdmin}/>
         <WorldMap retrieveId = {retrieveId}/>
         {!showInfo?<SearchBar handleCountry = {handleCountry} handleKeyPress = {handleKeyPress} notfound = {notFound}/>:null}
-        {showInfo?<Country country = {destinationName} data = {data}/>:null}
+        {showInfo?<CountryInfo country = {destinationName} data = {data}/>:null}
         {failed?<NoData/>:null}
         {showUnauthorized?<UnauthorizedUserNotification/>:null}
       </div>

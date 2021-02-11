@@ -9,32 +9,34 @@ import {NavLink} from 'react-router-dom'
     const [opened, setOpened] = useState(false)
     const [departure, setDeparture] = useState([])
      const [covidInfo, setCovidInfo] = useState([])
+     const [data, setData] = useState([])
      useEffect(() => {
          console.log(props);
          if(props.data.fullRoute.departure != undefined && props.data.covidInfo){
              setDeparture(props.data.fullRoute.departure)
              setCovidInfo(props.data.covidInfo)
-             if(props.data.status == undefined || props.data.status == true){
+             setData(props.data)
+             if(props.data.status.status == "open"){
                 setOpened(true)
              }
 
-         console.log(props.data.fullRoute.departure)}
+         console.log(props.data)}
      }, [departure])
 
     return (
         <div className = {styles.container}>
             {opened ? <div className = {styles.openCountry}>
-                <h1 className = {styles.countryText}>{props.data.fullRoute.departure.fullName} is open for you</h1>
+                <h1 className = {styles.countryText}>{props.data.fullRoute.destination.fullName} is open for you</h1>
             </div>  :
             <div className = {styles.closedCountry}>
-                <h1 className = {styles.countryText}>{props.data.fullRoute.departure.fullName} is closed for you</h1>
+                <h1 className = {styles.countryText}>{props.data.fullRoute.destination.fullName} is closed for you</h1>
             </div>}
             <CovidInfo covidInfo = {covidInfo}/>
             <Documents/>
             <NavLink to = '/docs'><div className={styles.fillBtn}>
                 <h2 className={styles.fillDocsTxT}>Fill out documents</h2>
             </div></NavLink>
-            <Consulates departure = {departure}/>
+            <Consulates departure = {props.data.fullRoute.departure} data = {props.data}/>
             <News/>
         </div>
     )
