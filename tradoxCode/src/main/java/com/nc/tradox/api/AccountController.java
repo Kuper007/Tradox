@@ -30,7 +30,7 @@ public class AccountController {
     @GetMapping("/getUserData")
     public User getUserData(HttpSession session) {
         Integer userId = (Integer) session.getAttribute("userId");
-        if (userId != null) {
+        if (isValidUser(userId)) {
             return tradoxService.getUserById(userId);
         }
         return new UserImpl();
@@ -114,6 +114,13 @@ public class AccountController {
         session.setAttribute("authorized", false);
         session.removeAttribute("userId");
         return new RedirectView("/api/v1/auth/result");
+    }
+
+    private boolean isValidUser(Integer userId) {
+        if (userId != null) {
+            return userId >= 0;
+        }
+        return false;
     }
 
 }

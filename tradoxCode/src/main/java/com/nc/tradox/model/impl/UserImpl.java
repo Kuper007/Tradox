@@ -1,5 +1,6 @@
 package com.nc.tradox.model.impl;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nc.tradox.model.Country;
 import com.nc.tradox.model.Passport;
 import com.nc.tradox.model.Route;
@@ -8,6 +9,7 @@ import com.nc.tradox.model.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 public class UserImpl implements User {
@@ -60,9 +62,18 @@ public class UserImpl implements User {
         this.birthDate = resultSet.getDate("birth_date");
         this.email = resultSet.getString("email");
         this.phone = resultSet.getString("phone");
-        this.location = new CountryImpl(resultSet.getString("USER.COUNTRY_ID"), null);
-        Country citizenship = new CountryImpl(resultSet.getString("citizenship"), null);
-        this.passport = new PassportImpl(resultSet.getString("passport_id"), citizenship);
+        try {
+            this.location = new CountryImpl(resultSet.getString("short_name"), resultSet.getString("full_name"));
+        } catch (SQLException exception) {
+            this.location = new CountryImpl(resultSet.getString("country_id"), null);
+        }
+        try {
+            this.passport = new PassportImpl(resultSet);
+        } catch (SQLException exception) {
+            Country citizenship = new CountryImpl(resultSet.getString("citizenship"), null);
+            this.passport = new PassportImpl(resultSet.getString("passport_id"), citizenship);
+        }
+        this.transit = new HashSet<>();
         this.verify = resultSet.getInt("verify") == 1;
     }
 
@@ -76,6 +87,7 @@ public class UserImpl implements User {
         this.phone = user.getString("phone");
         this.location = new CountryImpl(user);
         this.passport = new PassportImpl(passport);
+        this.transit = new HashSet<>();
         this.verify = user.getInt("verify") == 1;
     }
 
@@ -163,11 +175,13 @@ public class UserImpl implements User {
     }
 
     @Override
+    @JsonIgnore
     public String getPassportId() {
         return getPassport().getPassportId();
     }
 
     @Override
+    @JsonIgnore
     public Country getCitizenshipCountry() {
         return getPassport().getCitizenshipCountry();
     }
@@ -199,6 +213,7 @@ public class UserImpl implements User {
     }
 
     @Override
+    @JsonIgnore
     public Set<Route> getHistory() {
         return this.transit;
     }
@@ -214,6 +229,7 @@ public class UserImpl implements User {
     }
 
     @Override
+    @JsonIgnore
     public Boolean isVerified() {
         return this.verify;
     }

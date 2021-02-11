@@ -1,5 +1,6 @@
 package com.nc.tradox.model.impl;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nc.tradox.model.Country;
 import com.nc.tradox.model.FullRoute;
 import com.nc.tradox.model.Reason;
@@ -66,6 +67,7 @@ public class StatusImpl implements Status {
     }
 
     @Override
+    @JsonIgnore
     public Country getCountry() {
         return getFullRoute().getDeparture();
     }
@@ -76,6 +78,7 @@ public class StatusImpl implements Status {
     }
 
     @Override
+    @JsonIgnore
     public Country getDestination() {
         return getFullRoute().getDestination();
     }

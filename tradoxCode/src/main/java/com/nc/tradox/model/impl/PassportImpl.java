@@ -16,16 +16,16 @@ public class PassportImpl implements Passport {
 
     }
 
-    public PassportImpl(String passportSeries,
+    public PassportImpl(String passportId,
                         Country citizenshipCountry) {
-        this.passportSeries = passportSeries.substring(0, 2);
-        this.passportNumber = passportSeries.substring(2);
+        this.passportSeries = passportId.substring(0, 2);
+        this.passportNumber = passportId.substring(2);
         this.citizenshipCountry = citizenshipCountry;
     }
 
     public PassportImpl(ResultSet resultSet) throws SQLException {
         this.passportSeries = resultSet.getString("series");
-        this.passportSeries = resultSet.getString("num");
+        this.passportNumber = resultSet.getString("num");
         this.citizenshipCountry = new CountryImpl(resultSet);
     }
 

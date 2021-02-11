@@ -1,5 +1,6 @@
 package com.nc.tradox.model.impl;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nc.tradox.model.*;
 
 public class InfoDataImpl implements InfoData {
@@ -64,6 +65,7 @@ public class InfoDataImpl implements InfoData {
     }
 
     @Override
+    @JsonIgnore
     public Country getDeparture() {
         return getFullRoute().getDeparture();
     }
@@ -74,6 +76,7 @@ public class InfoDataImpl implements InfoData {
     }
 
     @Override
+    @JsonIgnore
     public Country getDestination() {
         return getFullRoute().getDestination();
     }

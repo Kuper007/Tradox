@@ -600,6 +600,7 @@ public class TradoxDataAccessService implements Dao {
             }
             statement.close();
         } catch (SQLException exception) {
+            exception.printStackTrace();
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.getUserById " + exception.getMessage());
         }
         return user;
