@@ -25,6 +25,7 @@ import {NavLink} from 'react-router-dom'
 
     return (
         <div className = {styles.container}>
+            <div className={styles.wrapper}>
             {opened ? <div className = {styles.openCountry}>
                 <h1 className = {styles.countryText}>{props.data.fullRoute.destination.fullName} is open for you</h1>
             </div>  :
@@ -38,6 +39,7 @@ import {NavLink} from 'react-router-dom'
             </div></NavLink>
             <Consulates departure = {props.data.fullRoute.departure} data = {props.data}/>
             <News/>
+            </div>
         </div>
     )
 }

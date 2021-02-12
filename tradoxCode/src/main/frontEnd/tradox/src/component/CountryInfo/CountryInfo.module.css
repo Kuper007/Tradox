@@ -2,11 +2,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width:100%;
+    width: 100%;
     height: 100%;
+    position: fixed;
 }
 .openCountry{
-    position: relative;
+    position: absolute;
     width: 605px;
     height: 105px;
     left: 658px;
@@ -16,7 +17,7 @@
     border-radius: 50px;
 }
 .closedCountry{
-    position: relative;
+    position: absolute;
     width: 605px;
     height: 105px;
     left: 658px;
@@ -33,13 +34,6 @@
     font-size: 30px;
     line-height: 37px;
 }
-.car{
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    top: 76px;
-    left: 137px;
-}
 .fillBtn{
     position: absolute;
     height: 56px;
@@ -55,5 +49,7 @@
     line-height: 22px;
     letter-spacing: 0em;
     text-align: center;
-
+}
+.wrapper{
+    z-index:1;
 }
