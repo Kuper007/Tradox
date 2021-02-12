@@ -58,6 +58,7 @@ function Account(props) {
                         status: response.status
                     })
                 ));
+        //console.log(state);
     }
 
     return (
