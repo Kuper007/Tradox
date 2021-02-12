@@ -7,6 +7,7 @@ import FillDocs from './component/FillDocs/FillDocs.js';
 import Verification from './component/Verification/Verification.js';
 import PasswordReset from './component/PasswordReset/PasswordReset.js';
 import Admin from './component/Admin/Admin.js';
+import Account from './component/Account/Account.js';
 
 function App(){ 
 
@@ -20,6 +21,7 @@ function App(){
             <Route path = '/verification'> <Verification/> </Route>
             <Route path = '/reset'> <PasswordReset/> </Route>
             <Route path = '/admin'> <Admin/> </Route>
+            <Route path = '/account'> <Account/> </Route>
         </BrowserRouter>
       </div>
   )
