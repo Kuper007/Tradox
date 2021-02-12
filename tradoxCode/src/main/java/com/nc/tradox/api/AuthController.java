@@ -30,7 +30,7 @@ public class AuthController {
                 Response response = tradoxService.auth(json.get("email"), json.get("password"));
                 User user = (User) response.getObject();
                 String error = response.getError();
-                if (error == null) {
+                if (error.equals("")) {
                     if (user != null) {
                         session.setAttribute("authorized", true);
                         session.setAttribute("userId", user.getUserId());
@@ -50,7 +50,7 @@ public class AuthController {
 
     public String getAuthResult(HttpSession session) {
         Boolean isAuthorized = (Boolean) session.getAttribute("authorized");
-        String json = "";
+        String json;
         if (isAuthorized) {
             Integer userId = (Integer) session.getAttribute("userId");
             String user = "\"" + userId + "\"";

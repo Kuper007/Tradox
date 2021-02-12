@@ -6,7 +6,7 @@ public class Response {
     private String error;
 
     public Response() {
-
+        this.error = "";
     }
 
     public Object getObject() {
