@@ -5,7 +5,7 @@ import user from "../../images/user.svg";
 import InputForm from "../RegisterForm/InputForm";
 import {NavLink} from "react-router-dom";
 import myMap from "../CountrysMap";
-import CreateButton from "../RegisterForm/CreateButton";
+import SaveButton from "./SaveButton";
 
 function Account(props) {
     const [mainInfo, setMainInfo] = useState(null);
@@ -26,16 +26,17 @@ function Account(props) {
                         birthDate,
                         email,
                         phone,
-                        passportId,
-                        citizenshipCountry,
+                        passport,
+                        citizenship,
                         location: currentCountry
                     } = userData;
                     setMainInfo({firstName, lastName, birthDate, email});
-                    setAddInfo({phone, passportId, citizenshipCountry, currentCountry});
-                    console.log(addInfo);
+                    setAddInfo({phone, passport, citizenship, currentCountry});
                 }
             });
     })
+
+    //passport.passportId, passport.citizenshipCountry, location.fullName
 
     function onClickSave(e) {
         e.preventDefault();
@@ -61,9 +62,11 @@ function Account(props) {
 
     return (
         <div>
-            <NavLink to='/'><img src={logo}/></NavLink>
+            <div className={style.logo}>
+                <img src={logo}/>
+            </div>
             <div className={style.accountComponent}>
-                <div className={style.accountLogo}>
+                <div className={style.user}>
                     <img src={user}/>
                     <div className={style.userInfo}>
                         <div className={style.title}>
@@ -80,34 +83,35 @@ function Account(props) {
                                                    title={"Last name"} keyOf={"lastName"}
                                                    placeholder={mainInfo.lastName}/>
                                         <InputForm value={state.get("dateOfBirth")} keyOf={"dateOfBirth"}
-                                                   title={"Date of birth"} type={"date"}
+                                                   title={"Date of birth"} type={"text"}
                                                    placeholder={mainInfo.birthDate}/>
                                         <InputForm value={state.get("email")} keyOf={"email"} type={"email"}
                                                    title={"E-mail"} placeholder={mainInfo.email}/>
                                     </div>
-                                    <div>
+                                    <div>{console.log(addInfo)}
                                         <InputForm value={state.get("mobilePhone")} notFound={false}
                                                    keyOf={"mobilePhone"}
                                                    type={"tel"} title={"Mobile phone"} placeholder={addInfo.phone}/>
                                         <InputForm value={state.get("passport")} keyOf={"passport"} type={"text"}
-                                                   title={"Passport"} placeholder={addInfo.passportId}/>
+                                                   title={"Passport"} placeholder={addInfo.passport}/>
                                         <InputForm value={state.get("citizenship")} notFound={false}
                                                    keyOf={"citizenship"}
                                                    type={"text"} title={"Citizenship"}
-                                                   placeholder={addInfo.citizenshipCountry}/>
+                                                   placeholder={addInfo.citizenship}/>
                                         <InputForm value={state.get("currentCountry")} notFound={false}
                                                    keyOf={"currentCountry"} type={"text"} title={"Current country"}
                                                    placeholder={addInfo.currentCountry}/>
                                     </div>
-                                    <CreateButton type={"submit"}/>
                                 </form>
                             ) : null}
                             </div>
+                            <SaveButton type={"submit"}/>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>)
+        </div>
+    )
 }
 
 export default Account;

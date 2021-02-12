@@ -33,9 +33,13 @@ input{margin-left: 5px;}
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.accountLogo {
-    margin: 0 auto;
-    margin-top: 3.75rem;
+.user {
+    position: absolute;
+    left: 12.5%;
+    right: 12.5%;
+    top: 3.12%;
+    bottom: 3.13%;
+    margin: 3.75rem auto 0;
 }
 
 img {
@@ -181,6 +185,15 @@ option {
     40%, 60% {
         transform: translate3d(4px, 0, 0);
     }
+}
+
+.logo{
+    position: absolute;
+    left: 7.81%;
+    right: 84.01%;
+    top: 5.56%;
+    bottom: 88.06%;
+
 }
 
 shakeAnimation {
