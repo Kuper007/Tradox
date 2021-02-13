@@ -38,6 +38,7 @@ public class CovidApi {
                     0,
                     0,
                     0,
+                    0,
                     0);
         }
 
@@ -46,6 +47,7 @@ public class CovidApi {
                 root.data.change.total_cases,
                 root.data.summary.active_cases,
                 root.data.change.active_cases,
+                root.data.summary.deaths,
                 root.data.change.deaths,
                 root.data.summary.recovered,
                 root.data.change.recovered);

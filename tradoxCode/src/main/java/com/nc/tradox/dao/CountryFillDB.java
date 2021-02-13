@@ -15,35 +15,34 @@ import java.util.logging.Logger;
 public class CountryFillDB {
 
     private static final Logger log = Logger.getLogger(ConsulateFillDB.class.getName());
-    TradoxDataAccessService tradoxDataAccessService;
-    CountryApi countryApi;
+    TradoxDataAccessService tradoxDataAccessService = new TradoxDataAccessService();
+    CountryApi countryApi = new CountryApi();
 
     public void consulateFillDB() {
-        Connection connection = tradoxDataAccessService.connection;
-        List<Country> countryList = null;
-        try {
-            countryList = countryApi.fillCountry();
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-        if (countryList != null)
-            for (Country country : countryList) {
-                try {
-                    Statement statement = connection.createStatement();
-                    int rows = statement.executeUpdate(
-                            "INSERT INTO COUNTRY(COUNTRY_ID, FULL_NAME, SHORT_NAME, CURRENCY, MEDIUM_BIL, TOURISM_COUNT)" +
-                                    "VALUES (" +
-                                    country.getShortName() + ", " +
-                                    country.getFullName() + ", " +
-                                    country.getShortName() + ", " +
-                                    country.getCurrency() + ", " +
-                                    country.getMediumBill() + ", " +
-                                    country.getTourismCount() + ")");
-                    statement.close();
-                } catch (SQLException exception) {
-                    log.log(Level.SEVERE, "SQL exception", exception);
+        List<Country> countryList = countryApi.fillCountryName();
+        List<CountryApi.CountryInfo> countryInfoList = countryApi.fillCountryInfo();
+
+        if (countryList != null && countryInfoList != null){
+            try {
+                Statement statement = tradoxDataAccessService.connection.createStatement();
+
+                for (int i = 0; i < 253; i++){
+                    String countryQuery = "INSERT INTO COUNTRY(COUNTRY_ID, FULL_NAME, SHORT_NAME, CURRENCY, MEDIUM_BILL, TOURISM_COUNT)" +
+                            "SELECT '" + countryList.get(i).getShortName() + "', '" +
+                            countryList.get(i).getFullName() + "', '" +
+                            countryList.get(i).getShortName() + "', '" +
+                            countryInfoList.get(i).getCurrency() + "', " +
+                            countryInfoList.get(i).getMediumBill() + ", " +
+                            countryInfoList.get(i).getTourismCount() + " " +
+                            "from dual where not exists (select * from COUNTRY WHERE COUNTRY_ID = '"+ countryList.get(i).getShortName() +"')";
+
+                    statement.executeUpdate(countryQuery);
                 }
+
+            } catch (SQLException exception) {
+                log.log(Level.SEVERE, "SQL error", exception);
             }
+        }
     }
 
 }

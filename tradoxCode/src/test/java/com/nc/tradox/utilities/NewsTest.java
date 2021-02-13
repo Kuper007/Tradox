@@ -3,7 +3,7 @@ public class NewsTest {
 
     public static void main(String[] args) throws Exception{
         NewsApi newsApi = new NewsApi();
-        System.out.println(newsApi.news("us").toString());
+        System.out.println(newsApi.news().toString());
     }
 
 }

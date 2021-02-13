@@ -17,7 +17,6 @@ import java.util.logging.Logger;
 public class CountryApi {
 
     private static final Logger log = Logger.getLogger(CountryApi.class.getName());
-    CovidApi covidApi;
     ObjectMapper objectMapper = new ObjectMapper();
 
     private void isFileExists(File jsonFile){
@@ -133,25 +132,61 @@ public class CountryApi {
         return countryNameList;
     }
 
-    public List<Country> fillCountry() throws IOException, InterruptedException {
+    public List<Country> fillCountryName() {
+
+        List<String> countryFullNameList = countryFullNameFromJson();
+        List<String> countryNameList = countryNameFromJson();
+
+        List<Country> countryNamesList = new ArrayList<>();
+
+        for (int i = 0; i < 253; i++) {
+            countryNamesList.add(new CountryImpl(
+                            countryNameList.get(i),
+                            countryFullNameList.get(i)));
+        }
+        return countryNamesList;
+    }
+
+    public List<CountryInfo> fillCountryInfo() {
 
         List<Double> bigMacList = bigMacFromJson();
         List<Integer> touristCountList = touristCountFromJson();
         List<String> currencyCodeList = currencyCodeFromJson();
-        List<String> countryFullNameList = countryFullNameFromJson();
-        List<String> countryNameList = countryNameFromJson();
 
-        List<Country> countryList = new ArrayList<>();
+        List<CountryInfo> countryInfoList = new ArrayList<>();
 
-        for (int i = 0; i < 252; i++) {
-            countryList.add(new CountryImpl(countryFullNameList.get(i),
-                            countryNameList.get(i),
-                            currencyCodeList.get(i),
-                            bigMacList.get(i),
-                            touristCountList.get(i),
-                            covidApi.covidInfo(countryFullNameList.get(i).toLowerCase())));
+        for (int i = 0; i < 253; i++) {
+            countryInfoList.add(new CountryInfo(
+                    currencyCodeList.get(i),
+                    bigMacList.get(i),
+                    touristCountList.get(i)));
         }
-        return countryList;
+        return countryInfoList;
+    }
+
+    public static class CountryInfo{
+
+        private final String currency;
+        private final double mediumBill;
+        private final int tourismCount;
+
+        public CountryInfo(String currency, double mediumBill, int tourismCount) {
+            this.currency = currency;
+            this.mediumBill = mediumBill;
+            this.tourismCount = tourismCount;
+        }
+
+        public String getCurrency() {
+            return currency;
+        }
+
+        public double getMediumBill() {
+            return mediumBill;
+        }
+
+        public int getTourismCount() {
+            return tourismCount;
+        }
     }
 
     public static class BigMacData{

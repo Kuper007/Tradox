@@ -1,5 +1,6 @@
 package com.nc.tradox.utilities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nc.tradox.dao.impl.TradoxDataAccessService;
 import com.nc.tradox.model.*;
@@ -15,12 +16,12 @@ import java.util.logging.Logger;
 public class ConsulateApi {
 
     private static final Logger log = Logger.getLogger(ConsulateApi.class.getName());
-    TradoxDataAccessService tradoxDataAccessService;
+    TradoxDataAccessService tradoxDataAccessService = new TradoxDataAccessService();
 
     public List<Consulate> consulateList() {
         ObjectMapper objectMapper = new ObjectMapper();
 
-        File jsonFile = new File("tradoxCode/src/main/resources/jsonsAndFriends/consulate.json");
+        File jsonFile = new File("tradoxCode/src/main/resources/jsonsAndFriends/consulates.json");
 
         if (!jsonFile.exists()) {
             log.log(Level.SEVERE, "File does not exist");
@@ -37,8 +38,10 @@ public class ConsulateApi {
 
         List<Consulate> consulateList = new ArrayList<>();
         if (root != null) {
+            int count = 0;
             for (MyArray myArray : root.myArrays) {
-
+                count++;
+                System.out.println(count);
                 Country ownerCountry = tradoxDataAccessService.getCountryById(myArray.owner_id);
                 Country country = tradoxDataAccessService.getCountryById(myArray.country_id);
 
@@ -47,7 +50,7 @@ public class ConsulateApi {
                 Consulate consulate = new ConsulateImpl(
                         null,
                         myArray.city,
-                        myArray.address.street + " " + myArray.address.number + " " + myArray.address.zip_code,
+                        myArray.address.street + " " + myArray.address.number,
                         myArray.phone,
                         fullRoute
                 );
@@ -76,6 +79,7 @@ public class ConsulateApi {
     }
 
     public static class Root {
+        @JsonProperty("MyArray")
         public List<MyArray> myArrays;
     }
 
