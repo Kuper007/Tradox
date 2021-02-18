@@ -11,5 +11,31 @@
     border-radius: 50px;
 
     background: rgba(150, 190, 228, 0.4);
-    border-radius: 50px;
+}
+.head{
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    margin-top: 40px;
+    color: #000000;
+}
+.consulateItem{
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin: 10px;
+}
+.consulatesBox{
+    height: 90px;
+    width: 230px;
+    overflow-y:scroll;
+}
+.exchangeTitle{
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    margin-top: 20px;
+    color: #000000;
 }

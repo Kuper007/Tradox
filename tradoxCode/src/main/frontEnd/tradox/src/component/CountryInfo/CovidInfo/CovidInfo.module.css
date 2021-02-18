@@ -8,7 +8,6 @@
     width: 300px;
     left: 252px;
     top: 527px;
-    border-radius: 50px;
     background: rgba(247, 167, 167, 0.4);
     border-radius: 50px;
 }
@@ -19,7 +18,7 @@
     margin-top: 40px;
     color: #000000;
 }
-span{
+.spans{
     margin: 40px;
 }
 h3{
