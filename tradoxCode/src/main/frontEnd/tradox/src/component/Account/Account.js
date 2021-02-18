@@ -3,38 +3,36 @@ import style from './Account.module.css';
 import logo from "../../images/LogoTradoxLogo.svg";
 import user from "../../images/user.svg";
 import InputForm from "../RegisterForm/InputForm";
-import {NavLink} from "react-router-dom";
 import myMap from "../CountrysMap";
 import SaveButton from "./SaveButton";
 
 function Account(props) {
-    const [mainInfo, setMainInfo] = useState(null);
-    const [addInfo, setAddInfo] = useState(null);
-    let infoMap = new Map().set("firstName", null).set("lastName", null).set("dateOfBirth", null).set("email", null)
-        .set("password", null).set("mobilePhone", null).set("passport", null).set("citizenship", null).set("currentCountry", null);
-
-    let [state, setState] = useState(infoMap);
+    let [state, setState] = useState(null);
 
     useEffect(() => {
         fetch("http://localhost:8080/api/v1/account/getUserData")
             .then(data => data.json())
             .then(userData => {
-                if (!mainInfo && !addInfo) {
+                if (!state) {
                     const {
                         firstName,
                         lastName,
                         birthDate,
                         email,
                         phone,
-                        passport,
-                        citizenship,
-                        location: currentCountry
+                        passport = passport.passportId,
+                        citizenship = passport.citizenshipCountry,
+                        currentCountry = location.fullName
                     } = userData;
-                    setMainInfo({firstName, lastName, birthDate, email});
-                    setAddInfo({phone, passport, citizenship, currentCountry});
+                    let mmap = new Map().set("firstName", firstName).set("lastName", lastName)
+                        .set("dateOfBirth", birthDate).set("email", email).set("mobilePhone", phone)
+                        .set("passport", passport).set("citizenship", citizenship)
+                        .set("currentCountry", currentCountry);
+                    setState(mmap);
                 }
             });
     })
+
 
     //passport.passportId, passport.citizenshipCountry, location.fullName
 
@@ -58,7 +56,6 @@ function Account(props) {
                         status: response.status
                     })
                 ));
-        //console.log(state);
     }
 
     return (
@@ -74,40 +71,38 @@ function Account(props) {
                             Personal Info
                         </div>
                         <div className={style.info}>
-                            <div>{mainInfo && addInfo ? (
+                            <div>{state ? (
                                 <form className={style.form} onSubmit={onClickSave}>
-                                    <div>{console.log(mainInfo)}
-                                        <InputForm value={state.get("firstName")} notFound={false} type={"text"}
-                                                   title={"First name"} keyOf={"firstName"}
-                                                   placeholder={mainInfo.firstName}/>
-                                        <InputForm value={state.get("lastName")} notFound={false} type={"text"}
-                                                   title={"Last name"} keyOf={"lastName"}
-                                                   placeholder={mainInfo.lastName}/>
-                                        <InputForm value={state.get("dateOfBirth")} keyOf={"dateOfBirth"}
-                                                   title={"Date of birth"} type={"text"}
-                                                   placeholder={mainInfo.birthDate}/>
-                                        <InputForm value={state.get("email")} keyOf={"email"} type={"email"}
-                                                   title={"E-mail"} placeholder={mainInfo.email}/>
+                                    <div>{console.log(state)}
+                                        <InputForm value={state.get("firstName")} type={"text"}
+                                                   title={"First name"} placeholder={state.get("firstName")}/>
+                                        <InputForm value={state.get("lastName")} type={"text"}
+                                                   title={"Last name"} placeholder={state.get("lastName")}/>
+                                        <InputForm value={state.get("dateOfBirth")}
+                                                   placeholder={state.get("dateOfBirth")}
+                                                   title={"Date of birth"} type={"text"}/>
+                                        <InputForm value={state.get("email")} type={"email"}
+                                                   title={"E-mail"} placeholder={state.get("email")}/>
                                     </div>
-                                    <div>{console.log(addInfo)}
+                                    <div>
                                         <InputForm value={state.get("mobilePhone")} notFound={false}
-                                                   keyOf={"mobilePhone"}
-                                                   type={"tel"} title={"Mobile phone"} placeholder={addInfo.phone}/>
+                                                   keyOf={"mobilePhone"} placeholder={state.get("mobilePhone")}
+                                                   type={"tel"} title={"Mobile phone"}/>
                                         <InputForm value={state.get("passport")} keyOf={"passport"} type={"text"}
-                                                   title={"Passport"} placeholder={addInfo.passport}/>
+                                                   title={"Passport"} placeholder={state.get("passport")}/>
                                         <InputForm value={state.get("citizenship")} notFound={false}
-                                                   keyOf={"citizenship"}
-                                                   type={"text"} title={"Citizenship"}
-                                                   placeholder={addInfo.citizenship}/>
+                                                   keyOf={"citizenship"} placeholder={state.get("citizenship")}
+                                                   type={"text"} title={"Citizenship"}/>
                                         <InputForm value={state.get("currentCountry")} notFound={false}
                                                    keyOf={"currentCountry"} type={"text"} title={"Current country"}
-                                                   placeholder={addInfo.currentCountry}/>
+                                                   placeholder={state.get("currentCountry")}/>
                                     </div>
                                 </form>
                             ) : null}
                             </div>
                             <SaveButton type={"submit"}/>
                         </div>
+                        <div className={style.line}></div>
                     </div>
                 </div>
             </div>
