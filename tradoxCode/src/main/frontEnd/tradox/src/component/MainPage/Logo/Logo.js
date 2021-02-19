@@ -4,7 +4,6 @@ import logo from '../../../images/LogoTradoxLogo.svg';
 import user from '../../../images/user.svg';
 import vector from '../../../images/Vector.svg';
 import {NavLink} from 'react-router-dom';
-import axios from "axios";
 
 function Logo(props) {
    const[pressed, setPressed] = useState(false);
@@ -22,9 +21,12 @@ function Logo(props) {
         window.location.reload();
    };
 
+    function refreshPage(){
+        if (window.location.href = "/") window.location.reload();
+    }
     return (
         <div className = {style.container}>
-            <NavLink to = '/'><img src={logo} alt="logo" className = {style.logo}/></NavLink>
+            <NavLink to = '/'><img src={logo} alt="logo" onClick={refreshPage} className = {style.logo}/></NavLink>
             <div className = {style.auth}>
             {pressed ?<div className = {style.hidable} >
                 {!props.authorized? <div style= {{marginTop: '77px'}}>
