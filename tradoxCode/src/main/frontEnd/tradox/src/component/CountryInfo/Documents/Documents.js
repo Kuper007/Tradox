@@ -3,12 +3,16 @@ import style from './Documents.module.css'
 
 
 export default function Documents(props) {
+    const consulateInfo = Object.keys(props.data.documents.list)
+        .map(item => <span key={props.data.documents.list[item].documentId}>
+            {props.data.documents.list[item].description}<br/>
+            {props.data.documents.list[item].name}
+        </span>)
     return (
         <div className= {style.container}>
-            <h2>Documents</h2>
-            {props.docs}
-            <h2>Medicine</h2>
-            {props.med}
+            <h2 className={style.head}>Documents</h2>
+            {consulateInfo}
+            <h2 className={style.head}>Medicine</h2>
         </div>
     )
 }

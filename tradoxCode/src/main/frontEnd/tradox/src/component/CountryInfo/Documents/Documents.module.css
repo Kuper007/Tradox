@@ -12,3 +12,10 @@
     background: rgba(150, 190, 228, 0.4);
     border-radius: 50px;
 }
+.head{
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    margin-top: 40px;
+    color: #000000;
+}

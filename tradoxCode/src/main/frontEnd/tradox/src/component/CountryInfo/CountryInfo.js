@@ -33,7 +33,7 @@ import {NavLink} from 'react-router-dom'
                 <h1 className = {styles.countryText}>{props.data.fullRoute.destination.fullName} is closed for you</h1>
             </div>}
             <CovidInfo covidInfo = {covidInfo}/>
-            <Documents/>
+            <Documents data = {props.data}/>
             <NavLink to = '/docs'><div className={styles.fillBtn}>
                 <h2 className={styles.fillDocsTxT}>Fill out documents</h2>
             </div></NavLink>
