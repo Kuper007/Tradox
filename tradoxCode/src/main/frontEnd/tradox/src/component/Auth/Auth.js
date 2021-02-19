@@ -40,20 +40,24 @@ function Auth(props){
     };
 
     return (
-            <div className={style.container}>
-                <NavLink to = '/'><img src={logo} alt="logo"/></NavLink>
+        <div className = {style.container}>
+            <NavLink to = '/'><img src={logo} alt="logo"/></NavLink>
+
+            <div className = {style.innerContainer}>
                 <h2>Authorization</h2>
                 <form>
-                    <label>
-                        <span>Email:</span>
-                        <input value={emailVal} onChange={event => setEmailVal(event.target.value)} type="email" id="email" />
-                    </label>
-                    <label>
-                        <span>Password</span>
-                        <input value={passwordVal} onChange={event => setPasswordVal(event.target.value)} type="password" id="password" />
-                    </label>
+                    <ul className = {style.inner}>
+                        <li>
+                            <label htmlFor="email"><span>Email:</span></label>
+                            <input className = {style.input} value={emailVal} onChange={event => setEmailVal(event.target.value)} type="email" id="email" />
+                        </li>
+                        <li style ={{paddingTop :"20px"}}>
+                            <label htmlFor="password"><span>Password</span></label>
+                            <input className = {style.input} value={passwordVal} onChange={event => setPasswordVal(event.target.value)} type="password" id="password" />
+                        </li>
+                    </ul>
                 </form>
-                <div>
+                <div className={style.additional}>
                     <NavLink to='/reset'>
                         <span> Forgot password? </span>
                     </NavLink>
@@ -62,8 +66,9 @@ function Auth(props){
                         <span> Register </span>
                     </NavLink>
                 </div>
-                <button className={style.authBtn} onClick={() => validate()}> Log in </button>
+                <button className = {style.authBtn} onClick={() => validate()}> Log in </button>
             </div>
+        </div>
         );
     }
 

@@ -38,7 +38,7 @@ import {NavLink} from 'react-router-dom'
                 <h2 className={styles.fillDocsTxT}>Fill out documents</h2>
             </div></NavLink>
             <Consulates departure = {props.data.fullRoute.departure} data = {props.data}/>
-            <News/>
+            <News data = {props.data}/>
             </div>
         </div>
     )
