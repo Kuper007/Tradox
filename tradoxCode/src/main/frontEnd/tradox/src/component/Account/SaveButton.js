@@ -1,7 +1,7 @@
 import React from 'react';
 import style from "./Account.module.css";
 
-function CreateButton(props) {
+function SaveButton(props) {
     function changeState() {
 
     }
@@ -12,4 +12,4 @@ function CreateButton(props) {
     )
 }
 
-export default CreateButton;
+export default SaveButton;

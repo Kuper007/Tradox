@@ -22,7 +22,7 @@ function Account(props) {
                         phone,
                         passport = passport.passportId,
                         citizenship = passport.citizenshipCountry,
-                        currentCountry = location.fullName
+                        location: currentCountry
                     } = userData;
                     let mmap = new Map().set("firstName", firstName).set("lastName", lastName)
                         .set("dateOfBirth", birthDate).set("email", email).set("mobilePhone", phone)
