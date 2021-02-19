@@ -1,5 +1,5 @@
 
-.container{
+.container {
     width: 100%;
     height: 100%;
     display: flex;
@@ -8,19 +8,24 @@
     align-content: center;
     justify-content: center;
 }
-.accountForm{
+
+.accountForm {
     display: flex;
     flex-direction: column;
     align-items: center;
     align-content: center;
     justify-content: space-between;
 }
-label{
+
+label {
     margin-top: 10px;
 }
-input{margin-left: 5px;}
 
-.accountBtn{
+input {
+    margin-left: 5px;
+}
+
+.accountBtn {
     width: 150px;
     height: 40px;
 
@@ -33,9 +38,13 @@ input{margin-left: 5px;}
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.accountLogo {
-    margin: 0 auto;
-    margin-top: 3.75rem;
+.user {
+    position: absolute;
+    left: 12.5%;
+    right: 12.5%;
+    top: 3.12%;
+    bottom: 3.13%;
+    margin: 3.75rem auto 0;
 }
 
 img {
@@ -48,7 +57,7 @@ img {
     margin: 0 auto;
 }
 
-.title{
+.title {
     width: 159px;
     height: 30px;
     left: 877px;
@@ -69,6 +78,7 @@ img {
     margin: 0 auto;
     width: 496px;
 }
+
 .accountComponent {
     margin: 0 auto;
 }
@@ -79,7 +89,7 @@ img {
     width: 68%;
     text-align: right;
     float: right;
-    Outline:none;
+    Outline: none;
     background: none;
 }
 
@@ -89,7 +99,7 @@ img {
     width: 68%;
     text-align: right;
     float: right;
-    Outline:none;
+    Outline: none;
     background: none;
     color: red;
 }
@@ -108,6 +118,14 @@ img {
     display: flex;
 
     margin: 0 auto;
+}
+
+.line {
+    margin: 50px auto 0;
+    width: 1000px;
+    height: 0px;
+
+    border: 1px solid #000000;
 }
 
 .createButton {
@@ -150,7 +168,7 @@ select {
     border-bottom: 1px solid black;
     text-align: right;
     float: right;
-    Outline:none;
+    Outline: none;
     direction: ltr;
     /*webkit-appearance:none*/
     background: none;
@@ -183,8 +201,17 @@ option {
     }
 }
 
+.logo {
+    position: absolute;
+    left: 7.81%;
+    right: 84.01%;
+    top: 5.56%;
+    bottom: 88.06%;
+
+}
+
 shakeAnimation {
-    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     perspective: 1000px;

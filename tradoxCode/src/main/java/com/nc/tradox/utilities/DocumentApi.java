@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 public class DocumentApi {
 
     private static final Logger log = Logger.getLogger(DocumentApi.class.getName());
-    TradoxDataAccessService tradoxDataAccessService;
+    TradoxDataAccessService tradoxDataAccessService = new TradoxDataAccessService();
 
     public List<HaveDocument> documentList() {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -36,7 +36,10 @@ public class DocumentApi {
 
         List<HaveDocument> haveDocumentList = new ArrayList<>();
         if (root != null) {
+            int count = 0;
             for (MainArr mainArr : root.mainArr) {
+                count++;
+                System.out.println(count);
                 HaveDocument haveDocument = new HaveDocument();
 
                 Country departure = tradoxDataAccessService.getCountryById(mainArr.departure_country);

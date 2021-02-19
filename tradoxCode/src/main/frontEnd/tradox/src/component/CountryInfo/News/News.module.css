@@ -20,3 +20,8 @@
     margin-top: 40px;
     color: #000000;
 }
+.innerContainer{
+    height: 300px;
+    width: 270px;
+    overflow-y:scroll;
+}

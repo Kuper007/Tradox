@@ -14,26 +14,37 @@ import java.util.logging.Logger;
 public class ConsulateFillDB {
 
     private static final Logger log = Logger.getLogger(ConsulateFillDB.class.getName());
-    TradoxDataAccessService tradoxDataAccessService;
-    ConsulateApi consulateApi;
+    TradoxDataAccessService tradoxDataAccessService = new TradoxDataAccessService();
+    ConsulateApi consulateApi = new ConsulateApi();
 
     public void consulateFillDB() {
-        Connection connection = tradoxDataAccessService.connection;
         List<Consulate> consulateList = consulateApi.consulateList();
-
-        for (Consulate consulate : consulateList) {
+        if (consulateList != null){
             try {
-                Statement statement = connection.createStatement();
-                int rows = statement.executeUpdate(
-                        "INSERT INTO CONSULATE(CITY, ADDRESS, PHONE, OWNER_ID, COUNTRY_ID)" +
-                                "VALUES (" + consulate.getCity() + ", " +
-                                consulate.getAddress() + ", " +
-                                consulate.getPhoneNumber() + ", " +
-                                consulate.getOwner() + ", " +
-                                consulate.getCountry() + ")");
+                int count = 0;
+                Statement statement = tradoxDataAccessService.connection.createStatement();
+                for (Consulate consulate : consulateList) {
+                    if (consulate == null ||
+                            consulate.getFullRoute().getDeparture().getShortName() == null ||
+                            consulate.getFullRoute().getDestination().getShortName() == null) continue;
+                    String consulateQuery = "INSERT INTO CONSULATE(CITY, ADDRESS, PHONE, OWNER_ID, COUNTRY_ID) " +
+                            "VALUES ('" + consulate.getCity().replace("'", " ") + "', '" +
+                            consulate.getAddress() + "', '" +
+                            consulate.getPhoneNumber() + "', '" +
+                            consulate.getFullRoute().getDeparture().getShortName() + "', '" +
+                            consulate.getFullRoute().getDestination().getShortName() + "')";
+                    System.out.println(consulateQuery);
+                    statement.executeUpdate(consulateQuery);
+                    count++;
+                    if (count == 200){
+                        count = 0;
+                        statement.close();
+                        statement = tradoxDataAccessService.connection.createStatement();
+                    }
+                }
                 statement.close();
             } catch (SQLException exception) {
-                log.log(Level.SEVERE, "SQL exception", exception);
+                log.log(Level.SEVERE, "SQL error", exception);
             }
         }
     }

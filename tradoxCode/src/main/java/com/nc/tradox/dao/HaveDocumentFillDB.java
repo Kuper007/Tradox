@@ -14,27 +14,38 @@ import java.util.logging.Logger;
 public class HaveDocumentFillDB {
 
     private static final Logger log = Logger.getLogger(HaveDocumentFillDB.class.getName());
-    TradoxDataAccessService tradoxDataAccessService;
-    DocumentApi documentApi;
+    TradoxDataAccessService tradoxDataAccessService = new TradoxDataAccessService();
+    DocumentApi documentApi = new DocumentApi();
 
     public void haveDocumentFillDB() {
-        Connection connection = tradoxDataAccessService.connection;
         List<HaveDocument> haveDocumentList = documentApi.documentList();
-
-        for (HaveDocument haveDocument : haveDocumentList) {
+        if (haveDocumentList != null){
             try {
-                Statement statement = connection.createStatement();
-                int rows = statement.executeUpdate(
-                        "INSERT INTO HAVE_DOCUMENT(DOCUMENT_ID, DESTINATION_ID, DEPARTURE_ID)" +
-                                "VALUES (" + haveDocument.getDocumentId() + ", " +
-                                haveDocument.getDestination() + ", " +
-                                haveDocument.getDeparture() + ")");
+                int count = 0;
+                Statement statement = tradoxDataAccessService.connection.createStatement();
+                for (HaveDocument haveDocument : haveDocumentList) {
+                    if (haveDocument == null ||
+                            haveDocument.getDestination() == null ||
+                            haveDocument.getDeparture() == null ||
+                            haveDocument.getDestination().getShortName() == null ||
+                            haveDocument.getDeparture().getShortName() == null) continue;
+                    String haveDocumentQuery = "INSERT INTO HAVE_DOCUMENT(DOCUMENT_ID, DESTINATION_ID, DEPARTURE_ID) " +
+                            "VALUES (" + haveDocument.getDocumentId() + ", '" +
+                            haveDocument.getDestination().getShortName() + "', '" +
+                            haveDocument.getDeparture().getShortName() + "')";
+                    System.out.println(haveDocumentQuery);
+                    statement.executeUpdate(haveDocumentQuery);
+                    count++;
+                    if (count == 200){
+                        count = 0;
+                        statement.close();
+                        statement = tradoxDataAccessService.connection.createStatement();
+                    }
+                }
                 statement.close();
             } catch (SQLException exception) {
-                log.log(Level.SEVERE, "SQL exception", exception);
+                log.log(Level.SEVERE, "SQL error", exception);
             }
-
         }
     }
-
 }
