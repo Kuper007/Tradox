@@ -34,7 +34,7 @@ public class AuthController {
                     if (user != null) {
                         session.setAttribute("authorized", true);
                         session.setAttribute("userId", user.getUserId());
-                        session.setAttribute("userType", user.getUserType());
+                        session.setAttribute("userType", user.getUserType().toString());
                     }
                 } else {
                     session.setAttribute("error", error);
@@ -54,7 +54,8 @@ public class AuthController {
         if (isAuthorized) {
             Integer userId = (Integer) session.getAttribute("userId");
             String user = "\"" + userId + "\"";
-            json = "{\"res\": \"true\",\"userId\": " + user + "}";
+            String userType = "\"" + (String) session.getAttribute("userType") + "\"";
+            json = "{\"res\": \"true\",\"userId\": " + user + ",\"userType\": "+userType+"}";
             return json;
         } else {
             String error = (String) session.getAttribute("error");
