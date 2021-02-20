@@ -1,7 +1,9 @@
 package com.nc.tradox.service;
 
 import com.nc.tradox.dao.Dao;
-import com.nc.tradox.model.impl.CountryOld;
+import com.nc.tradox.model.*;
+import com.nc.tradox.model.service.CountryView;
+import com.nc.tradox.model.service.HaveDocumentView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -20,10 +22,32 @@ public class AdminService {
         this.dao = dao;
     }
 
-    public List<CountryOld> getCountryList() {
+    public List<CountryView> getCountryList() {
         return dao.getCountryList();
     }
 
-//    public
+    public List<User> getUserList() {
+        return dao.getUserList();
+    }
+
+    public List<Document> getDocumentList() {
+        return dao.getDocumentList();
+    }
+
+    public List<Consulate> getConsulateList() {
+        return dao.getConsulateList();
+    }
+
+    public List<HaveDocumentView> getCountryDocumentList() {
+        return dao.getCountryDocumentList();
+    }
+
+    public List<Medicine> getMedicineList() {
+        return dao.getMedicineList();
+    }
+
+    public List<Status> getStatusList() {
+        return dao.getStatusList();
+    }
 
 }

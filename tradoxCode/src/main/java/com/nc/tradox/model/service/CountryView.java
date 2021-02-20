@@ -1,6 +1,6 @@
-package com.nc.tradox.model.impl;
+package com.nc.tradox.model.service;
 
-public class CountryOld {
+public class CountryView {
 
     protected String shortName;
     protected String fullName;
@@ -8,11 +8,11 @@ public class CountryOld {
     protected double mediumBill;
     protected int tourismCount;
 
-    public CountryOld() {
+    public CountryView() {
 
     }
 
-    public CountryOld(String shortName, String fullName, String currency, double mediumBill, int tourismCount) {
+    public CountryView(String shortName, String fullName, String currency, double mediumBill, int tourismCount) {
         this.shortName = shortName;
         this.fullName = fullName;
         this.currency = currency;

@@ -1,4 +1,4 @@
-package com.nc.tradox.model.impl;
+package com.nc.tradox.model.service;
 
 public class Response {
 

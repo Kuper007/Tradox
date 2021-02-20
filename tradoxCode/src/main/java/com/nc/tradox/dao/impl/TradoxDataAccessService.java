@@ -3,6 +3,9 @@ package com.nc.tradox.dao.impl;
 import com.nc.tradox.dao.Dao;
 import com.nc.tradox.model.*;
 import com.nc.tradox.model.impl.*;
+import com.nc.tradox.model.service.CountryView;
+import com.nc.tradox.model.service.HaveDocumentView;
+import com.nc.tradox.model.service.Response;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
@@ -805,13 +808,13 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
-    public List<CountryOld> getCountryList() {
-        List<CountryOld> countryList = new ArrayList<>();
+    public List<CountryView> getCountryList() {
+        List<CountryView> countryList = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM COUNTRY");
             while (resultSet.next()) {
-                CountryOld country = new CountryOld();
+                CountryView country = new CountryView();
                 country.setShortName(resultSet.getString("SHORT_NAME"));
                 country.setFullName(resultSet.getString("FULL_NAME"));
                 country.setCurrency(resultSet.getString("CURRENCY"));
@@ -824,6 +827,119 @@ public class TradoxDataAccessService implements Dao {
             LOGGER.severe("TradoxDataAccessService.getCountriesList " + exception.getMessage());
         }
         return countryList;
+    }
+
+    @Override
+    public List<User> getUserList() {
+        List<User> userList = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM \"USER\" " +
+                    "LEFT JOIN PASSPORT ON \"USER\".PASSPORT_ID = PASSPORT.PASSPORT_ID");
+            while (resultSet.next()) {
+                User user = new UserImpl(resultSet);
+                userList.add(user);
+            }
+            statement.close();
+        } catch (SQLException exception) {
+            LOGGER.severe("TradoxDataAccessService.getUserList " + exception.getMessage());
+        }
+        return userList;
+    }
+
+    @Override
+    public List<Document> getDocumentList() {
+        List<Document> documentList = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM DOCUMENT");
+            while (resultSet.next()) {
+                Document document = new DocumentImpl(resultSet);
+                documentList.add(document);
+            }
+            statement.close();
+        } catch (SQLException exception) {
+            LOGGER.severe("TradoxDataAccessService.getDocumentList " + exception.getMessage());
+        }
+        return documentList;
+    }
+
+    @Override
+    public List<Consulate> getConsulateList() {
+        List<Consulate> consulateList = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM CONSULATE");
+            while (resultSet.next()) {
+                Consulate consulate = new ConsulateImpl(resultSet);
+                consulate.setCountry(new CountryImpl(resultSet.getString("COUNTRY_ID"), null));
+                consulate.setOwner(new CountryImpl(resultSet.getString("OWNER_ID"), null));
+                consulateList.add(consulate);
+            }
+            statement.close();
+        } catch (SQLException exception) {
+            LOGGER.severe("TradoxDataAccessService.getConsulateList " + exception.getMessage());
+        }
+        return consulateList;
+    }
+
+    @Override
+    public List<HaveDocumentView> getCountryDocumentList() {
+        List<HaveDocumentView> haveDocumentViewList = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM HAVE_DOCUMENT");
+            while (resultSet.next()) {
+                HaveDocumentView haveDocumentView = new HaveDocumentView();
+                haveDocumentView.setId(resultSet.getInt("HAVE_DOCUMENT_ID"));
+                haveDocumentView.setDocumentId(resultSet.getInt("DOCUMENT_ID"));
+                haveDocumentView.setDeparture(new CountryImpl(resultSet.getString("DEPARTURE_ID"), null));
+                haveDocumentView.setDestination(new CountryImpl(resultSet.getString("DESTINATION_ID"), null));
+                haveDocumentViewList.add(haveDocumentView);
+            }
+            statement.close();
+        } catch (SQLException exception) {
+            LOGGER.severe("TradoxDataAccessService.getDocumentList " + exception.getMessage());
+        }
+        return haveDocumentViewList;
+    }
+
+    @Override
+    public List<Medicine> getMedicineList() {
+        List<Medicine> medicineList = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM MEDICINE");
+            while (resultSet.next()) {
+                Medicine medicine = new MedicineImpl(resultSet);
+                medicine.setCountry(new CountryImpl(resultSet.getString("COUNTRY_ID"), null));
+                medicineList.add(medicine);
+            }
+            statement.close();
+        } catch (SQLException exception) {
+            LOGGER.severe("TradoxDataAccessService.getMedicineList " + exception.getMessage());
+        }
+        return medicineList;
+    }
+
+    @Override
+    public List<Status> getStatusList() {
+        List<Status> statusList = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM STATUS " +
+                    "LEFT JOIN REASONS ON STATUS.STATUS_ID = REASONS.STATUS_ID");
+            while (resultSet.next()) {
+                Status status = new StatusImpl(resultSet);
+                status.setCountry(new CountryImpl(resultSet.getString("COUNTRY_ID"), null));
+                status.setDestination(new CountryImpl(resultSet.getString("DESTINATION_ID"), null));
+                statusList.add(status);
+            }
+            statement.close();
+        } catch (SQLException exception) {
+            LOGGER.severe("TradoxDataAccessService.getStatusList " + exception.getMessage());
+        }
+        return statusList;
     }
 
 }

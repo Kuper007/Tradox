@@ -3,7 +3,7 @@ package com.nc.tradox.api;
 import com.nc.tradox.model.Country;
 import com.nc.tradox.model.InfoData;
 import com.nc.tradox.model.impl.InfoDataImpl;
-import com.nc.tradox.model.impl.Response;
+import com.nc.tradox.model.service.Response;
 import com.nc.tradox.service.TradoxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;

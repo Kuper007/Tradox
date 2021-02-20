@@ -1,7 +1,7 @@
 package com.nc.tradox.api;
 
 import com.nc.tradox.model.User;
-import com.nc.tradox.model.impl.Response;
+import com.nc.tradox.model.service.Response;
 import com.nc.tradox.service.TradoxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

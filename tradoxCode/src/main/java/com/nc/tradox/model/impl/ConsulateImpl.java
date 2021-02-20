@@ -101,7 +101,7 @@ public class ConsulateImpl implements Consulate {
 
     @JsonIgnore
     public FullRoute getFullRoute() {
-        return fullRoute == null ? new FullRouteImpl() : fullRoute;
+        return fullRoute == null ? fullRoute = new FullRouteImpl() : fullRoute;
     }
 
     public void setFullRoute(FullRoute fullRoute) {
