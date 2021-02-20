@@ -21,8 +21,8 @@ public class AdminController {
         this.adminService = adminService;
     }
 
-    @GetMapping("/getCountriesList")
-    public Response getCountiesList(HttpSession httpSession) {
+    @GetMapping("/getCountries")
+    public Response getCounties(HttpSession httpSession) {
         Response response = new Response();
         if (adminAuthorized(httpSession)) {
             List<CountryOld> infoDataList = adminService.getCountryList();
@@ -33,8 +33,8 @@ public class AdminController {
         return response;
     }
 
-    @PutMapping("/updateCounties")
-    public Response updateCountries(@RequestBody List<CountryOld> countryList, HttpSession httpSession) {
+    @PutMapping("/saveCounties")
+    public Response saveCountries(@RequestBody List<CountryOld> countryList, HttpSession httpSession) {
         Response response = new Response();
         return response;
     }

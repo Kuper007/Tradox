@@ -819,6 +819,7 @@ public class TradoxDataAccessService implements Dao {
                 country.setTourismCount(resultSet.getInt("TOURISM_COUNT"));
                 countryList.add(country);
             }
+            statement.close();
         } catch (SQLException exception) {
             LOGGER.severe("TradoxDataAccessService.getCountriesList " + exception.getMessage());
         }
