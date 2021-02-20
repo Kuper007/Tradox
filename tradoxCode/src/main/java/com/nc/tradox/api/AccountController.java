@@ -100,7 +100,7 @@ public class AccountController {
                 Route route = tradoxService.getRoute(String.valueOf(userId), destinationId);
                 if (route != null) {
                     session.setAttribute("currentRoute", route);
-                    return new RedirectView("api/v1/route");
+                    return new RedirectView("api/v1/route/showRoute");
                 }
             } else {
                 Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, "User not authorized");
