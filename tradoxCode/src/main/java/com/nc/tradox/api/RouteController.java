@@ -77,7 +77,7 @@ public class RouteController {
     }*/
 
     @PostMapping("/getRoute")
-    public RedirectView getRoute(@RequestBody String json, HttpSession session) {
+    public Route getRoute(@RequestBody String json, HttpSession session) {
         if (json != null) {
             Integer userId = (Integer) session.getAttribute("userId");
             if (userId != null) {
@@ -96,15 +96,11 @@ public class RouteController {
                 }
                 Random random = new Random(System.currentTimeMillis());
                 int id = random.nextInt();
-                session.setAttribute("currentRoute", new RouteImpl(id, transits));
-                return new RedirectView("api/v1/route/showRoute");
+                Route route = new RouteImpl(id, transits);
+                session.setAttribute("currentRoute", route);
+                return route;
             }
         }
         return null;
-    }
-
-    @GetMapping("/showRoute")
-    public Route showRoute(HttpSession session) {
-        return (Route) session.getAttribute("currentRoute");
     }
 }
