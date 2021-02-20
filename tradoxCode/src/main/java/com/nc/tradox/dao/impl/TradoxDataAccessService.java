@@ -804,4 +804,25 @@ public class TradoxDataAccessService implements Dao {
         return isCountry;
     }
 
+    @Override
+    public List<CountryOld> getCountryList() {
+        List<CountryOld> countryList = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM COUNTRY");
+            while (resultSet.next()) {
+                CountryOld country = new CountryOld();
+                country.setShortName(resultSet.getString("SHORT_NAME"));
+                country.setFullName(resultSet.getString("FULL_NAME"));
+                country.setCurrency(resultSet.getString("CURRENCY"));
+                country.setMediumBill(resultSet.getDouble("MEDIUM_BILL"));
+                country.setTourismCount(resultSet.getInt("TOURISM_COUNT"));
+                countryList.add(country);
+            }
+        } catch (SQLException exception) {
+            LOGGER.severe("TradoxDataAccessService.getCountriesList " + exception.getMessage());
+        }
+        return countryList;
+    }
+
 }

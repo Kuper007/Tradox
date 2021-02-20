@@ -1,45 +1,64 @@
 package com.nc.tradox.api;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nc.tradox.model.Country;
-import com.nc.tradox.service.TradoxService;
+import com.nc.tradox.model.User;
+import com.nc.tradox.model.impl.CountryOld;
+import com.nc.tradox.model.impl.Response;
+import com.nc.tradox.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
+import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Map;
 
 @RequestMapping("api/v1/admin")
 @RestController
 public class AdminController {
 
-    private final TradoxService tradoxService;
+    private final AdminService adminService;
 
     @Autowired
-    public AdminController(TradoxService tradoxService) {
-        this.tradoxService = tradoxService;
+    public AdminController(AdminService adminService) {
+        this.adminService = adminService;
     }
 
-    @GetMapping("/get")
-    public String getInfo(){
-        String json = "";
-        List<Country> countries = tradoxService.getAllCountries();
-        if (!countries.isEmpty()) {
-            Map<Integer,Country> map = new HashMap<>();
-            for (int i=0; i<countries.size();i++) {
-                map.put(i,countries.get(i));
-            }
-            ObjectMapper objectMapper = new ObjectMapper();
-            try {
-                json = objectMapper.writeValueAsString(map);
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
+    @GetMapping("/getCountriesList")
+    public Response getCountiesList(HttpSession httpSession) {
+        Response response = new Response();
+        if (adminAuthorized(httpSession)) {
+            List<CountryOld> infoDataList = adminService.getCountryList();
+            response.setObject(infoDataList);
+        } else {
+            response.setError("permissions error");
         }
-        return json;
+        return response;
     }
+
+    @PutMapping("/updateCounties")
+    public Response updateCountries(@RequestBody List<CountryOld> countryList, HttpSession httpSession) {
+        Response response = new Response();
+        return response;
+    }
+
+    @DeleteMapping("/deleteCountries")
+    public Response deleteCountries(@RequestBody List<CountryOld> countryList, HttpSession httpSession) {
+        Response response = new Response();
+        return response;
+    }
+
+    public boolean adminAuthorized(HttpSession httpSession) {
+        Integer userId = (Integer) httpSession.getAttribute("userId");
+        if (isValidUser(userId)) {
+            User.UserTypeEnum userType = (User.UserTypeEnum) httpSession.getAttribute("userType");
+            return User.UserTypeEnum.admin.equals(userType);
+        }
+        return false;
+    }
+
+    private boolean isValidUser(Integer userId) {
+        if (userId != null) {
+            return userId >= 0;
+        }
+        return false;
+    }
+
 }

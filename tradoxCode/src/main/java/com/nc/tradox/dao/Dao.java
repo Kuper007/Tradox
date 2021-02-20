@@ -87,4 +87,8 @@ public interface Dao {
     List<Country> getAllCountries();
 
     boolean isCountry(String fullName);
+
+    List<CountryOld> getCountryList();
+
+
 }
