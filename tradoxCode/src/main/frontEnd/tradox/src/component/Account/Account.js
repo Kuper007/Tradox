@@ -5,6 +5,7 @@ import user from "../../images/user.svg";
 import InputForm from "../RegisterForm/InputForm";
 import myMap from "../CountrysMap";
 import SaveButton from "./SaveButton";
+import {NavLink} from "react-router-dom";
 
 function Account(props) {
     let [state, setState] = useState(null);
@@ -14,15 +15,16 @@ function Account(props) {
             .then(data => data.json())
             .then(userData => {
                 if (!state) {
+                    console.log(userData)
                     const {
                         firstName,
                         lastName,
                         birthDate,
                         email,
                         phone,
-                        passport = passport.passportId,
-                        citizenship = passport.citizenshipCountry,
-                        location: currentCountry
+                        passport = JSON.stringify(passport.passportId),
+                        citizenship = passport.citizenshipCountry.shortName,
+                        currentCountry = location.fullName
                     } = userData;
                     let mmap = new Map().set("firstName", firstName).set("lastName", lastName)
                         .set("dateOfBirth", birthDate).set("email", email).set("mobilePhone", phone)
@@ -32,9 +34,6 @@ function Account(props) {
                 }
             });
     })
-
-
-    //passport.passportId, passport.citizenshipCountry, location.fullName
 
     function onClickSave(e) {
         e.preventDefault();
@@ -61,7 +60,7 @@ function Account(props) {
     return (
         <div>
             <div className={style.logo}>
-                <img src={logo}/>
+                <NavLink to = '/'> <img src={logo}/></NavLink>
             </div>
             <div className={style.accountComponent}>
                 <div className={style.user}>

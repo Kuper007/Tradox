@@ -19,7 +19,6 @@ function Auth(props){
         ).then(res => {
             if (res.data.res==="true"){
                 let userId = res.data.userId;
-                //setAuthorized(true);
                 localStorage.setItem('userId', userId);
                 localStorage.setItem('auth', true);
                 localStorage.setItem("userType",res.data.userType);
@@ -44,26 +43,25 @@ function Auth(props){
             <NavLink to = '/'><img src={logo} alt="logo"/></NavLink>
 
             <div className = {style.innerContainer}>
-                <h2>Authorization</h2>
+                <h2 className={style.title}>Authorization</h2>
                 <form>
                     <ul className = {style.inner}>
                         <li>
-                            <label htmlFor="email"><span>Email:</span></label>
+                            <label htmlFor="email"><span className={style.fieldLabel}>Email:</span></label>
                             <input className = {style.input} value={emailVal} onChange={event => setEmailVal(event.target.value)} type="email" id="email" />
                         </li>
                         <li style ={{paddingTop :"20px"}}>
-                            <label htmlFor="password"><span>Password</span></label>
+                            <label htmlFor="password"><span className={style.fieldLabel}>Password</span></label>
                             <input className = {style.input} value={passwordVal} onChange={event => setPasswordVal(event.target.value)} type="password" id="password" />
                         </li>
                     </ul>
                 </form>
                 <div className={style.additional}>
-                    <NavLink to='/reset'>
-                        <span> Forgot password? </span>
+                    <NavLink to='/reset' style={{ textDecoration: 'none' }}>
+                        <span style={{color:"#000000"}}> Forgot password? </span>
                     </NavLink>
-                    <br/>
-                    <NavLink to='/registration'>
-                        <span> Register </span>
+                    <NavLink to='/registration' style={{ textDecoration: 'none' }}>
+                        <span style={{color:"#FF0000"}}> Register </span>
                     </NavLink>
                 </div>
                 <button className = {style.authBtn} onClick={() => validate()}> Log in </button>

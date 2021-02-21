@@ -33,7 +33,7 @@ function Logo(props) {
                         <NavLink className = {`${style.register} ${style.link}`} to= '/registration'>Register</NavLink>
                     <NavLink className = {`${style.logIn} ${style.link}`} to = '/auth'>Log in</NavLink></div>:
                    <div style= {{marginTop: '77px'}}> <NavLink className = {`${style.register} ${style.link}`} to= '/account'>To account</NavLink>
-                   {props.admin ? <NavLink className = {`${style.logIn} ${style.link}`} to = '/admin'>Admin</NavLink> : null}
+                   <NavLink className = {`${style.logIn} ${style.link}`} to = '/admin'>Admin</NavLink>
                        <span className={style.logOut} onClick={() => logout()}>Log out</span></div>
                 }
                     <img src = {vector} alt = 'vector' className = {style.vector}/>
