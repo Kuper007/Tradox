@@ -12,11 +12,11 @@ import {NavLink} from 'react-router-dom'
      const [data, setData] = useState([])
      useEffect(() => {
          console.log(props);
-         if(props.data.fullRoute.departure != undefined && props.data.covidInfo){
-             setDeparture(props.data.fullRoute.departure)
-             setCovidInfo(props.data.covidInfo)
+         if(props.data.object.fullRoute.departure != undefined && props.data.object.covidInfo){
+             setDeparture(props.data.object.fullRoute.departure)
+             setCovidInfo(props.data.object.covidInfo)
              setData(props.data)
-             if(props.data.status.status == "open"){
+             if(props.data.object.status.status == "open"){
                 setOpened(true)
              }
 
@@ -27,17 +27,17 @@ import {NavLink} from 'react-router-dom'
         <div className = {styles.container}>
             <div className={styles.wrapper}>
             {opened ? <div className = {styles.openCountry}>
-                <h1 className = {styles.countryText}>{props.data.fullRoute.destination.fullName} is open for you</h1>
+                <h1 className = {styles.countryText}>{props.data.object.fullRoute.destination.fullName} is open for you</h1>
             </div>  :
             <div className = {styles.closedCountry}>
-                <h1 className = {styles.countryText}>{props.data.fullRoute.destination.fullName} is closed for you</h1>
+                <h1 className = {styles.countryText}>{props.data.object.fullRoute.destination.fullName} is closed for you</h1>
             </div>}
             <CovidInfo covidInfo = {covidInfo}/>
             <Documents data = {props.data}/>
             <NavLink to = '/docs'><div className={styles.fillBtn}>
                 <h2 className={styles.fillDocsTxT}>Fill out documents</h2>
             </div></NavLink>
-            <Consulates departure = {props.data.fullRoute.departure} data = {props.data}/>
+            <Consulates departure = {props.data.object.fullRoute.departure} data = {props.data}/>
             <News data = {props.data}/>
             </div>
         </div>
