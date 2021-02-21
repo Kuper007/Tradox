@@ -4,7 +4,7 @@ public class ExchangeTest {
 
     public static void main(String[] args) throws Exception{
         ExchangeApi exchangeApi = new ExchangeApi();
-        System.out.println(exchangeApi.currentExchange("UAH", "RUB").toString());
+        System.out.println(exchangeApi.currentExchange("UAH", "USD").toString());
     }
 
 }
