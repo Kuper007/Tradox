@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class MedicineApi {
 
     private static final Logger log = Logger.getLogger(MedicineApi.class.getName());
-    TradoxDataAccessService tradoxDataAccessService;
+    TradoxDataAccessService tradoxDataAccessService = new TradoxDataAccessService();
 
     public List<Medicine> medicineList() {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -39,8 +39,10 @@ public class MedicineApi {
 
         List<Medicine> medicineArrayList = new ArrayList<>();
         if (root != null) {
+            int count = 0;
             for (MainArr mainArr : root.mainArr) {
-
+                count++;
+                System.out.println(count);
                 Country country = tradoxDataAccessService.getCountryById(mainArr.country);
 
                 String[] vaccines = new String[3];
@@ -93,7 +95,7 @@ public class MedicineApi {
         public boolean measles;
         @JsonProperty("Measles-Mumps-Rubella")
         public boolean measlesMumpsRubella;
-        @JsonProperty("Meningitis(Meningococcal disease)")
+        @JsonProperty("Meningitis (Meningococcal disease)")
         public boolean meningitisMeningococcaldisease;
         @JsonProperty("Polio")
         public boolean polio;

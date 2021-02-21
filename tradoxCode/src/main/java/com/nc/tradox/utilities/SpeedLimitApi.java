@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 public class SpeedLimitApi {
 
     private static final Logger log = Logger.getLogger(SpeedLimitApi.class.getName());
-    TradoxDataAccessService tradoxDataAccessService;
+    TradoxDataAccessService tradoxDataAccessService = new TradoxDataAccessService();
 
     public List<SpeedLimit> speedLimitList() {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -40,8 +40,10 @@ public class SpeedLimitApi {
         if (root != null) {
             com.nc.tradox.model.SpeedLimit.TypeOfRoad typeOfRoad;
             int speed;
+            int count = 0;
             for (MainArr mainArr : root.mainArr) {
-
+                count++;
+                System.out.println(count);
                 Country destination_country = tradoxDataAccessService.getCountryById(mainArr.country);
 
                 for (int i = 0; i < 4; i++) {

@@ -14,25 +14,34 @@ import java.util.logging.Logger;
 public class MedicineFillDB {
 
     private static final Logger log = Logger.getLogger(MedicineFillDB.class.getName());
-    TradoxDataAccessService tradoxDataAccessService;
-    MedicineApi medicineApi;
+    TradoxDataAccessService tradoxDataAccessService = new TradoxDataAccessService();
+    MedicineApi medicineApi = new MedicineApi();
 
     public void medicineFillDB() {
-        Connection connection = tradoxDataAccessService.connection;
         List<Medicine> medicineList = medicineApi.medicineList();
-
-        for (Medicine medicine : medicineList) {
+        if (medicineList != null){
             try {
-                Statement statement = connection.createStatement();
-                int rows = statement.executeUpdate(
-                        "INSERT INTO MEDICINE(NAME, COUNTRY_ID) " +
-                                "VALUES (" + medicine.getName() + ", " + medicine.getCountry() + ")");
+                int count = 0;
+                Statement statement = tradoxDataAccessService.connection.createStatement();
+                for (Medicine medicine: medicineList){
+                    if (medicine == null ||
+                            medicine.getCountry().getShortName() == null) continue;
+                    String medicineQuery = "INSERT INTO MEDICINE(NAME, COUNTRY_ID)" +
+                            "VALUES ('" + medicine.getName() + "', '" +
+                            medicine.getCountry().getShortName() + "')";
+                    System.out.println(medicineQuery);
+                    statement.executeUpdate(medicineQuery);
+                    count++;
+                    if (count == 200){
+                        count = 0;
+                        statement.close();
+                        statement = tradoxDataAccessService.connection.createStatement();
+                    }
+                }
                 statement.close();
             } catch (SQLException exception) {
-                log.log(Level.SEVERE, "SQL exception", exception);
+                log.log(Level.SEVERE, "SQL error", exception);
             }
-
         }
     }
-
 }

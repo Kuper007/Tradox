@@ -4,6 +4,7 @@ import com.nc.tradox.api.RandomString;
 import com.nc.tradox.dao.Dao;
 import com.nc.tradox.model.*;
 import com.nc.tradox.model.impl.*;
+import com.nc.tradox.model.service.Response;
 import com.nc.tradox.utilities.ExchangeApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

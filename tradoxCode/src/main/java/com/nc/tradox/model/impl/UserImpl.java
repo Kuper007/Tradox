@@ -63,7 +63,7 @@ public class UserImpl implements User {
         this.email = resultSet.getString("email");
         this.phone = resultSet.getString("phone");
         try {
-            this.location = new CountryImpl(resultSet.getString("short_name"), resultSet.getString("full_name"));
+            this.location = new CountryImpl(resultSet);
         } catch (SQLException exception) {
             this.location = new CountryImpl(resultSet.getString("country_id"), null);
         }

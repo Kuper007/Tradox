@@ -19,7 +19,7 @@ public class FullRouteImpl implements FullRoute {
 
     @Override
     public Country getDeparture() {
-        return departure == null ? new CountryImpl() : departure;
+        return departure == null ? departure = new CountryImpl() : departure;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class FullRouteImpl implements FullRoute {
 
     @Override
     public Country getDestination() {
-        return destination == null ? new CountryImpl() : destination;
+        return destination == null ? destination = new CountryImpl() : destination;
     }
 
     @Override

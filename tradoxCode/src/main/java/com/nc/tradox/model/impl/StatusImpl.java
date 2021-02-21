@@ -90,7 +90,7 @@ public class StatusImpl implements Status {
 
     @Override
     public FullRoute getFullRoute() {
-        return fullRoute == null ? new FullRouteImpl() : fullRoute;
+        return fullRoute == null ? fullRoute = new FullRouteImpl() : fullRoute;
     }
 
     @Override

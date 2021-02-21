@@ -14,24 +14,34 @@ import java.util.logging.Logger;
 public class SpeedLimitFillDB {
 
     private static final Logger log = Logger.getLogger(SpeedLimitFillDB.class.getName());
-    TradoxDataAccessService tradoxDataAccessService;
-    SpeedLimitApi speedLimitApi;
+    TradoxDataAccessService tradoxDataAccessService = new TradoxDataAccessService();
+    SpeedLimitApi speedLimitApi = new SpeedLimitApi();
 
     public void speedLimitFillDB() {
-        Connection connection = tradoxDataAccessService.connection;
         List<SpeedLimit> speedLimitList = speedLimitApi.speedLimitList();
-
-        for (SpeedLimit speedLimit : speedLimitList) {
+        if (speedLimitList != null){
             try {
-                Statement statement = connection.createStatement();
-                int rows = statement.executeUpdate(
-                        "INSERT INTO SPEED_LIMITS(SPEED, ROAD_TYPE, COUNTRY_ID)" +
-                                "VALUES (" + speedLimit.getSpeed() + ", " +
-                                speedLimit.getTypeOfRoad() + ", " +
-                                speedLimit.getCountry() + ")");
+                int count = 0;
+                Statement statement = tradoxDataAccessService.connection.createStatement();
+                for (SpeedLimit speedLimit: speedLimitList){
+                    if (speedLimit == null ||
+                            speedLimit.getCountry().getShortName() == null) continue;
+                    String speedLimitQuery = "INSERT INTO SPEED_LIMITS(SPEED, ROAD_TYPE, COUNTRY_ID) " +
+                            "VALUES ('" + speedLimit.getSpeed() + "', '" +
+                            speedLimit.getTypeOfRoad() + "', '" +
+                            speedLimit.getCountry().getShortName() + "')";
+                    System.out.println(speedLimitQuery);
+                    statement.executeUpdate(speedLimitQuery);
+                    count++;
+                    if (count == 200){
+                        count = 0;
+                        statement.close();
+                        statement = tradoxDataAccessService.connection.createStatement();
+                    }
+                }
                 statement.close();
             } catch (SQLException exception) {
-                log.log(Level.SEVERE, "SQL exception", exception);
+                log.log(Level.SEVERE, "SQL error", exception);
             }
         }
     }
