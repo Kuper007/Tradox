@@ -3,6 +3,7 @@ package com.nc.tradox.api;
 import com.nc.tradox.model.Country;
 import com.nc.tradox.model.InfoData;
 import com.nc.tradox.model.impl.InfoDataImpl;
+import com.nc.tradox.model.service.Response;
 import com.nc.tradox.service.TradoxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -64,16 +65,35 @@ public class RouteController {
     }*/
 
     @PostMapping("/getCountryInfo")
-    public InfoData getCountryInfo(@RequestBody Map<String, String> json, HttpSession httpSession) {
+    public Response getCountryInfo(@RequestBody Map<String, String> json, HttpSession httpSession) {
+        Response response = new Response();
         Integer userId = (Integer) httpSession.getAttribute("userId");
-        if (userId != null) {
+        if (isValidUser(userId)) {
             Country location = tradoxService.getUserLocation(userId);
-            Country destination = tradoxService.getCountryById(json.get("countryName"));
-            if (location != null) {
-                return tradoxService.getInfoData(location, destination);
+            if (location == null) {
+                response.setError("userLocationNotFound");
+                response.setObject(new InfoDataImpl());
+                return response;
             }
+            Country destination = tradoxService.getCountryById(json.get("countryName"));
+            if (destination == null) {
+                response.setError("destinationNotFound");
+                response.setObject(new InfoDataImpl());
+                return response;
+            }
+            response.setObject(tradoxService.getInfoData(location, destination));
+        } else {
+            response.setError("notAuthorized");
+            response.setObject(new InfoDataImpl());
         }
-        return new InfoDataImpl();
+        return response;
+    }
+
+    private boolean isValidUser(Integer userId) {
+        if (userId != null) {
+            return userId >= 0;
+        }
+        return false;
     }
 
     /*@PostMapping("/editTransits")

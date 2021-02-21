@@ -55,6 +55,7 @@ function MainPage (props) {
       try{
         axios.post("http://localhost:8080/api/v1/route/getCountryInfo", { "countryName": destinationId}, {headers:{ 'Content-Type': 'application/json' }}).then(res => {
           setData(res.data)
+          console.log(res.data)
           if (res.status === 200){
             setShowInfo(true)
           }

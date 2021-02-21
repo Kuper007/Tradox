@@ -1,6 +1,6 @@
 import React, {useState, useEffect}  from 'react'
 import style from './Admin.module.css';
-import logo from '../../images/LogoTradoxLogo.svg';
+import Logo from '../MainPage/Logo/Logo'
 import {NavLink,Redirect} from "react-router-dom";
 import ReactTable from 'react-table';
 
@@ -32,11 +32,30 @@ function Admin(){
     }]
 
     return(
-        <span>Admin Page</span>
-        /*<ReactTable
-            data = {data}
-            columns = {columns}
-        />*/
+        <div className = {style.container}>
+            <Logo/>
+            <div className = {style.navigationBar}>
+                <nav>
+                    <ul className = {style.navigation}>
+                        <li style = {{paddingRight:"30px"}}>Country</li>
+                        <li style = {{paddingRight:"30px"}}>User</li>
+                        <li style = {{paddingRight:"30px"}}>Document</li>
+                        <li style = {{paddingRight:"30px"}}>Status</li>
+                        <li style = {{paddingRight:"30px"}}>Consulate</li>
+                        <li style = {{paddingRight:"30px"}}>Have document</li>
+                        <li style = {{paddingRight:"30px"}}>Medicine</li>
+                    </ul>
+                </nav>
+            </div>
+            <div className={style.buttons}>
+                <button className={style.selected}>Save Selected</button>
+                <button className={style.save}>Save All</button>
+                <button className={style.new}>New</button>
+                <button className={style.delete}>Delete</button>
+                <input type="text" placeholder = "Search by full name or short name" className={style.search}/>
+            </div>
+
+        </div>
     );
 
 }

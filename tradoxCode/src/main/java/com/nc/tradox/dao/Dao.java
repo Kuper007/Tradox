@@ -2,6 +2,9 @@ package com.nc.tradox.dao;
 
 import com.nc.tradox.model.*;
 import com.nc.tradox.model.impl.*;
+import com.nc.tradox.model.service.CountryView;
+import com.nc.tradox.model.service.HaveDocumentView;
+import com.nc.tradox.model.service.Response;
 
 import java.sql.ResultSet;
 import java.util.List;
@@ -87,4 +90,19 @@ public interface Dao {
     List<Country> getAllCountries();
 
     boolean isCountry(String fullName);
+
+    List<CountryView> getCountryList();
+
+    List<User> getUserList();
+
+    List<Document> getDocumentList();
+
+    List<Consulate> getConsulateList();
+
+    List<HaveDocumentView> getCountryDocumentList();
+
+    List<Medicine> getMedicineList();
+
+    List<Status> getStatusList();
+
 }

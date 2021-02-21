@@ -1,4 +1,4 @@
-package com.nc.tradox.model.impl;
+package com.nc.tradox.model.service;
 
 public class Response {
 
@@ -6,7 +6,7 @@ public class Response {
     private String error;
 
     public Response() {
-
+        this.error = "";
     }
 
     public Object getObject() {

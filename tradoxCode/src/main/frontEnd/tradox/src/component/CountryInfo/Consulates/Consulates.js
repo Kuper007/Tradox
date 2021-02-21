@@ -1,10 +1,10 @@
 import React from 'react'
 import style from './Consulates.module.css'
 export default function Consulates(props) {
-    const consulateInfo = Object.keys(props.data.consulates.list)
-        .map(item => <span className={style.consulateItem} key={props.data.consulates.list[item].consulateId}>
-            {props.data.consulates.list[item].city}, {props.data.consulates.list[item].address}<br/>
-            {props.data.consulates.list[item].phoneNumber}<br/>
+    const consulateInfo = Object.keys(props.data.object.consulates.list)
+        .map(item => <span className={style.consulateItem} key={props.data.object.consulates.list[item].consulateId}>
+            {props.data.object.consulates.list[item].city}, {props.data.object.consulates.list[item].address}<br/>
+            {props.data.object.consulates.list[item].phoneNumber}<br/>
         </span>)
     return (
         <div className = {style.container}>
