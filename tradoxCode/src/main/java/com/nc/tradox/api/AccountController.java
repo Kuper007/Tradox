@@ -54,7 +54,7 @@ public class AccountController {
                             userData.getPassport(),
                             tradoxService.getCountryByFullName(userData.getCitizenship()))
                     );
-                    return "{\"result\": " + tradoxService.updateUser(user) + "}";
+                    return "{\"result\": " + tradoxService.updateUserData(user) + "}";
                 } else {
                     Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, "User not authorized");
                 }

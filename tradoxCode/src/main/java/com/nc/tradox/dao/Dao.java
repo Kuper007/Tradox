@@ -26,7 +26,7 @@ public interface Dao {
 
     Boolean registrate(User user, String password);
 
-    boolean updateUser(User user);
+    boolean updateUserData(User user);
 
     Boolean verifyUserById(int userId);
 
@@ -104,5 +104,37 @@ public interface Dao {
     List<Medicine> getMedicineList();
 
     List<Status> getStatusList();
+
+    boolean updateCountry(CountryView countryView);
+
+    boolean updateUser(User user);
+
+    boolean updateDocument(Document document);
+
+    boolean updateConsulate(Consulate consulate);
+
+    boolean updateCountryDocument(HaveDocumentView haveDocumentView);
+
+    boolean updateMedicine(Medicine medicine);
+
+    boolean updateStatus(Status status);
+
+    boolean updateReason(Reason reason);
+
+    boolean addCountry(CountryView countryView);
+
+    boolean addUser(User user);
+
+    boolean addDocument(Document document);
+
+    boolean addConsulate(Consulate consulate);
+
+    boolean addCountryDocument(HaveDocumentView haveDocumentView);
+
+    boolean addMedicine(Medicine medicine);
+
+    boolean addStatus(Status status);
+
+    boolean addReason(Reason reason);
 
 }

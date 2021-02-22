@@ -162,7 +162,7 @@ public class UserImpl implements User {
 
     @Override
     public Country getLocation() {
-        return location == null ? new CountryImpl() : location;
+        return location == null ? location = new CountryImpl() : location;
     }
 
     public void setLocation(Country location) {
@@ -171,7 +171,7 @@ public class UserImpl implements User {
 
     @Override
     public Passport getPassport() {
-        return passport == null ? new PassportImpl() : passport;
+        return passport == null ? passport = new PassportImpl() : passport;
     }
 
     @Override

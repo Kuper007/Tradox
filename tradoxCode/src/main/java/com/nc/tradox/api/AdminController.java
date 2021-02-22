@@ -121,8 +121,8 @@ public class AdminController {
     public boolean adminAuthorized(HttpSession httpSession) {
         Integer userId = (Integer) httpSession.getAttribute("userId");
         if (isValidUser(userId)) {
-            User.UserTypeEnum userType = (User.UserTypeEnum) httpSession.getAttribute("userType");
-            return User.UserTypeEnum.admin.equals(userType);
+            String userType = (String) httpSession.getAttribute("userType");
+            return "admin".equals(userType);
         }
         return false;
     }
