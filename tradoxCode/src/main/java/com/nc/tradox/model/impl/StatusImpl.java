@@ -58,7 +58,7 @@ public class StatusImpl implements Status {
 
     @Override
     public Reason getReason() {
-        return reason;
+        return reason == null ? reason = new ReasonImpl() : reason;
     }
 
     @Override

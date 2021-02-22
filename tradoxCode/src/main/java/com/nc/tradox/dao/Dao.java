@@ -123,8 +123,6 @@ public interface Dao {
 
     boolean addCountry(CountryView countryView);
 
-    boolean addUser(User user);
-
     boolean addDocument(Document document);
 
     boolean addConsulate(Consulate consulate);
@@ -135,6 +133,6 @@ public interface Dao {
 
     boolean addStatus(Status status);
 
-    boolean addReason(Reason reason);
+    boolean addReason(Status status);
 
 }

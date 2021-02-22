@@ -1125,7 +1125,7 @@ public class TradoxDataAccessService implements Dao {
             preparedStatement.setString(1, status.getStatus().toString());
             preparedStatement.setString(2, status.getDestination().getShortName());
             preparedStatement.setString(3, status.getCountry().getShortName());
-            preparedStatement.setInt(3, status.getStatusId());
+            preparedStatement.setInt(4, status.getStatusId());
             result = preparedStatement.execute();
             preparedStatement.close();
             return result;
@@ -1158,41 +1158,139 @@ public class TradoxDataAccessService implements Dao {
 
     @Override
     public boolean addCountry(CountryView countryView) {
-        return false;
-    }
-
-    @Override
-    public boolean addUser(User user) {
-        return false;
+        boolean result = false;
+        try {
+            String query = "INSERT INTO COUNTRY " +
+                    "(COUNTRY_ID, FULL_NAME, SHORT_NAME, CURRENCY, MEDIUM_BILL, TOURISM_COUNT) " +
+                    "VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, countryView.getShortName());
+            preparedStatement.setString(2, countryView.getFullName());
+            preparedStatement.setString(3, countryView.getShortName());
+            preparedStatement.setString(4, countryView.getCurrency());
+            preparedStatement.setDouble(6, countryView.getMediumBill());
+            preparedStatement.setInt(5, countryView.getTourismCount());
+            result = preparedStatement.execute();
+            preparedStatement.close();
+            return result;
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.addCountry " + exception.getMessage());
+        }
+        return result;
     }
 
     @Override
     public boolean addDocument(Document document) {
-        return false;
+        boolean result = false;
+        try {
+            String query = "INSERT INTO DOCUMENT (NAME, DESCRIPTION, \"FILE\") " +
+                    "VALUES (?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, document.getName());
+            preparedStatement.setString(2, document.getDescription());
+            preparedStatement.setString(3, document.getFileLink());
+            result = preparedStatement.execute();
+            preparedStatement.close();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.addDocument " + exception.getMessage());
+        }
+        return result;
     }
 
     @Override
     public boolean addConsulate(Consulate consulate) {
-        return false;
+        boolean result = false;
+        try {
+            String query = "INSERT INTO CONSULATE (CITY, ADDRESS, PHONE, OWNER_ID, COUNTRY_ID) " +
+                    "VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, consulate.getCity());
+            preparedStatement.setString(2, consulate.getAddress());
+            preparedStatement.setString(3, consulate.getPhoneNumber());
+            preparedStatement.setString(4, consulate.getOwner().getShortName());
+            preparedStatement.setString(5, consulate.getCountry().getShortName());
+            result = preparedStatement.execute();
+            preparedStatement.close();
+            return result;
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.addConsulate " + exception.getMessage());
+        }
+        return result;
     }
 
     @Override
     public boolean addCountryDocument(HaveDocumentView haveDocumentView) {
-        return false;
+        boolean result = false;
+        try {
+            String query = "INSERT INTO HAVE_DOCUMENT (DOCUMENT_ID, DESTINATION_ID, DEPARTURE_ID) " +
+                    "VALUES (?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, haveDocumentView.getDocumentId());
+            preparedStatement.setString(2, haveDocumentView.getDestination().getShortName());
+            preparedStatement.setString(3, haveDocumentView.getDeparture().getShortName());
+            result = preparedStatement.execute();
+            preparedStatement.close();
+            return result;
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.addCountryDocument " + exception.getMessage());
+        }
+        return result;
     }
 
     @Override
     public boolean addMedicine(Medicine medicine) {
-        return false;
+        boolean result = false;
+        try {
+            String query = "INSERT INTO TRADOX.MEDICINE (NAME, COUNTRY_ID) " +
+                    "VALUES (?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, medicine.getName());
+            preparedStatement.setString(2, medicine.getCountry().getShortName());
+            result = preparedStatement.execute();
+            preparedStatement.close();
+            return result;
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.addMedicine " + exception.getMessage());
+        }
+        return result;
     }
 
     @Override
     public boolean addStatus(Status status) {
-        return false;
+        boolean result = false;
+        try {
+            String query = "INSERT INTO TRADOX.STATUS (VALUE, DESTINATION_ID, COUNTRY_ID) " +
+                    "VALUES (?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, status.getStatus().toString());
+            preparedStatement.setString(2, status.getDestination().getShortName());
+            preparedStatement.setString(3, status.getCountry().getShortName());
+            result = preparedStatement.execute();
+            preparedStatement.close();
+            return result;
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.addStatus " + exception.getMessage());
+        }
+        return result;
     }
 
     @Override
-    public boolean addReason(Reason reason) {
-        return false;
+    public boolean addReason(Status status) {
+        boolean result = false;
+        try {
+            String query = "INSERT INTO REASONS (COVID_REASON, CITIZENSHIP_REASON, STATUS_ID) " +
+                    "VALUES (?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, status.getReason().getCovidReason() ? 1 : 0);
+            preparedStatement.setInt(2, status.getReason().getCitizenshipReason() ? 1 : 0);
+            preparedStatement.setInt(3, status.getStatusId());
+            result = preparedStatement.execute();
+            preparedStatement.close();
+            return result;
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.addReason " + exception.getMessage());
+        }
+        return result;
     }
+
 }
