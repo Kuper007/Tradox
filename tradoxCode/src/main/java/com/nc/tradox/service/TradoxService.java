@@ -36,54 +36,24 @@ public class TradoxService {
         return dao.getRoute();
     }
 
+    public Route getRouteById(Integer routeId) {
+        return dao.getRouteById(routeId.toString());
+    }
+
     public Route getRoute(String userId, String destinationId) {
         return dao.getRoute(userId, destinationId);
     }
 
     public InfoData getInfoData(Country departure, Country destination) {
-        FullRoute fullRoute = new FullRouteImpl(departure, destination);
-        double mediumBill = dao.getMediumBill(destination);
-        Documents documents = getDocuments(fullRoute);
-        int tourismCount = dao.getTourismCount(destination);
-        Medicines medicines = dao.getMedicinesByCountryId(destination);
-        Covid covidInfo = dao.getCovidInfo(destination);
-        Consulates consulates = dao.getConsulatesByCountryIds(fullRoute);
-        SpeedLimits speedLimits = dao.getSpeedLimitsByCountryId(destination);
-        String departureCurrency = dao.getCurrency(fullRoute.getDeparture());
-        String destinationCurrency = dao.getCurrency(fullRoute.getDestination());
-        Exchange exchange = getExchangeByCountryIds(fullRoute, departureCurrency, destinationCurrency);
-        News news = dao.getNewsByCountryId(destination);
-        Status status = dao.getStatusByCountryIds(fullRoute);
-        return new InfoDataImpl(fullRoute,
-                mediumBill,
-                documents,
-                tourismCount,
-                medicines,
-                covidInfo,
-                consulates,
-                speedLimits,
-                destinationCurrency,
-                exchange,
-                news,
-                status);
+        return dao.getInfoData(departure, destination);
     }
 
     public Documents getDocuments(FullRoute fullRoute) {
         return dao.getDocumentsByCountryIds(fullRoute);
     }
 
-    public Exchange getExchangeByCountryIds(FullRoute fullRoute, String departureCurrency, String destinationCurrency) {
-        try {
-            List<String> apiExchanges = new ExchangeApi().currentExchange(departureCurrency, destinationCurrency);
-            return new ExchangeImpl(apiExchanges.get(1), apiExchanges.get(0), fullRoute);
-        } catch (InterruptedException | IOException exception) {
-            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.getExchangeByCountryId " + exception.getMessage());
-        }
-        return null;
-    }
-
-    public Boolean deleteRoute(Route route) {
-        return dao.deleteRoute(route.getRouteId());
+    public Boolean deleteRoute(int routeId) {
+        return dao.deleteRoute(routeId);
     }
 
     public Response auth(String email, String password) {

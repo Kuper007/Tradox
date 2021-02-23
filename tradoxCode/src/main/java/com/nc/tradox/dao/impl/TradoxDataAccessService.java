@@ -3,8 +3,11 @@ package com.nc.tradox.dao.impl;
 import com.nc.tradox.dao.Dao;
 import com.nc.tradox.model.*;
 import com.nc.tradox.model.impl.*;
+import com.nc.tradox.service.TradoxService;
+import com.nc.tradox.utilities.ExchangeApi;
 import org.springframework.stereotype.Repository;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.*;
 import java.util.*;
@@ -150,6 +153,70 @@ public class TradoxDataAccessService implements Dao {
             System.err.println("This route already exists");
         }
         return false;
+    }
+
+    @Override
+    public InfoData getInfoData(Country departure, Country destination) {
+        FullRoute fullRoute = new FullRouteImpl(departure, destination);
+        double mediumBill = getMediumBill(destination);
+        Documents documents = getDocumentsByCountryIds(fullRoute);
+        int tourismCount = getTourismCount(destination);
+        Medicines medicines = getMedicinesByCountryId(destination);
+        Covid covidInfo = getCovidInfo(destination);
+        Consulates consulates = getConsulatesByCountryIds(fullRoute);
+        SpeedLimits speedLimits = getSpeedLimitsByCountryId(destination);
+        String departureCurrency = getCurrency(fullRoute.getDeparture());
+        String destinationCurrency = getCurrency(fullRoute.getDestination());
+        Exchange exchange = getExchangeByCountryIds(fullRoute, departureCurrency, destinationCurrency);
+        News news = getNewsByCountryId(destination);
+        Status status = getStatusByCountryIds(fullRoute);
+        return new InfoDataImpl(fullRoute,
+                mediumBill,
+                documents,
+                tourismCount,
+                medicines,
+                covidInfo,
+                consulates,
+                speedLimits,
+                destinationCurrency,
+                exchange,
+                news,
+                status);
+    }
+
+    public Exchange getExchangeByCountryIds(FullRoute fullRoute, String departureCurrency, String destinationCurrency) {
+        try {
+            List<String> apiExchanges = new ExchangeApi().currentExchange(departureCurrency, destinationCurrency);
+            return new ExchangeImpl(apiExchanges.get(1), apiExchanges.get(0), fullRoute);
+        } catch (InterruptedException | IOException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.getExchangeByCountryId " + exception.getMessage());
+        }
+        return null;
+    }
+
+    public Set<Route> getRoutsByUser(Integer userId) {
+        Set<Route> transit = new HashSet<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet res = statement.executeQuery("SELECT * FROM route WHERE user_id = '" + userId + "'");
+            int count = 0;
+            while (res.next()) {
+                int routeId = res.getInt("route_id");
+                Country departure = getCountryById(res.getString("departure_id"));
+                Country destination = getCountryById(res.getString("destination_id"));
+                Set<InfoData> infoData = new LinkedHashSet<>();
+                infoData.add(getInfoData(departure, destination));
+                transit.add(new RouteImpl(routeId, infoData));
+                count++;
+            }
+            if (count == 0) {
+                System.out.println("This user hasn't saved any routes yet");
+            }
+            statement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return transit;
     }
 
     public Boolean registrate(User user, String password) {
@@ -602,6 +669,9 @@ public class TradoxDataAccessService implements Dao {
         } catch (SQLException exception) {
             exception.printStackTrace();
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.getUserById " + exception.getMessage());
+        }
+        if (user != null) {
+            user.setTransit(getRoutsByUser(userId));
         }
         return user;
     }

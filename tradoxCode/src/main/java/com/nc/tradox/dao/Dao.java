@@ -9,6 +9,9 @@ import java.util.Map;
 import java.util.Set;
 
 public interface Dao {
+
+    InfoData getInfoData(Country departure, Country destination);
+
     Route getRoute(String userId, String destinationId);
 
     Response auth(String email, String password);

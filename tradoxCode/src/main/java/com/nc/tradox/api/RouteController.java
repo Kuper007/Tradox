@@ -53,8 +53,14 @@ public class RouteController {
     @GetMapping("/save")
     public Boolean saveRoute(HttpSession session) {
         Route r = (Route) session.getAttribute("currentRoute");
-        int userId = (int) session.getAttribute("userId");
-        return tradoxService.saveRoute(r, userId);
+        if (r != null) {
+            System.out.println(r.getTransportType().toString());
+            Integer userId = (Integer) session.getAttribute("userId");
+            if (userId != null) {
+                return tradoxService.saveRoute(r, userId);
+            }
+        }
+        return false;
     }
 
     @PostMapping("/getCountryInfo")
@@ -64,7 +70,13 @@ public class RouteController {
             Country location = tradoxService.getUserLocation(userId);
             Country destination = tradoxService.getCountryById(json.get("countryName"));
             if (location != null) {
-                return tradoxService.getInfoData(location, destination);
+                InfoData infoData = tradoxService.getInfoData(location, destination);
+                Random random = new Random(System.currentTimeMillis());
+                int id = random.nextInt();
+                Set<InfoData> transits = new LinkedHashSet<>();
+                transits.add(infoData);
+                httpSession.setAttribute("currentRoute", new RouteImpl(id, transits));
+                return infoData;
             }
         }
         return new InfoDataImpl();
