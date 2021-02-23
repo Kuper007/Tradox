@@ -33,7 +33,7 @@ function Admin(){
 
     return(
         <div className = {style.container}>
-            <Logo authorized={true}/>
+            <Logo authorized={true} admin={false}/>
             <div className = {style.navigationBar}>
                 <nav>
                     <ul className = {style.navigation}>
