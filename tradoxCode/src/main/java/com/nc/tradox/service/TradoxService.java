@@ -91,8 +91,8 @@ public class TradoxService {
         return dao.auth(email, password);
     }
 
-    public Boolean updateUser(User user) {
-        return dao.updateUser(user);
+    public Boolean updateUserData(User user) {
+        return dao.updateUserData(user);
     }
 
     public Boolean deleteUser(Integer userId) {

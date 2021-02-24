@@ -9,13 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Logger;
 
 @RequestMapping("api/v1/admin")
 @RestController
 public class AdminController {
 
     private final AdminService adminService;
+    private final Logger LOGGER = Logger.getLogger(AdminController.class.getName());
 
     @Autowired
     public AdminController(AdminService adminService) {
@@ -29,20 +33,44 @@ public class AdminController {
             List<CountryView> countryList = adminService.getCountryList();
             response.setObject(countryList);
         } else {
-            response.setError("permissions error");
+            response.setError("permissionsError");
         }
         return response;
     }
 
-    @PutMapping("/saveCounties")
+    @PutMapping("/saveCountries")
     public Response saveCountries(@RequestBody List<CountryView> countryList, HttpSession httpSession) {
         Response response = new Response();
+        if (adminAuthorized(httpSession)) {
+            Map<String, String> result = new HashMap<>();
+            for (CountryView countryView : countryList) {
+                boolean updateResult = adminService.saveCountry(countryView);
+                if (!updateResult) {
+                    result.put(countryView.getShortName(), "false");
+                }
+            }
+            response.setObject(result);
+        } else {
+            response.setError("permissionsError");
+        }
         return response;
     }
 
     @DeleteMapping("/deleteCountries")
     public Response deleteCountries(@RequestBody List<CountryView> countryList, HttpSession httpSession) {
         Response response = new Response();
+        if (adminAuthorized(httpSession)) {
+            Map<String, String> result = new HashMap<>();
+            for (CountryView countryView : countryList) {
+                boolean deleteResult = adminService.deleteCountry(countryView);
+                if (!deleteResult) {
+                    result.put(countryView.getShortName(), "false");
+                }
+            }
+            response.setObject(result);
+        } else {
+            response.setError("permissionsError");
+        }
         return response;
     }
 
@@ -53,7 +81,43 @@ public class AdminController {
             List<User> userList = adminService.getUserList();
             response.setObject(userList);
         } else {
-            response.setError("permissions error");
+            response.setError("permissionsError");
+        }
+        return response;
+    }
+
+    @PutMapping("/saveUsers")
+    public Response saveUsers(@RequestBody List<User> userList, HttpSession httpSession) {
+        Response response = new Response();
+        if (adminAuthorized(httpSession)) {
+            Map<Integer, String> result = new HashMap<>();
+            for (User user : userList) {
+                boolean updateResult = adminService.saveUser(user);
+                if (!updateResult) {
+                    result.put(user.getUserId(), "false");
+                }
+            }
+            response.setObject(result);
+        } else {
+            response.setError("permissionsError");
+        }
+        return response;
+    }
+
+    @DeleteMapping("/deleteUsers")
+    public Response deleteUsers(@RequestBody List<User> userList, HttpSession httpSession) {
+        Response response = new Response();
+        if (adminAuthorized(httpSession)) {
+            Map<Integer, String> result = new HashMap<>();
+            for (User user : userList) {
+                boolean deleteResult = adminService.deleteUser(user);
+                if (!deleteResult) {
+                    result.put(user.getUserId(), "false");
+                }
+            }
+            response.setObject(result);
+        } else {
+            response.setError("permissionsError");
         }
         return response;
     }
@@ -65,7 +129,43 @@ public class AdminController {
             List<Document> documentList = adminService.getDocumentList();
             response.setObject(documentList);
         } else {
-            response.setError("permissions error");
+            response.setError("permissionsError");
+        }
+        return response;
+    }
+
+    @PutMapping("/saveDocuments")
+    public Response saveDocuments(@RequestBody List<Document> documentList, HttpSession httpSession) {
+        Response response = new Response();
+        if (adminAuthorized(httpSession)) {
+            Map<Integer, String> result = new HashMap<>();
+            for (Document document : documentList) {
+                boolean updateResult = adminService.saveDocument(document);
+                if (!updateResult) {
+                    result.put(document.getDocumentId(), "false");
+                }
+            }
+            response.setObject(result);
+        } else {
+            response.setError("permissionsError");
+        }
+        return response;
+    }
+
+    @DeleteMapping("/deleteDocuments")
+    public Response deleteDocuments(@RequestBody List<Document> documentList, HttpSession httpSession) {
+        Response response = new Response();
+        if (adminAuthorized(httpSession)) {
+            Map<Integer, String> result = new HashMap<>();
+            for (Document document : documentList) {
+                boolean deleteResult = adminService.deleteDocument(document);
+                if (!deleteResult) {
+                    result.put(document.getDocumentId(), "false");
+                }
+            }
+            response.setObject(result);
+        } else {
+            response.setError("permissionsError");
         }
         return response;
     }
@@ -77,7 +177,43 @@ public class AdminController {
             List<Consulate> consulateList = adminService.getConsulateList();
             response.setObject(consulateList);
         } else {
-            response.setError("permissions error");
+            response.setError("permissionsError");
+        }
+        return response;
+    }
+
+    @PutMapping("/saveConsulates")
+    public Response saveConsulates(@RequestBody List<Consulate> consulateList, HttpSession httpSession) {
+        Response response = new Response();
+        if (adminAuthorized(httpSession)) {
+            Map<Integer, String> result = new HashMap<>();
+            for (Consulate consulate : consulateList) {
+                boolean updateResult = adminService.saveConsulate(consulate);
+                if (!updateResult) {
+                    result.put(consulate.getConsulateId(), "false");
+                }
+            }
+            response.setObject(result);
+        } else {
+            response.setError("permissionsError");
+        }
+        return response;
+    }
+
+    @DeleteMapping("/deleteConsulates")
+    public Response deleteConsulates(@RequestBody List<Consulate> consulateList, HttpSession httpSession) {
+        Response response = new Response();
+        if (adminAuthorized(httpSession)) {
+            Map<Integer, String> result = new HashMap<>();
+            for (Consulate consulate : consulateList) {
+                boolean deleteResult = adminService.deleteConsulate(consulate);
+                if (!deleteResult) {
+                    result.put(consulate.getConsulateId(), "false");
+                }
+            }
+            response.setObject(result);
+        } else {
+            response.setError("permissionsError");
         }
         return response;
     }
@@ -89,7 +225,43 @@ public class AdminController {
             List<HaveDocumentView> countryDocumentList = adminService.getCountryDocumentList();
             response.setObject(countryDocumentList);
         } else {
-            response.setError("permissions error");
+            response.setError("permissionsError");
+        }
+        return response;
+    }
+
+    @PutMapping("/saveCountryDocuments")
+    public Response saveCountryDocuments(@RequestBody List<HaveDocumentView> haveDocumentViewList, HttpSession httpSession) {
+        Response response = new Response();
+        if (adminAuthorized(httpSession)) {
+            Map<Integer, String> result = new HashMap<>();
+            for (HaveDocumentView haveDocumentView : haveDocumentViewList) {
+                boolean updateResult = adminService.saveCountryDocument(haveDocumentView);
+                if (!updateResult) {
+                    result.put(haveDocumentView.getId(), "false");
+                }
+            }
+            response.setObject(result);
+        } else {
+            response.setError("permissionsError");
+        }
+        return response;
+    }
+
+    @DeleteMapping("/deleteCountryDocuments")
+    public Response deleteCountryDocuments(@RequestBody List<HaveDocumentView> haveDocumentViewList, HttpSession httpSession) {
+        Response response = new Response();
+        if (adminAuthorized(httpSession)) {
+            Map<Integer, String> result = new HashMap<>();
+            for (HaveDocumentView haveDocumentView : haveDocumentViewList) {
+                boolean deleteResult = adminService.deleteCountryDocument(haveDocumentView);
+                if (!deleteResult) {
+                    result.put(haveDocumentView.getId(), "false");
+                }
+            }
+            response.setObject(result);
+        } else {
+            response.setError("permissionsError");
         }
         return response;
     }
@@ -101,7 +273,43 @@ public class AdminController {
             List<Medicine> medicineList = adminService.getMedicineList();
             response.setObject(medicineList);
         } else {
-            response.setError("permissions error");
+            response.setError("permissionsError");
+        }
+        return response;
+    }
+
+    @PutMapping("/saveMedicines")
+    public Response saveMedicines(@RequestBody List<Medicine> medicineList, HttpSession httpSession) {
+        Response response = new Response();
+        if (adminAuthorized(httpSession)) {
+            Map<Integer, String> result = new HashMap<>();
+            for (Medicine medicine : medicineList) {
+                boolean updateResult = adminService.saveMedicine(medicine);
+                if (!updateResult) {
+                    result.put(medicine.getMedicineId(), "false");
+                }
+            }
+            response.setObject(result);
+        } else {
+            response.setError("permissionsError");
+        }
+        return response;
+    }
+
+    @DeleteMapping("/deleteMedicines")
+    public Response deleteMedicines(@RequestBody List<Medicine> medicineList, HttpSession httpSession) {
+        Response response = new Response();
+        if (adminAuthorized(httpSession)) {
+            Map<Integer, String> result = new HashMap<>();
+            for (Medicine medicine : medicineList) {
+                boolean deleteResult = adminService.deleteMedicine(medicine);
+                if (!deleteResult) {
+                    result.put(medicine.getMedicineId(), "false");
+                }
+            }
+            response.setObject(result);
+        } else {
+            response.setError("permissionsError");
         }
         return response;
     }
@@ -113,7 +321,43 @@ public class AdminController {
             List<Status> statusList = adminService.getStatusList();
             response.setObject(statusList);
         } else {
-            response.setError("permissions error");
+            response.setError("permissionsError");
+        }
+        return response;
+    }
+
+    @PutMapping("/saveStatuses")
+    public Response saveStatuses(@RequestBody List<Status> statusList, HttpSession httpSession) {
+        Response response = new Response();
+        if (adminAuthorized(httpSession)) {
+            Map<Integer, String> result = new HashMap<>();
+            for (Status status : statusList) {
+                boolean updateResult = adminService.saveStatus(status);
+                if (!updateResult) {
+                    result.put(status.getStatusId(), "false");
+                }
+            }
+            response.setObject(result);
+        } else {
+            response.setError("permissionsError");
+        }
+        return response;
+    }
+
+    @DeleteMapping("/deleteStatuses")
+    public Response deleteStatuses(@RequestBody List<Status> statusList, HttpSession httpSession) {
+        Response response = new Response();
+        if (adminAuthorized(httpSession)) {
+            Map<Integer, String> result = new HashMap<>();
+            for (Status status : statusList) {
+                boolean deleteResult = adminService.deleteStatus(status);
+                if (!deleteResult) {
+                    result.put(status.getStatusId(), "false");
+                }
+            }
+            response.setObject(result);
+        } else {
+            response.setError("permissionsError");
         }
         return response;
     }
@@ -121,8 +365,8 @@ public class AdminController {
     public boolean adminAuthorized(HttpSession httpSession) {
         Integer userId = (Integer) httpSession.getAttribute("userId");
         if (isValidUser(userId)) {
-            User.UserTypeEnum userType = (User.UserTypeEnum) httpSession.getAttribute("userType");
-            return User.UserTypeEnum.admin.equals(userType);
+            String userType = (String) httpSession.getAttribute("userType");
+            return "admin".equals(userType);
         }
         return false;
     }

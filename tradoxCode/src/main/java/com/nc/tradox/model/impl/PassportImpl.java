@@ -56,7 +56,7 @@ public class PassportImpl implements Passport {
 
     @Override
     public Country getCitizenshipCountry() {
-        return citizenshipCountry == null ? new CountryImpl() : citizenshipCountry;
+        return citizenshipCountry == null ? citizenshipCountry = new CountryImpl() : citizenshipCountry;
     }
 
     @Override
