@@ -93,3 +93,12 @@
 .infoTable{
     position: relative;
 }
+.tables{
+    overflow-x: auto;
+    width: 1512px;
+    height: 500px;
+    overflow-y: auto;
+    position: relative;
+    left:200px;
+    top:300px;
+}

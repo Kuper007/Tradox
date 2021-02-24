@@ -1,0 +1,15 @@
+th, td {
+    height: 50px;
+    border-bottom: 1px solid #ddd;
+}
+table{
+    overflow: auto;
+    width: 1512px;
+}
+.fields{
+    font-size: 18px;
+    line-height: 22px;
+
+    color: #000000;
+    border: 0px;
+}

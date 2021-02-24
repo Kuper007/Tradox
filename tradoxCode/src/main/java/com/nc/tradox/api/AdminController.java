@@ -25,12 +25,12 @@ public class AdminController {
     @GetMapping("/getCountries")
     public Response getCounties(HttpSession httpSession) {
         Response response = new Response();
-        if (adminAuthorized(httpSession)) {
+       // if (adminAuthorized(httpSession)) {
             List<CountryView> countryList = adminService.getCountryList();
             response.setObject(countryList);
-        } else {
-            response.setError("permissions error");
-        }
+       // } else {
+       //     response.setError("permissions error");
+       // }
         return response;
     }
 
@@ -49,83 +49,83 @@ public class AdminController {
     @GetMapping("/getUsers")
     public Response getUsers(HttpSession httpSession) {
         Response response = new Response();
-        if (adminAuthorized(httpSession)) {
+       //if (adminAuthorized(httpSession)) {
             List<User> userList = adminService.getUserList();
             response.setObject(userList);
-        } else {
-            response.setError("permissions error");
-        }
+       // } else {
+       //     response.setError("permissions error");
+       // }
         return response;
     }
 
     @GetMapping("/getDocuments")
     public Response getDocuments(HttpSession httpSession) {
         Response response = new Response();
-        if (adminAuthorized(httpSession)) {
+       // if (adminAuthorized(httpSession)) {
             List<Document> documentList = adminService.getDocumentList();
             response.setObject(documentList);
-        } else {
-            response.setError("permissions error");
-        }
+       // } else {
+        //    response.setError("permissions error");
+        //}
         return response;
     }
 
     @GetMapping("/getConsulates")
     public Response getConsulates(HttpSession httpSession) {
         Response response = new Response();
-        if (adminAuthorized(httpSession)) {
+      //  if (adminAuthorized(httpSession)) {
             List<Consulate> consulateList = adminService.getConsulateList();
             response.setObject(consulateList);
-        } else {
-            response.setError("permissions error");
-        }
+       // } else {
+         //   response.setError("permissions error");
+        //}
         return response;
     }
 
     @GetMapping("/getCountryDocuments")
     public Response getCountryDocuments(HttpSession httpSession) {
         Response response = new Response();
-        if (adminAuthorized(httpSession)) {
+       // if (adminAuthorized(httpSession)) {
             List<HaveDocumentView> countryDocumentList = adminService.getCountryDocumentList();
             response.setObject(countryDocumentList);
-        } else {
-            response.setError("permissions error");
-        }
+      //  } else {
+            //.setError("permissions error");
+      //  }
         return response;
     }
 
     @GetMapping("/getMedicines")
     public Response getMedicines(HttpSession httpSession) {
         Response response = new Response();
-        if (adminAuthorized(httpSession)) {
+      //  if (adminAuthorized(httpSession)) {
             List<Medicine> medicineList = adminService.getMedicineList();
             response.setObject(medicineList);
-        } else {
-            response.setError("permissions error");
-        }
+      //  } else {
+      //      response.setError("permissions error");
+      //  }
         return response;
     }
 
     @GetMapping("/getStatuses")
     public Response getStatuses(HttpSession httpSession) {
         Response response = new Response();
-        if (adminAuthorized(httpSession)) {
+       // if (adminAuthorized(httpSession)) {
             List<Status> statusList = adminService.getStatusList();
             response.setObject(statusList);
-        } else {
-            response.setError("permissions error");
-        }
+      //  } else {
+      //      response.setError("permissions error");
+      //  }
         return response;
     }
 
-    public boolean adminAuthorized(HttpSession httpSession) {
-        Integer userId = (Integer) httpSession.getAttribute("userId");
-        if (isValidUser(userId)) {
-            User.UserTypeEnum userType = (User.UserTypeEnum) httpSession.getAttribute("userType");
-            return User.UserTypeEnum.admin.equals(userType);
-        }
-        return false;
-    }
+//    public boolean adminAuthorized(HttpSession httpSession) {
+//        Integer userId = (Integer) httpSession.getAttribute("userId");
+//        if (isValidUser(userId)) {
+//            User.UserTypeEnum userType = (User.UserTypeEnum) httpSession.getAttribute("userType");
+//            return User.UserTypeEnum.admin.equals(userType);
+//        }
+//        return false;
+//    }
 
     private boolean isValidUser(Integer userId) {
         if (userId != null) {
