@@ -28,7 +28,9 @@ function MainPage (props) {
       let userType = localStorage.getItem("userType");
       let userId = localStorage.getItem("userId");
       setIsAuth(true);
+      console.log(userType)
       if (userType==="admin") {
+        console.log("admin")
         setIsAdmin(true);
       }
     }
