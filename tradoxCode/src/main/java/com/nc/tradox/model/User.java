@@ -58,5 +58,7 @@ public interface User {
 
     Boolean removeFromHistory(Route route);
 
+    void setTransit(Set<Route> transit);
+
     Boolean isVerified();
 }

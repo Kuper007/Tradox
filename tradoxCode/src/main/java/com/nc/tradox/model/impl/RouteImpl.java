@@ -22,6 +22,13 @@ public class RouteImpl implements Route {
         this.transitSet = transitSet;
     }
 
+    public RouteImpl(Integer routeId,
+                     Set<InfoData> transitSet) {
+        this.routeId = routeId;
+        this.transportType = TransportType.plane;
+        this.transitSet = transitSet;
+    }
+
     public RouteImpl(ResultSet resultSet) throws SQLException {
         this.routeId = resultSet.getInt("route_id");
         this.transportType = TransportType.valueOf(resultSet.getString("transport_type"));

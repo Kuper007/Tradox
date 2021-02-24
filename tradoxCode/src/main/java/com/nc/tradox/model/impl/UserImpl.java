@@ -200,6 +200,7 @@ public class UserImpl implements User {
         return transit;
     }
 
+    @Override
     public void setTransit(Set<Route> transit) {
         this.transit = transit;
     }
