@@ -1,5 +1,10 @@
 package com.nc.tradox.api;
 
+import com.nc.tradox.model.Route;
+import com.nc.tradox.model.User;
+
+import java.util.Set;
+
 public class UserData {
 
     private final String firstName;
@@ -10,8 +15,9 @@ public class UserData {
     private final String passport;
     private final String citizenship;
     private final String location;
+    private final Set<Route> transit;
 
-    public UserData(String firstName, String lastName, String birthDate, String email, String phone, String passport, String citizenship, String location) {
+    public UserData(String firstName, String lastName, String birthDate, String email, String phone, String passport, String citizenship, String location, Set<Route> transit) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -20,6 +26,20 @@ public class UserData {
         this.passport = passport;
         this.citizenship = citizenship;
         this.location = location;
+        this.transit = transit;
+    }
+
+    public UserData(User user) {
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
+        ;
+        this.birthDate = user.getBirthDate().toString();
+        this.email = user.getEmail();
+        this.phone = user.getPhone();
+        this.location = user.getLocation().getFullName();
+        this.citizenship = user.getPassport().getCitizenshipCountry().getFullName();
+        this.passport = user.getPassportId();
+        this.transit = user.getHistory();
     }
 
     public String getFirstName() {
@@ -54,4 +74,7 @@ public class UserData {
         return location;
     }
 
+    public Set<Route> getTransit() {
+        return transit;
+    }
 }

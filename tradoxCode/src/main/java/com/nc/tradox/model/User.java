@@ -6,10 +6,6 @@ import java.util.Set;
 public interface User {
     void setVerify();
 
-    enum UserTypeEnum {
-        user, admin, vip
-    }
-
     Integer getUserId();
 
     void setUserId(Integer userId);
@@ -42,9 +38,9 @@ public interface User {
 
     void setLocation(Country location);
 
-    void setPassport(Passport passport);
-
     Passport getPassport();
+
+    void setPassport(Passport passport);
 
     String getPassportId();
 
@@ -61,4 +57,8 @@ public interface User {
     void setTransit(Set<Route> transit);
 
     Boolean isVerified();
+
+    enum UserTypeEnum {
+        user, admin, vip
+    }
 }

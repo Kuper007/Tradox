@@ -3,7 +3,6 @@ package com.nc.tradox.dao.impl;
 import com.nc.tradox.dao.Dao;
 import com.nc.tradox.model.*;
 import com.nc.tradox.model.impl.*;
-import com.nc.tradox.service.TradoxService;
 import com.nc.tradox.utilities.ExchangeApi;
 import org.springframework.stereotype.Repository;
 
@@ -17,9 +16,8 @@ import java.util.logging.Logger;
 @Repository("oracle")
 public class TradoxDataAccessService implements Dao {
 
-    public Connection connection;
-
     private final Logger LOGGER = Logger.getLogger(TradoxDataAccessService.class.getName());
+    public Connection connection;
 
     public TradoxDataAccessService() {
         try {
@@ -105,13 +103,15 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
-    public Route getRouteById(String routeId) {
+    public Route getRouteById(Integer routeId) {
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM ROUTE " +
-                    "WHERE ROUTE_ID = '" + routeId + "'");
-            if (resultSet != null) {
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM ROUTE WHERE ROUTE_ID =" + routeId);
+            if (resultSet.next()) {
+                Country departure = getCountryById(resultSet.getString("departure_id"));
+                Country destination = getCountryById(resultSet.getString("destination_id"));
                 Route route = new RouteImpl(resultSet);
+                route.addTransitCountry(getInfoData(departure, destination));
                 statement.close();
                 return route;
             }

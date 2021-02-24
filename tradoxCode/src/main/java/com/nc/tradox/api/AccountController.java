@@ -17,6 +17,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,12 +33,13 @@ public class AccountController {
     }
 
     @GetMapping("/getUserData")
-    public User getUserData(HttpSession session) {
+    public UserData getUserData(HttpSession session) {
         Integer userId = (Integer) session.getAttribute("userId");
         if (isValidUser(userId)) {
-            return tradoxService.getUserById(userId);
+            User user = tradoxService.getUserById(userId);
+            return new UserData(user);
         }
-        return new UserImpl();
+        return null;
     }
 
     @PostMapping("/saveUserData")
@@ -81,30 +83,25 @@ public class AccountController {
     }
 
     @PostMapping("/deleteRoute")
-    public Boolean deleteRoute(@RequestBody Integer routeId, BindingResult bindingResult, HttpSession session) {
+    public Boolean deleteRoute(@RequestBody Map<String, Integer> json, BindingResult bindingResult, HttpSession session) {
         if (!bindingResult.hasErrors()) {
-            Integer userId = (Integer) session.getAttribute("userId");
-            if (userId != null) {
-                return tradoxService.deleteRoute(routeId);
-            } else {
-                Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, "User not authorized");
+            if (json.get("routeId") != null) {
+                return tradoxService.deleteRoute(json.get("routeId"));
             }
         }
         return false;
     }
 
     @PostMapping("/getSavedRoute")
-    public InfoData goToRoute(@RequestBody Integer routeId, BindingResult bindingResult, HttpSession session) {
+    public InfoData goToRoute(@RequestBody Map<String, Integer> json, BindingResult bindingResult, HttpSession session) {
         if (!bindingResult.hasErrors()) {
-            Integer userId = (Integer) session.getAttribute("userId");
-            if (userId != null) {
-                Route route = tradoxService.getRouteById(routeId);
+            Integer id = json.get("routeId");
+            if (id != null) {
+                Route route = tradoxService.getRouteById(id);
                 if (route != null) {
                     List<InfoData> list = new ArrayList<>(route.getTransit());
                     return list.get(0);
                 }
-            } else {
-                Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, "User not authorized");
             }
         }
         return new InfoDataImpl();
