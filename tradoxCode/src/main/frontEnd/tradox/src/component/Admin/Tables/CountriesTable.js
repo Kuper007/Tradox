@@ -14,7 +14,7 @@ function CountryTable(props) {
                     <th>Local currency</th>
                 </tr>
                 </thead>
-                <tbody >
+                <tbody>
                 {
                     Object.keys(props.countries)
                         .map(country =>

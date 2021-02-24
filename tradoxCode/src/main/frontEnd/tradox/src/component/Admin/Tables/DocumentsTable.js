@@ -18,7 +18,7 @@ function DocumentsTable(props) {
                         .map(doc =>
                             <tr key={props.docs[doc].documentId}>
                                 <th><input className={style.fields} type ="checkbox" value ={false}></input></th>
-                                <th><input className={style.fields} type="text" defaultValue={props.docs[doc].documentId}></input></th>
+                                <th><input className={style.fields} type="text" defaultValue={props.docs[doc].documentId} readOnly={true}></input></th>
                                 <th><input className={style.fields} type="text" defaultValue={props.docs[doc].name}></input></th>
                                 <th><input className={style.fields} type="text" defaultValue={props.docs[doc].description}></input></th>
                             </tr>)

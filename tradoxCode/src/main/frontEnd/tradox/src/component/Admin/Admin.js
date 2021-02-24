@@ -23,12 +23,16 @@ function Admin(){
     const [haveDocument,setHaveDocument] = useState([]);
     const [medicine,setMedicine] = useState([]);
     const [showUsers, setShowUsers] = useState(false)
-    const [showCountries, setShowCountries] = useState(false)
+    const [showCountries, setShowCountries] = useState(true)
     const [showDocuments, setShowDocuments] = useState(false)
     const [showStatus, setShowStatus] = useState(false)
     const [showConsulate, setShowConsulate] = useState(false)
     const [showHaveDocument, setShowHaveDocument] = useState(false)
     const [showMedicine, setShowMedicine] = useState(false)
+    const [q, setQ] = useState('');
+    function search(countries){
+        return countries.filter((country) => country.fullName.toLowerCase().indexOf(q)> -1);
+    }
     function getCountries(){
         try{
             axios.get("http://localhost:8080/api/v1/admin/getCountries").then(res => {
@@ -191,29 +195,28 @@ function Admin(){
     }
     return(
         <div className = {style.container}>
-            <Logo authorized = {isAuth} admin={isAdmin}/>
+            <Logo authorized = {isAuth} admin={false}/>
             <div className = {style.navigationBar}>
                 <nav>
                     <ul className = {style.navigation}>
-                        <li style = {!showCountries?{paddingRight:"30px"}:{paddingRight:"30px", color:"#000000"}} onClick={getCountries}>Country</li>
-                        <li style = {!showUsers?{paddingRight:"30px"}:{paddingRight:"30px", color:"#000000"}} onClick={getUsers}>User</li>
-                        <li style = {!showDocuments?{paddingRight:"30px"}:{paddingRight:"30px", color:"#000000"}} onClick={getDocuments}>Document</li>
-                        <li style = {!showStatus?{paddingRight:"30px"}:{paddingRight:"30px", color:"#000000"}} onClick={getStatus}>Status</li>
-                        <li style = {!showConsulate?{paddingRight:"30px"}:{paddingRight:"30px", color:"#000000"}} onClick={getConsulates}>Consulate</li>
-                        <li style = {!showHaveDocument?{paddingRight:"30px"}:{paddingRight:"30px", color:"#000000"}} onClick={getHaveDocument}>Have document</li>
-                        <li style = {!showMedicine?{paddingRight:"30px"}:{paddingRight:"30px", color:"#000000"}} onClick={getMedicine}>Medicine</li>
+                        <li style = {!showCountries?{paddingRight:"30px",cursor: "pointer"}:{paddingRight:"30px", color:"#000000",cursor: "pointer"}} onClick={getCountries}>Country</li>
+                        <li style = {!showUsers?{paddingRight:"30px",cursor: "pointer"}:{paddingRight:"30px", color:"#000000",cursor: "pointer"}} onClick={getUsers}>User</li>
+                        <li style = {!showDocuments?{paddingRight:"30px",cursor: "pointer"}:{paddingRight:"30px", color:"#000000",cursor: "pointer"}} onClick={getDocuments}>Document</li>
+                        <li style = {!showStatus?{paddingRight:"30px",cursor: "pointer"}:{paddingRight:"30px", color:"#000000",cursor: "pointer"}} onClick={getStatus}>Status</li>
+                        <li style = {!showConsulate?{paddingRight:"30px",cursor: "pointer"}:{paddingRight:"30px", color:"#000000",cursor: "pointer"}} onClick={getConsulates}>Consulate</li>
+                        <li style = {!showHaveDocument?{paddingRight:"30px",cursor: "pointer"}:{paddingRight:"30px", color:"#000000",cursor: "pointer"}} onClick={getHaveDocument}>Have document</li>
+                        <li style = {!showMedicine?{paddingRight:"30px",cursor: "pointer"}:{paddingRight:"30px", color:"#000000",cursor: "pointer"}} onClick={getMedicine}>Medicine</li>
                     </ul>
                 </nav>
             </div>
             <div className={style.buttons}>
                 <button className={style.selected}>Save Selected</button>
-                <button className={style.save}>Save All</button>
                 <button className={style.new}>New</button>
                 <button className={style.delete}>Delete</button>
-                <input type="text" placeholder = "Search by full name or short name" className={style.search}/>
+                <input type="text" placeholder = "Search by full name or short name" className={style.search} value={q} onChange={(e) => setQ(e.target.value)}/>
             </div>
             <div className={style.tables}>
-                {showCountries?<CountryTable countries = {countries}/>:null}
+                {showCountries?<CountryTable countries = {search(countries)}/>:null}
                 {showUsers?<UsersTable users = {users}/>:null}
                 {showDocuments?<DocumentsTable docs = {documents}/>:null}
                 {showStatus?<StatusTable statuses = {status}/>:null}
