@@ -2,15 +2,19 @@ import React, { useState,  useEffect }  from 'react'
 import style from './FillDocs.module.css';
 import logo from '../../images/LogoTradoxLogo.svg';
 
-function FillDocs() {
+const FillDocs = () => {
 
     const [haveDocument, setHaveDocument] = useState(false);
 
     useEffect(() => {
+        let departure = localStorage.getItem("departure");
+        let destination = localStorage.getItem("destination");
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ "departure": " ", "destination": " "})
+            body: JSON.stringify({ "departure": departure,
+                                   "destination": destination
+                                 })
         };
         fetch("http://localhost:8080/api/v1/docs/fill", requestOptions).then(response => response.json().then(data => ({
             data: data,
@@ -22,7 +26,7 @@ function FillDocs() {
                 console.log('error');
             }
         }));
-    });
+    },[]);
 
     const getPdf = () => {
         fetch("http://localhost:8080/api/v1/docs/pdf").then(response => response.json().then(data => ({

@@ -42,7 +42,7 @@ public class FillDocsController {
     }
 
     @PostMapping("/fill")
-    public RedirectView fillDocs(@RequestBody RouteCredentials fullRoute, BindingResult bindingResult, HttpSession session) throws InvalidFormatException, IOException {
+    public String fillDocs(@RequestBody RouteCredentials fullRoute, BindingResult bindingResult, HttpSession session) throws InvalidFormatException, IOException {
         if (!bindingResult.hasErrors()) {
             int userId = (int) session.getAttribute("userId");
             User user = tradoxService.getUserById(userId);
@@ -50,8 +50,11 @@ public class FillDocsController {
             Country destination = new CountryImpl(fullRoute.getDestinationId(), null);
             Documents documents = tradoxService.getDocuments(new FullRouteImpl(departure, destination));
             List<Document> docs = documents.getList();
+            System.out.println(docs.size());
             Map<String, XWPFDocument> mapDocs = new HashMap<>();
             for (Document doc : docs) {
+                System.out.println(doc.getName());
+                System.out.println(doc.getFileLink());
                 XWPFDocument docx = fillFile(doc.getFileLink(), user, fullRoute);
                 if (docx != null) {
                     mapDocs.put(doc.getName(), docx);
@@ -59,15 +62,15 @@ public class FillDocsController {
             }
             session.setAttribute("documents", mapDocs);
         }
-        return new RedirectView("/api/v1/docs/show");
+        return showPdf(session);
     }
 
-    @GetMapping("/show")
-    public Boolean showPdf(HttpSession session) throws IOException {
+    public String showPdf(HttpSession session) throws IOException {
         Map<String, XWPFDocument> docs = (Map<String, XWPFDocument>) session.getAttribute("documents");
         if (docs != null) {
             PdfOptions options = PdfOptions.create();
             for (Map.Entry<String, XWPFDocument> entry : docs.entrySet()) {
+                System.out.println(entry);
                 PdfConverter.getInstance().convert(entry.getValue(), new FileOutputStream(entry.getKey()), options);
                 PDDocument document = PDDocument.load(new File(entry.getKey()));
                 PDFRenderer pdfRenderer = new PDFRenderer(document);
@@ -75,13 +78,13 @@ public class FillDocsController {
                     BufferedImage bim = pdfRenderer.renderImageWithDPI(
                             page, 300, ImageType.RGB);
                     ImageIOUtil.writeImage(
-                            bim, String.format("output/pdf-%d.%s", page + 1, ".jpg"), 300);
+                            bim, "image.png", 300);
                 }
                 document.close();
             }
-            return true;
+            return "{\"res\": \"true\"}";
         }
-        return false;
+        return "{\"res\": \"false\"}";
     }
 
     @GetMapping("/pdf")

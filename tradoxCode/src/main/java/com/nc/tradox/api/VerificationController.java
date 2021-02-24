@@ -9,15 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
-import javax.mail.*;
-import javax.mail.internet.*;
-import java.util.Properties;
-
 @RequestMapping("api/v1/verification")
 @RestController
 public class VerificationController {
 
     private final TradoxService tradoxService;
+    private final EmailController emailController = new EmailController();
 
     @Autowired
     public VerificationController(TradoxService tradoxService) {
@@ -48,7 +45,8 @@ public class VerificationController {
         if (user!=null){
             String email = user.getEmail();
             String code = new RandomString(12).nextString();
-            boolean res = sendMail(email, code);
+            String text = "Here is your verification code:\n"+code;
+            boolean res = sendMail(email,"Verification",text);
             if (res) {
                 json = "{\"res\":\"true\",\"code\":"+"\""+code+"\""+"}";
             }
@@ -57,26 +55,13 @@ public class VerificationController {
         return json;
     }
 
-    public Boolean sendMail(String email, String code){
+    public Boolean sendMail(String email, String subject, String text){
         boolean res = false;
-        String to = email;
-        String from = "tradox@gmail.com";
-        String host = "localhost";
-        String port = "25";
-        Properties properties = System.getProperties();
-        properties.put("mail.smtp.host", host);
-        properties.put("mail.smtp.port", port);
-        Session session = Session.getDefaultInstance(properties);
         try {
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(from));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            message.setSubject("Verification");
-            message.setText("Here is your verification code:\n"+code);
-            Transport.send(message);
+            emailController.sendMail(email,subject,text);
             res = true;
-        } catch (MessagingException mex) {
-            mex.printStackTrace();
+        } catch (Exception e){
+
         }
         return res;
     }
