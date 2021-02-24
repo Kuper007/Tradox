@@ -6,7 +6,6 @@ import com.nc.tradox.model.impl.*;
 import com.nc.tradox.model.service.CountryView;
 import com.nc.tradox.model.service.HaveDocumentView;
 import com.nc.tradox.model.service.Response;
-import com.nc.tradox.service.TradoxService;
 import com.nc.tradox.utilities.ExchangeApi;
 import org.springframework.stereotype.Repository;
 
@@ -998,7 +997,7 @@ public class TradoxDataAccessService implements Dao {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM STATUS " +
-                    "LEFT JOIN REASONS ON STATUS.STATUS_ID = REASONS.STATUS_ID ORDER BY STATUS_ID " +
+                    "LEFT JOIN REASONS ON STATUS.STATUS_ID = REASONS.STATUS_ID ORDER BY STATUS.STATUS_ID " +
                     "FETCH NEXT 1000 ROWS ONLY");
             while (resultSet.next()) {
                 Status status = new StatusImpl(resultSet);
