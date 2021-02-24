@@ -237,20 +237,6 @@ public class TradoxDataAccessService implements Dao {
         return res;
     }
 
-    @Override
-    public boolean deleteUser(User user) {
-        int userId = user.getUserId();
-        boolean result = false;
-        try {
-            Statement statement = connection.createStatement();
-            result = statement.execute("DELETE FROM \"USER\" WHERE USER_ID = " + userId);
-            statement.close();
-        } catch (SQLException exception) {
-            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.deleteUser " + exception.getMessage());
-        }
-        return result;
-    }
-
     @Deprecated
     public boolean deleteUser(int userId) {
         boolean result = false;
@@ -956,35 +942,33 @@ public class TradoxDataAccessService implements Dao {
 
     @Override
     public boolean updateCountry(CountryView countryView) {
-        boolean result = false;
+        int rowCount = 0;
         try {
             String query = "UPDATE COUNTRY " +
-                    "SET COUNTRY_ID    = ?, " +
-                    "    FULL_NAME     = ?, " +
+                    "SET FULL_NAME     = ?, " +
                     "    SHORT_NAME    = ?, " +
                     "    CURRENCY      = ?, " +
                     "    MEDIUM_BILL   = ?, " +
                     "    TOURISM_COUNT = ? " +
                     "WHERE COUNTRY_ID = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, countryView.getShortName());
-            preparedStatement.setString(2, countryView.getFullName());
-            preparedStatement.setString(3, countryView.getShortName());
-            preparedStatement.setString(4, countryView.getCurrency());
-            preparedStatement.setDouble(5, countryView.getMediumBill());
-            preparedStatement.setInt(6, countryView.getTourismCount());
-            preparedStatement.setString(7, countryView.getShortName());
-            result = preparedStatement.execute();
+            preparedStatement.setString(1, countryView.getFullName());
+            preparedStatement.setString(2, countryView.getShortName());
+            preparedStatement.setString(3, countryView.getCurrency());
+            preparedStatement.setDouble(4, countryView.getMediumBill());
+            preparedStatement.setInt(5, countryView.getTourismCount());
+            preparedStatement.setString(6, countryView.getShortName());
+            rowCount = preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException exception) {
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.updateCountry " + exception.getMessage());
         }
-        return result;
+        return rowCount > 0;
     }
 
     @Override
     public boolean updateUser(User user) {
-        boolean result = false;
+        int rowCount = 0;
         try {
             String query = "UPDATE \"USER\" " +
                     "SET FIRST_NAME  = ?, " +
@@ -1010,18 +994,17 @@ public class TradoxDataAccessService implements Dao {
             preparedStatement.setString(9, user.getUserType().toString());
             preparedStatement.setString(10, user.getCitizenshipCountry().getShortName());
             preparedStatement.setInt(11, user.getUserId());
-            result = preparedStatement.execute();
+            rowCount = preparedStatement.executeUpdate();
             preparedStatement.close();
-            return result;
         } catch (SQLException exception) {
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.updateUser " + exception.getMessage());
         }
-        return result;
+        return rowCount > 0;
     }
 
     @Override
     public boolean updateDocument(Document document) {
-        boolean result = false;
+        int rowCount = 0;
         try {
             String query = "UPDATE DOCUMENT " +
                     "SET NAME        = ?, " +
@@ -1033,17 +1016,17 @@ public class TradoxDataAccessService implements Dao {
             preparedStatement.setString(2, document.getDescription());
             preparedStatement.setString(3, document.getFileLink());
             preparedStatement.setInt(4, document.getDocumentId());
-            result = preparedStatement.execute();
+            rowCount = preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException exception) {
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.updateDocument " + exception.getMessage());
         }
-        return result;
+        return rowCount > 0;
     }
 
     @Override
     public boolean updateConsulate(Consulate consulate) {
-        boolean result = false;
+        int rowCount = 0;
         try {
             String query = "UPDATE CONSULATE " +
                     "SET CITY         = ?, " +
@@ -1059,18 +1042,17 @@ public class TradoxDataAccessService implements Dao {
             preparedStatement.setString(4, consulate.getOwner().getShortName());
             preparedStatement.setString(5, consulate.getCountry().getShortName());
             preparedStatement.setInt(6, consulate.getConsulateId());
-            result = preparedStatement.execute();
+            rowCount = preparedStatement.executeUpdate();
             preparedStatement.close();
-            return result;
         } catch (SQLException exception) {
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.updateConsulate " + exception.getMessage());
         }
-        return result;
+        return rowCount > 0;
     }
 
     @Override
     public boolean updateCountryDocument(HaveDocumentView haveDocumentView) {
-        boolean result = false;
+        int rowCount = 0;
         try {
             String query = "UPDATE HAVE_DOCUMENT " +
                     "SET DOCUMENT_ID      = ?, " +
@@ -1082,18 +1064,17 @@ public class TradoxDataAccessService implements Dao {
             preparedStatement.setString(2, haveDocumentView.getDestination().getShortName());
             preparedStatement.setString(3, haveDocumentView.getDeparture().getShortName());
             preparedStatement.setInt(4, haveDocumentView.getId());
-            result = preparedStatement.execute();
+            rowCount = preparedStatement.executeUpdate();
             preparedStatement.close();
-            return result;
         } catch (SQLException exception) {
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.updateCountryDocument " + exception.getMessage());
         }
-        return result;
+        return rowCount > 0;
     }
 
     @Override
     public boolean updateMedicine(Medicine medicine) {
-        boolean result = false;
+        int rowCount = 0;
         try {
             String query = "UPDATE MEDICINE " +
                     "SET NAME        = ?, " +
@@ -1103,18 +1084,17 @@ public class TradoxDataAccessService implements Dao {
             preparedStatement.setString(1, medicine.getName());
             preparedStatement.setString(2, medicine.getCountry().getShortName());
             preparedStatement.setInt(3, medicine.getMedicineId());
-            result = preparedStatement.execute();
+            rowCount = preparedStatement.executeUpdate();
             preparedStatement.close();
-            return result;
         } catch (SQLException exception) {
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.updateMedicine " + exception.getMessage());
         }
-        return result;
+        return rowCount > 0;
     }
 
     @Override
     public boolean updateStatus(Status status) {
-        boolean result = false;
+        int rowCount = 0;
         try {
             String query = "UPDATE STATUS " +
                     "SET VALUE          = ?, " +
@@ -1126,18 +1106,18 @@ public class TradoxDataAccessService implements Dao {
             preparedStatement.setString(2, status.getDestination().getShortName());
             preparedStatement.setString(3, status.getCountry().getShortName());
             preparedStatement.setInt(4, status.getStatusId());
-            result = preparedStatement.execute();
+            rowCount = preparedStatement.executeUpdate();
             preparedStatement.close();
-            return result;
         } catch (SQLException exception) {
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.updateStatus " + exception.getMessage());
         }
-        return result;
+        return rowCount > 0;
     }
 
     @Override
-    public boolean updateReason(Reason reason) {
-        boolean result = false;
+    public boolean updateReason(Status status) {
+        Reason reason = status.getReason();
+        int rowCount = 0;
         try {
             String query = "UPDATE REASONS " +
                     "SET COVID_REASON       = ?, " +
@@ -1147,18 +1127,17 @@ public class TradoxDataAccessService implements Dao {
             preparedStatement.setInt(1, reason.getCovidReason() ? 1 : 0);
             preparedStatement.setInt(2, reason.getCitizenshipReason() ? 1 : 0);
             preparedStatement.setInt(3, reason.getReasonId());
-            result = preparedStatement.execute();
+            rowCount = preparedStatement.executeUpdate();
             preparedStatement.close();
-            return result;
         } catch (SQLException exception) {
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.updateReason " + exception.getMessage());
         }
-        return result;
+        return rowCount > 0;
     }
 
     @Override
     public boolean addCountry(CountryView countryView) {
-        boolean result = false;
+        int rowCount = 0;
         try {
             String query = "INSERT INTO COUNTRY " +
                     "(COUNTRY_ID, FULL_NAME, SHORT_NAME, CURRENCY, MEDIUM_BILL, TOURISM_COUNT) " +
@@ -1170,18 +1149,17 @@ public class TradoxDataAccessService implements Dao {
             preparedStatement.setString(4, countryView.getCurrency());
             preparedStatement.setDouble(6, countryView.getMediumBill());
             preparedStatement.setInt(5, countryView.getTourismCount());
-            result = preparedStatement.execute();
+            rowCount = preparedStatement.executeUpdate();
             preparedStatement.close();
-            return result;
         } catch (SQLException exception) {
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.addCountry " + exception.getMessage());
         }
-        return result;
+        return rowCount > 0;
     }
 
     @Override
     public boolean addDocument(Document document) {
-        boolean result = false;
+        int rowCount = 0;
         try {
             String query = "INSERT INTO DOCUMENT (NAME, DESCRIPTION, \"FILE\") " +
                     "VALUES (?, ?, ?)";
@@ -1189,17 +1167,17 @@ public class TradoxDataAccessService implements Dao {
             preparedStatement.setString(1, document.getName());
             preparedStatement.setString(2, document.getDescription());
             preparedStatement.setString(3, document.getFileLink());
-            result = preparedStatement.execute();
+            rowCount = preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException exception) {
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.addDocument " + exception.getMessage());
         }
-        return result;
+        return rowCount > 0;
     }
 
     @Override
     public boolean addConsulate(Consulate consulate) {
-        boolean result = false;
+        int rowCount = 0;
         try {
             String query = "INSERT INTO CONSULATE (CITY, ADDRESS, PHONE, OWNER_ID, COUNTRY_ID) " +
                     "VALUES (?, ?, ?, ?, ?)";
@@ -1209,18 +1187,17 @@ public class TradoxDataAccessService implements Dao {
             preparedStatement.setString(3, consulate.getPhoneNumber());
             preparedStatement.setString(4, consulate.getOwner().getShortName());
             preparedStatement.setString(5, consulate.getCountry().getShortName());
-            result = preparedStatement.execute();
+            rowCount = preparedStatement.executeUpdate();
             preparedStatement.close();
-            return result;
         } catch (SQLException exception) {
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.addConsulate " + exception.getMessage());
         }
-        return result;
+        return rowCount > 0;
     }
 
     @Override
     public boolean addCountryDocument(HaveDocumentView haveDocumentView) {
-        boolean result = false;
+        int rowCount = 0;
         try {
             String query = "INSERT INTO HAVE_DOCUMENT (DOCUMENT_ID, DESTINATION_ID, DEPARTURE_ID) " +
                     "VALUES (?, ?, ?)";
@@ -1228,36 +1205,34 @@ public class TradoxDataAccessService implements Dao {
             preparedStatement.setInt(1, haveDocumentView.getDocumentId());
             preparedStatement.setString(2, haveDocumentView.getDestination().getShortName());
             preparedStatement.setString(3, haveDocumentView.getDeparture().getShortName());
-            result = preparedStatement.execute();
+            rowCount = preparedStatement.executeUpdate();
             preparedStatement.close();
-            return result;
         } catch (SQLException exception) {
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.addCountryDocument " + exception.getMessage());
         }
-        return result;
+        return rowCount > 0;
     }
 
     @Override
     public boolean addMedicine(Medicine medicine) {
-        boolean result = false;
+        int rowCount = 0;
         try {
             String query = "INSERT INTO TRADOX.MEDICINE (NAME, COUNTRY_ID) " +
                     "VALUES (?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, medicine.getName());
             preparedStatement.setString(2, medicine.getCountry().getShortName());
-            result = preparedStatement.execute();
+            rowCount = preparedStatement.executeUpdate();
             preparedStatement.close();
-            return result;
         } catch (SQLException exception) {
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.addMedicine " + exception.getMessage());
         }
-        return result;
+        return rowCount > 0;
     }
 
     @Override
     public boolean addStatus(Status status) {
-        boolean result = false;
+        int rowCount = 0;
         try {
             String query = "INSERT INTO TRADOX.STATUS (VALUE, DESTINATION_ID, COUNTRY_ID) " +
                     "VALUES (?, ?, ?)";
@@ -1265,18 +1240,17 @@ public class TradoxDataAccessService implements Dao {
             preparedStatement.setString(1, status.getStatus().toString());
             preparedStatement.setString(2, status.getDestination().getShortName());
             preparedStatement.setString(3, status.getCountry().getShortName());
-            result = preparedStatement.execute();
+            rowCount = preparedStatement.executeUpdate();
             preparedStatement.close();
-            return result;
         } catch (SQLException exception) {
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.addStatus " + exception.getMessage());
         }
-        return result;
+        return rowCount > 0;
     }
 
     @Override
     public boolean addReason(Status status) {
-        boolean result = false;
+        int rowCount = 0;
         try {
             String query = "INSERT INTO REASONS (COVID_REASON, CITIZENSHIP_REASON, STATUS_ID) " +
                     "VALUES (?, ?, ?)";
@@ -1284,13 +1258,149 @@ public class TradoxDataAccessService implements Dao {
             preparedStatement.setInt(1, status.getReason().getCovidReason() ? 1 : 0);
             preparedStatement.setInt(2, status.getReason().getCitizenshipReason() ? 1 : 0);
             preparedStatement.setInt(3, status.getStatusId());
-            result = preparedStatement.execute();
+            rowCount = preparedStatement.executeUpdate();
             preparedStatement.close();
-            return result;
         } catch (SQLException exception) {
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.addReason " + exception.getMessage());
         }
-        return result;
+        return rowCount > 0;
+    }
+
+    @Override
+    public boolean deleteCountry(CountryView countryView) {
+        int rowCount = 0;
+        try {
+            String query = "DELETE " +
+                    "FROM COUNTRY " +
+                    "WHERE COUNTRY_ID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, countryView.getShortName());
+            rowCount = preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.deleteCountry " + exception.getMessage());
+        }
+        return rowCount > 0;
+    }
+
+    @Override
+    public boolean deleteUser(User user) {
+        int rowCount = 0;
+        try {
+            String query = "DELETE " +
+                    "FROM \"USER\" " +
+                    "WHERE USER_ID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, user.getUserId());
+            rowCount = preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.deleteUser " + exception.getMessage());
+        }
+        return rowCount > 0;
+    }
+
+
+    @Override
+    public boolean deleteDocument(Document document) {
+        int rowCount = 0;
+        try {
+            String query = "DELETE " +
+                    "FROM DOCUMENT " +
+                    "WHERE DOCUMENT_ID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, document.getDocumentId());
+            rowCount = preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.deleteDocument " + exception.getMessage());
+        }
+        return rowCount > 0;
+    }
+
+    @Override
+    public boolean deleteConsulate(Consulate consulate) {
+        int rowCount = 0;
+        try {
+            String query = "DELETE " +
+                    "    FROM CONSULATE " +
+                    "    WHERE CONSULATE_ID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, consulate.getConsulateId());
+            rowCount = preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.deleteConsulate " + exception.getMessage());
+        }
+        return rowCount > 0;
+    }
+
+    @Override
+    public boolean deleteCountryDocument(HaveDocumentView haveDocumentView) {
+        int rowCount = 0;
+        try {
+            String query = "DELETE " +
+                    "FROM HAVE_DOCUMENT " +
+                    "WHERE HAVE_DOCUMENT_ID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, haveDocumentView.getDocumentId());
+            rowCount = preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.deleteCountryDocument " + exception.getMessage());
+        }
+        return rowCount > 0;
+    }
+
+    @Override
+    public boolean deleteMedicine(Medicine medicine) {
+        int rowCount = 0;
+        try {
+            String query = "DELETE " +
+                    "FROM MEDICINE " +
+                    "WHERE MEDICINE_ID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, medicine.getMedicineId());
+            rowCount = preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.deleteMedicine " + exception.getMessage());
+        }
+        return rowCount > 0;
+    }
+
+    @Override
+    public boolean deleteStatus(Status status) {
+        int rowCount = 0;
+        try {
+            String query = "DELETE " +
+                    "FROM STATUS " +
+                    "WHERE STATUS_ID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, status.getStatusId());
+            rowCount = preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.deleteStatus " + exception.getMessage());
+        }
+        return rowCount > 0;
+    }
+
+    @Override
+    public boolean deleteReason(Status status) {
+        int rowCount = 0;
+        try {
+            String query = "DELETE " +
+                    "FROM REASONS " +
+                    "WHERE REASON_ID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, status.getReason().getReasonId());
+            rowCount = preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.deleteReason " + exception.getMessage());
+        }
+        return rowCount > 0;
     }
 
 }

@@ -32,8 +32,6 @@ public interface Dao {
 
     Boolean changePassword(int id, String newPassword);
 
-    boolean deleteUser(User user);
-
     @Deprecated
     boolean deleteUser(int userId);
 
@@ -119,7 +117,7 @@ public interface Dao {
 
     boolean updateStatus(Status status);
 
-    boolean updateReason(Reason reason);
+    boolean updateReason(Status status);
 
     boolean addCountry(CountryView countryView);
 
@@ -134,5 +132,21 @@ public interface Dao {
     boolean addStatus(Status status);
 
     boolean addReason(Status status);
+
+    boolean deleteCountry(CountryView countryView);
+
+    boolean deleteUser(User user);
+
+    boolean deleteDocument(Document document);
+
+    boolean deleteConsulate(Consulate consulate);
+
+    boolean deleteCountryDocument(HaveDocumentView haveDocumentView);
+
+    boolean deleteMedicine(Medicine medicine);
+
+    boolean deleteStatus(Status status);
+
+    boolean deleteReason(Status status);
 
 }
