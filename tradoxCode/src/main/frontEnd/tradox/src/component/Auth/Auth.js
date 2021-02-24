@@ -47,7 +47,7 @@ function Auth(props){
                 <form>
                     <ul className = {style.inner}>
                         <li>
-                            <label htmlFor="email"><span className={style.fieldLabel}>Email:</span></label>
+                            <label htmlFor="email"><span className={style.fieldLabel}>Email</span></label>
                             <input className = {style.input} value={emailVal} onChange={event => setEmailVal(event.target.value)} type="email" id="email" />
                         </li>
                         <li style ={{paddingTop :"20px"}}>
