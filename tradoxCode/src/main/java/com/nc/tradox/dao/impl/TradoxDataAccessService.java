@@ -810,7 +810,7 @@ public class TradoxDataAccessService implements Dao {
         List<CountryView> countryList = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM COUNTRY");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM COUNTRY ORDER BY COUNTRY_ID");
             while (resultSet.next()) {
                 CountryView country = new CountryView();
                 country.setShortName(resultSet.getString("SHORT_NAME"));
@@ -833,7 +833,7 @@ public class TradoxDataAccessService implements Dao {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM \"USER\" " +
-                    "LEFT JOIN PASSPORT ON \"USER\".PASSPORT_ID = PASSPORT.PASSPORT_ID");
+                    "LEFT JOIN PASSPORT ON \"USER\".PASSPORT_ID = PASSPORT.PASSPORT_ID ORDER BY USER_ID");
             while (resultSet.next()) {
                 User user = new UserImpl(resultSet);
                 userList.add(user);
@@ -850,7 +850,7 @@ public class TradoxDataAccessService implements Dao {
         List<Document> documentList = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM DOCUMENT");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM DOCUMENT ORDER BY DOCUMENT_ID");
             while (resultSet.next()) {
                 Document document = new DocumentImpl(resultSet);
                 documentList.add(document);
@@ -867,7 +867,8 @@ public class TradoxDataAccessService implements Dao {
         List<Consulate> consulateList = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM CONSULATE");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM CONSULATE ORDER BY CONSULATE_ID " +
+                    "FETCH NEXT 1000 ROWS ONLY");
             while (resultSet.next()) {
                 Consulate consulate = new ConsulateImpl(resultSet);
                 consulate.setCountry(new CountryImpl(resultSet.getString("COUNTRY_ID"), null));
@@ -886,7 +887,8 @@ public class TradoxDataAccessService implements Dao {
         List<HaveDocumentView> haveDocumentViewList = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM HAVE_DOCUMENT");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM HAVE_DOCUMENT ORDER BY HAVE_DOCUMENT_ID " +
+                    "FETCH NEXT 1000 ROWS ONLY");
             while (resultSet.next()) {
                 HaveDocumentView haveDocumentView = new HaveDocumentView();
                 haveDocumentView.setId(resultSet.getInt("HAVE_DOCUMENT_ID"));
@@ -907,7 +909,7 @@ public class TradoxDataAccessService implements Dao {
         List<Medicine> medicineList = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM MEDICINE");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM MEDICINE ORDER BY MEDICINE_ID");
             while (resultSet.next()) {
                 Medicine medicine = new MedicineImpl(resultSet);
                 medicine.setCountry(new CountryImpl(resultSet.getString("COUNTRY_ID"), null));
@@ -926,7 +928,8 @@ public class TradoxDataAccessService implements Dao {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM STATUS " +
-                    "LEFT JOIN REASONS ON STATUS.STATUS_ID = REASONS.STATUS_ID");
+                    "LEFT JOIN REASONS ON STATUS.STATUS_ID = REASONS.STATUS_ID ORDER BY STATUS_ID " +
+                    "FETCH NEXT 1000 ROWS ONLY");
             while (resultSet.next()) {
                 Status status = new StatusImpl(resultSet);
                 status.setCountry(new CountryImpl(resultSet.getString("COUNTRY_ID"), null));
