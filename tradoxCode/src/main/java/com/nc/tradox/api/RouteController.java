@@ -54,7 +54,6 @@ public class RouteController {
     public Boolean saveRoute(HttpSession session) {
         Route r = (Route) session.getAttribute("currentRoute");
         if (r != null) {
-            System.out.println(r.getTransportType().toString());
             Integer userId = (Integer) session.getAttribute("userId");
             if (userId != null) {
                 return tradoxService.saveRoute(r, userId);
@@ -80,7 +79,13 @@ public class RouteController {
                 response.setObject(new InfoDataImpl());
                 return response;
             }
-            response.setObject(tradoxService.getInfoData(location, destination));
+            InfoData infoData = tradoxService.getInfoData(location, destination);
+            Random random = new Random(System.currentTimeMillis());
+            int id = random.nextInt();
+            Set<InfoData> transits = new LinkedHashSet<>();
+            transits.add(infoData);
+            httpSession.setAttribute("currentRoute", new RouteImpl(id, transits));
+            response.setObject(infoData);
         } else {
             response.setError("notAuthorized");
             response.setObject(new InfoDataImpl());
