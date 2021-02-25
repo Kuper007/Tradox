@@ -9,6 +9,10 @@ import UsersTable from "./Tables/UsersTable";
  import ConsulatesTable from "./Tables/ConsulatesTable";
  import HaveDocTable from "./Tables/HaveDocTable";
  import MedicineTable from "./Tables/MedicineTable";
+ import {NavLink} from "react-router-dom";
+ import logo from "../../images/LogoTradoxLogo.svg";
+ import vector from "../../images/Vector.svg";
+ import user from "../../images/user.svg";
 
 function Admin(){
 
@@ -30,6 +34,20 @@ function Admin(){
     const [showHaveDocument, setShowHaveDocument] = useState(false)
     const [showMedicine, setShowMedicine] = useState(false)
     const [q, setQ] = useState('');
+    const[pressed, setPressed] = useState(false);
+
+    function showAuth() {
+        if (pressed === false)
+            setPressed(true)
+        else setPressed(false)
+    }
+
+    const logout = () => {
+        localStorage.removeItem("auth");
+        localStorage.removeItem("userId");
+        localStorage.removeItem("userType");
+        window.location.href = "/";
+    };
     function search(countries){
         return countries.filter((country) => country.fullName.toLowerCase().indexOf(q)> -1);
     }
@@ -195,7 +213,17 @@ function Admin(){
     }
     return(
         <div className = {style.container}>
-            <Logo authorized = {isAuth} admin={false}/>
+            <div className={style.logo}>
+                <NavLink to = '/'> <img src={logo}/></NavLink>
+            </div>
+            <div className = {style.auth}>
+                {pressed ?<div className = {style.hidable}>
+                        <div style= {{marginTop: '77px'}}> <NavLink className = {`${style.register} ${style.link}`} to= '/account'>To account</NavLink>
+                            <span className={style.logOut} onClick={() => logout()}>Log out</span></div>
+                    <img src = {vector} alt = 'vector' className = {style.vector}/>
+                </div>: null}
+                <img src={user}  alt="user" className = {style.user} onMouseDown={showAuth}/>
+            </div>
             <div className = {style.navigationBar}>
                 <nav>
                     <ul className = {style.navigation}>
