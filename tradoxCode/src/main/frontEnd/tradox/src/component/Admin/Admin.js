@@ -1,24 +1,22 @@
- import React, {useState}  from 'react'
+import React, {useState}  from 'react'
 import style from './Admin.module.css';
-import Logo from '../MainPage/Logo/Logo'
 import axios from "axios";
 import CountryTable from "./Tables/CountriesTable";
 import UsersTable from "./Tables/UsersTable";
- import DocumentsTable from "./Tables/DocumentsTable";
- import StatusTable from "./Tables/StatusTable";
- import ConsulatesTable from "./Tables/ConsulatesTable";
- import HaveDocTable from "./Tables/HaveDocTable";
- import MedicineTable from "./Tables/MedicineTable";
- import {NavLink} from "react-router-dom";
- import logo from "../../images/LogoTradoxLogo.svg";
- import vector from "../../images/Vector.svg";
- import user from "../../images/user.svg";
+import DocumentsTable from "./Tables/DocumentsTable";
+import StatusTable from "./Tables/StatusTable";
+import ConsulatesTable from "./Tables/ConsulatesTable";
+import HaveDocTable from "./Tables/HaveDocTable";
+import MedicineTable from "./Tables/MedicineTable";
+import {NavLink} from "react-router-dom";
+import logo from "../../images/LogoTradoxLogo.svg";
+import vector from "../../images/Vector.svg";
+import user from "../../images/user.svg";
 
 function Admin(){
 
     const [isAuth, setIsAuth] = useState(true);
     const [isAdmin, setIsAdmin] = useState(true);
-
     const [countries,setCountries] = useState([]);
     const [users,setUsers] = useState([]);
     const [documents,setDocuments] = useState([]);
@@ -226,13 +224,13 @@ function Admin(){
         return countries.filter((country) => country.fullName.toLowerCase().indexOf(q)> -1);
     }
     function searchUsers(users){
-        return users.filter((user) => users.lastName.toLowerCase().indexOf(q)> -1);
+        return users.filter((user) => user.lastName.toLowerCase().indexOf(q)> -1);
     }
     function searchDocs(docs){
-        return docs.filter((doc) => docs.name.toLowerCase().indexOf(q)> -1);
+        return docs.filter((doc) => doc.name.toLowerCase().indexOf(q)> -1);
     }
     function searchStatus(status){
-        return status.filter((stat) => status.name.toLowerCase().indexOf(q)> -1);
+        return status.filter((stat) => stat.fullRoute.destination.shortName.toLowerCase().indexOf(q)> -1);
     }
     return(
         <div className = {style.container}>
@@ -250,13 +248,13 @@ function Admin(){
             <div className = {style.navigationBar}>
                 <nav>
                     <ul className = {style.navigation}>
-                        <li style = {!showCountries?{paddingRight:"30px",cursor: "pointer"}:{paddingRight:"30px", color:"#000000",cursor: "pointer"}} onClick={getCountries}>Country</li>
-                        <li style = {!showUsers?{paddingRight:"30px",cursor: "pointer"}:{paddingRight:"30px", color:"#000000",cursor: "pointer"}} onClick={getUsers}>User</li>
-                        <li style = {!showDocuments?{paddingRight:"30px",cursor: "pointer"}:{paddingRight:"30px", color:"#000000",cursor: "pointer"}} onClick={getDocuments}>Document</li>
-                        <li style = {!showStatus?{paddingRight:"30px",cursor: "pointer"}:{paddingRight:"30px", color:"#000000",cursor: "pointer"}} onClick={getStatus}>Status</li>
-                        <li style = {!showConsulate?{paddingRight:"30px",cursor: "pointer"}:{paddingRight:"30px", color:"#000000",cursor: "pointer"}} onClick={getConsulates}>Consulate</li>
-                        <li style = {!showHaveDocument?{paddingRight:"30px",cursor: "pointer"}:{paddingRight:"30px", color:"#000000",cursor: "pointer"}} onClick={getHaveDocument}>Have document</li>
-                        <li style = {!showMedicine?{paddingRight:"30px",cursor: "pointer"}:{paddingRight:"30px", color:"#000000",cursor: "pointer"}} onClick={getMedicine}>Medicine</li>
+                        <li style = {!showCountries?{paddingRight:"30px",cursor: "pointer"}:{paddingRight:"30px", color:"#000000",cursor: "pointer", fontWeight: "bold"}} onClick={getCountries}>Country</li>
+                        <li style = {!showUsers?{paddingRight:"30px",cursor: "pointer"}:{paddingRight:"30px", color:"#000000",cursor: "pointer", fontWeight: "bold"}} onClick={getUsers}>User</li>
+                        <li style = {!showDocuments?{paddingRight:"30px",cursor: "pointer"}:{paddingRight:"30px", color:"#000000",cursor: "pointer", fontWeight: "bold"}} onClick={getDocuments}>Document</li>
+                        <li style = {!showStatus?{paddingRight:"30px",cursor: "pointer"}:{paddingRight:"30px", color:"#000000",cursor: "pointer", fontWeight: "bold"}} onClick={getStatus}>Status</li>
+                        <li style = {!showConsulate?{paddingRight:"30px",cursor: "pointer"}:{paddingRight:"30px", color:"#000000",cursor: "pointer", fontWeight: "bold"}} onClick={getConsulates}>Consulate</li>
+                        <li style = {!showHaveDocument?{paddingRight:"30px",cursor: "pointer"}:{paddingRight:"30px", color:"#000000",cursor: "pointer", fontWeight: "bold"}} onClick={getHaveDocument}>Have document</li>
+                        <li style = {!showMedicine?{paddingRight:"30px",cursor: "pointer"}:{paddingRight:"30px", color:"#000000",cursor: "pointer", fontWeight: "bold"}} onClick={getMedicine}>Medicine</li>
                     </ul>
                 </nav>
             </div>
