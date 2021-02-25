@@ -106,6 +106,33 @@ public class AdminService {
         return result;
     }
 
+    public boolean addCountry(CountryView countryView) {
+        return dao.addCountry(countryView);
+    }
+
+    public boolean addDocument(Document document) {
+        return dao.addDocument(document);
+    }
+
+    public boolean addConsulate(Consulate consulate) {
+        return dao.addConsulate(consulate);
+    }
+
+    public boolean addCountryDocument(HaveDocumentView haveDocumentView) {
+        return dao.addCountryDocument(haveDocumentView);
+    }
+
+    public boolean addMedicine(Medicine medicine) {
+        return dao.addMedicine(medicine);
+    }
+
+    public boolean addStatus(Status status) {
+        if (dao.addStatus(status)) {
+            return dao.addReason(status);
+        }
+        return false;
+    }
+
     public boolean deleteCountry(CountryView countryView) {
         return dao.deleteCountry(countryView);
     }
