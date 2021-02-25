@@ -230,6 +230,28 @@ public class TradoxDataAccessService implements Dao {
         return transit;
     }
 
+    public Set<Route> getFakeRoutesByUserId(Integer userId) {
+        Set<Route> transit = new HashSet<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM ROUTE WHERE USER_ID = '" + userId + "'");
+            while (resultSet.next()) {
+                Route route = new RouteImpl();
+                route.setRouteId(resultSet.getInt("route_id"));
+                InfoData infoData = new InfoDataImpl();
+                FullRoute fullRoute = new FullRouteImpl(getCountryById(resultSet.getString("departure_id")),
+                        getCountryById(resultSet.getString("destination_id")));
+                infoData.setFullRoute(fullRoute);
+                route.addTransitCountry(infoData);
+                transit.add(route);
+            }
+            statement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return transit;
+    }
+
     public Boolean registrate(User user, String password) {
         try {
             String query = "INSERT INTO \"USER\" (first_name, last_name, birth_date, " +
@@ -672,7 +694,7 @@ public class TradoxDataAccessService implements Dao {
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.getUserById " + exception.getMessage());
         }
         if (user != null) {
-            user.setTransit(getRoutsByUser(userId));
+            user.setTransit(getFakeRoutesByUserId(userId));
         }
         return user;
     }
