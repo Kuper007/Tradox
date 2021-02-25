@@ -101,7 +101,8 @@ public class AccountController {
     public RedirectView logOut(HttpSession session) {
         session.setAttribute("authorized", false);
         session.removeAttribute("userId");
-        return new RedirectView("/api/v1/auth/result");
+        session.removeAttribute("userType");
+        return new RedirectView("/");
     }
 
     private boolean isValidUser(Integer userId) {
