@@ -1,0 +1,46 @@
+.container{
+    margin: 0 auto;
+    width: 633px;
+    height: 633px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+.createBtn{
+    width: 150px;
+    height: 40px;
+    border: none;
+    background: #F9B300;
+    border-radius: 50px;
+}
+.cancelBtn{
+    color: #FFFFFF;
+    width: 150px;
+    height: 40px;
+    border: none;
+    background: #000000;
+    border-radius: 50px;
+}
+.title{
+    width: 339px;
+    height: 61px;
+
+    font-weight: 600;
+    font-size: 50px;
+    line-height: 61px;
+
+
+    color: #000000;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}

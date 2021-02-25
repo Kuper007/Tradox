@@ -9,7 +9,7 @@
     width: 1512px;
     height: 58px;
     left: 200px;
-    top: 199px;
+    top: 100px;
 
     background: #F9B300;
     border-radius: 50px;
@@ -27,7 +27,7 @@
 .buttons{
     position: relative;
     left: 200px;
-    top: 238px;
+    top: 138px;
 }
 .selected{
     width: 136px;
@@ -100,7 +100,7 @@
     overflow-y: auto;
     position: relative;
     left:200px;
-    top:300px;
+    top:200px;
 }
 .logo {
     position: absolute;
