@@ -6,7 +6,6 @@ import Consulates from './Consulates/Consulates'
 import News from './News/News'
 import {NavLink} from 'react-router-dom'
 import add from "../../images/add 1.svg"
-import hint from "../../images/Group 3.svg"
 import axios from "axios";
 
  function CountryInfo(props) {
