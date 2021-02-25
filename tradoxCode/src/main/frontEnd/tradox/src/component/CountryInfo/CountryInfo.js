@@ -61,7 +61,7 @@ import axios from "axios";
             <Consulates departure = {props.data.object.fullRoute.departure} data = {props.data}/>
             <News data = {props.data}/>
 
-            <img src ={add} className={styles.addRoute} onClick={addRoute} onMouseOver={setShowHint(true)}/>
+            <img src ={add} className={styles.addRoute} onClick={addRoute} />
             </div>
         </div>
     )
