@@ -175,6 +175,11 @@ public class UserImpl implements User {
     }
 
     @Override
+    public void setPassport(Passport passport) {
+        this.passport = passport;
+    }
+
+    @Override
     @JsonIgnore
     public String getPassportId() {
         return getPassport().getPassportId();
@@ -189,11 +194,6 @@ public class UserImpl implements User {
     @Override
     public void setCitizenshipCountry(Country country) {
         getPassport().setCitizenshipCountry(country);
-    }
-
-    @Override
-    public void setPassport(Passport passport) {
-        this.passport = passport;
     }
 
     public Set<Route> getTransit() {

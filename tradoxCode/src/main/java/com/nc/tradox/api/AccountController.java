@@ -1,11 +1,8 @@
 package com.nc.tradox.api;
 
-import com.nc.tradox.model.InfoData;
-import com.nc.tradox.model.Route;
-import com.nc.tradox.model.User;
+import com.nc.tradox.model.*;
 import com.nc.tradox.model.impl.InfoDataImpl;
 import com.nc.tradox.model.impl.PassportImpl;
-import com.nc.tradox.model.impl.UserImpl;
 import com.nc.tradox.service.TradoxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -17,6 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,41 +30,35 @@ public class AccountController {
     }
 
     @GetMapping("/getUserData")
-    public User getUserData(HttpSession session) {
+    public UserData getUserData(HttpSession session) {
         Integer userId = (Integer) session.getAttribute("userId");
         if (isValidUser(userId)) {
-            return tradoxService.getUserById(userId);
+            User user = tradoxService.getUserById(userId);
+            return new UserData(user);
         }
-        return new UserImpl();
+        return null;
     }
 
     @PostMapping("/saveUserData")
-    public String saveUserData(@RequestBody UserData userData, BindingResult bindingResult, HttpSession session) {
+    public Boolean saveUserData(@RequestBody Map<String, String> json, BindingResult bindingResult, HttpSession session) throws ParseException {
         if (!bindingResult.hasErrors()) {
-            try {
-                Integer userId = (Integer) session.getAttribute("userId");
-                if (userId != null) {
-                    User user = new UserImpl();
-                    user.setUserId(userId);
-                    user.setFirstName(userData.getFirstName());
-                    user.setLastName(userData.getLastName());
-                    user.setBirthDate(new SimpleDateFormat("dd.MM.yyyy").parse(userData.getBirthDate()));
-                    user.setEmail(userData.getEmail());
-                    user.setPhone(userData.getPhone());
-                    user.setLocation(tradoxService.getCountryByFullName(userData.getLocation()));
-                    user.setPassport(new PassportImpl(
-                            userData.getPassport(),
-                            tradoxService.getCountryByFullName(userData.getCitizenship()))
-                    );
-                    return "{\"result\": " + tradoxService.updateUserData(user) + "}";
-                } else {
-                    Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, "User not authorized");
-                }
-            } catch (ParseException e) {
-                Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, "Incorrect date format");
+            Integer userId = (Integer) session.getAttribute("userId");
+            if (userId != null) {
+                Country citizenship = tradoxService.getCountryById(json.get("citizenship"));
+                Country location = tradoxService.getCountryById(json.get("country_id"));
+                Passport passport = new PassportImpl(json.get("passport_id"), citizenship);
+                User user = tradoxService.getUserById(userId);
+                user.setFirstName(json.get("first_name"));
+                user.setLastName(json.get("last_name"));
+                user.setBirthDate(new SimpleDateFormat("yyyy-MM-dd").parse(json.get("birth_date")));
+                user.setEmail(json.get("email"));
+                user.setPhone(json.get("phone"));
+                user.setPassport(passport);
+                user.setLocation(location);
+                return tradoxService.updateUserData(user);
             }
         }
-        return "{\"result\": false}";
+        return false;
     }
 
     @GetMapping("/delete")
@@ -81,30 +73,25 @@ public class AccountController {
     }
 
     @PostMapping("/deleteRoute")
-    public Boolean deleteRoute(@RequestBody Integer routeId, BindingResult bindingResult, HttpSession session) {
+    public Boolean deleteRoute(@RequestBody Map<String, Integer> json, BindingResult bindingResult, HttpSession session) {
         if (!bindingResult.hasErrors()) {
-            Integer userId = (Integer) session.getAttribute("userId");
-            if (userId != null) {
-                return tradoxService.deleteRoute(routeId);
-            } else {
-                Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, "User not authorized");
+            if (json.get("routeId") != null) {
+                return tradoxService.deleteRoute(json.get("routeId"));
             }
         }
         return false;
     }
 
     @PostMapping("/getSavedRoute")
-    public InfoData goToRoute(@RequestBody Integer routeId, BindingResult bindingResult, HttpSession session) {
+    public InfoData goToRoute(@RequestBody Map<String, Integer> json, BindingResult bindingResult, HttpSession session) {
         if (!bindingResult.hasErrors()) {
-            Integer userId = (Integer) session.getAttribute("userId");
-            if (userId != null) {
-                Route route = tradoxService.getRouteById(routeId);
+            Integer id = json.get("routeId");
+            if (id != null) {
+                Route route = tradoxService.getRouteById(id);
                 if (route != null) {
                     List<InfoData> list = new ArrayList<>(route.getTransit());
                     return list.get(0);
                 }
-            } else {
-                Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, "User not authorized");
             }
         }
         return new InfoDataImpl();
