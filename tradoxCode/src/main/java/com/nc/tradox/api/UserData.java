@@ -32,7 +32,6 @@ public class UserData {
     public UserData(User user) {
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
-        ;
         this.birthDate = user.getBirthDate().toString();
         this.email = user.getEmail();
         this.phone = user.getPhone();
