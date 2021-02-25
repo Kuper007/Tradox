@@ -13,6 +13,7 @@ export default function Consulates(props) {
             {consulateInfo}
             </div>
             <h2 className={style.exchangeTitle}>Exchange rates</h2>
+
         </div>
     )
 }

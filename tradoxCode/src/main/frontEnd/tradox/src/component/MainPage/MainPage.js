@@ -40,11 +40,12 @@ function MainPage (props) {
     let countryO = myMap.get(country)
     if(typeof countryO == "undefined"){
       setNotFound(true)
+      return ''
     }
     else{
       setNotFound(false)
+      return countryO
     }
-    return countryO
   }
   function getKeyFromMap(){
     let keys = [...myMap.entries()]
