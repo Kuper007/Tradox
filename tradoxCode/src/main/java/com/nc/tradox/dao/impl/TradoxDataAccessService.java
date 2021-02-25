@@ -141,15 +141,16 @@ public class TradoxDataAccessService implements Dao {
                 preparedStatement.setString(3, destinationId);
                 preparedStatement.setInt(4, userId);
 
-                boolean result = preparedStatement.execute();
+                int result = preparedStatement.executeUpdate();
                 preparedStatement.close();
-                if (result) {
-                    Integer routeId = findRoute(userId, departureId, destinationId);
-                    saveTransit(infoData, routeId);
-                } else {
-                    System.err.println("Something went wrong");
-                }
-                return result;
+                return result != 0;
+//                if (result) {
+//                    Integer routeId = findRoute(userId, departureId, destinationId);
+//                    saveTransit(infoData, routeId);
+//                } else {
+//                    System.err.println("Something went wrong");
+//                }
+//                return result;
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
