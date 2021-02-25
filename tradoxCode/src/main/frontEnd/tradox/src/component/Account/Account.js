@@ -4,8 +4,6 @@ import logo from "../../images/LogoTradoxLogo.svg";
 import user from "../../images/user.svg";
 import InputForm from "../RegisterForm/InputForm";
 import myMap from "../CountrysMap";
-import SaveButton from "./SaveButton";
-import {NavLink} from "react-router-dom";
 import {NavLink} from "react-router-dom";
 import Scrollable from "./Scrollable";
 import SavedRoute from "./SavedRoute";
