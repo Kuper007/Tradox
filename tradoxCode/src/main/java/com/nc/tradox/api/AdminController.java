@@ -56,6 +56,18 @@ public class AdminController {
         return response;
     }
 
+    @PostMapping("/addCountry")
+    public Response addCountry(@RequestBody CountryView countryView, HttpSession httpSession) {
+        Response response = new Response();
+        if (adminAuthorized(httpSession)) {
+            boolean addResult = adminService.addCountry(countryView);
+            response.setObject(addResult);
+        } else {
+            response.setError("permissionsError");
+        }
+        return response;
+    }
+
     @DeleteMapping("/deleteCountries")
     public Response deleteCountries(@RequestBody List<CountryView> countryList, HttpSession httpSession) {
         Response response = new Response();
@@ -152,6 +164,18 @@ public class AdminController {
         return response;
     }
 
+    @PostMapping("/addDocument")
+    public Response addDocument(@RequestBody Document document, HttpSession httpSession) {
+        Response response = new Response();
+        if (adminAuthorized(httpSession)) {
+            boolean addResult = adminService.addDocument(document);
+            response.setObject(addResult);
+        } else {
+            response.setError("permissionsError");
+        }
+        return response;
+    }
+
     @DeleteMapping("/deleteDocuments")
     public Response deleteDocuments(@RequestBody List<Document> documentList, HttpSession httpSession) {
         Response response = new Response();
@@ -194,6 +218,18 @@ public class AdminController {
                 }
             }
             response.setObject(result);
+        } else {
+            response.setError("permissionsError");
+        }
+        return response;
+    }
+
+    @PostMapping("/addConsulate")
+    public Response addConsulate(@RequestBody Consulate consulate, HttpSession httpSession) {
+        Response response = new Response();
+        if (adminAuthorized(httpSession)) {
+            boolean addResult = adminService.addConsulate(consulate);
+            response.setObject(addResult);
         } else {
             response.setError("permissionsError");
         }
@@ -248,6 +284,18 @@ public class AdminController {
         return response;
     }
 
+    @PostMapping("/addCountryDocument")
+    public Response addCountryDocument(@RequestBody HaveDocumentView haveDocumentView, HttpSession httpSession) {
+        Response response = new Response();
+        if (adminAuthorized(httpSession)) {
+            boolean addResult = adminService.addCountryDocument(haveDocumentView);
+            response.setObject(addResult);
+        } else {
+            response.setError("permissionsError");
+        }
+        return response;
+    }
+
     @DeleteMapping("/deleteCountryDocuments")
     public Response deleteCountryDocuments(@RequestBody List<HaveDocumentView> haveDocumentViewList, HttpSession httpSession) {
         Response response = new Response();
@@ -296,6 +344,18 @@ public class AdminController {
         return response;
     }
 
+    @PostMapping("/addMedicine")
+    public Response addMedicine(@RequestBody Medicine medicine, HttpSession httpSession) {
+        Response response = new Response();
+        if (adminAuthorized(httpSession)) {
+            boolean addResult = adminService.addMedicine(medicine);
+            response.setObject(addResult);
+        } else {
+            response.setError("permissionsError");
+        }
+        return response;
+    }
+
     @DeleteMapping("/deleteMedicines")
     public Response deleteMedicines(@RequestBody List<Medicine> medicineList, HttpSession httpSession) {
         Response response = new Response();
@@ -338,6 +398,18 @@ public class AdminController {
                 }
             }
             response.setObject(result);
+        } else {
+            response.setError("permissionsError");
+        }
+        return response;
+    }
+
+    @PostMapping("/addStatus")
+    public Response addStatus(@RequestBody Status status, HttpSession httpSession) {
+        Response response = new Response();
+        if (adminAuthorized(httpSession)) {
+            boolean addResult = adminService.addStatus(status);
+            response.setObject(addResult);
         } else {
             response.setError("permissionsError");
         }
