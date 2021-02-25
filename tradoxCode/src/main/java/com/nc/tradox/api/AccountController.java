@@ -1,7 +1,9 @@
 package com.nc.tradox.api;
 
+import com.nc.tradox.model.InfoData;
 import com.nc.tradox.model.Route;
 import com.nc.tradox.model.User;
+import com.nc.tradox.model.impl.InfoDataImpl;
 import com.nc.tradox.model.impl.PassportImpl;
 import com.nc.tradox.model.impl.UserImpl;
 import com.nc.tradox.service.TradoxService;
@@ -13,6 +15,8 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -54,7 +58,7 @@ public class AccountController {
                             userData.getPassport(),
                             tradoxService.getCountryByFullName(userData.getCitizenship()))
                     );
-                    return "{\"result\": " + tradoxService.updateUser(user) + "}";
+                    return "{\"result\": " + tradoxService.updateUserData(user) + "}";
                 } else {
                     Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, "User not authorized");
                 }
@@ -77,13 +81,11 @@ public class AccountController {
     }
 
     @PostMapping("/deleteRoute")
-    public Boolean deleteRoute(@RequestBody String destination, BindingResult bindingResult, HttpSession session) {
+    public Boolean deleteRoute(@RequestBody Integer routeId, BindingResult bindingResult, HttpSession session) {
         if (!bindingResult.hasErrors()) {
             Integer userId = (Integer) session.getAttribute("userId");
             if (userId != null) {
-                String destinationId = tradoxService.getCountryByFullName(destination).getShortName();
-                Route route = tradoxService.getRoute(String.valueOf(userId), destinationId);
-                return tradoxService.deleteRoute(route);
+                return tradoxService.deleteRoute(routeId);
             } else {
                 Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, "User not authorized");
             }
@@ -91,22 +93,21 @@ public class AccountController {
         return false;
     }
 
-    @PostMapping("/toRoute")
-    public RedirectView goToRoute(@RequestBody String destination, BindingResult bindingResult, HttpSession session) {
+    @PostMapping("/getSavedRoute")
+    public InfoData goToRoute(@RequestBody Integer routeId, BindingResult bindingResult, HttpSession session) {
         if (!bindingResult.hasErrors()) {
             Integer userId = (Integer) session.getAttribute("userId");
             if (userId != null) {
-                String destinationId = tradoxService.getCountryByFullName(destination).getShortName();
-                Route route = tradoxService.getRoute(String.valueOf(userId), destinationId);
+                Route route = tradoxService.getRouteById(routeId);
                 if (route != null) {
-                    session.setAttribute("currentRoute", route);
-                    return new RedirectView("api/v1/route");
+                    List<InfoData> list = new ArrayList<>(route.getTransit());
+                    return list.get(0);
                 }
             } else {
                 Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, "User not authorized");
             }
         }
-        return null;
+        return new InfoDataImpl();
     }
 
     @GetMapping("/logout")

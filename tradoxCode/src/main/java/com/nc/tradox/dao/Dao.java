@@ -12,6 +12,9 @@ import java.util.Map;
 import java.util.Set;
 
 public interface Dao {
+
+    InfoData getInfoData(Country departure, Country destination);
+
     Route getRoute(String userId, String destinationId);
 
     Response auth(String email, String password);
@@ -26,13 +29,11 @@ public interface Dao {
 
     Boolean registrate(User user, String password);
 
-    boolean updateUser(User user);
+    boolean updateUserData(User user);
 
     Boolean verifyUserById(int userId);
 
     Boolean changePassword(int id, String newPassword);
-
-    boolean deleteUser(User user);
 
     @Deprecated
     boolean deleteUser(int userId);
@@ -104,5 +105,51 @@ public interface Dao {
     List<Medicine> getMedicineList();
 
     List<Status> getStatusList();
+
+    boolean updateCountry(CountryView countryView);
+
+    boolean updateUser(User user);
+
+    boolean updateDocument(Document document);
+
+    boolean updateConsulate(Consulate consulate);
+
+    boolean updateCountryDocument(HaveDocumentView haveDocumentView);
+
+    boolean updateMedicine(Medicine medicine);
+
+    boolean updateStatus(Status status);
+
+    boolean updateReason(Status status);
+
+    boolean addCountry(CountryView countryView);
+
+    boolean addDocument(Document document);
+
+    boolean addConsulate(Consulate consulate);
+
+    boolean addCountryDocument(HaveDocumentView haveDocumentView);
+
+    boolean addMedicine(Medicine medicine);
+
+    boolean addStatus(Status status);
+
+    boolean addReason(Status status);
+
+    boolean deleteCountry(CountryView countryView);
+
+    boolean deleteUser(User user);
+
+    boolean deleteDocument(Document document);
+
+    boolean deleteConsulate(Consulate consulate);
+
+    boolean deleteCountryDocument(HaveDocumentView haveDocumentView);
+
+    boolean deleteMedicine(Medicine medicine);
+
+    boolean deleteStatus(Status status);
+
+    boolean deleteReason(Status status);
 
 }

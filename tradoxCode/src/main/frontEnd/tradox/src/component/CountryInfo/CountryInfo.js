@@ -19,8 +19,10 @@ import {NavLink} from 'react-router-dom'
              if(props.data.object.status.status == "open"){
                 setOpened(true)
              }
-
-         console.log(props.data)}
+         console.log(props.data)
+         localStorage.setItem("departure",props.data.object.fullRoute.departure.shortName);
+         localStorage.setItem("destination",props.data.object.fullRoute.destination.shortName);
+         }
      }, [departure])
 
     return (
@@ -34,7 +36,7 @@ import {NavLink} from 'react-router-dom'
             </div>}
             <CovidInfo covidInfo = {covidInfo}/>
             <Documents data = {props.data}/>
-            <NavLink to = '/docs'><div className={styles.fillBtn}>
+            <NavLink to = '/docs' ><div className={styles.fillBtn}>
                 <h2 className={styles.fillDocsTxT}>Fill out documents</h2>
             </div></NavLink>
             <Consulates departure = {props.data.object.fullRoute.departure} data = {props.data}/>

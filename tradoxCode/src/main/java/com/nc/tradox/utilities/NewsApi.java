@@ -2,7 +2,6 @@ package com.nc.tradox.utilities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nc.tradox.dao.impl.TradoxDataAccessService;
 import com.nc.tradox.model.Country;
 import com.nc.tradox.model.NewsItem;
 import com.nc.tradox.model.impl.NewsItemImpl;
@@ -13,6 +12,7 @@ import okhttp3.Response;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -29,8 +29,8 @@ public class NewsApi {
         List<String> newsJsonList = new ArrayList<>();
         for (Country country: countryList) {
             Request request = new Request.Builder()
-                    .url("http://api.mediastack.com/v1/news?access_key=4e24ab3423c68f74bac340bec991f3bf" +
-                            "&countries=" + country.getShortName().toLowerCase() + "&languages=" + "en" + "&limit=5")
+                    .url("http://api.mediastack.com/v1/news?access_key=10edd2ab290260ec5fcd06585eb91da6" +
+                            "&countries=" + country.getShortName().toLowerCase() + "&languages=" + "en" + "&limit=1")
                     .get()
                     .build();
 
@@ -40,15 +40,19 @@ public class NewsApi {
             newsJsonList.add(newsJson);
         }
         File file = new File("tradoxCode/src/main/resources/jsonsAndFriends/news.json");
-        FileWriter fileWriter = new FileWriter(file);
+        FileWriter fileWriter = new FileWriter(file, false);
         fileWriter.write("{\"MainArr\":[");
         boolean isThisFirstLine = true;
+        int count = 0;
         for (String newsJson: newsJsonList){
+            count++;
             if (isThisFirstLine){
                 fileWriter.write(newsJson + System.getProperty("line.separator"));
                 isThisFirstLine = false;
             }else {
-                fileWriter.write("," + newsJson + System.getProperty("line.separator"));
+                if (newsJson.contains("validation_error")){
+                    fileWriter.write("," + "{\"pagination\":{\"limit\":5,\"offset\":0,\"count\":0,\"total\":0},\"data\":[]}" + System.getProperty("line.separator"));
+                }else fileWriter.write("," + newsJson + System.getProperty("line.separator"));
             }
         }
         fileWriter.write("]}");
@@ -70,6 +74,12 @@ public class NewsApi {
                 iterator.next().setCountry(country);
             }
         }
+
+        PrintWriter printWriter = new PrintWriter(fileWriter, false);
+        printWriter.flush();
+        printWriter.close();
+        fileWriter.close();
+
         return newsList;
     }
 

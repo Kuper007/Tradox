@@ -51,7 +51,7 @@ public class MedicineImpl implements Medicine {
 
     @Override
     public Country getCountry() {
-        return country == null ? new CountryImpl() : country;
+        return country == null ? country = new CountryImpl() : country;
     }
 
     @Override
