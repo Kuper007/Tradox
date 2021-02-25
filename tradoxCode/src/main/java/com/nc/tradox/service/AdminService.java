@@ -49,11 +49,7 @@ public class AdminService {
     }
 
     public boolean saveCountry(CountryView countryView) {
-        boolean result = dao.updateCountry(countryView);
-        if (!result) {
-            result = dao.addCountry(countryView);
-        }
-        return result;
+        return dao.updateCountry(countryView);
     }
 
     public boolean saveUser(User user) {
@@ -61,47 +57,25 @@ public class AdminService {
     }
 
     public boolean saveDocument(Document document) {
-        boolean result = dao.updateDocument(document);
-        if (!result) {
-            result = dao.addDocument(document);
-        }
-        return result;
+        return dao.updateDocument(document);
     }
 
     public boolean saveConsulate(Consulate consulate) {
-        boolean result = dao.updateConsulate(consulate);
-        if (!result) {
-            result = dao.addConsulate(consulate);
-        }
-        return result;
+        return dao.updateConsulate(consulate);
     }
 
     public boolean saveCountryDocument(HaveDocumentView haveDocumentView) {
-        boolean result = dao.updateCountryDocument(haveDocumentView);
-        if (!result) {
-            result = dao.addCountryDocument(haveDocumentView);
-        }
-        return result;
+        return dao.updateCountryDocument(haveDocumentView);
     }
 
     public boolean saveMedicine(Medicine medicine) {
-        boolean result = dao.updateMedicine(medicine);
-        if (!result) {
-            result = dao.addMedicine(medicine);
-        }
-        return result;
+        return dao.updateMedicine(medicine);
     }
 
     public boolean saveStatus(Status status) {
         boolean result = dao.updateStatus(status);
-        if (!result) {
-            result = dao.addStatus(status);
-        }
         if (result) {
-            boolean reasonResult = dao.updateReason(status);
-            if (!reasonResult) {
-                dao.addReason(status);
-            }
+            dao.updateReason(status);
         }
         return result;
     }
