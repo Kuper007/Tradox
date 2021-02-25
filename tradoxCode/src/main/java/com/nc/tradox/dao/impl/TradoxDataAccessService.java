@@ -245,27 +245,27 @@ public class TradoxDataAccessService implements Dao {
 
     @Override
     public boolean updateUser(User user) {
-        boolean result = false;
         try {
             String query = "UPDATE \"USER\" SET first_name = ?, last_name = ?, birth_date = ?, email = ?, phone = ?, passport_id = ?, citizenship = ?, country_id = ?"
                     + "WHERE user_id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.setString(2, user.getLastName());
-            preparedStatement.setDate(3, (java.sql.Date) user.getBirthDate());
+            preparedStatement.setDate(3, new Date(user.getBirthDate().getTime()));
             preparedStatement.setString(4, user.getEmail());
             preparedStatement.setString(5, user.getPhone());
             preparedStatement.setString(6, user.getPassport().getPassportId());
             preparedStatement.setString(7, user.getPassport().getCitizenshipCountry().getShortName());
             preparedStatement.setString(8, user.getLocation().getShortName());
             preparedStatement.setInt(9, user.getUserId());
-            result = preparedStatement.execute();
+            int result = preparedStatement.executeUpdate();
             preparedStatement.close();
-            return result;
+            return result != 0;
         } catch (SQLException exception) {
+            exception.printStackTrace();
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.updateUser " + exception.getMessage());
         }
-        return result;
+        return false;
     }
 
     @Override

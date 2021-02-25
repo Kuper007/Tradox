@@ -1,8 +1,6 @@
 package com.nc.tradox.api;
 
-import com.nc.tradox.model.InfoData;
-import com.nc.tradox.model.Route;
-import com.nc.tradox.model.User;
+import com.nc.tradox.model.*;
 import com.nc.tradox.model.impl.InfoDataImpl;
 import com.nc.tradox.model.impl.PassportImpl;
 import com.nc.tradox.model.impl.UserImpl;
@@ -43,32 +41,28 @@ public class AccountController {
     }
 
     @PostMapping("/saveUserData")
-    public String saveUserData(@RequestBody UserData userData, BindingResult bindingResult, HttpSession session) {
+    public Boolean saveUserData(@RequestBody Map<String, String> json, BindingResult bindingResult, HttpSession session) throws ParseException {
+        System.out.println("pipets");
         if (!bindingResult.hasErrors()) {
-            try {
-                Integer userId = (Integer) session.getAttribute("userId");
-                if (userId != null) {
-                    User user = new UserImpl();
-                    user.setUserId(userId);
-                    user.setFirstName(userData.getFirstName());
-                    user.setLastName(userData.getLastName());
-                    user.setBirthDate(new SimpleDateFormat("dd.MM.yyyy").parse(userData.getBirthDate()));
-                    user.setEmail(userData.getEmail());
-                    user.setPhone(userData.getPhone());
-                    user.setLocation(tradoxService.getCountryByFullName(userData.getLocation()));
-                    user.setPassport(new PassportImpl(
-                            userData.getPassport(),
-                            tradoxService.getCountryByFullName(userData.getCitizenship()))
-                    );
-                    return "{\"result\": " + tradoxService.updateUser(user) + "}";
-                } else {
-                    Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, "User not authorized");
-                }
-            } catch (ParseException e) {
-                Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, "Incorrect date format");
+            System.out.println("loh");
+            Integer userId = (Integer) session.getAttribute("userId");
+            if (userId != null) {
+                Country citizenship = tradoxService.getCountryById(json.get("citizenship"));
+                Country location = tradoxService.getCountryById(json.get("country_id"));
+                Passport passport = new PassportImpl(json.get("passport_id"), citizenship);
+                User user = tradoxService.getUserById(userId);
+                user.setFirstName(json.get("first_name"));
+                user.setLastName(json.get("last_name"));
+                user.setBirthDate(new SimpleDateFormat("yyyy-MM-dd").parse(json.get("birth_date")));
+                user.setEmail(json.get("email"));
+                user.setPhone(json.get("phone"));
+                user.setPassport(passport);
+                user.setLocation(location);
+                System.out.println(user.getPassportId());
+                return tradoxService.updateUser(user);
             }
         }
-        return "{\"result\": false}";
+        return false;
     }
 
     @GetMapping("/delete")

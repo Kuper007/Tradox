@@ -36,8 +36,8 @@ public class UserData {
         this.birthDate = user.getBirthDate().toString();
         this.email = user.getEmail();
         this.phone = user.getPhone();
-        this.location = user.getLocation().getFullName();
-        this.citizenship = user.getPassport().getCitizenshipCountry().getFullName();
+        this.location = user.getLocation().getShortName();
+        this.citizenship = user.getPassport().getCitizenshipCountry().getShortName();
         this.passport = user.getPassportId();
         this.transit = user.getHistory();
     }

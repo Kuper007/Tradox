@@ -186,5 +186,4 @@ public class TradoxService {
     public boolean isCountry(String fullName) {
         return dao.isCountry(fullName);
     }
-
 }

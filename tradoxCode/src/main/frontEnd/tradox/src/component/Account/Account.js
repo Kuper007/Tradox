@@ -4,14 +4,15 @@ import logo from "../../images/LogoTradoxLogo.svg";
 import user from "../../images/user.svg";
 import InputForm from "../RegisterForm/InputForm";
 import myMap from "../CountrysMap";
-import SaveButton from "./SaveButton";
 import {NavLink} from "react-router-dom";
 import Scrollable from "./Scrollable";
 import SavedRoute from "./SavedRoute";
 
 function Account(props) {
-    let [state, setState] = useState(null);
     const [cards, setCards] = useState([]);
+    let infoMap = new Map().set("firstName", "Danylo").set("lastName", "Savchak").set("dateOfBirth", "15.07.2000").set("email", "daniel.savchak@gmail.com")
+        .set("password", "121322").set("mobilePhone", "+380952023455").set("passport", "PMEWEWE").set("citizenship", "UA").set("currentCountry", "UA");
+    let [state, setState] = useState(null);
 
     useEffect(() => {
         //try {
@@ -51,9 +52,6 @@ function Account(props) {
         // }
     })
 
-
-    //passport.passportId, passport.citizenshipCountry, location.fullName
-
     function onClickSave(e) {
         e.preventDefault();
         fetch('http://localhost:8080/api/v1/account/saveUserData', {
@@ -68,12 +66,12 @@ function Account(props) {
                 "country_id": myMap.get(state.get("currentCountry"))
             })
         })
-            .then(response => response.json()
-                .then(data => ({
-                        data: data,
-                        status: response.status
-                    })
-                ));
+        // .then(response => response.json()
+        //     .then(data => ({
+        //             data: data,
+        //             status: response.status
+        //         })
+        //     ));
     }
 
     const items = [
@@ -112,10 +110,6 @@ function Account(props) {
             endCountry: 'US'
         }
     ]
-    let infoMap = new Map().set("firstName", "Danylo").set("lastName", "Savchak").set("dateOfBirth", "15.07.2000").set("email", "daniel.savchak@gmail.com")
-        .set("password", "121322").set("mobilePhone", "+380952023455").set("passport", "PMEWEWE").set("citizenship", "UA").set("currentCountry", "UA");
-
-    //let [data, setData] = useState(infoMap);
 
     function changeInfoMap(inputKey, inputValue) {
         infoMap.set(inputKey, inputValue)
@@ -147,39 +141,49 @@ function Account(props) {
                         </div>
                         <div className={style.info}>
                             <div>{state ? (
-                                <form className={style.form} onSubmit={onClickSave}>
-                                    <div className={style.partOfInputInfo}>
-                                        {console.log(state)}
-                                        <InputForm value={state.get("firstName")} type={"text"} title={"First name"}
-                                                   placeholder={state.get("firstName")} changeState={changeInfoMap}/>
-                                        <InputForm value={state.get("lastName")} type={"text"} title={"Last name"}
-                                                   placeholder={state.get("lastName")} changeState={changeInfoMap}/>
-                                        <InputForm value={state.get("dateOfBirth")} type={"date"}
-                                                   title={"Date of birth"}
-                                                   placeholder={state.get("dateOfBirth")} changeState={changeInfoMap}/>
-                                        <InputForm value={state.get("email")} type={"email"} title={"E-mail"}
-                                                   placeholder={state.get("email")} changeState={changeInfoMap}/>
+                                <form onSubmit={onClickSave}>
+                                    <div className={style.form}>
+                                        <div className={style.partOfInputInfo}>
+                                            {console.log(state)}
+                                            <InputForm value={state.get("firstName")} type={"text"} title={"First name"}
+                                                       placeholder={state.get("firstName")}
+                                                       changeState={changeInfoMap}/>
+                                            <InputForm value={state.get("lastName")} type={"text"} title={"Last name"}
+                                                       placeholder={state.get("lastName")} changeState={changeInfoMap}/>
+                                            <InputForm value={state.get("dateOfBirth")} type={"date"}
+                                                       title={"Date of birth"}
+                                                       placeholder={state.get("dateOfBirth")}
+                                                       changeState={changeInfoMap}/>
+                                            <InputForm value={state.get("email")} type={"email"} title={"E-mail"}
+                                                       placeholder={state.get("email")} changeState={changeInfoMap}/>
+                                        </div>
+                                        <div className={style.partOfInputInfo}>
+                                            <InputForm value={state.get("mobilePhone")} type={"tel"}
+                                                       title={"Mobile phone"}
+                                                       notFound={false} keyOf={"mobilePhone"}
+                                                       placeholder={state.get("mobilePhone")}
+                                                       changeState={changeInfoMap}/>
+                                            <InputForm value={state.get("passport")} type={"text"} title={"Passport"}
+                                                       keyOf={"passport"} placeholder={state.get("passport")}
+                                                       changeState={changeInfoMap}/>
+                                            <InputForm value={state.get("citizenship")} notFound={false}
+                                                       keyOf={"citizenship"} type={"countryPicker"}
+                                                       changeState={changeInfoMap} title={"Citizenship"}
+                                                       placeholder={"Ukraine"} array={getKeysFromMapArr()}/>
+                                            <InputForm value={state.get("currentCountry")} type={"countryPicker"}
+                                                       title={"Current country"} notFound={false}
+                                                       keyOf={"currentCountry"}
+                                                       placeholder={state.get("currentCountry")}
+                                                       changeState={changeInfoMap}
+                                                       array={getKeysFromMapArr()}/>
+                                        </div>
                                     </div>
-                                    <div className={style.partOfInputInfo}>
-                                        <InputForm value={state.get("mobilePhone")} type={"tel"} title={"Mobile phone"}
-                                                   notFound={false} keyOf={"mobilePhone"}
-                                                   placeholder={state.get("mobilePhone")} changeState={changeInfoMap}/>
-                                        <InputForm value={state.get("passport")} type={"text"} title={"Passport"}
-                                                   keyOf={"passport"} placeholder={state.get("passport")}
-                                                   changeState={changeInfoMap}/>
-                                        <InputForm value={state.get("citizenship")} notFound={false}
-                                                   keyOf={"citizenship"} type={"countryPicker"}
-                                                   changeState={changeInfoMap} title={"Citizenship"}
-                                                   placeholder={"Ukraine"} array={getKeysFromMapArr()}/>
-                                        <InputForm value={state.get("currentCountry")} type={"countryPicker"}
-                                                   title={"Current country"} notFound={false} keyOf={"currentCountry"}
-                                                   placeholder={state.get("currentCountry")} changeState={changeInfoMap}
-                                                   array={getKeysFromMapArr()}/>
-                                    </div>
+                                    <button type={"submit"} className={style.createButton}>
+                                        Save
+                                    </button>
                                 </form>
                             ) : null}
                             </div>
-                            <SaveButton type={"submit"}/>
                         </div>
                         <div className={style.line}></div>
                         <div className={style.containerScroll}>
