@@ -6,12 +6,15 @@ import com.nc.tradox.model.*;
 import com.nc.tradox.model.impl.*;
 import com.nc.tradox.model.service.Response;
 import com.nc.tradox.utilities.ExchangeApi;
+import com.nc.tradox.model.impl.Documents;
+import com.nc.tradox.model.impl.PassportImpl;
+import com.nc.tradox.model.impl.Response;
+import com.nc.tradox.model.impl.UserImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -19,7 +22,6 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Service //EQUAL TO COMPONENT BUT FOR SPECIFICATE USE THIS
@@ -38,7 +40,7 @@ public class TradoxService {
     }
 
     public Route getRouteById(Integer routeId) {
-        return dao.getRouteById(routeId.toString());
+        return dao.getRouteById(routeId);
     }
 
     public Route getRoute(String userId, String destinationId) {

@@ -107,13 +107,15 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
-    public Route getRouteById(String routeId) {
+    public Route getRouteById(Integer routeId) {
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM ROUTE " +
-                    "WHERE ROUTE_ID = '" + routeId + "'");
-            if (resultSet != null) {
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM ROUTE WHERE ROUTE_ID =" + routeId);
+            if (resultSet.next()) {
+                Country departure = getCountryById(resultSet.getString("departure_id"));
+                Country destination = getCountryById(resultSet.getString("destination_id"));
                 Route route = new RouteImpl(resultSet);
+                route.addTransitCountry(getInfoData(departure, destination));
                 statement.close();
                 return route;
             }
@@ -248,7 +250,6 @@ public class TradoxDataAccessService implements Dao {
 
     @Override
     public boolean updateUserData(User user) {
-        boolean result = false;
         try {
             String query = "UPDATE \"USER\" SET first_name = ?, last_name = ?, " +
                     "birth_date = ?, email = ?, phone = ?, " +
@@ -257,20 +258,20 @@ public class TradoxDataAccessService implements Dao {
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.setString(2, user.getLastName());
-            preparedStatement.setDate(3, (java.sql.Date) user.getBirthDate());
+            preparedStatement.setDate(3, new Date(user.getBirthDate().getTime()));
             preparedStatement.setString(4, user.getEmail());
             preparedStatement.setString(5, user.getPhone());
             preparedStatement.setString(6, user.getPassport().getPassportId());
             preparedStatement.setString(7, user.getPassport().getCitizenshipCountry().getShortName());
             preparedStatement.setString(8, user.getLocation().getShortName());
             preparedStatement.setInt(9, user.getUserId());
-            result = preparedStatement.execute();
+            int result = preparedStatement.executeUpdate();
             preparedStatement.close();
-            return result;
+            return result != 0;
         } catch (SQLException exception) {
             LOGGER.log(Level.SEVERE, "TradoxDataAccessService.updateUserData " + exception.getMessage());
         }
-        return result;
+        return false;
     }
 
     @Override

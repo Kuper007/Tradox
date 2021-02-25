@@ -23,7 +23,7 @@ public interface Dao {
 
     Passport getPassportById(String id);
 
-    Route getRouteById(String id);
+    Route getRouteById(Integer id);
 
     Boolean saveRoute(Route route, Integer userId);
 
