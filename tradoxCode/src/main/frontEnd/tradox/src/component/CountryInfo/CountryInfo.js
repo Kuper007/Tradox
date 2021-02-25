@@ -6,6 +6,7 @@ import Consulates from './Consulates/Consulates'
 import News from './News/News'
 import {NavLink} from 'react-router-dom'
 import add from "../../images/add 1.svg"
+import hint from "../../images/Group 3.svg"
 import axios from "axios";
 
  function CountryInfo(props) {
@@ -13,6 +14,7 @@ import axios from "axios";
     const [departure, setDeparture] = useState([])
      const [covidInfo, setCovidInfo] = useState([])
      const [data, setData] = useState([])
+     const [showHint, setShowHint] = useState(false)
      useEffect(() => {
          console.log(props);
          if(props.data.object.fullRoute.departure != undefined && props.data.object.covidInfo){
@@ -59,7 +61,8 @@ import axios from "axios";
             </div></NavLink>
             <Consulates departure = {props.data.object.fullRoute.departure} data = {props.data}/>
             <News data = {props.data}/>
-            <img src ={add} className={styles.addRoute} onClick={addRoute}/>
+
+            <img src ={add} className={styles.addRoute} onClick={addRoute} onMouseOver={setShowHint(true)}/>
             </div>
         </div>
     )
