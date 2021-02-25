@@ -13,7 +13,10 @@ export default function Consulates(props) {
             {consulateInfo}
             </div>
             <h2 className={style.exchangeTitle}>Exchange rates</h2>
-
+            <div className={style.currency}>
+                <span>1 USD</span> = <span> {props.data.object.exchange.dollarCurrency} UAH </span><br/>
+                <span>1 {props.data.object.currency}</span> = <span> {props.data.object.exchange.localCurrency} UAH </span>
+            </div>
         </div>
     )
 }

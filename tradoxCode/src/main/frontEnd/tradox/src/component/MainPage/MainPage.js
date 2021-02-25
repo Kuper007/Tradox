@@ -20,6 +20,10 @@ function MainPage (props) {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
+    setNotFound(false)
+  },[destinationName])
+
+  useEffect(() => {
     ifRegistered()
   }, [destinationId])
 
