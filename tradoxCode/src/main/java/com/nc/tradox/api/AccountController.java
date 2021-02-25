@@ -98,10 +98,11 @@ public class AccountController {
     }
 
     @GetMapping("/logout")
-    public RedirectView logOut(HttpSession session) {
+    public boolean logOut(HttpSession session) {
         session.setAttribute("authorized", false);
         session.removeAttribute("userId");
-        return new RedirectView("/api/v1/auth/result");
+        session.removeAttribute("userType");
+        return true;
     }
 
     private boolean isValidUser(Integer userId) {

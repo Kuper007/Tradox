@@ -4,6 +4,7 @@ import logo from '../../../images/LogoTradoxLogo.svg';
 import user from '../../../images/user.svg';
 import vector from '../../../images/Vector.svg';
 import {NavLink} from 'react-router-dom';
+import axios from "axios";
 
 function Logo(props) {
    const[pressed, setPressed] = useState(false);
@@ -15,10 +16,23 @@ function Logo(props) {
     }
 
    const logout = () => {
-        localStorage.removeItem("auth");
-        localStorage.removeItem("userId");
-        localStorage.removeItem("userType");
-        window.location.reload();
+       try{
+           axios.get("http://localhost:8080/api/v1/account/logout").then(res => {
+               console.log(res.data)
+               if (res.status === 200){
+                   localStorage.removeItem("auth");
+                   localStorage.removeItem("userId");
+                   localStorage.removeItem("userType");
+                   window.location.reload();
+               }
+               else{
+               }
+           })
+       }
+
+       catch (e) {
+           console.log(`😱 Axios request failed: ${e}`);
+       }
    };
 
     function refreshPage(){

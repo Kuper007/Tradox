@@ -13,7 +13,6 @@ import axios from "axios";
     const [departure, setDeparture] = useState([])
      const [covidInfo, setCovidInfo] = useState([])
      const [data, setData] = useState([])
-     const [showHint, setShowHint] = useState(false)
      useEffect(() => {
          console.log(props);
          if(props.data.object.fullRoute.departure != undefined && props.data.object.covidInfo){
@@ -30,7 +29,7 @@ import axios from "axios";
      }, [departure])
      function addRoute(){
          try{
-             axios.get("http://localhost:8080/api/v1/route/save").then(res => {
+             axios.post("http://localhost:8080/api/v1/route/saveRoute", { "countryId": props.data.object.fullRoute.destination.shortName}, {headers:{ 'Content-Type': 'application/json' }}).then(res => {
                  console.log(res.data)
                  if (res.status === 200){
                  }
@@ -38,7 +37,6 @@ import axios from "axios";
                  }
              })
          }
-
          catch (e){
              console.log(`😱 Axios request failed: ${e}`);
          }

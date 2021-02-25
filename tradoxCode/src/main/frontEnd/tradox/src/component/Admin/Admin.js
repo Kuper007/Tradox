@@ -43,14 +43,25 @@ function Admin(){
     }
 
     const logout = () => {
-        localStorage.removeItem("auth");
-        localStorage.removeItem("userId");
-        localStorage.removeItem("userType");
-        window.location.href = "/";
+        try{
+            axios.get("http://localhost:8080/api/v1/account/logout").then(res => {
+                console.log(res.data)
+                if (res.status === 200){
+                    localStorage.removeItem("auth");
+                    localStorage.removeItem("userId");
+                    localStorage.removeItem("userType");
+                    window.location.href = "/";
+                }
+                else{
+                }
+            })
+        }
+
+        catch (e) {
+            console.log(`😱 Axios request failed: ${e}`);
+        }
     };
-    function search(countries){
-        return countries.filter((country) => country.fullName.toLowerCase().indexOf(q)> -1);
-    }
+
     function getCountries(){
         try{
             axios.get("http://localhost:8080/api/v1/admin/getCountries").then(res => {
@@ -211,6 +222,18 @@ function Admin(){
             console.log(`😱 Axios request failed: ${e}`);
         }
     }
+    function searchCountries(countries){
+        return countries.filter((country) => country.fullName.toLowerCase().indexOf(q)> -1);
+    }
+    function searchUsers(users){
+        return users.filter((user) => users.lastName.toLowerCase().indexOf(q)> -1);
+    }
+    function searchDocs(docs){
+        return docs.filter((doc) => docs.name.toLowerCase().indexOf(q)> -1);
+    }
+    function searchStatus(status){
+        return status.filter((stat) => status.name.toLowerCase().indexOf(q)> -1);
+    }
     return(
         <div className = {style.container}>
             <div className={style.logo}>
@@ -244,10 +267,10 @@ function Admin(){
                 <input type="text" placeholder = "Search by full name or short name" className={style.search} value={q} onChange={(e) => setQ(e.target.value)}/>
             </div>
             <div className={style.tables}>
-                {showCountries?<CountryTable countries = {search(countries)}/>:null}
-                {showUsers?<UsersTable users = {users}/>:null}
-                {showDocuments?<DocumentsTable docs = {documents}/>:null}
-                {showStatus?<StatusTable statuses = {status}/>:null}
+                {showCountries?<CountryTable countries = {searchCountries(countries)}/>:null}
+                {showUsers?<UsersTable users = {searchUsers(users)}/>:null}
+                {showDocuments?<DocumentsTable docs = {searchDocs(documents)}/>:null}
+                {showStatus?<StatusTable statuses = {searchStatus(status)}/>:null}
                 {showConsulate?<ConsulatesTable consulates = {consulate}/>:null}
                 {showHaveDocument?<HaveDocTable haveDoc = {haveDocument}/>:null}
                 {showMedicine?<MedicineTable medicines = {medicine}/>:null}
