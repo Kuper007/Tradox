@@ -53,3 +53,12 @@
 .wrapper{
     z-index:1;
 }
+.addRoute{
+    position: absolute;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    left: 1730px;
+    top: 941px;
+    border-radius: 0px;
+}
