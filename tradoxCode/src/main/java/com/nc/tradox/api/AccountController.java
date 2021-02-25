@@ -55,7 +55,7 @@ public class AccountController {
                 user.setPhone(json.get("phone"));
                 user.setPassport(passport);
                 user.setLocation(location);
-                return tradoxService.updateUser(user);
+                return tradoxService.updateUserData(user);
             }
         }
         return false;
