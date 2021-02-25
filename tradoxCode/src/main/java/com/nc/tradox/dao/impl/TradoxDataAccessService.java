@@ -78,8 +78,6 @@ public class TradoxDataAccessService implements Dao {
                 Country country = new CountryImpl(resultSet);
                 statement.close();
                 return country;
-            } else {
-                System.out.println("There is no country with such id");
             }
             statement.close();
         } catch (SQLException exception) {
@@ -128,35 +126,44 @@ public class TradoxDataAccessService implements Dao {
 
     @Override
     public Boolean saveRoute(Route route, Integer userId) {
+        int rowsCount = 0;
         Set<InfoData> infoData = route.getTransit();
         String departureId = infoData.iterator().next().getDeparture().getShortName();
         String destinationId = getLastElement(infoData).getDestination().getShortName();
-        if (isNewRoute(userId, departureId, destinationId)) {
-            String query = "INSERT INTO route (transport_type,departure_id,destination_id,user_id)"
-                    + "values (?,?,?,?)";
+        if (!isRoute(userId, departureId, destinationId)) {
             try {
+                String query = "INSERT INTO ROUTE (TRANSPORT_TYPE, DEPARTURE_ID, DESTINATION_ID, USER_ID) "
+                        + "VALUES (?, ?, ?, ?)";
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setString(1, String.valueOf(route.getTransportType()));
                 preparedStatement.setString(2, departureId);
                 preparedStatement.setString(3, destinationId);
                 preparedStatement.setInt(4, userId);
-
-                boolean result = preparedStatement.execute();
+                rowsCount = preparedStatement.executeUpdate();
                 preparedStatement.close();
-                if (result) {
-                    Integer routeId = findRoute(userId, departureId, destinationId);
-                    saveTransit(infoData, routeId);
-                } else {
-                    System.err.println("Something went wrong");
-                }
-                return result;
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            } catch (SQLException exception) {
+                LOGGER.log(Level.SEVERE, "TradoxDataAccessService.saveRoute " + exception.getMessage());
             }
-        } else {
-            System.err.println("This route already exists");
         }
-        return false;
+        return rowsCount > 0;
+    }
+
+    @Override
+    public Boolean saveRoute(Integer userId, FullRoute fullRoute) {
+        int rowsCount = 0;
+        try {
+            String query = "INSERT INTO ROUTE (TRANSPORT_TYPE, DEPARTURE_ID, DESTINATION_ID, USER_ID) "
+                    + "VALUES ('plane', ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, fullRoute.getDeparture().getShortName());
+            preparedStatement.setString(2, fullRoute.getDestination().getShortName());
+            preparedStatement.setInt(3, userId);
+            rowsCount = preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.saveRoute " + exception.getMessage());
+        }
+        return rowsCount > 0;
     }
 
     @Override
@@ -350,26 +357,24 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
-    public Route getRoute(String userId, String destinationId) {
-        User currentUser = getUserById(Integer.parseInt(userId));
-        //InfoData infoData = getInfoData(currentUser.getLocation().getShortName(), destinationId);
-        Set<InfoData> transits = new LinkedHashSet<>();
-        //transits.add(infoData);
-
-        int routeId = -1;
+    public Route getRoute(Integer userId, String destinationId) {
+        User currentUser = getUserById(userId);
+        String departureId = currentUser.getLocation().getShortName();
         try {
             Statement statement = connection.createStatement();
-            ResultSet res = statement.executeQuery("SELECT max(route_id) as \"max_count\" FROM Route");
-            routeId = res.getInt("max_count");
+            ResultSet res = statement.executeQuery("SELECT * FROM ROUTE WHERE USER_ID = " + userId + " " +
+                    "AND DEPARTURE_ID = '" + departureId + "' AND DESTINATION_ID = '" + destinationId + "'");
+            Integer routeId = res.getInt("ROUTE_ID");
+            Route.TransportType transportType = Route.TransportType.valueOf(res.getString("TRANSPORT_TYPE"));
+            Set<InfoData> transits = new LinkedHashSet<>();
+            //InfoData infoData = getInfoData(currentUser.getLocation().getShortName(), destinationId);
+            //transits.add(infoData);
             statement.close();
+            return new RouteImpl(routeId, transportType, transits);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        if (routeId == -1) {
-            return null;
-        }
-        return new RouteImpl(routeId, Route.TransportType.car, transits);
+        return null;
     }
 
     @Override
@@ -592,8 +597,8 @@ public class TradoxDataAccessService implements Dao {
 
     @Override
     public Boolean saveTransit(Set<InfoData> infoData, Integer route_id) {
-        String query = "INSERT INTO transit (\"ORDER\",country_id,route_id)"
-                + "values (?,?,?)";
+        String query = "INSERT INTO transit (\"ORDER\", country_id, route_id) "
+                + "values (?, ?, ?)";
         InfoData first = infoData.iterator().next();
         InfoData last = getLastElement(infoData);
         int count = 0;
@@ -737,27 +742,23 @@ public class TradoxDataAccessService implements Dao {
         return null;
     }
 
-    private Integer findRoute(Integer userId, String departureId, String destinationId) {
-        int routeId = 0;
+    @Override
+    public boolean isRoute(Integer userId, String departureId, String destinationId) {
+        boolean isRoute = false;
         try {
             Statement statement = connection.createStatement();
-            String query = "SELECT route_id FROM route " +
-                    "WHERE user_id=" + userId + " AND departure_id=" + "'" + departureId + "'" + " " +
-                    "AND destination_id=" + "'" + destinationId + "'";
-            ResultSet res = statement.executeQuery(query);
-            if (res.next()) {
-                routeId = res.getInt("route_id");
-            } else {
-                System.err.println("No such route");
+            String query = "SELECT ROUTE_ID FROM ROUTE " +
+                    "WHERE USER_ID = " + userId + " AND DEPARTURE_ID = '" + departureId + "' " +
+                    "AND DESTINATION_ID = '" + destinationId + "'";
+            ResultSet resultSet = statement.executeQuery(query);
+            if (resultSet.next()) {
+                isRoute = true;
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            statement.close();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.isRoute " + exception.getMessage());
         }
-        return routeId;
-    }
-
-    private Boolean isNewRoute(Integer userId, String departureId, String destinationId) {
-        return findRoute(userId, departureId, destinationId) == 0;
+        return isRoute;
     }
 
     @Override
@@ -771,11 +772,6 @@ public class TradoxDataAccessService implements Dao {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return null;
-    }
-
-    @Override
-    public Route getRoute() {
         return null;
     }
 

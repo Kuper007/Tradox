@@ -14,6 +14,11 @@ public class RouteImpl implements Route {
     protected TransportType transportType;
     protected Set<InfoData> transitSet;
 
+    public RouteImpl() {
+        this.transportType = TransportType.plane;
+        this.transitSet = new LinkedHashSet<>();
+    }
+
     public RouteImpl(Integer routeId,
                      TransportType transportType,
                      Set<InfoData> transitSet) {
