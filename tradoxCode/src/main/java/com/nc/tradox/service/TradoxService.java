@@ -16,12 +16,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
-@Service //EQUAL TO COMPONENT BUT FOR SPECIFICATE USE THIS
+@Service
 public class TradoxService {
 
     private final Dao dao;
@@ -32,40 +31,8 @@ public class TradoxService {
         this.dao = dao;
     }
 
-    public Route getRoute() {
-        return dao.getRoute();
-    }
-
-    public Route getRouteById(Integer routeId) {
-        return dao.getRouteById(routeId);
-    }
-
-    public Route getRoute(String userId, String destinationId) {
-        return dao.getRoute(userId, destinationId);
-    }
-
-    public InfoData getInfoData(Country departure, Country destination) {
-        return dao.getInfoData(departure, destination);
-    }
-
-    public Documents getDocuments(FullRoute fullRoute) {
-        return dao.getDocumentsByCountryIds(fullRoute);
-    }
-
-    public Boolean deleteRoute(int routeId) {
-        return dao.deleteRoute(routeId);
-    }
-
     public Response auth(String email, String password) {
         return dao.auth(email, password);
-    }
-
-    public Boolean updateUserData(User user) {
-        return dao.updateUserData(user);
-    }
-
-    public Boolean deleteUser(Integer userId) {
-        return dao.deleteUser(userId);
     }
 
     public String registerUser(Map<String, String> map, HttpSession session) {
@@ -98,7 +65,8 @@ public class TradoxService {
                     Integer userId = dao.getUserByEmail(map.get("email"));
                     session.setAttribute("userId", userId);
                     if (userId != 0) {
-                        return "{\"result\": true, \"emailNotUnique\": false, \"passportNotUnique\": false, \"userId\": " + userId + "}";
+                        return "{\"result\": true, \"emailNotUnique\": false, \"passportNotUnique\": false, " +
+                                "\"userId\": " + userId + "}";
                     }
                 }
             } catch (ParseException exception) {
@@ -108,16 +76,84 @@ public class TradoxService {
         return "{\"result\": false, \"emailNotUnique\": false, \"passportNotUnique\": false}";
     }
 
+    public Boolean verifyUser(int id) {
+        return dao.verifyUserById(id);
+    }
+
+    public String resetPassword(String email) {
+
+        String newPwd = "";
+        int userId = dao.getUserByEmail(email);
+        if (userId != 0) {
+            newPwd = new RandomString(8).nextString();
+            boolean res = dao.changePassword(userId, newPwd);
+            if (res) {
+                return newPwd;
+            } else {
+                return "";
+            }
+        }
+        return newPwd;
+    }
+
+    public User getUserById(int id) {
+        return dao.getUserById(id);
+    }
+
+    public Boolean updateUserData(User user) {
+        return dao.updateUserData(user);
+    }
+
+    public Boolean deleteUser(Integer userId) {
+        return dao.deleteUser(userId);
+    }
+
+    public Country getUserLocation(int userId) {
+        return dao.getUserLocationById(userId);
+    }
+
+    public Country getCountryById(String id) {
+        return dao.getCountryById(id);
+    }
+
     public Country getCountryByFullName(String countryFullName) {
         return dao.getCountryByFullName(countryFullName);
     }
 
-    public Map<String, Status.StatusEnum> getCountriesWhereNameLike(String countryId, String search) {
-        return dao.getCountriesWhereNameLike(countryId, search);
+    public Route getRouteById(Integer routeId) {
+        return dao.getRouteById(routeId);
     }
 
     public Boolean saveRoute(Route route, int userId) {
         return dao.saveRoute(route, userId);
+    }
+
+    @Deprecated
+    public Response saveRoute(Integer userId, FullRoute fullRoute) {
+        Response response = new Response();
+        if (!dao.isRoute(userId, fullRoute.getDeparture().getShortName(), fullRoute.getDestination().getShortName())) {
+            response.setObject(dao.saveRoute(userId, fullRoute));
+        } else {
+            response.setError("routeIsAlreadyExists");
+            response.setObject(false);
+        }
+        return response;
+    }
+
+    public Boolean deleteRoute(int routeId) {
+        return dao.deleteRoute(routeId);
+    }
+
+    public InfoData getInfoData(Country departure, Country destination) {
+        return dao.getInfoData(departure, destination);
+    }
+
+    public Documents getDocuments(FullRoute fullRoute) {
+        return dao.getDocumentsByCountryIds(fullRoute);
+    }
+
+    public Map<String, Status.StatusEnum> getCountriesWhereNameLike(String countryId, String search) {
+        return dao.getCountriesWhereNameLike(countryId, search);
     }
 
     public void editTransits(int userId, Integer route_id, Set<InfoData> transits) {
@@ -145,46 +181,6 @@ public class TradoxService {
             }
             newOrder++;
         }
-    }
-
-    public User getUserById(int id) {
-        return dao.getUserById(id);
-    }
-
-    public Country getUserLocation(int userId) {
-        return dao.getUserLocationById(userId);
-    }
-
-    public Country getCountryById(String id) {
-        return dao.getCountryById(id);
-    }
-
-    public Boolean verifyUser(int id) {
-        return dao.verifyUserById(id);
-    }
-
-    public String resetPassword(String email) {
-
-        String newPwd = "";
-        int userId = dao.getUserByEmail(email);
-        if (userId != 0) {
-            newPwd = new RandomString(8).nextString();
-            boolean res = dao.changePassword(userId, newPwd);
-            if (res) {
-                return newPwd;
-            } else {
-                return "";
-            }
-        }
-        return newPwd;
-    }
-
-    public List<Country> getAllCountries() {
-        return dao.getAllCountries();
-    }
-
-    public boolean isCountry(String fullName) {
-        return dao.isCountry(fullName);
     }
 
 }

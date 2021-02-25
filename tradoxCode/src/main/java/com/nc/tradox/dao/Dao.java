@@ -15,7 +15,7 @@ public interface Dao {
 
     InfoData getInfoData(Country departure, Country destination);
 
-    Route getRoute(String userId, String destinationId);
+    Route getRoute(Integer userId, String destinationId);
 
     Response auth(String email, String password);
 
@@ -26,6 +26,9 @@ public interface Dao {
     Route getRouteById(Integer id);
 
     Boolean saveRoute(Route route, Integer userId);
+
+    @Deprecated
+    Boolean saveRoute(Integer userId, FullRoute fullRoute);
 
     Boolean registrate(User user, String password);
 
@@ -80,7 +83,7 @@ public interface Dao {
 
     ResultSet createNewTransit(int order, String countryId, int routeId);
 
-    Route getRoute();
+    boolean isRoute(Integer userId, String departureId, String destinationId);
 
     boolean isPassport(String passportId);
 
