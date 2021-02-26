@@ -62,7 +62,9 @@ const FillDocs = () => {
             {haveDocument?<div className={style.container}>
                         <div className={style.imageBox}>
                             <img src={doc} className={style.doc} />
+                            <div className={style.btnContainer}>
                             <a download="Insurance" href={pdf} className={style.btn}>Get PDF</a>
+                            </div>
                         </div>
                     </div>:null}
             <div style = {{position:"absolute", left:"900px", top: "450px"}}>
@@ -71,5 +73,4 @@ const FillDocs = () => {
         </div>
       )
 }
-
 export default FillDocs
