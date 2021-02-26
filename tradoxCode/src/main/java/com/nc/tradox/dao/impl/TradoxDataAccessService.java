@@ -1238,8 +1238,8 @@ public class TradoxDataAccessService implements Dao {
             preparedStatement.setString(2, countryView.getFullName());
             preparedStatement.setString(3, countryView.getShortName());
             preparedStatement.setString(4, countryView.getCurrency());
-            preparedStatement.setDouble(6, countryView.getMediumBill());
-            preparedStatement.setInt(5, countryView.getTourismCount());
+            preparedStatement.setDouble(5, countryView.getMediumBill());
+            preparedStatement.setInt(6, countryView.getTourismCount());
             rowCount = preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException exception) {
