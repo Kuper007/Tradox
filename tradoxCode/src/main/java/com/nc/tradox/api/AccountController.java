@@ -44,8 +44,8 @@ public class AccountController {
         if (!bindingResult.hasErrors()) {
             Integer userId = (Integer) session.getAttribute("userId");
             if (userId != null) {
-                Country citizenship = tradoxService.getCountryByFullName(json.get("citizenship"));
-                Country location = tradoxService.getCountryByFullName(json.get("country_id"));
+                Country citizenship = tradoxService.getCountryById(json.get("citizenship"));
+                Country location = tradoxService.getCountryById(json.get("country_id"));
                 Passport passport = new PassportImpl(json.get("passport_id"), citizenship);
                 User user = tradoxService.getUserById(userId);
                 user.setFirstName(json.get("first_name"));
@@ -55,7 +55,7 @@ public class AccountController {
                 user.setPhone(json.get("phone"));
                 user.setPassport(passport);
                 user.setLocation(location);
-                return tradoxService.updateUserData(user);
+                return tradoxService.updateUserData(user, passport);
             }
         }
         return false;
