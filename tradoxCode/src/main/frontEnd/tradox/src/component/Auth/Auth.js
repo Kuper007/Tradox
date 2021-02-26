@@ -24,15 +24,14 @@ function Auth(props){
                 localStorage.setItem("userType",res.data.userType);
                 window.location.href = "http://localhost:8080/";
             } else {
-                //TODO: SHOW ALERTS
                 if (res.data.res==="email"){
-                    console.log("There is no user with such email");
+                    alert("There is no user with such email");
                 }
                 if (res.data.res==="password"){
-                    console.log("Invalid password");
+                    alert("Invalid email or password");
                 }
                 if (res.data.res==="network"){
-                    console.log("Something is wrong with connection");
+                    alert("Something is wrong with connection");
                 }
             }
         }));

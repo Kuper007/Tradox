@@ -7,8 +7,10 @@ import CountryInfo from '../CountryInfo/CountryInfo';
 import UnauthorizedUserNotification from "../UnauthorizedUserNotification/UnauthorizedUserNotification";
 import NoData from '../CountryInfo/NoData/NoData'
 import axios from "axios";
+import Spinner from 'react-spinner-material';
 
 function MainPage (props) {
+  const [loader, setLoader] = useState(false);
   const [failed, setFailed] = useState(false);
   const [showUnauthorized, setShowUnauthorized] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
@@ -61,15 +63,22 @@ function MainPage (props) {
     function getCountryInfo(){
       try{
         axios.post("http://localhost:8080/api/v1/route/getCountryInfo", { "countryName": destinationId}, {headers:{ 'Content-Type': 'application/json' }}).then(res => {
-          setData(res.data)
           console.log(res.data)
           if (res.status === 200){
+            if(res.data.error === ""){
+            setData(res.data)
             setShowInfo(true)
+            setLoader(false)}
+            else{
+              alert(res.data.error)
+              setLoader(false)
+            }
           }
           else{
             setFailed(true)
           }
         })
+        setLoader(true)
       }
       catch (e){
         setFailed(true)
@@ -111,6 +120,9 @@ function MainPage (props) {
         <WorldMap retrieveId = {retrieveId}/>
         {!showInfo?<SearchBar handleCountry = {handleCountry} handleKeyPress = {handleKeyPress} notfound = {notFound}/>:null}
         {showInfo?<CountryInfo country = {destinationName} data = {data}/>:null}
+        <div style = {{position:"absolute", left:"900px", top: "450px"}}>
+        <Spinner radius={150} color={"#F9B300"} stroke={10} visible={loader?true:false}/>
+        </div>
         {failed?<NoData/>:null}
         {showUnauthorized?<UnauthorizedUserNotification/>:null}
       </div>
