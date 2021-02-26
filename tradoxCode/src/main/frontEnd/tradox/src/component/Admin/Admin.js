@@ -12,11 +12,12 @@ import {NavLink} from "react-router-dom";
 import logo from "../../images/LogoTradoxLogo.svg";
 import vector from "../../images/Vector.svg";
 import user from "../../images/user.svg";
-
+import InputCountry from "./Forms/InputCountry";
+import InputDoc from "./Forms/InputDocs";
+import Spinner from "react-spinner-material";
 function Admin(){
 
-    const [isAuth, setIsAuth] = useState(true);
-    const [isAdmin, setIsAdmin] = useState(true);
+    const [loader, setLoader] = useState(false);
     const [countries,setCountries] = useState([]);
     const [users,setUsers] = useState([]);
     const [documents,setDocuments] = useState([]);
@@ -32,7 +33,30 @@ function Admin(){
     const [showHaveDocument, setShowHaveDocument] = useState(false)
     const [showMedicine, setShowMedicine] = useState(false)
     const [q, setQ] = useState('');
-    const[pressed, setPressed] = useState(false);
+    const [pressed, setPressed] = useState(false);
+    const [showInputCountry, setShowInputCountry] = useState(false)
+    const [showInputDoc, setShowInputDoc] = useState(false)
+
+    const [selectedItems, setSelectedItems] = useState([])
+    const [countriesToDelete, setCountriesToDelete] = useState([])
+    const handleOnclick = (event, index)=>{
+        if(event.target.checked){
+            setSelectedItems(value => [...value, index])
+        }
+        else{
+            setSelectedItems(value => value.filter(v => v !== index))
+        }
+    }
+    React.useEffect(() =>{
+        console.log(Object.keys(countries).map(key =>{
+            if(selectedItems.includes(key)){
+                setCountriesToDelete(countries[key])
+                return countries[key]
+            }
+            else{
+                return false
+            }}).filter(value => value))
+    },[selectedItems])
 
     function showAuth() {
         if (pressed === false)
@@ -72,10 +96,13 @@ function Admin(){
                     setShowHaveDocument(false)
                     setShowUsers(false)
                     setShowStatus(false)
+                    setLoader(false)
                 }
                 else{
+                    setLoader(false)
                 }
             })
+            setLoader(true)
         }
 
         catch (e){
@@ -95,10 +122,13 @@ function Admin(){
                     setShowHaveDocument(false)
                     setShowUsers(true)
                     setShowStatus(false)
+                    setLoader(false)
                 }
                 else{
+                    setLoader(false)
                 }
             })
+            setLoader(true)
         }
 
         catch (e){
@@ -118,10 +148,13 @@ function Admin(){
                     setShowHaveDocument(false)
                     setShowUsers(false)
                     setShowStatus(false)
+                    setLoader(false)
                 }
                 else{
+                    setLoader(false)
                 }
             })
+            setLoader(true)
         }
 
         catch (e){
@@ -141,10 +174,13 @@ function Admin(){
                     setShowHaveDocument(false)
                     setShowUsers(false)
                     setShowStatus(false)
+                    setLoader(false)
                 }
                 else{
+                    setLoader(false)
                 }
             })
+            setLoader(true)
         }
 
         catch (e){
@@ -164,10 +200,13 @@ function Admin(){
                     setShowHaveDocument(true)
                     setShowUsers(false)
                     setShowStatus(false)
+                    setLoader(false)
                 }
                 else{
+                    setLoader(false)
                 }
             })
+            setLoader(true)
         }
 
         catch (e){
@@ -187,10 +226,13 @@ function Admin(){
                     setShowHaveDocument(false)
                     setShowUsers(false)
                     setShowStatus(false)
+                    setLoader(false)
                 }
                 else{
+                    setLoader(false)
                 }
             })
+            setLoader(true)
         }
 
         catch (e){
@@ -210,10 +252,13 @@ function Admin(){
                     setShowHaveDocument(false)
                     setShowUsers(false)
                     setShowStatus(true)
+                    setLoader(false)
                 }
                 else{
+                    setLoader(false)
                 }
             })
+            setLoader(true)
         }
 
         catch (e){
@@ -231,6 +276,29 @@ function Admin(){
     }
     function searchStatus(status){
         return status.filter((stat) => stat.fullRoute.destination.shortName.toLowerCase().indexOf(q)> -1);
+    }
+    function renderForm(){
+        if(showCountries){
+            setShowInputCountry(true)
+        }
+        if(showDocuments){
+            setShowInputDoc(true)
+        }
+    }
+    function deleteForm(){
+        if(showCountries){
+            axios.delete("http://localhost:8080/api/v1/admin/deleteCountries", {data: {countriesToDelete}})
+        }
+
+    }
+    function handlePressCountry(e){
+            console.log(e.currentTarget.id)
+        if(showInputCountry){
+            setShowInputCountry(false)
+        }
+        if(showInputDoc){
+            setShowInputDoc(false)
+        }
     }
     return(
         <div className = {style.container}>
@@ -260,18 +328,25 @@ function Admin(){
             </div>
             <div className={style.buttons}>
                 <button className={style.selected}>Save Selected</button>
-                <button className={style.new}>New</button>
-                <button className={style.delete}>Delete</button>
+                <button className={style.new} onClick={renderForm}>New</button>
+                <button className={style.delete} onClick={deleteForm}>Delete</button>
                 <input type="text" placeholder = "Search by full name or short name" className={style.search} value={q} onChange={(e) => setQ(e.target.value)}/>
             </div>
             <div className={style.tables}>
-                {showCountries?<CountryTable countries = {searchCountries(countries)}/>:null}
+                {showCountries?<CountryTable countries = {searchCountries(countries)} handleOnclick = {handleOnclick}/>:null}
                 {showUsers?<UsersTable users = {searchUsers(users)}/>:null}
                 {showDocuments?<DocumentsTable docs = {searchDocs(documents)}/>:null}
                 {showStatus?<StatusTable statuses = {searchStatus(status)}/>:null}
                 {showConsulate?<ConsulatesTable consulates = {consulate}/>:null}
                 {showHaveDocument?<HaveDocTable haveDoc = {haveDocument}/>:null}
                 {showMedicine?<MedicineTable medicines = {medicine}/>:null}
+            </div>
+            <div style = {{position:"absolute", left:"900px", top: "600px"}}>
+                <Spinner radius={150} color={"#F9B300"} stroke={10} visible={loader?true:false}/>
+            </div>
+            <div>
+                {showInputCountry?<InputCountry handlePressCountry = {handlePressCountry}/>:null}
+                {showInputDoc?<InputDoc handlePressCountry = {handlePressCountry}/>:null}
             </div>
         </div>
     );
