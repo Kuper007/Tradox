@@ -73,9 +73,10 @@ public class AdminController {
         if (adminAuthorized(httpSession)) {
             Map<String, String> result = new HashMap<>();
             for (CountryView countryView : countryList) {
-                boolean deleteResult = adminService.deleteCountry(countryView);
+                String countryId = countryView.getShortName();
+                boolean deleteResult = adminService.deleteCountry(countryId);
                 if (!deleteResult) {
-                    result.put(countryView.getShortName(), "false");
+                    result.put(countryId, "false");
                 }
             }
             response.setObject(result);

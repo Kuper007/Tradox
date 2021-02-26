@@ -894,6 +894,23 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
+    public boolean isShortCountry(String countryId) {
+        boolean isCountry = false;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet res = statement.executeQuery("SELECT SHORT_NAME FROM COUNTRY " +
+                    "WHERE SHORT_NAME = '" + countryId + "'");
+            if (res.next()) {
+                isCountry = true;
+            }
+            statement.close();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.isShortCountry " + exception.getMessage());
+        }
+        return isCountry;
+    }
+
+    @Override
     public List<CountryView> getCountryList() {
         List<CountryView> countryList = new ArrayList<>();
         try {
@@ -1357,14 +1374,14 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
-    public boolean deleteCountry(CountryView countryView) {
+    public boolean deleteCountry(String countryId) {
         int rowCount = 0;
         try {
             String query = "DELETE " +
                     "FROM COUNTRY " +
                     "WHERE COUNTRY_ID = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, countryView.getShortName());
+            preparedStatement.setString(1, countryId);
             rowCount = preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException exception) {

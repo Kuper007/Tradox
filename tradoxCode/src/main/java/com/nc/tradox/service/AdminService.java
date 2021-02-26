@@ -124,8 +124,10 @@ public class AdminService {
         return false;
     }
 
-    public boolean deleteCountry(CountryView countryView) {
-        return dao.deleteCountry(countryView);
+    public boolean deleteCountry(String countryId) {
+        if (!dao.isShortCountry(countryId))
+            return true;
+        return dao.deleteCountry(countryId);
     }
 
     public boolean deleteUser(User user) {
