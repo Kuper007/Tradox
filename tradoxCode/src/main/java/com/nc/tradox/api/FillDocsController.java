@@ -49,7 +49,8 @@ public class FillDocsController {
             Country destination = new CountryImpl(json.get("destination"), null);
             Documents documents = tradoxService.getDocuments(new FullRouteImpl(departure, destination));
             List<Document> docs = documents.getList();
-            String link = "C:\\Users\\Kuper\\Desktop\\Tradox\\tradoxCode\\src\\main\\resources\\documents\\insurance.docx";
+            //String link = "C:\\Users\\Kuper\\Desktop\\Tradox\\tradoxCode\\src\\main\\resources\\documents\\insurance.docx";
+            String link = "/Users/fareqv/study/NC Files/Tradox/tradoxCode/src/main/resources/documents/insurance.docx";
             for (Document doc : docs) {
                 XWPFDocument docx = fillFile(link, user, json);
                 if (docx != null) {
