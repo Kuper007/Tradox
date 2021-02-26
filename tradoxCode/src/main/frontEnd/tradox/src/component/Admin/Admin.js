@@ -13,8 +13,8 @@ import logo from "../../images/LogoTradoxLogo.svg";
 import vector from "../../images/Vector.svg";
 import user from "../../images/user.svg";
 import InputCountry from "./Forms/InputCountry";
+import InputDoc from "./Forms/InputDocs";
 import Spinner from "react-spinner-material";
-import InputUser from "./Forms/InputUser";
 function Admin(){
 
     const [loader, setLoader] = useState(false);
@@ -33,9 +33,9 @@ function Admin(){
     const [showHaveDocument, setShowHaveDocument] = useState(false)
     const [showMedicine, setShowMedicine] = useState(false)
     const [q, setQ] = useState('');
-    const[pressed, setPressed] = useState(false);
+    const [pressed, setPressed] = useState(false);
     const [showInputCountry, setShowInputCountry] = useState(false)
-    const [showInputUser, setShowInputUser] = useState(false)
+    const [showInputDoc, setShowInputDoc] = useState(false)
 
 
     function showAuth() {
@@ -261,13 +261,18 @@ function Admin(){
         if(showCountries){
             setShowInputCountry(true)
         }
-        if(showUsers){
-            setShowInputUser(true)
+        if(showDocuments){
+            setShowInputDoc(true)
         }
     }
     function handlePressCountry(e){
             console.log(e.currentTarget.id)
+        if(showInputCountry){
             setShowInputCountry(false)
+        }
+        if(showInputDoc){
+            setShowInputDoc(false)
+        }
     }
     return(
         <div className = {style.container}>
@@ -315,7 +320,7 @@ function Admin(){
             </div>
             <div>
                 {showInputCountry?<InputCountry handlePressCountry = {handlePressCountry}/>:null}
-                {showInputCountry?<InputUser/>:null}
+                {showInputDoc?<InputDoc handlePressCountry = {handlePressCountry}/>:null}
             </div>
         </div>
     );
