@@ -60,9 +60,8 @@ public class AdminController {
     public Response addCountry(@RequestBody CountryView countryView, HttpSession httpSession) {
         Response response = new Response();
         if (adminAuthorized(httpSession)) {
-            boolean addResult = adminService.addCountry(countryView);
-            response.setObject(addResult);
-        } else {
+            response = adminService.addCountry(countryView);
+            } else {
             response.setError("permissionsError");
         }
         return response;
