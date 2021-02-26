@@ -95,6 +95,8 @@ public interface Dao {
 
     boolean isCountry(String fullName);
 
+    boolean isShortCountry(String countryId);
+
     List<CountryView> getCountryList();
 
     List<User> getUserList();
@@ -139,7 +141,7 @@ public interface Dao {
 
     boolean addReason(Status status);
 
-    boolean deleteCountry(CountryView countryView);
+    boolean deleteCountry(String countryId);
 
     boolean deleteUser(User user);
 
