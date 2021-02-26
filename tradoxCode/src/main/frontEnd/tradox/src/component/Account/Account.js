@@ -9,7 +9,7 @@ import Scrollable from "./Scrollable";
 import SavedRoute from "./SavedRoute";
 
 function Account(props) {
-    const [cards, setCards] = useState([]);
+    let [cards, setCards] = useState([]);
     let infoMap = new Map().set("firstName", "Danylo").set("lastName", "Savchak").set("dateOfBirth", "15.07.2000").set("email", "daniel.savchak@gmail.com")
         .set("password", "121322").set("mobilePhone", "+380952023455").set("passport", "PMEWEWE").set("citizenship", "Ukraine").set("currentCountry", "Ukraine");
     let [state, setState] = useState(infoMap);
@@ -86,7 +86,6 @@ function Account(props) {
     }
 
 
-
     function changeInfoMap(inputKey, inputValue) {
         infoMap.set(inputKey, inputValue)
     }
@@ -100,7 +99,7 @@ function Account(props) {
     }
 
     function deleteCard(id) {
-        setCards(cards.filter(item => item.id !== id));
+        setCards(cards.filter(item => item.id !== Number(id)));
     }
 
     return (
