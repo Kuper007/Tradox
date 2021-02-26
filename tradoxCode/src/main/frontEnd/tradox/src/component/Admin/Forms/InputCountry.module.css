@@ -35,6 +35,7 @@
     font-weight: 600;
     font-size: 50px;
     line-height: 61px;
+    margin-bottom: 80px;
 
 
     color: #000000;
@@ -45,6 +46,10 @@
     align-items: center;
     align-content: center;
     justify-content: center;
+}
+.InputDiv {
+    width: 500px;
+    margin-bottom: 21px;
 }
 .input {
     border: 0;
@@ -59,4 +64,9 @@
     font-weight: 600;
     font-size: 18px;
     line-height: 22px;
+}
+.ButtonsDiv {
+    margin: 0 auto;
+    margin-top:70px;
+    width:auto;
 }

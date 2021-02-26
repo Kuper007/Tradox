@@ -24,13 +24,13 @@ function InputCountry(props){
             <div className = {styles.container}>
                 <h1 className = {styles.title}>New Country</h1>
                 <form className = {styles.form}>
-                    <div><span className={styles.naming}>Country</span><input id = "country" type = "text" value={longName} onChange={event => setLongName(event.target.value)} className={styles.input}/></div>
-                    <div><span className={styles.naming}>Short name</span><input id = "shortName" type = "text" value={shortName} onChange={event => setShortName(event.target.value)} className={styles.input}/></div>
-                    <div><span className={styles.naming}>Currency</span><input id = "currency" type = "text" value={currency} onChange={event => setCurrency(event.target.value)} className={styles.input}/></div>
-                    <div><span className={styles.naming}>Bill</span><input id = "bill" type = "text" value={bill} onChange={event => setBill(event.target.value)} className={styles.input}/></div>
-                    <div><span className={styles.naming}>Count</span><input id = "count" type = "text" value={count} onChange={event => setCount(event.target.value)} className={styles.input}/></div>
+                    <div className={styles.InputDiv}><span className={styles.naming}>Full name</span><input id = "country" type = "text" value={longName} onChange={event => setLongName(event.target.value)} className={styles.input}/></div>
+                    <div className={styles.InputDiv}><span className={styles.naming}>Short name</span><input id = "shortName" type = "text" value={shortName} onChange={event => setShortName(event.target.value)} className={styles.input}/></div>
+                    <div className={styles.InputDiv}><span className={styles.naming}>Currency</span><input id = "currency" type = "text" value={currency} onChange={event => setCurrency(event.target.value)} className={styles.input}/></div>
+                    <div className={styles.InputDiv}><span className={styles.naming}>Medium bill</span><input id = "bill" type = "text" value={bill} onChange={event => setBill(event.target.value)} className={styles.input}/></div>
+                    <div className={styles.InputDiv}><span className={styles.naming}>Tourist count</span><input id = "count" type = "text" value={count} onChange={event => setCount(event.target.value)} className={styles.input}/></div>
                 </form>
-                <div>
+                <div className={styles.ButtonsDiv}>
                     <input className = {styles.createBtn} type = "submit" value = "Create" onClick = {newCountry}/>
                     <input className = {styles.cancelBtn} id = "close" type = "button" value = "Cancel" onClick={props.handlePressCountry}/>
                 </div>
