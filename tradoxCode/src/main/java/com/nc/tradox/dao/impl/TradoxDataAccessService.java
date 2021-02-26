@@ -955,8 +955,7 @@ public class TradoxDataAccessService implements Dao {
         List<Consulate> consulateList = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM CONSULATE ORDER BY CONSULATE_ID " +
-                    "FETCH NEXT 1000 ROWS ONLY");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM CONSULATE FETCH NEXT 1000 ROWS ONLY");
             while (resultSet.next()) {
                 Consulate consulate = new ConsulateImpl(resultSet);
                 consulate.setCountry(new CountryImpl(resultSet.getString("COUNTRY_ID"), null));
@@ -1238,8 +1237,8 @@ public class TradoxDataAccessService implements Dao {
             preparedStatement.setString(2, countryView.getFullName());
             preparedStatement.setString(3, countryView.getShortName());
             preparedStatement.setString(4, countryView.getCurrency());
-            preparedStatement.setDouble(6, countryView.getMediumBill());
-            preparedStatement.setInt(5, countryView.getTourismCount());
+            preparedStatement.setDouble(5, countryView.getMediumBill());
+            preparedStatement.setInt(6, countryView.getTourismCount());
             rowCount = preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException exception) {

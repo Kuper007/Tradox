@@ -11,15 +11,16 @@ import SavedRoute from "./SavedRoute";
 function Account(props) {
     const [cards, setCards] = useState([]);
     let infoMap = new Map().set("firstName", "Danylo").set("lastName", "Savchak").set("dateOfBirth", "15.07.2000").set("email", "daniel.savchak@gmail.com")
-        .set("password", "121322").set("mobilePhone", "+380952023455").set("passport", "PMEWEWE").set("citizenship", "UA").set("currentCountry", "UA");
-    let [state, setState] = useState(null);
+        .set("password", "121322").set("mobilePhone", "+380952023455").set("passport", "PMEWEWE").set("citizenship", "Ukraine").set("currentCountry", "Ukraine");
+    let [state, setState] = useState(infoMap);
+    let [firstName,setFirstName] = useState("")
+    let [useEffectAtStart,setUseEffectAtStart] = useState(false)
 
     useEffect(() => {
+        if (!useEffectAtStart) {
         fetch("http://localhost:8080/api/v1/account/getUserData")
             .then(data => data.json())
             .then(userData => {
-                console.log(userData);
-                if (!state) {
                     const {
                         firstName,
                         lastName,
@@ -30,11 +31,24 @@ function Account(props) {
                         citizenship,
                         location: currentCountry
                     } = userData;
-                    let mmap = new Map().set("firstName", firstName).set("lastName", lastName)
-                        .set("dateOfBirth", birthDate).set("email", email).set("mobilePhone", phone)
-                        .set("passport", passport).set("citizenship", citizenship)
-                        .set("currentCountry", currentCountry);
-                    setState(mmap);
+                    // let mmap = new Map().set("firstName", firstName).set("lastName", lastName)
+                    //     .set("dateOfBirth", birthDate).set("email", email).set("mobilePhone", phone)
+                    //     .set("passport", passport).set("citizenship", citizenship)
+                    //     .set("currentCountry", currentCountry);
+                    infoMap.set("firstName",firstName)
+                    infoMap.set("lastName",lastName)
+                    infoMap.set("dateOfBirth",birthDate)
+                    infoMap.set("email",email)
+                    infoMap.set("mobilePhone",phone)
+                    infoMap.set("passport",passport)
+                    infoMap.set("citizenship",citizenship)
+                    infoMap.set("currentCountry",currentCountry)
+
+                    setFirstName(firstName)
+                    setState(infoMap)
+                    // setState(mmap);
+                    setUseEffectAtStart(true)
+
                     userData.transit.forEach((card) => {
                         console.log(card);
                         setCards([...cards, {
@@ -44,30 +58,32 @@ function Account(props) {
                             title: card.transit[0].fullRoute.destination.fullName
                         }])
                     })
-                }
+
             });
+        }
     })
 
     function onClickSave(e) {
         e.preventDefault();
+        console.log(infoMap)
         fetch('http://localhost:8080/api/v1/account/saveUserData', {
             method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify({
-                "first_name": state.get("firstName"),
-                "last_name": state.get("lastName"),
-                "birth_date": state.get("dateOfBirth"),
-                "email": state.get("email"),
-                "phone": state.get("mobilePhone"),
-                "passport_id": state.get("passport"),
-                "citizenship": myMap.get(state.get("citizenship")),
-                "country_id": myMap.get(state.get("currentCountry"))
+                "first_name": infoMap.get("firstName"),
+                "last_name": infoMap.get("lastName"),
+                "birth_date": infoMap.get("dateOfBirth"),
+                "email": infoMap.get("email"),
+                "phone": infoMap.get("mobilePhone"),
+                "passport_id": infoMap.get("passport"),
+                "citizenship": myMap.get(infoMap.get("citizenship")),
+                "country_id": myMap.get(infoMap.get("currentCountry"))
             })
         })
-        // .then(response => response.json()
-        //     .then(data => ({
-        //             data: data,
-        //             status: response.status
-        //         })
-        //     ));
+        .then(response => response.json()
+            .then(data => ({
+                    data: data,
+                    status: response.status
+                })
+            ));
     }
 
     const items = [
@@ -140,36 +156,34 @@ function Account(props) {
                                 <form onSubmit={onClickSave}>
                                     <div className={style.form}>
                                         <div className={style.partOfInputInfo}>
-                                            {console.log(state)}
-                                            <InputForm value={state.get("firstName")} type={"text"} title={"First name"}
+                                            <InputForm value={""} keyOf={"firstName"} type={"text"} title={"First name"}
                                                        placeholder={state.get("firstName")}
                                                        changeState={changeInfoMap}/>
-                                            <InputForm value={state.get("lastName")} type={"text"} title={"Last name"}
+                                            <InputForm value={""} keyOf={"lastName"} type={"text"} title={"Last name"}
                                                        placeholder={state.get("lastName")} changeState={changeInfoMap}/>
-                                            <InputForm value={state.get("dateOfBirth")} type={"date"}
+                                            <InputForm keyOf={"dateOfBirth"}  type={"date"}
                                                        title={"Date of birth"}
-                                                       placeholder={state.get("dateOfBirth")}
+                                                       // placeholder={state.get("dateOfBirth")}
                                                        changeState={changeInfoMap}/>
-                                            <InputForm value={state.get("email")} type={"email"} title={"E-mail"}
+                                            <InputForm  keyOf={"email"} type={"email"} title={"E-mail"}
                                                        placeholder={state.get("email")} changeState={changeInfoMap}/>
                                         </div>
                                         <div className={style.partOfInputInfo}>
-                                            <InputForm value={state.get("mobilePhone")} type={"tel"}
+                                            <InputForm keyOf={"mobilePhone"} type={"tel"}
                                                        title={"Mobile phone"}
                                                        notFound={false} keyOf={"mobilePhone"}
                                                        placeholder={state.get("mobilePhone")}
                                                        changeState={changeInfoMap}/>
-                                            <InputForm value={state.get("passport")} type={"text"} title={"Passport"}
+                                            <InputForm keyOf={"password"} type={"text"} title={"Passport"}
                                                        keyOf={"passport"} placeholder={state.get("passport")}
                                                        changeState={changeInfoMap}/>
                                             <InputForm value={state.get("citizenship")} notFound={false}
                                                        keyOf={"citizenship"} type={"countryPicker"}
                                                        changeState={changeInfoMap} title={"Citizenship"}
-                                                       placeholder={"Ukraine"} array={getKeysFromMapArr()}/>
+                                                       array={getKeysFromMapArr()}/>
                                             <InputForm value={state.get("currentCountry")} type={"countryPicker"}
                                                        title={"Current country"} notFound={false}
                                                        keyOf={"currentCountry"}
-                                                       placeholder={state.get("currentCountry")}
                                                        changeState={changeInfoMap}
                                                        array={getKeysFromMapArr()}/>
                                         </div>

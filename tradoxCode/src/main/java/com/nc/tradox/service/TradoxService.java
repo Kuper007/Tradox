@@ -100,7 +100,10 @@ public class TradoxService {
         return dao.getUserById(id);
     }
 
-    public Boolean updateUserData(User user) {
+    public Boolean updateUserData(User user, Passport passport) {
+        if (!dao.isPassport(passport.getPassportId())) {
+            dao.addPassport(passport);
+        }
         return dao.updateUserData(user);
     }
 
