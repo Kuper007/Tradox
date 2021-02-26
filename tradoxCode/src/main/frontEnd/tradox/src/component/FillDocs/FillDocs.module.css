@@ -9,15 +9,18 @@
 }
 
 .fillForm{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
-    justify-content: space-between;
+   position: relative;
+   width: 1920px;
+   height: 1080px;
 }
 
 .logo {
-    margin-left: 7.81%;
+    position: absolute;
+    left: 7.81%;
+    right: 84.01%;
+    top: 5.56%;
+    bottom: 88.06%;
+
 }
 
 .box {
@@ -26,6 +29,12 @@
     border-radius: 50px;
     width: 41%;
     height: 37%;
+    position: absolute;
+    left: 29.17%;
+    right: 29.17%;
+    top: 31.48%;
+    bottom: 31.48%;
+    text-align: center;
 }
 
 .btn {
@@ -37,13 +46,39 @@
     outline: none;
     cursor: pointer;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-align: center;
 }
 
 .h1 {
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 25px;
-    line-height: 30px;
+      position: absolute;
+      left: 40.68%;
+      right: 40.62%;
+      top: 45.37%;
+      bottom: 51.85%;
+
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 25px;
+      line-height: 30px;
+}
+
+.a {
+    text-decoration: none !important;
     color: #000000;
+}
+
+.doc {
+    height: 800px;
+    width: 800px;
+}
+
+.imageBox {
+    position: absolute;
+    left: 28.07%;
+    right: 28.02%;
+    top: 20%;
+    bottom: 25.09%;
+    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.25));
+    border-radius: 66px;
 }
