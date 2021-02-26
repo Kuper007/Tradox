@@ -1,11 +1,12 @@
 import React, { useState,  useEffect }  from 'react'
 import style from './FillDocs.module.css';
 import logo from '../../images/LogoTradoxLogo.svg';
-import world from '../../images/world-21.svg'
+import Spinner from 'react-spinner-material';
 
 const FillDocs = () => {
-
+    const [loader, setLoader] = useState(false);
     const [haveDocument, setHaveDocument] = useState(false);
+    const [notHaveDocument, setNotHaveDocument] = useState(false)
     const [doc, setDoc] = useState("");
     const [pdf, setPdf] = useState("");
 
@@ -27,10 +28,14 @@ const FillDocs = () => {
                 setDoc(res.data.img);
                 setPdf(res.data.pdf);
                 setHaveDocument(true);
+                setLoader(false)
             } else {
+                setNotHaveDocument( true)
+                setLoader(false)
                 console.log('error');
             }
         }));
+        setLoader(true)
     },[]);
 
     const goBack = () => {
@@ -44,8 +49,8 @@ const FillDocs = () => {
             <div className={style.logo}>
                 <img src={logo} onClick={()=>goBack()}/>
             </div>
-                {!haveDocument
-                    ? (
+                {notHaveDocument
+                    ?
                       <div className={style.container}>
                         <div className = {style.box}>
                               <h1>You don’t need special docs</h1>
@@ -53,15 +58,16 @@ const FillDocs = () => {
                               <h1>Please visit embassy <br></br> at your country</h1>
                               <button onClick={() => goBack()} className = {style.btn}>Go back</button>
                         </div>
-                      </div>
-                    )
-                    : (
-                    <div className={style.container}>
+                      </div>:null}
+            {haveDocument?<div className={style.container}>
                         <div className={style.imageBox}>
                             <img src={doc} className={style.doc} />
                             <a download="Insurance" href={pdf} className={style.btn}>Get PDF</a>
                         </div>
-                    </div>)}
+                    </div>:null}
+            <div style = {{position:"absolute", left:"900px", top: "450px"}}>
+                <Spinner radius={150} color={"#F9B300"} stroke={10} visible={loader?true:false}/>
+            </div>
         </div>
       )
 }
