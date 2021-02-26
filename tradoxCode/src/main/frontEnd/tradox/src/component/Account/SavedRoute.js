@@ -7,7 +7,7 @@ function SavedRoute(props) {
 
     function onClickS(e) {
         let id = e.target.getAttribute("data-index");
-        props.function;
+        props.deleteCard(id);
         fetch('http://localhost:8080/api/v1/account/deleteRoute', {
             method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify({
                 "routeId": id

@@ -171,7 +171,7 @@ function Account(props) {
                                         return (
                                             <div key={item.id}>
                                                 <SavedRoute title={item.title} startCountry={item.from}
-                                                            endCountry={item.to} id={item.id} function={deleteCard()}/>
+                                                            endCountry={item.to} id={item.id} deleteCard={deleteCard}/>
                                             </div>
                                         )
                                     })
