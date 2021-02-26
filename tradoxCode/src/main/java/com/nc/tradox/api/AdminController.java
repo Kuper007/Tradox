@@ -70,6 +70,7 @@ public class AdminController {
 
     @DeleteMapping("/deleteCountries")
     public Response deleteCountries(@RequestBody List<CountryView> countryList, HttpSession httpSession) {
+        System.out.println(countryList);
         Response response = new Response();
         if (adminAuthorized(httpSession)) {
             Map<String, String> result = new HashMap<>();
