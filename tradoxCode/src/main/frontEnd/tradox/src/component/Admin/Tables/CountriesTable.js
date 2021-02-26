@@ -17,9 +17,9 @@ function CountryTable(props) {
                 <tbody>
                 {
                     Object.keys(props.countries)
-                        .map(country =>
+                        .map((country, index) =>
                             <tr key={props.countries[country].shortName}>
-                                <th><input className={style.fields} type ="checkbox" value ={false}></input></th>
+                                <th><input className={style.fields} type ="checkbox" value ={false} onClick={(event) =>{props.handleOnclick(event, country)}}></input></th>
                                 <th><input className={style.fields} type="text" defaultValue={props.countries[country].shortName}></input></th>
                                 <th><input className={style.fields} type="text" defaultValue={props.countries[country].fullName}></input></th>
                                 <th><input className={style.fields} type="text" defaultValue={props.countries[country].mediumBill}></input></th>

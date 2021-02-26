@@ -60,9 +60,8 @@ public class AdminController {
     public Response addCountry(@RequestBody CountryView countryView, HttpSession httpSession) {
         Response response = new Response();
         if (adminAuthorized(httpSession)) {
-            boolean addResult = adminService.addCountry(countryView);
-            response.setObject(addResult);
-        } else {
+            response = adminService.addCountry(countryView);
+            } else {
             response.setError("permissionsError");
         }
         return response;
@@ -74,9 +73,10 @@ public class AdminController {
         if (adminAuthorized(httpSession)) {
             Map<String, String> result = new HashMap<>();
             for (CountryView countryView : countryList) {
-                boolean deleteResult = adminService.deleteCountry(countryView);
+                String countryId = countryView.getShortName();
+                boolean deleteResult = adminService.deleteCountry(countryId);
                 if (!deleteResult) {
-                    result.put(countryView.getShortName(), "false");
+                    result.put(countryId, "false");
                 }
             }
             response.setObject(result);

@@ -48,7 +48,7 @@
     line-height: 17px;
     border:none;
     margin-right: 20px;
-
+    cursor: pointer;
 
     color: #FFFFFF;
     background: #2748BB;
@@ -60,7 +60,7 @@
     font-size: 14px;
     line-height: 17px;
     margin-right: 20px;
-
+    cursor: pointer;
     border:none;
     color: #FFFFFF;
     background: #1DAC56;
@@ -74,7 +74,7 @@
     border:none;
     margin-right: 20px;
 
-
+    cursor: pointer;
     color: #FFFFFF;
     background: #FF0000;
     border-radius: 50px;

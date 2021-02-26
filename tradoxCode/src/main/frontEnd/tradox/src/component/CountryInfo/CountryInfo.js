@@ -7,6 +7,7 @@ import News from './News/News'
 import {NavLink} from 'react-router-dom'
 import add from "../../images/add 1.svg"
 import axios from "axios";
+import root from '../Account/savedRouteImage.svg'
 
  function CountryInfo(props) {
     const [opened, setOpened] = useState(false)
@@ -32,6 +33,7 @@ import axios from "axios";
              axios.post("http://localhost:8080/api/v1/route/saveRoute", { "countryId": props.data.object.fullRoute.destination.shortName}, {headers:{ 'Content-Type': 'application/json' }}).then(res => {
                  console.log(res.data)
                  if (res.status === 200){
+                     alert("Root added")
                  }
                  else{
                  }
@@ -58,7 +60,7 @@ import axios from "axios";
             </div></NavLink>
             <Consulates departure = {props.data.object.fullRoute.departure} data = {props.data}/>
             <News data = {props.data}/>
-
+            <img src = {root} className={styles.root}/>
             <img src ={add} className={styles.addRoute} onClick={addRoute} />
             </div>
         </div>

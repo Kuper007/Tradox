@@ -894,6 +894,23 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
+    public boolean isShortCountry(String countryId) {
+        boolean isCountry = false;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet res = statement.executeQuery("SELECT SHORT_NAME FROM COUNTRY " +
+                    "WHERE SHORT_NAME = '" + countryId + "'");
+            if (res.next()) {
+                isCountry = true;
+            }
+            statement.close();
+        } catch (SQLException exception) {
+            LOGGER.log(Level.SEVERE, "TradoxDataAccessService.isShortCountry " + exception.getMessage());
+        }
+        return isCountry;
+    }
+
+    @Override
     public List<CountryView> getCountryList() {
         List<CountryView> countryList = new ArrayList<>();
         try {
@@ -955,8 +972,7 @@ public class TradoxDataAccessService implements Dao {
         List<Consulate> consulateList = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM CONSULATE ORDER BY CONSULATE_ID " +
-                    "FETCH NEXT 1000 ROWS ONLY");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM CONSULATE FETCH NEXT 1000 ROWS ONLY");
             while (resultSet.next()) {
                 Consulate consulate = new ConsulateImpl(resultSet);
                 consulate.setCountry(new CountryImpl(resultSet.getString("COUNTRY_ID"), null));
@@ -1238,8 +1254,8 @@ public class TradoxDataAccessService implements Dao {
             preparedStatement.setString(2, countryView.getFullName());
             preparedStatement.setString(3, countryView.getShortName());
             preparedStatement.setString(4, countryView.getCurrency());
-            preparedStatement.setDouble(6, countryView.getMediumBill());
-            preparedStatement.setInt(5, countryView.getTourismCount());
+            preparedStatement.setDouble(5, countryView.getMediumBill());
+            preparedStatement.setInt(6, countryView.getTourismCount());
             rowCount = preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException exception) {
@@ -1358,14 +1374,14 @@ public class TradoxDataAccessService implements Dao {
     }
 
     @Override
-    public boolean deleteCountry(CountryView countryView) {
+    public boolean deleteCountry(String countryId) {
         int rowCount = 0;
         try {
             String query = "DELETE " +
                     "FROM COUNTRY " +
                     "WHERE COUNTRY_ID = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, countryView.getShortName());
+            preparedStatement.setString(1, countryId);
             rowCount = preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException exception) {

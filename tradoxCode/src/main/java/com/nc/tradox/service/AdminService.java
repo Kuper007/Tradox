@@ -4,11 +4,13 @@ import com.nc.tradox.dao.Dao;
 import com.nc.tradox.model.*;
 import com.nc.tradox.model.service.CountryView;
 import com.nc.tradox.model.service.HaveDocumentView;
+import com.nc.tradox.model.service.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 public class AdminService {
@@ -80,8 +82,23 @@ public class AdminService {
         return result;
     }
 
-    public boolean addCountry(CountryView countryView) {
-        return dao.addCountry(countryView);
+    public Response addCountry(CountryView countryView) {
+        Response response = new Response();
+        if (countryView.getShortName().length() > 5)
+            response.setError("invalidCountryId");
+        else if (countryView.getMediumBill() < 0)
+            response.setError("invalidMediumBill");
+        else if (countryView.getTourismCount() < 0)
+            response.setError("invalidTourismCount");
+        else if (dao.getCountryById(countryView.getShortName()) != null
+                || dao.getCountryByFullName(countryView.getFullName()) != null)
+            response.setError("countryAlreadyExists");
+        if (response.getError().equals("")) {
+            response.setObject(dao.addCountry(countryView));
+        } else {
+            response.setObject(false);
+        }
+        return response;
     }
 
     public boolean addDocument(Document document) {
@@ -107,8 +124,10 @@ public class AdminService {
         return false;
     }
 
-    public boolean deleteCountry(CountryView countryView) {
-        return dao.deleteCountry(countryView);
+    public boolean deleteCountry(String countryId) {
+        if (!dao.isShortCountry(countryId))
+            return true;
+        return dao.deleteCountry(countryId);
     }
 
     public boolean deleteUser(User user) {
