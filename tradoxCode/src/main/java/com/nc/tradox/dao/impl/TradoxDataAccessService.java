@@ -955,8 +955,7 @@ public class TradoxDataAccessService implements Dao {
         List<Consulate> consulateList = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM CONSULATE ORDER BY CONSULATE_ID " +
-                    "FETCH NEXT 1000 ROWS ONLY");
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM CONSULATE FETCH NEXT 1000 ROWS ONLY");
             while (resultSet.next()) {
                 Consulate consulate = new ConsulateImpl(resultSet);
                 consulate.setCountry(new CountryImpl(resultSet.getString("COUNTRY_ID"), null));

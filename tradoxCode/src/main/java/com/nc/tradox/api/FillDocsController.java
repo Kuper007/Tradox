@@ -16,16 +16,14 @@ import org.apache.pdfbox.tools.imageio.ImageIOUtil;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xwpf.usermodel.*;
+import org.codehaus.plexus.util.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,49 +40,57 @@ public class FillDocsController {
     }
 
     @PostMapping("/fill")
-    public String fillDocs(@RequestBody RouteCredentials fullRoute, BindingResult bindingResult, HttpSession session) throws InvalidFormatException, IOException {
+    public String fillDocs(@RequestBody Map<String, String> json, BindingResult bindingResult, HttpSession session) throws InvalidFormatException, IOException {
+        Map<String, XWPFDocument> mapDocs = new HashMap<>();
         if (!bindingResult.hasErrors()) {
             int userId = (int) session.getAttribute("userId");
             User user = tradoxService.getUserById(userId);
-            Country departure = new CountryImpl(fullRoute.getDepartureId(), null);
-            Country destination = new CountryImpl(fullRoute.getDestinationId(), null);
+            Country departure = new CountryImpl(json.get("departure"), null);
+            Country destination = new CountryImpl(json.get("destination"), null);
             Documents documents = tradoxService.getDocuments(new FullRouteImpl(departure, destination));
             List<Document> docs = documents.getList();
-            System.out.println(docs.size());
-            Map<String, XWPFDocument> mapDocs = new HashMap<>();
+            //String link = "C:\\Users\\Kuper\\Desktop\\Tradox\\tradoxCode\\src\\main\\resources\\documents\\insurance.docx";
+            String link = "/Users/fareqv/study/NC Files/Tradox/tradoxCode/src/main/resources/documents/insurance.docx";
             for (Document doc : docs) {
-                System.out.println(doc.getName());
-                System.out.println(doc.getFileLink());
-                XWPFDocument docx = fillFile(doc.getFileLink(), user, fullRoute);
+                XWPFDocument docx = fillFile(link, user, json);
                 if (docx != null) {
+                    if (wordToPdf(docx,doc.getName())) {
+                        PdfToImage(doc.getName()+".pdf");
+                    }
                     mapDocs.put(doc.getName(), docx);
                 }
             }
             session.setAttribute("documents", mapDocs);
         }
-        return showPdf(session);
+        return showImage(mapDocs);
     }
 
-    public String showPdf(HttpSession session) throws IOException {
-        Map<String, XWPFDocument> docs = (Map<String, XWPFDocument>) session.getAttribute("documents");
+    public String showImage(Map<String, XWPFDocument> docs) throws IOException {
+        String img = "";
+        String pdf = "";
         if (docs != null) {
-            PdfOptions options = PdfOptions.create();
             for (Map.Entry<String, XWPFDocument> entry : docs.entrySet()) {
-                System.out.println(entry);
-                PdfConverter.getInstance().convert(entry.getValue(), new FileOutputStream(entry.getKey()), options);
-                PDDocument document = PDDocument.load(new File(entry.getKey()));
-                PDFRenderer pdfRenderer = new PDFRenderer(document);
-                for (int page = 0; page < document.getNumberOfPages(); ++page) {
-                    BufferedImage bim = pdfRenderer.renderImageWithDPI(
-                            page, 300, ImageType.RGB);
-                    ImageIOUtil.writeImage(
-                            bim, "image.png", 300);
+                File f = new File(entry.getKey()+"-1.png");
+                if(!f.exists() || f.isDirectory()) {
+                    return "{\"res\": \"false\"}";
+                } else {
+                    File f2 = new File(entry.getKey()+".pdf");
+                    String base = fileToBase64(f);
+                    String pdfBase = fileToBase64(f2);
+                    if (!base.equals("")) {
+                        img = "data:image/png;base64," + base;
+                    }
+                    if (!pdfBase.equals("")){
+                        pdf = "data:application/pdf;base64," + pdfBase;
+                    } else {
+                        return "{\"res\": \"false\"}";
+                    }
                 }
-                document.close();
             }
-            return "{\"res\": \"true\"}";
+        } else {
+            return "{\"res\": \"false\"}";
         }
-        return "{\"res\": \"false\"}";
+        return "{\"res\": \"true\",\"img\":\""+img+"\",\"pdf\":\""+pdf+"\"}";
     }
 
     @GetMapping("/pdf")
@@ -96,13 +102,13 @@ public class FillDocsController {
         }
         PdfOptions options = PdfOptions.create();
         for (Map.Entry<String, XWPFDocument> entry : docs.entrySet()) {
-            PdfConverter.getInstance().convert(entry.getValue(), new FileOutputStream(entry.getKey()), options);
+            PdfConverter.getInstance().convert(entry.getValue(), new FileOutputStream(entry.getKey()+".pdf"), options);
         }
         json = json.replace("false", "true");
         return json;
     }
 
-    private XWPFDocument fillFile(String path, User user, RouteCredentials fullRoute) {
+    private XWPFDocument fillFile(String path, User user, Map<String,String> fullRoute) {
         XWPFDocument docx = null;
         try {
             docx = new XWPFDocument(OPCPackage.open(path));
@@ -113,7 +119,7 @@ public class FillDocsController {
                             for (XWPFRun r : p.getRuns()) {
                                 String text = r.getText(0);
                                 if (text != null) {
-                                    text = text.replace("country", tradoxService.getCountryById(fullRoute.getDestinationId()).getFullName());
+                                    text = text.replace("country", tradoxService.getCountryById(fullRoute.get("destination")).getFullName());
                                     text = text.replace("name", user.getFirstName() + ' ' + user.getLastName());
                                     text = text.replace("(birth)", String.valueOf(user.getBirthDate()));
                                     text = text.replace("(passport code)", user.getPassport().getPassportId());
@@ -125,11 +131,46 @@ public class FillDocsController {
                 }
             }
             //docx.write(new FileOutputStream("output.docx"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InvalidFormatException e) {
+        } catch (IOException | InvalidFormatException e) {
             e.printStackTrace();
         }
         return docx;
     }
+
+    public Boolean wordToPdf(XWPFDocument docx, String name) {
+        PdfOptions options = PdfOptions.create();
+        try {
+            OutputStream out = new FileOutputStream(name+".pdf");
+            PdfConverter.getInstance().convert(docx, out, options);
+            return true;
+        } catch (IOException e ) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public void PdfToImage(String path) throws IOException {
+        PDDocument document = PDDocument.load(new File(path));
+        PDFRenderer pdfRenderer = new PDFRenderer(document);
+        for (int page = 0; page < document.getNumberOfPages(); ++page)
+        {
+            BufferedImage bim = pdfRenderer.renderImageWithDPI(page, 300, ImageType.RGB);
+            ImageIOUtil.writeImage(bim, "Insurance" + "-" + (page+1) + ".png", 300);
+        }
+        document.close();
+    }
+
+    public String fileToBase64(File file){
+        String encodedfile = "";
+        try {
+            FileInputStream fileInputStreamReader = new FileInputStream(file);
+            byte[] bytes = new byte[(int)file.length()];
+            fileInputStreamReader.read(bytes);
+            encodedfile = new String(Base64.encodeBase64(bytes), "UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return encodedfile;
+    }
+
 }
