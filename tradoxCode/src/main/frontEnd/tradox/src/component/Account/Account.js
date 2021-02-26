@@ -13,14 +13,14 @@ function Account(props) {
     let infoMap = new Map().set("firstName", "Danylo").set("lastName", "Savchak").set("dateOfBirth", "15.07.2000").set("email", "daniel.savchak@gmail.com")
         .set("password", "121322").set("mobilePhone", "+380952023455").set("passport", "PMEWEWE").set("citizenship", "Ukraine").set("currentCountry", "Ukraine");
     let [state, setState] = useState(infoMap);
-    let [firstName,setFirstName] = useState("")
-    let [useEffectAtStart,setUseEffectAtStart] = useState(false)
+    let [firstName, setFirstName] = useState("")
+    let [useEffectAtStart, setUseEffectAtStart] = useState(true)
 
     useEffect(() => {
-        if (!useEffectAtStart) {
-        fetch("http://localhost:8080/api/v1/account/getUserData")
-            .then(data => data.json())
-            .then(userData => {
+        if (useEffectAtStart) {
+            fetch("http://localhost:8080/api/v1/account/getUserData")
+                .then(data => data.json())
+                .then(userData => {
                     const {
                         firstName,
                         lastName,
@@ -35,31 +35,30 @@ function Account(props) {
                     //     .set("dateOfBirth", birthDate).set("email", email).set("mobilePhone", phone)
                     //     .set("passport", passport).set("citizenship", citizenship)
                     //     .set("currentCountry", currentCountry);
-                    infoMap.set("firstName",firstName)
-                    infoMap.set("lastName",lastName)
-                    infoMap.set("dateOfBirth",birthDate)
-                    infoMap.set("email",email)
-                    infoMap.set("mobilePhone",phone)
-                    infoMap.set("passport",passport)
-                    infoMap.set("citizenship",citizenship)
-                    infoMap.set("currentCountry",currentCountry)
+                    infoMap.set("firstName", firstName);
+                    infoMap.set("lastName", lastName);
+                    infoMap.set("dateOfBirth", birthDate);
+                    infoMap.set("email", email);
+                    infoMap.set("mobilePhone", phone);
+                    infoMap.set("passport", passport);
+                    infoMap.set("citizenship", citizenship);
+                    infoMap.set("currentCountry", currentCountry);
 
-                    setFirstName(firstName)
-                    setState(infoMap)
+                    setFirstName(firstName);
+                    setState(infoMap);
                     // setState(mmap);
-                    setUseEffectAtStart(true)
-
+                    let arr = [];
                     userData.transit.forEach((card) => {
-                        console.log(card);
-                        setCards([...cards, {
+                        arr.push({
                             id: card.routeId,
                             from: card.transit[0].fullRoute.departure.shortName,
                             to: card.transit[0].fullRoute.destination.shortName,
                             title: card.transit[0].fullRoute.destination.fullName
-                        }])
-                    })
-
-            });
+                        });
+                    });
+                    setCards(arr);
+                    setUseEffectAtStart(false);
+                });
         }
     })
 
@@ -78,50 +77,15 @@ function Account(props) {
                 "country_id": myMap.get(infoMap.get("currentCountry"))
             })
         })
-        .then(response => response.json()
-            .then(data => ({
-                    data: data,
-                    status: response.status
-                })
-            ));
+            .then(response => response.json()
+                .then(data => ({
+                        data: data,
+                        status: response.status
+                    })
+                ));
     }
 
-    const items = [
-        {
-            title: 'Ukraine',
-            startCountry: 'MD',
-            endCountry: 'US'
-        },
-        {
-            title: 'France',
-            startCountry: 'MD',
-            endCountry: 'US'
-        }, {
-            title: 'United States of America',
-            startCountry: 'MD',
-            endCountry: 'US'
-        }, {
-            title: 'England',
-            startCountry: 'MD',
-            endCountry: 'US'
-        }, {
-            title: 'Brazil',
-            startCountry: 'MD',
-            endCountry: 'US'
-        }, {
-            title: 'Moldova',
-            startCountry: 'MD',
-            endCountry: 'US'
-        }, {
-            title: 'Romania',
-            startCountry: 'MD',
-            endCountry: 'US'
-        }, {
-            title: 'Kukurudza',
-            startCountry: 'MD',
-            endCountry: 'US'
-        }
-    ]
+
 
     function changeInfoMap(inputKey, inputValue) {
         infoMap.set(inputKey, inputValue)
@@ -133,6 +97,10 @@ function Account(props) {
             arr.push(key)
         }
         return arr;
+    }
+
+    function deleteCard(id) {
+        setCards(cards.filter(item => item.id !== id));
     }
 
     return (
@@ -161,11 +129,11 @@ function Account(props) {
                                                        changeState={changeInfoMap}/>
                                             <InputForm value={""} keyOf={"lastName"} type={"text"} title={"Last name"}
                                                        placeholder={state.get("lastName")} changeState={changeInfoMap}/>
-                                            <InputForm keyOf={"dateOfBirth"}  type={"date"}
+                                            <InputForm keyOf={"dateOfBirth"} type={"date"}
                                                        title={"Date of birth"}
-                                                       // placeholder={state.get("dateOfBirth")}
+                                                // placeholder={state.get("dateOfBirth")}
                                                        changeState={changeInfoMap}/>
-                                            <InputForm  keyOf={"email"} type={"email"} title={"E-mail"}
+                                            <InputForm keyOf={"email"} type={"email"} title={"E-mail"}
                                                        placeholder={state.get("email")} changeState={changeInfoMap}/>
                                         </div>
                                         <div className={style.partOfInputInfo}>
@@ -199,11 +167,11 @@ function Account(props) {
                         <div className={style.containerScroll}>
                             <Scrollable _class={style.items}>
                                 {
-                                    cards.map((card) => {
+                                    cards.map((item) => {
                                         return (
-                                            <div key={card.id}>
-                                                <SavedRoute title={card.title} startCountry={card.from}
-                                                            endCountry={card.to} id={card.id}/>
+                                            <div key={item.id}>
+                                                <SavedRoute title={item.title} startCountry={item.from}
+                                                            endCountry={item.to} id={item.id} function={deleteCard()}/>
                                             </div>
                                         )
                                     })
