@@ -12,11 +12,12 @@ import {NavLink} from "react-router-dom";
 import logo from "../../images/LogoTradoxLogo.svg";
 import vector from "../../images/Vector.svg";
 import user from "../../images/user.svg";
-
+import InputCountry from "./Forms/InputCountry";
+import Spinner from "react-spinner-material";
+import InputUser from "./Forms/InputUser";
 function Admin(){
 
-    const [isAuth, setIsAuth] = useState(true);
-    const [isAdmin, setIsAdmin] = useState(true);
+    const [loader, setLoader] = useState(false);
     const [countries,setCountries] = useState([]);
     const [users,setUsers] = useState([]);
     const [documents,setDocuments] = useState([]);
@@ -33,6 +34,9 @@ function Admin(){
     const [showMedicine, setShowMedicine] = useState(false)
     const [q, setQ] = useState('');
     const[pressed, setPressed] = useState(false);
+    const [showInputCountry, setShowInputCountry] = useState(false)
+    const [showInputUser, setShowInputUser] = useState(false)
+
 
     function showAuth() {
         if (pressed === false)
@@ -72,10 +76,13 @@ function Admin(){
                     setShowHaveDocument(false)
                     setShowUsers(false)
                     setShowStatus(false)
+                    setLoader(false)
                 }
                 else{
+                    setLoader(false)
                 }
             })
+            setLoader(true)
         }
 
         catch (e){
@@ -95,10 +102,13 @@ function Admin(){
                     setShowHaveDocument(false)
                     setShowUsers(true)
                     setShowStatus(false)
+                    setLoader(false)
                 }
                 else{
+                    setLoader(false)
                 }
             })
+            setLoader(true)
         }
 
         catch (e){
@@ -118,10 +128,13 @@ function Admin(){
                     setShowHaveDocument(false)
                     setShowUsers(false)
                     setShowStatus(false)
+                    setLoader(false)
                 }
                 else{
+                    setLoader(false)
                 }
             })
+            setLoader(true)
         }
 
         catch (e){
@@ -141,10 +154,13 @@ function Admin(){
                     setShowHaveDocument(false)
                     setShowUsers(false)
                     setShowStatus(false)
+                    setLoader(false)
                 }
                 else{
+                    setLoader(false)
                 }
             })
+            setLoader(true)
         }
 
         catch (e){
@@ -164,10 +180,13 @@ function Admin(){
                     setShowHaveDocument(true)
                     setShowUsers(false)
                     setShowStatus(false)
+                    setLoader(false)
                 }
                 else{
+                    setLoader(false)
                 }
             })
+            setLoader(true)
         }
 
         catch (e){
@@ -187,10 +206,13 @@ function Admin(){
                     setShowHaveDocument(false)
                     setShowUsers(false)
                     setShowStatus(false)
+                    setLoader(false)
                 }
                 else{
+                    setLoader(false)
                 }
             })
+            setLoader(true)
         }
 
         catch (e){
@@ -210,10 +232,13 @@ function Admin(){
                     setShowHaveDocument(false)
                     setShowUsers(false)
                     setShowStatus(true)
+                    setLoader(false)
                 }
                 else{
+                    setLoader(false)
                 }
             })
+            setLoader(true)
         }
 
         catch (e){
@@ -231,6 +256,18 @@ function Admin(){
     }
     function searchStatus(status){
         return status.filter((stat) => stat.fullRoute.destination.shortName.toLowerCase().indexOf(q)> -1);
+    }
+    function renderForm(){
+        if(showCountries){
+            setShowInputCountry(true)
+        }
+        if(showUsers){
+            setShowInputUser(true)
+        }
+    }
+    function handlePressCountry(e){
+            console.log(e.currentTarget.id)
+            setShowInputCountry(false)
     }
     return(
         <div className = {style.container}>
@@ -260,7 +297,7 @@ function Admin(){
             </div>
             <div className={style.buttons}>
                 <button className={style.selected}>Save Selected</button>
-                <button className={style.new}>New</button>
+                <button className={style.new} onClick={renderForm}>New</button>
                 <button className={style.delete}>Delete</button>
                 <input type="text" placeholder = "Search by full name or short name" className={style.search} value={q} onChange={(e) => setQ(e.target.value)}/>
             </div>
@@ -272,6 +309,13 @@ function Admin(){
                 {showConsulate?<ConsulatesTable consulates = {consulate}/>:null}
                 {showHaveDocument?<HaveDocTable haveDoc = {haveDocument}/>:null}
                 {showMedicine?<MedicineTable medicines = {medicine}/>:null}
+            </div>
+            <div style = {{position:"absolute", left:"900px", top: "600px"}}>
+                <Spinner radius={150} color={"#F9B300"} stroke={10} visible={loader?true:false}/>
+            </div>
+            <div>
+                {showInputCountry?<InputCountry handlePressCountry = {handlePressCountry}/>:null}
+                {showInputCountry?<InputUser/>:null}
             </div>
         </div>
     );

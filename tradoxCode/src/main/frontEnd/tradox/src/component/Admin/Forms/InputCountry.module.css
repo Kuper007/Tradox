@@ -1,5 +1,7 @@
 .container{
-    margin: 0 auto;
+    position: absolute;
+    left:600px;
+    top:200px;
     width: 633px;
     height: 633px;
     background: #FFFFFF;
@@ -43,4 +45,18 @@
     align-items: center;
     align-content: center;
     justify-content: center;
+}
+.input {
+    border: 0;
+    border-bottom: 1px solid black;
+    width: 68%;
+    text-align: right;
+    float: right;
+    Outline:none;
+    background: none;
+}
+.naming {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
 }
